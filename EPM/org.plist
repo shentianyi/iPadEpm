@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>orgs</key>
+	<array>
+		<dict>
+			<key>code</key>
+			<string>logo-unconnacted</string>
+			<key>description</key>
+			<string>ntegrate more organization&apos;s data into EPM and get more insight of your company</string>
+			<key>name</key>
+			<string>More data, more insight</string>
+			<key>id</key>
+			<string>-1</string>
+		</dict>
+		<dict>
+			<key>id</key>
+			<string>23</string>
+			<key>name</key>
+			<string>Leoni-Shanghai</string>
+			<key>description</key>
+			<string>LEONI Electrical System (Shanghai) Co.,Ltd.</string>
+			<key>code</key>
+			<string>SHANGHAI</string>
+		</dict>
+		<dict>
+			<key>id</key>
+			<string>26</string>
+			<key>name</key>
+			<string>MB</string>
+			<key>description</key>
+			<string>LEONI Shanghai, BU MB</string>
+			<key>code</key>
+			<string>MB</string>
+		</dict>
+		<dict>
+			<key>id</key>
+			<string>27</string>
+			<key>name</key>
+			<string>GM</string>
+			<key>description</key>
+			<string>LEONI Shanghai, BU GM</string>
+			<key>code</key>
+			<string>GM</string>
+		</dict>
+		<dict>
+			<key>id</key>
+			<string>28</string>
+			<key>name</key>
+			<string>VW</string>
+			<key>description</key>
+			<string>LEONI Shanghai, VW Project</string>
+			<key>code</key>
+			<string>vw</string>
+		</dict>
+		<dict>
+			<key>id</key>
+			<string>1</string>
+			<key>name</key>
+			<string>C-RBA</string>
+			<key>description</key>
+			<string>C-RBA production line,producing RBA harness for MB C-Class</string>
+			<key>code</key>
+			<string>MB</string>
+		</dict>
+		<dict>
+			<key>id</key>
+			<string>2</string>
+			<key>name</key>
+			<string>G-RBA</string>
+			<key>description</key>
+			<string>G-RBA production line,producing RBA harness for MB G-Class</string>
+			<key>code</key>
+			<string>MB</string>
+		</dict>
+		<dict>
+			<key>id</key>
+			<string>3</string>
+			<key>name</key>
+			<string>E-RBA</string>
+			<key>description</key>
+			<string>E-RBA production line,producing RBA harness for MB E-Class</string>
+			<key>code</key>
+			<string>MB</string>
+		</dict>
+		<dict>
+			<key>id</key>
+			<string>6</string>
+			<key>name</key>
+			<string>E-COC</string>
+			<key>description</key>
+			<string>E-COC production line,producing COC harness for MB E-Class</string>
+			<key>code</key>
+			<string>MB</string>
+		</dict>
+		<dict>
+			<key>id</key>
+			<string>9</string>
+			<key>name</key>
+			<string>E-MRA</string>
+			<key>description</key>
+			<string>E-MRA production line,producing MRA harness for MB E-Class</string>
+			<key>code</key>
+			<string>MB</string>
+		</dict>
+		<dict>
+			<key>id</key>
+			<string>10</string>
+			<key>name</key>
+			<string>Minor</string>
+			<key>description</key>
+			<string>Minor production line,producing Minor harness for MB</string>
+			<key>code</key>
+			<string>MB</string>
+		</dict>
+		<dict>
+			<key>id</key>
+			<string>11</string>
+			<key>name</key>
+			<string>Motor</string>
+			<key>description</key>
+			<string>Motor production line,producing Motor harness for MB</string>
+			<key>code</key>
+			<string>MB</string>
+		</dict>
+		<dict>
+			<key>id</key>
+			<string>20</string>
+			<key>name</key>
+			<string>C-G-COC</string>
+			<key>description</key>
+			<string>COC production line,producing COC harness for MB C and G Class</string>
+			<key>code</key>
+			<string>MB</string>
+		</dict>
+		<dict>
+			<key>id</key>
+			<string>21</string>
+			<key>name</key>
+			<string>C-G-MRA</string>
+			<key>description</key>
+			<string>MRA production line,producing MRA harness for MB C and G Class</string>
+			<key>code</key>
+			<string>MB</string>
+		</dict>
+		<dict>
+			<key>id</key>
+			<string>22</string>
+			<key>name</key>
+			<string>NCV2-3</string>
+			<key>description</key>
+			<string>NCV2-3 production line,producing harness for MB NCV 2 and NVC 3 project</string>
+			<key>code</key>
+			<string>MB</string>
+		</dict>
+	</array>
+</dict>
+</plist>
