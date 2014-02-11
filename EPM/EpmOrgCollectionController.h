@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface EpmOrgCollectionController : UICollectionViewController
-@property(strong,nonatomic) NSArray *Organizations;
+@property (strong,nonatomic) NSArray *Organizations;
 @property (weak, nonatomic) IBOutlet UILabel *name;
 @property (weak, nonatomic) IBOutlet UILabel *desc;
 @property (weak, nonatomic) IBOutlet UIImageView *codeImage;
