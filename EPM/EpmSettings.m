@@ -11,7 +11,7 @@
 @implementation EpmSettings
 +(NSString *)getEpmUrlSettingsWithKey:(NSString *)aKey{
    
-    return [[[self class]urlSettings] objectForKey:aKey];
+    return [[[self class] urlSettings] objectForKey:aKey];
 };
 
 +(NSDictionary*) urlSettings {

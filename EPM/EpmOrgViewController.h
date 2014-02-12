@@ -10,6 +10,7 @@
 
 @interface EpmOrgViewController : UIViewController
 
+@property (weak, nonatomic) IBOutlet UIView *upperContainer;
 
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property(strong,nonatomic) NSArray *kpis;

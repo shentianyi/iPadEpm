@@ -22,12 +22,49 @@
 @synthesize webView = _webView;
 @synthesize indicator = _indicator;
 @synthesize tableData = _tableData;
+@synthesize upperContainer = _upperContainer;
+
+-(void)viewDidAppear:(BOOL)animated{
+    // [self changeLayoutWithOrientation:(UIDeviceOrientation)[UIApplication sharedApplication].statusBarOrientation];
+    UIBarButtonItem *shareItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:nil];
+    UIBarButtonItem *cameraItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCamera target:self action:nil];
+    
+    NSArray *actionButtonItems = @[shareItem, cameraItem];
+    self.navigationItem.rightBarButtonItems = actionButtonItems;
+}
+
+
+-(void)changeLayoutWithOrientation:(UIDeviceOrientation)orientation{
+    CGRect firstFrame;
+    CGRect secondFrame;
+    if(UIDeviceOrientationIsLandscape(orientation)){
+        firstFrame = CGRectMake(self.upperContainer.bounds.origin.x, self.upperContainer.bounds.origin.y, self.upperContainer.bounds.size.width/2, self.upperContainer.bounds.size.height);
+        secondFrame =CGRectMake(self.upperContainer.bounds.size.width/2 , self.upperContainer.bounds.origin.y, self.upperContainer.bounds.size.width/2, self.upperContainer.bounds.size.height);
+    }
+    else {
+        firstFrame = CGRectMake(self.upperContainer.bounds.origin.x, self.upperContainer.bounds.origin.y, self.upperContainer.bounds.size.width, self.upperContainer.bounds.size.height/2);
+        secondFrame =CGRectMake(self.upperContainer.bounds.origin.x , self.upperContainer.bounds.size.height/2, self.upperContainer.bounds.size.width, self.upperContainer.bounds.size.height/2);
+    }
+    [self.webView setFrame:firstFrame];
+    [self.tableView setFrame:secondFrame];
+    
+    
+}
+
+-(void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation{
+ //   [self changeLayoutWithOrientation:[[UIDevice currentDevice]orientation]];
+       [self.webView stringByEvaluatingJavaScriptFromString:@"orientationChange()"];
+    
+    
+}
+
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+    
     }
     return self;
 }
@@ -74,8 +111,17 @@
    
 
     NSString *toReplace = (NSString *)[EpmSettings getEpmUrlSettingsWithKey:@"kpis"];
-    toReplace = [toReplace stringByReplacingOccurrencesOfString:@":id:"
-                                               withString:[self.entityGroup objectForKey:@"id"]];
+    
+    NSString *entityId;
+    if([[self.entityGroup objectForKey:@"id"] isKindOfClass:[NSString class]]){
+        entityId = [self.entityGroup objectForKey:@"id"];
+    }
+    else{
+        entityId = [[self.entityGroup objectForKey:@"id"] stringValue];
+    }
+    
+    toReplace = [toReplace stringByReplacingOccurrencesOfString:@":id"
+                                               withString:entityId];
     
     [manager GET:[NSString stringWithFormat:@"%@%@",[EpmSettings getEpmUrlSettingsWithKey:@"baseUrl"],toReplace] parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSArray *result = (NSArray *)responseObject;
@@ -172,6 +218,8 @@
     
     int status = [EpmHttpUtil getLastHttpStatusCodeWithRequest:self.webView.request];
     
+     [self.webView stringByEvaluatingJavaScriptFromString:@"orientationChange()"];
+    
     if (status>=400){
         
         NSString *msg=[EpmHttpUtil notificationWithStatusCode:status];
@@ -243,6 +291,8 @@
    // NSDictionary *current = [data objectForKey:[[data allKeys] objectAtIndex:indexPath.row]];
     
     //NSLog(@"%@",[[data allKeys] objectAtIndex:indexPath.row]);
+    NSLog(@"%@",self.tableData);
+
    
     NSDate *date =[[self.tableData objectForKey:@"date"] objectAtIndex:indexPath.row];
     NSNumber *current =[[self.tableData objectForKey:@"current"] objectAtIndex:indexPath.row];
@@ -250,10 +300,7 @@
     NSNumber *max=[[self.tableData objectForKey:@"target_max"] objectAtIndex:indexPath.row];
     NSString *unit = [[self.tableData objectForKey:@"unit"] objectAtIndex:indexPath.row];
 
-    NSLog(@"%@",date);
-    NSLog(@"%@",current);
-    NSLog(@"%@",min);
-    NSLog(@"%@",max);
+ 
     
     
     cell.time.text = [[self.tableData objectForKey:@"date"] objectAtIndex:indexPath.row];
