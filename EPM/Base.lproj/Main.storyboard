@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<<<<<<< HEAD
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="12E55" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="M3C-3t-DnL">
+=======
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13B42" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="M3C-3t-DnL">
+>>>>>>> 3b67dc709c76d6c36f38cab84de985167590b9a6
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
     </dependencies>
@@ -142,9 +146,9 @@
         <scene sceneID="D4R-3u-wBg">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="1bJ-ix-k2p" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Dashboard" image="first" id="acW-dT-cKf">
+                    <tabBarItem key="tabBarItem" title="Dashboard" image="BUTTON-dashboard.png" id="acW-dT-cKf">
                         <inset key="imageInsets" minX="5" minY="0.0" maxX="0.0" maxY="0.0"/>
-                        <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="0.0"/>
+                        <offsetWrapper key="titlePositionAdjustment" horizontal="3" vertical="-2"/>
                     </tabBarItem>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Ogq-83-Bt8">
@@ -462,7 +466,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Lp9-26-ntN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6239" y="1463"/>
+            <point key="canvasLocation" x="6077" y="1311"/>
         </scene>
         <!--Epm Db Collection Controller-->
         <scene sceneID="nn7-t1-cqr">
@@ -624,7 +628,7 @@
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="TITLE.png" translatesAutoresizingMaskIntoConstraints="NO" id="ceq-Nf-4CU">
-                                <rect key="frame" x="63" y="121" width="311" height="171"/>
+                                <rect key="frame" x="106" y="110" width="271" height="201"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                             </imageView>
                         </subviews>
@@ -662,11 +666,13 @@
             </objects>
             <point key="canvasLocation" x="2585" y="230"/>
         </scene>
-        <!--Navigation Controller - Place-->
+        <!--Navigation Controller - Organization-->
         <scene sceneID="vbD-wo-IXT">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="cq0-ZO-IGf" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Place" image="second" id="UMX-0R-psN"/>
+                    <tabBarItem key="tabBarItem" title="Organization" image="BUTTON-organization.png" id="UMX-0R-psN">
+                        <offsetWrapper key="titlePositionAdjustment" horizontal="1" vertical="-2"/>
+                    </tabBarItem>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="xrQ-2V-gsk">
                         <rect key="frame" x="0.0" y="0.0" width="768" height="44"/>
@@ -702,16 +708,16 @@
         </scene>
     </scenes>
     <resources>
+        <image name="BUTTON-dashboard.png" width="30" height="30"/>
+        <image name="BUTTON-organization.png" width="30" height="30"/>
         <image name="DASHBOARD-pie.png" width="210" height="297"/>
         <image name="KPI-background.png" width="600" height="400"/>
         <image name="LOGIN.png" width="2048" height="1536"/>
         <image name="TITLE.png" width="800" height="600"/>
         <image name="blue-point.png" width="50" height="50"/>
         <image name="disconnect.png" width="120" height="93"/>
-        <image name="first" width="30" height="30"/>
         <image name="logo-unconnacted.png" width="487" height="379"/>
         <image name="organization-bg.png" width="2048" height="1536"/>
-        <image name="second" width="30" height="30"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar" statusBarStyle="blackOpaque"/>
