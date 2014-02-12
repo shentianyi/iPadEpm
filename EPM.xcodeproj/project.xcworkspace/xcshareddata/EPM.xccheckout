@@ -5,28 +5,18 @@
 	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
 	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
-<<<<<<< HEAD
-	<string>E3A7A280-4AF0-4FC6-A256-DB65A0BA6730</string>
-=======
-	<string>D7B7AC46-CAF6-466D-A77F-0EC05872BA55</string>
->>>>>>> 3b67dc709c76d6c36f38cab84de985167590b9a6
+	<string>3901009E-2DE2-4695-BABA-2B088B4D112C</string>
 	<key>IDESourceControlProjectName</key>
 	<string>EPM</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-<<<<<<< HEAD
 		<key>EC467993-C104-4D7D-8E3B-73C7FDA9B08A</key>
 		<string>ssh://github.com/shentianyi/iPadEpm.git</string>
-=======
-		<key>3C352666-7872-4C8C-8E17-96671AF80FFC</key>
-		<string>https://github.com/shentianyi/iPadEpm.git</string>
->>>>>>> 3b67dc709c76d6c36f38cab84de985167590b9a6
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>EPM.xcodeproj/project.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-<<<<<<< HEAD
 		<key>EC467993-C104-4D7D-8E3B-73C7FDA9B08A</key>
 		<string>../..</string>
 	</dict>
@@ -36,28 +26,13 @@
 	<integer>110</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
 	<string>EC467993-C104-4D7D-8E3B-73C7FDA9B08A</string>
-=======
-		<key>3C352666-7872-4C8C-8E17-96671AF80FFC</key>
-		<string>../..</string>
-	</dict>
-	<key>IDESourceControlProjectURL</key>
-	<string>https://github.com/shentianyi/iPadEpm.git</string>
-	<key>IDESourceControlProjectVersion</key>
-	<integer>110</integer>
-	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>3C352666-7872-4C8C-8E17-96671AF80FFC</string>
->>>>>>> 3b67dc709c76d6c36f38cab84de985167590b9a6
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-<<<<<<< HEAD
 			<string>EC467993-C104-4D7D-8E3B-73C7FDA9B08A</string>
-=======
-			<string>3C352666-7872-4C8C-8E17-96671AF80FFC</string>
->>>>>>> 3b67dc709c76d6c36f38cab84de985167590b9a6
 			<key>IDESourceControlWCCName</key>
 			<string>iPadEpm</string>
 		</dict>
