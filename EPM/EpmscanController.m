@@ -265,8 +265,9 @@ didOutputMetadataObjects:(NSArray *)metadataObjects
     cell.tel.text= [data objectForKey:@"tel"];
     cell.mobil.text = [data objectForKey:@"phone"];
     cell.title.text = [data objectForKey:@"title"];
-    //[cell.img setImageWithURL:[NSURL URLWithString:[data objectForKey:@"image_url"]]];
-    cell.img.image  = [UIImage imageWithData:[[NSData alloc]initWithContentsOfURL:[NSURL URLWithString:[data objectForKey:@"image_url"]]]];
+    NSLog(@"%@",[data objectForKey:@"image_url"]);
+    [cell.img setImageWithURL:[NSURL URLWithString:[data objectForKey:@"image_url"]]];
+    //cell.img.image  = [UIImage imageWithData:[[NSData alloc]initWithContentsOfURL:[NSURL URLWithString:[data objectForKey:@"image_url"]]]];
     
     return cell;
 }
