@@ -7,7 +7,7 @@
 //
 
 #import "EpmContactCell.h"
-#import <SDWebImage/UIImageView+WebCache.h>
+
 
 @implementation EpmContactCell
 

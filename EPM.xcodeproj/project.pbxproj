@@ -96,6 +96,9 @@
 		05EA4E06187FE09600C53FEE /* EpmDbHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 05EA4E05187FE09600C53FEE /* EpmDbHeader.m */; };
 		05EA4E09187FEB7800C53FEE /* EpmOrgCollectionController.m in Sources */ = {isa = PBXBuildFile; fileRef = 05EA4E08187FEB7800C53FEE /* EpmOrgCollectionController.m */; };
 		05EA4E0C187FEBDC00C53FEE /* EpmOrgCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 05EA4E0B187FEBDC00C53FEE /* EpmOrgCellView.m */; };
+		B0D3A9DF18AC8CBB0053CD8D /* Dashboard-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = B0D3A9DE18AC8CBB0053CD8D /* Dashboard-icon.png */; };
+		B0D3A9E118AC8E360053CD8D /* Organization-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = B0D3A9E018AC8E360053CD8D /* Organization-icon.png */; };
+		B0D3A9E318AC92F50053CD8D /* Scan-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = B0D3A9E218AC92F50053CD8D /* Scan-icon.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -244,6 +247,9 @@
 		05EA4E08187FEB7800C53FEE /* EpmOrgCollectionController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EpmOrgCollectionController.m; sourceTree = "<group>"; };
 		05EA4E0A187FEBDC00C53FEE /* EpmOrgCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EpmOrgCellView.h; sourceTree = "<group>"; };
 		05EA4E0B187FEBDC00C53FEE /* EpmOrgCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EpmOrgCellView.m; sourceTree = "<group>"; };
+		B0D3A9DE18AC8CBB0053CD8D /* Dashboard-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Dashboard-icon.png"; sourceTree = "<group>"; };
+		B0D3A9E018AC8E360053CD8D /* Organization-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Organization-icon.png"; sourceTree = "<group>"; };
+		B0D3A9E218AC92F50053CD8D /* Scan-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Scan-icon.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -417,6 +423,9 @@
 		05EA4DCA187FB00C00C53FEE /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				B0D3A9E218AC92F50053CD8D /* Scan-icon.png */,
+				B0D3A9E018AC8E360053CD8D /* Organization-icon.png */,
+				B0D3A9DE18AC8CBB0053CD8D /* Dashboard-icon.png */,
 				05D2C0A31884B6C500DBBF8C /* ipad-icon-76.png */,
 				05D2C0A41884B6C600DBBF8C /* ipad-icon-120.png */,
 				05D2C0A51884B6C600DBBF8C /* ipad-icon-152.png */,
@@ -576,6 +585,7 @@
 				05EA4DCE187FB00C00C53FEE /* InfoPlist.strings in Resources */,
 				05D2C05D1882745700DBBF8C /* BUTTON-dashboard-active.png in Resources */,
 				05D2C0B01884B6C600DBBF8C /* iphone-icon@2x.png in Resources */,
+				B0D3A9E318AC92F50053CD8D /* Scan-icon.png in Resources */,
 				05D2C0651882745F00DBBF8C /* BUTTON-organization.png in Resources */,
 				05D2C0AF1884B6C600DBBF8C /* iphone-icon.png in Resources */,
 				05D2C06C1882746A00DBBF8C /* CATEGORY-quality.png in Resources */,
@@ -587,9 +597,11 @@
 				05D2C05C1882745700DBBF8C /* MB.png in Resources */,
 				05D2C0AB1884B6C600DBBF8C /* ipad-icon-120.png in Resources */,
 				05D2C0AE1884B6C600DBBF8C /* ipad-icon@2x.png in Resources */,
+				B0D3A9E118AC8E360053CD8D /* Organization-icon.png in Resources */,
 				05EA4DD7187FB00C00C53FEE /* Main.storyboard in Resources */,
 				05D2C0641882745F00DBBF8C /* BUTTON-organization-active.png in Resources */,
 				05D2C0971884665700DBBF8C /* blue-point.png in Resources */,
+				B0D3A9DF18AC8CBB0053CD8D /* Dashboard-icon.png in Resources */,
 				05D2C0561882326500DBBF8C /* org.plist in Resources */,
 				05D2C09F188467B200DBBF8C /* logo-unconnacted.png in Resources */,
 				05D2C04C18813CA200DBBF8C /* urlSetting.plist in Resources */,
