@@ -11,6 +11,7 @@
 #import "AFNetworking.h"
 #import "EpmContactCell.h"
 #import "EpmOrgViewController.h"
+#import "EpmSendMailController.h"
 #import <SDWebImage/UIImageView+WebCache.h>
 @import AVFoundation;
 
@@ -305,8 +306,7 @@ didOutputMetadataObjects:(NSArray *)metadataObjects
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-   // [self performSegueWithIdentifier:@"sendMail" sender:self.entityGroup];
-   
+    [self performSegueWithIdentifier:@"scanSendMail" sender:self.contacts];
 }
 
 
@@ -318,6 +318,12 @@ didOutputMetadataObjects:(NSArray *)metadataObjects
         detailViewController.entityGroup  = (NSDictionary *)sender;
    }
     
+    if([segue.identifier isEqualToString:@"scanSendMail"])
+    {
+        
+        EpmSendMailController *detailViewController = segue.destinationViewController;
+        detailViewController.completeData  = @{@"contacts":(NSArray*)sender};
+    }
 }
 
 

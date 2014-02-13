@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		055F84631889153D00D88BC4 /* EpmHttpUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 055F84621889153D00D88BC4 /* EpmHttpUtil.m */; };
 		055F84661889161500D88BC4 /* EpmSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 055F84651889161500D88BC4 /* EpmSettings.m */; };
+		056C3CD918ACAC5200820524 /* EpmSendMailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 056C3CD818ACAC5200820524 /* EpmSendMailController.m */; };
+		056C3CDC18ACAE8000820524 /* EpmMailReceiverCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 056C3CDB18ACAE8000820524 /* EpmMailReceiverCell.m */; };
+		056C3CDF18ACBC1D00820524 /* EpmUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 056C3CDE18ACBC1D00820524 /* EpmUtility.m */; };
 		0576D1A318AC64EF00AD75AB /* MKAnnotationView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 0576D18718AC64EF00AD75AB /* MKAnnotationView+WebCache.m */; };
 		0576D1A418AC64EF00AD75AB /* NSData+GIF.m in Sources */ = {isa = PBXBuildFile; fileRef = 0576D18918AC64EF00AD75AB /* NSData+GIF.m */; };
 		0576D1A518AC64EF00AD75AB /* SDImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 0576D18B18AC64EF00AD75AB /* SDImageCache.m */; };
@@ -113,6 +116,12 @@
 		055F84621889153D00D88BC4 /* EpmHttpUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EpmHttpUtil.m; sourceTree = "<group>"; };
 		055F84641889161400D88BC4 /* EpmSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EpmSettings.h; sourceTree = "<group>"; };
 		055F84651889161500D88BC4 /* EpmSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EpmSettings.m; sourceTree = "<group>"; };
+		056C3CD718ACAC5200820524 /* EpmSendMailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EpmSendMailController.h; sourceTree = "<group>"; };
+		056C3CD818ACAC5200820524 /* EpmSendMailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EpmSendMailController.m; sourceTree = "<group>"; };
+		056C3CDA18ACAE8000820524 /* EpmMailReceiverCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EpmMailReceiverCell.h; sourceTree = "<group>"; };
+		056C3CDB18ACAE8000820524 /* EpmMailReceiverCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EpmMailReceiverCell.m; sourceTree = "<group>"; };
+		056C3CDD18ACBC1C00820524 /* EpmUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EpmUtility.h; sourceTree = "<group>"; };
+		056C3CDE18ACBC1D00820524 /* EpmUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EpmUtility.m; sourceTree = "<group>"; };
 		0576D18618AC64EF00AD75AB /* MKAnnotationView+WebCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MKAnnotationView+WebCache.h"; sourceTree = "<group>"; };
 		0576D18718AC64EF00AD75AB /* MKAnnotationView+WebCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MKAnnotationView+WebCache.m"; sourceTree = "<group>"; };
 		0576D18818AC64EF00AD75AB /* NSData+GIF.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+GIF.h"; sourceTree = "<group>"; };
@@ -410,6 +419,12 @@
 				0589E8CF18AB161F000173CC /* EpmscanController.m */,
 				0589E8D918AB4121000173CC /* EpmContactCell.h */,
 				0589E8DA18AB4121000173CC /* EpmContactCell.m */,
+				056C3CD718ACAC5200820524 /* EpmSendMailController.h */,
+				056C3CD818ACAC5200820524 /* EpmSendMailController.m */,
+				056C3CDA18ACAE8000820524 /* EpmMailReceiverCell.h */,
+				056C3CDB18ACAE8000820524 /* EpmMailReceiverCell.m */,
+				056C3CDD18ACBC1C00820524 /* EpmUtility.h */,
+				056C3CDE18ACBC1D00820524 /* EpmUtility.m */,
 			);
 			path = EPM;
 			sourceTree = "<group>";
@@ -626,12 +641,15 @@
 				05EA4DD0187FB00C00C53FEE /* main.m in Sources */,
 				0576D1AB18AC64EF00AD75AB /* SDWebImagePrefetcher.m in Sources */,
 				0576D1A918AC64EF00AD75AB /* SDWebImageDownloaderOperation.m in Sources */,
+				056C3CDC18ACAE8000820524 /* EpmMailReceiverCell.m in Sources */,
 				05EA4DDD187FB00C00C53FEE /* EpmSecondViewController.m in Sources */,
 				0576D1A818AC64EF00AD75AB /* SDWebImageDownloader.m in Sources */,
+				056C3CD918ACAC5200820524 /* EpmSendMailController.m in Sources */,
 				05EA4E06187FE09600C53FEE /* EpmDbHeader.m in Sources */,
 				05D2C04A188138BE00DBBF8C /* AFURLSessionManager.m in Sources */,
 				055F84661889161500D88BC4 /* EpmSettings.m in Sources */,
 				05D2C049188138BE00DBBF8C /* AFURLResponseSerialization.m in Sources */,
+				056C3CDF18ACBC1D00820524 /* EpmUtility.m in Sources */,
 				0576D1A718AC64EF00AD75AB /* SDWebImageDecoder.m in Sources */,
 				05EA4DFD187FB06F00C53FEE /* EpmDbCollectionController.m in Sources */,
 				05D2C0A2188482D200DBBF8C /* EpmTableCell.m in Sources */,
