@@ -102,7 +102,7 @@
                                                     </subviews>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                 </view>
-                                                <color key="backgroundColor" white="0.95822832661290325" alpha="0.19" colorSpace="calibratedWhite"/>
+                                                <color key="backgroundColor" white="0.88385206653225812" alpha="0.25" colorSpace="calibratedWhite"/>
                                                 <connections>
                                                     <outlet property="email" destination="eqp-yQ-r64" id="xdf-Gl-TR4"/>
                                                     <outlet property="img" destination="GJw-xj-5nM" id="Elg-9k-KPG"/>

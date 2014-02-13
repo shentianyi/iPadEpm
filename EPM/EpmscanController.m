@@ -83,7 +83,26 @@
      name:UIApplicationDidEnterBackgroundNotification
      object:nil];
 	// Do any additional setup after loading the view.
+    
+    UITapGestureRecognizer *singleFingerOne = [[UITapGestureRecognizer alloc] initWithTarget:self
+                                                                                 action:@selector(handleSingleFingerEvent:)];
+    singleFingerOne.numberOfTouchesRequired = 1; //手指数
+    singleFingerOne.numberOfTapsRequired = 1; //tap次数
+    singleFingerOne.delegate = self;
+    [self.previewView addGestureRecognizer:singleFingerOne];
 }
+
+
+- (void)handleSingleFingerEvent:(UITapGestureRecognizer *)sender
+  {
+         if (sender.numberOfTapsRequired == 1) {
+               //单指单击
+             [self startRunning];
+          }
+  
+  
+  }
+
 
 - (void)didReceiveMemoryWarning
 {
@@ -143,10 +162,16 @@
 
 - (void)startRunning {
     if (_running) return;
+    
+    [UIView animateWithDuration:0.6 animations:^{
+        self.modalView.layer.opacity = 0.0f;
+    }];
+    
     [_captureSession startRunning];
     _metadataOutput.metadataObjectTypes =
     _metadataOutput.availableMetadataObjectTypes;
-    self.modalView.layer.opacity = 0.0f;
+    
+ 
     _running = YES;
 }
 - (void)stopRunning {
@@ -217,7 +242,11 @@ didOutputMetadataObjects:(NSArray *)metadataObjects
             self.contacts = [NSMutableArray arrayWithArray:[result objectForKey:@"contact"]];
             [self.contactCollection reloadData];
         }
-        self.modalView.layer.opacity = 80.0f;
+        
+        [UIView animateWithDuration:0.7 animations:^{
+             self.modalView.layer.opacity = 80.0f;
+        }];
+      
         
     }
      
@@ -265,7 +294,6 @@ didOutputMetadataObjects:(NSArray *)metadataObjects
     cell.tel.text= [data objectForKey:@"tel"];
     cell.mobil.text = [data objectForKey:@"phone"];
     cell.title.text = [data objectForKey:@"title"];
-    NSLog(@"%@",[data objectForKey:@"image_url"]);
     [cell.img setImageWithURL:[NSURL URLWithString:[data objectForKey:@"image_url"]]];
     //cell.img.image  = [UIImage imageWithData:[[NSData alloc]initWithContentsOfURL:[NSURL URLWithString:[data objectForKey:@"image_url"]]]];
     
