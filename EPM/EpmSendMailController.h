@@ -22,5 +22,7 @@
 - (IBAction)titleTouch:(id)sender;
 @property (weak, nonatomic) IBOutlet UIWebView *wvChart;
 - (IBAction)takePicture:(id)sender;
+@property (weak, nonatomic) IBOutlet UICollectionView *attachCollection;
 @property (strong,nonatomic) NSDictionary *completeData;
+@property (weak, nonatomic) IBOutlet UIView *chartView;
 @end

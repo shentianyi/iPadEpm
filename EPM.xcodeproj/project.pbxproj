@@ -31,6 +31,16 @@
 		0589E8D518AB1A87000173CC /* Barcode.m in Sources */ = {isa = PBXBuildFile; fileRef = 0589E8D418AB1A87000173CC /* Barcode.m */; };
 		0589E8DB18AB4121000173CC /* EpmContactCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0589E8DA18AB4121000173CC /* EpmContactCell.m */; };
 		0589E8DF18AB4812000173CC /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0589E8DE18AB4812000173CC /* ImageIO.framework */; };
+		05C4FF5518ADC631004E1A90 /* PNBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 05C4FF4118ADC631004E1A90 /* PNBar.m */; };
+		05C4FF5618ADC631004E1A90 /* PNBarChart.m in Sources */ = {isa = PBXBuildFile; fileRef = 05C4FF4318ADC631004E1A90 /* PNBarChart.m */; };
+		05C4FF5718ADC631004E1A90 /* PNChartLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 05C4FF4718ADC631004E1A90 /* PNChartLabel.m */; };
+		05C4FF5818ADC631004E1A90 /* PNCircleChart.m in Sources */ = {isa = PBXBuildFile; fileRef = 05C4FF4918ADC631004E1A90 /* PNCircleChart.m */; };
+		05C4FF5918ADC631004E1A90 /* PNColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 05C4FF4B18ADC631004E1A90 /* PNColor.m */; };
+		05C4FF5A18ADC631004E1A90 /* PNLineChart.m in Sources */ = {isa = PBXBuildFile; fileRef = 05C4FF4D18ADC631004E1A90 /* PNLineChart.m */; };
+		05C4FF5B18ADC631004E1A90 /* PNLineChartData.m in Sources */ = {isa = PBXBuildFile; fileRef = 05C4FF4F18ADC631004E1A90 /* PNLineChartData.m */; };
+		05C4FF5C18ADC631004E1A90 /* PNLineChartDataItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 05C4FF5118ADC631004E1A90 /* PNLineChartDataItem.m */; };
+		05C4FF5D18ADC631004E1A90 /* UICountingLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 05C4FF5418ADC631004E1A90 /* UICountingLabel.m */; };
+		05C4FF6118ADE20F004E1A90 /* EpmMailAttachmentViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 05C4FF6018ADE20F004E1A90 /* EpmMailAttachmentViewCell.m */; };
 		05D2C00E1881305900DBBF8C /* EpmLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 05D2C00D1881305900DBBF8C /* EpmLoginViewController.m */; };
 		05D2C042188138BE00DBBF8C /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 05D2C030188138BE00DBBF8C /* AFHTTPRequestOperation.m */; };
 		05D2C043188138BE00DBBF8C /* AFHTTPRequestOperationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 05D2C032188138BE00DBBF8C /* AFHTTPRequestOperationManager.m */; };
@@ -159,6 +169,28 @@
 		0589E8D918AB4121000173CC /* EpmContactCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EpmContactCell.h; sourceTree = "<group>"; };
 		0589E8DA18AB4121000173CC /* EpmContactCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EpmContactCell.m; sourceTree = "<group>"; };
 		0589E8DE18AB4812000173CC /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
+		05C4FF4018ADC631004E1A90 /* PNBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PNBar.h; sourceTree = "<group>"; };
+		05C4FF4118ADC631004E1A90 /* PNBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PNBar.m; sourceTree = "<group>"; };
+		05C4FF4218ADC631004E1A90 /* PNBarChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PNBarChart.h; sourceTree = "<group>"; };
+		05C4FF4318ADC631004E1A90 /* PNBarChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PNBarChart.m; sourceTree = "<group>"; };
+		05C4FF4418ADC631004E1A90 /* PNChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PNChart.h; sourceTree = "<group>"; };
+		05C4FF4518ADC631004E1A90 /* PNChartDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PNChartDelegate.h; sourceTree = "<group>"; };
+		05C4FF4618ADC631004E1A90 /* PNChartLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PNChartLabel.h; sourceTree = "<group>"; };
+		05C4FF4718ADC631004E1A90 /* PNChartLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PNChartLabel.m; sourceTree = "<group>"; };
+		05C4FF4818ADC631004E1A90 /* PNCircleChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PNCircleChart.h; sourceTree = "<group>"; };
+		05C4FF4918ADC631004E1A90 /* PNCircleChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PNCircleChart.m; sourceTree = "<group>"; };
+		05C4FF4A18ADC631004E1A90 /* PNColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PNColor.h; sourceTree = "<group>"; };
+		05C4FF4B18ADC631004E1A90 /* PNColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PNColor.m; sourceTree = "<group>"; };
+		05C4FF4C18ADC631004E1A90 /* PNLineChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PNLineChart.h; sourceTree = "<group>"; };
+		05C4FF4D18ADC631004E1A90 /* PNLineChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PNLineChart.m; sourceTree = "<group>"; };
+		05C4FF4E18ADC631004E1A90 /* PNLineChartData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PNLineChartData.h; sourceTree = "<group>"; };
+		05C4FF4F18ADC631004E1A90 /* PNLineChartData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PNLineChartData.m; sourceTree = "<group>"; };
+		05C4FF5018ADC631004E1A90 /* PNLineChartDataItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PNLineChartDataItem.h; sourceTree = "<group>"; };
+		05C4FF5118ADC631004E1A90 /* PNLineChartDataItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PNLineChartDataItem.m; sourceTree = "<group>"; };
+		05C4FF5318ADC631004E1A90 /* UICountingLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UICountingLabel.h; sourceTree = "<group>"; };
+		05C4FF5418ADC631004E1A90 /* UICountingLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UICountingLabel.m; sourceTree = "<group>"; };
+		05C4FF5F18ADE20F004E1A90 /* EpmMailAttachmentViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EpmMailAttachmentViewCell.h; sourceTree = "<group>"; };
+		05C4FF6018ADE20F004E1A90 /* EpmMailAttachmentViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EpmMailAttachmentViewCell.m; sourceTree = "<group>"; };
 		05D2C00C1881305900DBBF8C /* EpmLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EpmLoginViewController.h; sourceTree = "<group>"; };
 		05D2C00D1881305900DBBF8C /* EpmLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EpmLoginViewController.m; sourceTree = "<group>"; };
 		05D2C02F188138BE00DBBF8C /* AFHTTPRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperation.h; sourceTree = "<group>"; };
@@ -317,6 +349,50 @@
 			path = SDWebImage;
 			sourceTree = "<group>";
 		};
+		05C4FF3F18ADC631004E1A90 /* PNChart */ = {
+			isa = PBXGroup;
+			children = (
+				05C4FF4018ADC631004E1A90 /* PNBar.h */,
+				05C4FF4118ADC631004E1A90 /* PNBar.m */,
+				05C4FF4218ADC631004E1A90 /* PNBarChart.h */,
+				05C4FF4318ADC631004E1A90 /* PNBarChart.m */,
+				05C4FF4418ADC631004E1A90 /* PNChart.h */,
+				05C4FF4518ADC631004E1A90 /* PNChartDelegate.h */,
+				05C4FF4618ADC631004E1A90 /* PNChartLabel.h */,
+				05C4FF4718ADC631004E1A90 /* PNChartLabel.m */,
+				05C4FF4818ADC631004E1A90 /* PNCircleChart.h */,
+				05C4FF4918ADC631004E1A90 /* PNCircleChart.m */,
+				05C4FF4A18ADC631004E1A90 /* PNColor.h */,
+				05C4FF4B18ADC631004E1A90 /* PNColor.m */,
+				05C4FF4C18ADC631004E1A90 /* PNLineChart.h */,
+				05C4FF4D18ADC631004E1A90 /* PNLineChart.m */,
+				05C4FF4E18ADC631004E1A90 /* PNLineChartData.h */,
+				05C4FF4F18ADC631004E1A90 /* PNLineChartData.m */,
+				05C4FF5018ADC631004E1A90 /* PNLineChartDataItem.h */,
+				05C4FF5118ADC631004E1A90 /* PNLineChartDataItem.m */,
+				05C4FF5218ADC631004E1A90 /* ThirdPart */,
+			);
+			path = PNChart;
+			sourceTree = "<group>";
+		};
+		05C4FF5218ADC631004E1A90 /* ThirdPart */ = {
+			isa = PBXGroup;
+			children = (
+				05C4FF5318ADC631004E1A90 /* UICountingLabel.h */,
+				05C4FF5418ADC631004E1A90 /* UICountingLabel.m */,
+			);
+			path = ThirdPart;
+			sourceTree = "<group>";
+		};
+		05C4FF5E18ADE1CC004E1A90 /* CollectionCellView */ = {
+			isa = PBXGroup;
+			children = (
+				05C4FF5F18ADE20F004E1A90 /* EpmMailAttachmentViewCell.h */,
+				05C4FF6018ADE20F004E1A90 /* EpmMailAttachmentViewCell.m */,
+			);
+			name = CollectionCellView;
+			sourceTree = "<group>";
+		};
 		05D2C02E188138BE00DBBF8C /* AFNetworking */ = {
 			isa = PBXGroup;
 			children = (
@@ -378,6 +454,8 @@
 		05EA4DC9187FB00C00C53FEE /* EPM */ = {
 			isa = PBXGroup;
 			children = (
+				05C4FF5E18ADE1CC004E1A90 /* CollectionCellView */,
+				05C4FF3F18ADC631004E1A90 /* PNChart */,
 				0576D18518AC64EF00AD75AB /* SDWebImage */,
 				0589E8D318AB1A87000173CC /* Barcode.h */,
 				0589E8D418AB1A87000173CC /* Barcode.m */,
@@ -633,8 +711,13 @@
 				05EA4E0C187FEBDC00C53FEE /* EpmOrgCellView.m in Sources */,
 				05D2C046188138BE00DBBF8C /* AFSecurityPolicy.m in Sources */,
 				05EA4E03187FDC8800C53FEE /* EpmDbDetailViewController.m in Sources */,
+				05C4FF5818ADC631004E1A90 /* PNCircleChart.m in Sources */,
 				05D2C043188138BE00DBBF8C /* AFHTTPRequestOperationManager.m in Sources */,
+				05C4FF5618ADC631004E1A90 /* PNBarChart.m in Sources */,
+				05C4FF5918ADC631004E1A90 /* PNColor.m in Sources */,
 				05EA4E09187FEB7800C53FEE /* EpmOrgCollectionController.m in Sources */,
+				05C4FF5D18ADC631004E1A90 /* UICountingLabel.m in Sources */,
+				05C4FF5718ADC631004E1A90 /* PNChartLabel.m in Sources */,
 				0576D1A518AC64EF00AD75AB /* SDImageCache.m in Sources */,
 				05EA4E00187FB09F00C53FEE /* EpmDbCellView.m in Sources */,
 				0576D1A618AC64EF00AD75AB /* SDWebImageCompat.m in Sources */,
@@ -642,6 +725,7 @@
 				0576D1AB18AC64EF00AD75AB /* SDWebImagePrefetcher.m in Sources */,
 				0576D1A918AC64EF00AD75AB /* SDWebImageDownloaderOperation.m in Sources */,
 				056C3CDC18ACAE8000820524 /* EpmMailReceiverCell.m in Sources */,
+				05C4FF6118ADE20F004E1A90 /* EpmMailAttachmentViewCell.m in Sources */,
 				05EA4DDD187FB00C00C53FEE /* EpmSecondViewController.m in Sources */,
 				0576D1A818AC64EF00AD75AB /* SDWebImageDownloader.m in Sources */,
 				056C3CD918ACAC5200820524 /* EpmSendMailController.m in Sources */,
@@ -657,6 +741,7 @@
 				05D2C0801884191500DBBF8C /* LineLayout.m in Sources */,
 				0589E8DB18AB4121000173CC /* EpmContactCell.m in Sources */,
 				05D2C08C1884324B00DBBF8C /* EpmOrgKpiCellView.m in Sources */,
+				05C4FF5C18ADC631004E1A90 /* PNLineChartDataItem.m in Sources */,
 				0576D1A318AC64EF00AD75AB /* MKAnnotationView+WebCache.m in Sources */,
 				055F84631889153D00D88BC4 /* EpmHttpUtil.m in Sources */,
 				05EA4DD4187FB00C00C53FEE /* EpmAppDelegate.m in Sources */,
@@ -668,9 +753,12 @@
 				0576D1AC18AC64EF00AD75AB /* UIButton+WebCache.m in Sources */,
 				05D2C00E1881305900DBBF8C /* EpmLoginViewController.m in Sources */,
 				0576D1A418AC64EF00AD75AB /* NSData+GIF.m in Sources */,
+				05C4FF5518ADC631004E1A90 /* PNBar.m in Sources */,
 				0589E8D018AB161F000173CC /* EpmscanController.m in Sources */,
+				05C4FF5A18ADC631004E1A90 /* PNLineChart.m in Sources */,
 				05D2C042188138BE00DBBF8C /* AFHTTPRequestOperation.m in Sources */,
 				0589E8D518AB1A87000173CC /* Barcode.m in Sources */,
+				05C4FF5B18ADC631004E1A90 /* PNLineChartData.m in Sources */,
 				05D2C044188138BE00DBBF8C /* AFHTTPSessionManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

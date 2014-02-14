@@ -8,6 +8,8 @@
 
 #import "EpmSendMailController.h"
 #import "EpmMailReceiverCell.h"
+#import "EpmMailAttachmentViewCell.h"
+#import "PNChart.h"
 
 @interface EpmSendMailController ()
 @property (strong,nonatomic) NSMutableArray *contactList;
@@ -27,7 +29,8 @@
 @synthesize wvChart = _wvChart;
 @synthesize contactList = _contactList;
 @synthesize pictures = _pictures;
-
+@synthesize chartView = _chartView;
+@synthesize attachCollection = _attachCollection;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -44,10 +47,13 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
- 
+    //[self.collViewList registerClass:[EpmMailReceiverCell class] forCellWithReuseIdentifier:@"simpleContact"];
+
     if (self.completeData) {
         NSLog(@"%@",self.completeData);
         NSArray *contacts =[self.completeData 	objectForKey:@"contacts"];
+        
+        
         if(contacts){
             //has contact
             self.contactList = [NSMutableArray arrayWithArray:contacts];
@@ -55,21 +61,24 @@
         }
         NSDictionary *orgCondition =[self.completeData objectForKey:@"orgCondition"];
         
-        if(orgCondition){
+        if(!orgCondition){
             //has org kpi conditions
-            self.lbEntityGroupName.text = [orgCondition objectForKey:@"entity_group_name"];
-            self.lbRemark.text = [orgCondition objectForKey:@"remark"];
+            //self.lbEntityGroupName.text = [orgCondition objectForKey:@"entity_group_name"];
+            //self.lbRemark.text = [orgCondition objectForKey:@"remark"];
             
-            NSString *queryString = [NSString stringWithFormat:@"kpi_id=%@&kpi_name=%@&frequency=%@&entity_group_id=%@&entity_group_name=%@&average=YES&start_time=%@&end_time=%@",[orgCondition objectForKey:@"kpi_id"],[orgCondition objectForKey:@"kpi_name" ],@"100",[orgCondition objectForKey:@"entity_group_id"],[orgCondition objectForKey:@"entity_group_name"],[orgCondition objectForKey:@"start_date"],[orgCondition objectForKey:@"end_date"]];
-            
-            
-            NSString *urlTxt =[EpmHttpUtil escapeUrl:[NSString stringWithFormat:@"%@%@?%@",[EpmSettings getEpmUrlSettingsWithKey:@"baseUrl"],[EpmSettings getEpmUrlSettingsWithKey:@"graph"],queryString]];
-            NSURL* url = [[ NSURL alloc] initWithString :urlTxt];
-            NSMutableURLRequest *request = [EpmHttpUtil initWithCookiesWithUrl:url];
-            [self.wvChart loadRequest:request];
+//            NSString *queryString = [NSString stringWithFormat:@"kpi_id=%@&kpi_name=%@&frequency=%@&entity_group_id=%@&entity_group_name=%@&average=YES&start_time=%@&end_time=%@",[orgCondition objectForKey:@"kpi_id"],[orgCondition objectForKey:@"kpi_name" ],@"100",[orgCondition objectForKey:@"entity_group_id"],[orgCondition objectForKey:@"entity_group_name"],[orgCondition objectForKey:@"start_date"],[orgCondition objectForKey:@"end_date"]];
+//            
+//            
+//            NSString *urlTxt =[EpmHttpUtil escapeUrl:[NSString stringWithFormat:@"%@%@?%@",[EpmSettings getEpmUrlSettingsWithKey:@"baseUrl"],[EpmSettings getEpmUrlSettingsWithKey:@"graph"],queryString]];
+//            NSURL* url = [[ NSURL alloc] initWithString :urlTxt];
+//       
+
+            [self drawChartView];
         }
     
     }
+  //  [self.collViewList registerClass:[EpmMailReceiverCell class] forCellWithReuseIdentifier:@"simpleContact"];
+
 
 }
 
@@ -107,17 +116,37 @@
 
 - (NSInteger)collectionView:(UICollectionView *)view numberOfItemsInSection:(NSInteger)section;
 {
-    return self.contactList.count;
-}
+    if(view==self.collViewList){
+        return self.contactList.count;
+    }
+    else if(view == self.attachCollection) {
+        return self.pictures.count;
+    }
+    else {
+        return 0;
+    
+    }
+    
+    }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)cv cellForItemAtIndexPath:(NSIndexPath *)indexPath;
 {
-   NSDictionary *data = [self.contactList objectAtIndex:indexPath.row];
-    EpmMailReceiverCell *cell = [cv dequeueReusableCellWithReuseIdentifier:@"simpleContact" forIndexPath:indexPath];
+
+    //contact
+    if(cv==self.collViewList){
+        NSDictionary *data = [self.contactList objectAtIndex:indexPath.row];
+        EpmMailReceiverCell *cell = [cv dequeueReusableCellWithReuseIdentifier:@"simpleContactCell" forIndexPath:indexPath];
+        cell.lbName.text = [data objectForKey:@"name"];
+        cell.lbEmail.text = [data objectForKey:@"email"];
+        return cell;
+    }
+    else  {
+        NSLog(@"%@",self.pictures);
+        EpmMailAttachmentViewCell  *cell = [cv dequeueReusableCellWithReuseIdentifier:@"mailAttachCell" forIndexPath:indexPath];
+        cell.attechedImage.image = [self.pictures objectAtIndex:indexPath.row];
+        return cell;
+    }
     
-    cell.lbName.text = [data objectForKey:@"name"];
-   cell.lbEmail.text = [data objectForKey:@"email"];
-    return cell;
 }
 
 
@@ -126,11 +155,24 @@
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     // [self performSegueWithIdentifier:@"sendMail" sender:self.entityGroup];
+    //contact
+    NSLog(@"%@",@"touched");
+    
+    
     
 }
 
 
-
+-(void)drawChartView{
+    PNBarChart * barChart = [[PNBarChart alloc] initWithFrame:self.chartView.bounds];
+    barChart.backgroundColor = [UIColor clearColor];
+    //Y values
+    [barChart setYValues:@[@10,@24,@12,@18,@30,@10,@100]];
+    //Set Color
+    [barChart setStrokeColors:@[PNGreen,PNGreen,PNRed,PNGreen,PNGreen,PNYellow,PNGreen]];
+    [barChart strokeChart];
+    [self.chartView addSubview:barChart];
+}
 
 - (void)didReceiveMemoryWarning
 {
@@ -164,6 +206,7 @@
     
     if([msg length]==0){
         [self.contactList insertObject:@{@"name":[[self.tfNewMail.text componentsSeparatedByString:@"@"] objectAtIndex:0],@"email":self.tfNewMail.text} atIndex:0];
+        self.tfNewMail.text = @"";
         [self.collViewList reloadData];
     }
     
@@ -198,8 +241,16 @@
     
     UIImage *chosenImage = info[UIImagePickerControllerEditedImage];
     //self.imageView.image = chosenImage;
+    NSLog(@"%@",chosenImage);
+    
+    if(!self.pictures){
+        self.pictures = [[NSMutableArray alloc]init];
+    }
     [self.pictures insertObject:chosenImage atIndex:0];
+
+    
     [picker dismissViewControllerAnimated:YES completion:NULL];
+    [self.attachCollection reloadData];
     
 }
 

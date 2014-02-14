@@ -58,6 +58,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.modalPresentationStyle = UIModalPresentationCurrentContext;
     
    self.modalView.layer.opacity = 0.0f;
     //[self.modalView setBounds:CGRectMake(0, 50.0f, self.previewView.bounds.size.width,305.0f)];
@@ -306,6 +307,7 @@ didOutputMetadataObjects:(NSArray *)metadataObjects
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
+    
     [self performSegueWithIdentifier:@"scanSendMail" sender:self.contacts];
 }
 

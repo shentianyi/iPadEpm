@@ -1,16 +1,14 @@
 //
-//  EpmMailReceiverCell.m
+//  EpmMailAttachmentViewCell.m
 //  EPM
 //
-//  Created by tianyi on 14-2-13.
+//  Created by tianyi on 14-2-14.
 //  Copyright (c) 2014年 Cao Zhuo Information&Technology Co.,Ltd. All rights reserved.
 //
 
-#import "EpmMailReceiverCell.h"
+#import "EpmMailAttachmentViewCell.h"
 
-@implementation EpmMailReceiverCell
-@synthesize lbEmail;
-@synthesize lbName;
+@implementation EpmMailAttachmentViewCell
 
 - (id)initWithFrame:(CGRect)frame
 {
