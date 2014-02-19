@@ -12,6 +12,7 @@
 		056C3CD918ACAC5200820524 /* EpmSendMailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 056C3CD818ACAC5200820524 /* EpmSendMailController.m */; };
 		056C3CDC18ACAE8000820524 /* EpmMailReceiverCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 056C3CDB18ACAE8000820524 /* EpmMailReceiverCell.m */; };
 		056C3CDF18ACBC1D00820524 /* EpmUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 056C3CDE18ACBC1D00820524 /* EpmUtility.m */; };
+		056C959C18B477EF008A2198 /* EpmPhotoEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 056C959B18B477EF008A2198 /* EpmPhotoEditViewController.m */; };
 		0576D1A318AC64EF00AD75AB /* MKAnnotationView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 0576D18718AC64EF00AD75AB /* MKAnnotationView+WebCache.m */; };
 		0576D1A418AC64EF00AD75AB /* NSData+GIF.m in Sources */ = {isa = PBXBuildFile; fileRef = 0576D18918AC64EF00AD75AB /* NSData+GIF.m */; };
 		0576D1A518AC64EF00AD75AB /* SDImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 0576D18B18AC64EF00AD75AB /* SDImageCache.m */; };
@@ -109,6 +110,7 @@
 		05EA4E06187FE09600C53FEE /* EpmDbHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 05EA4E05187FE09600C53FEE /* EpmDbHeader.m */; };
 		05EA4E09187FEB7800C53FEE /* EpmOrgCollectionController.m in Sources */ = {isa = PBXBuildFile; fileRef = 05EA4E08187FEB7800C53FEE /* EpmOrgCollectionController.m */; };
 		05EA4E0C187FEBDC00C53FEE /* EpmOrgCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 05EA4E0B187FEBDC00C53FEE /* EpmOrgCellView.m */; };
+		05F768CC18B4A70C00055138 /* AttachedPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = 05F768CB18B4A70C00055138 /* AttachedPhoto.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -132,6 +134,8 @@
 		056C3CDB18ACAE8000820524 /* EpmMailReceiverCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EpmMailReceiverCell.m; sourceTree = "<group>"; };
 		056C3CDD18ACBC1C00820524 /* EpmUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EpmUtility.h; sourceTree = "<group>"; };
 		056C3CDE18ACBC1D00820524 /* EpmUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EpmUtility.m; sourceTree = "<group>"; };
+		056C959A18B477EF008A2198 /* EpmPhotoEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EpmPhotoEditViewController.h; sourceTree = "<group>"; };
+		056C959B18B477EF008A2198 /* EpmPhotoEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EpmPhotoEditViewController.m; sourceTree = "<group>"; };
 		0576D18618AC64EF00AD75AB /* MKAnnotationView+WebCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MKAnnotationView+WebCache.h"; sourceTree = "<group>"; };
 		0576D18718AC64EF00AD75AB /* MKAnnotationView+WebCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MKAnnotationView+WebCache.m"; sourceTree = "<group>"; };
 		0576D18818AC64EF00AD75AB /* NSData+GIF.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+GIF.h"; sourceTree = "<group>"; };
@@ -285,6 +289,8 @@
 		05EA4E08187FEB7800C53FEE /* EpmOrgCollectionController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EpmOrgCollectionController.m; sourceTree = "<group>"; };
 		05EA4E0A187FEBDC00C53FEE /* EpmOrgCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EpmOrgCellView.h; sourceTree = "<group>"; };
 		05EA4E0B187FEBDC00C53FEE /* EpmOrgCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EpmOrgCellView.m; sourceTree = "<group>"; };
+		05F768CA18B4A70C00055138 /* AttachedPhoto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AttachedPhoto.h; sourceTree = "<group>"; };
+		05F768CB18B4A70C00055138 /* AttachedPhoto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AttachedPhoto.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -454,6 +460,7 @@
 		05EA4DC9187FB00C00C53FEE /* EPM */ = {
 			isa = PBXGroup;
 			children = (
+				05F768C918B4A6CE00055138 /* Models */,
 				05C4FF5E18ADE1CC004E1A90 /* CollectionCellView */,
 				05C4FF3F18ADC631004E1A90 /* PNChart */,
 				0576D18518AC64EF00AD75AB /* SDWebImage */,
@@ -503,6 +510,8 @@
 				056C3CDB18ACAE8000820524 /* EpmMailReceiverCell.m */,
 				056C3CDD18ACBC1C00820524 /* EpmUtility.h */,
 				056C3CDE18ACBC1D00820524 /* EpmUtility.m */,
+				056C959A18B477EF008A2198 /* EpmPhotoEditViewController.h */,
+				056C959B18B477EF008A2198 /* EpmPhotoEditViewController.m */,
 			);
 			path = EPM;
 			sourceTree = "<group>";
@@ -568,6 +577,15 @@
 				05EA4DEE187FB00C00C53FEE /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		05F768C918B4A6CE00055138 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				05F768CA18B4A70C00055138 /* AttachedPhoto.h */,
+				05F768CB18B4A70C00055138 /* AttachedPhoto.m */,
+			);
+			name = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -725,6 +743,7 @@
 				0576D1AB18AC64EF00AD75AB /* SDWebImagePrefetcher.m in Sources */,
 				0576D1A918AC64EF00AD75AB /* SDWebImageDownloaderOperation.m in Sources */,
 				056C3CDC18ACAE8000820524 /* EpmMailReceiverCell.m in Sources */,
+				05F768CC18B4A70C00055138 /* AttachedPhoto.m in Sources */,
 				05C4FF6118ADE20F004E1A90 /* EpmMailAttachmentViewCell.m in Sources */,
 				05EA4DDD187FB00C00C53FEE /* EpmSecondViewController.m in Sources */,
 				0576D1A818AC64EF00AD75AB /* SDWebImageDownloader.m in Sources */,
@@ -745,6 +764,7 @@
 				0576D1A318AC64EF00AD75AB /* MKAnnotationView+WebCache.m in Sources */,
 				055F84631889153D00D88BC4 /* EpmHttpUtil.m in Sources */,
 				05EA4DD4187FB00C00C53FEE /* EpmAppDelegate.m in Sources */,
+				056C959C18B477EF008A2198 /* EpmPhotoEditViewController.m in Sources */,
 				05D2C048188138BE00DBBF8C /* AFURLRequestSerialization.m in Sources */,
 				05D2C045188138BE00DBBF8C /* AFNetworkReachabilityManager.m in Sources */,
 				0576D1B018AC64EF00AD75AB /* UIImageView+WebCache.m in Sources */,

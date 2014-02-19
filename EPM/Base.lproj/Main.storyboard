@@ -715,7 +715,7 @@
         <!--Epm Send Mail Controller-->
         <scene sceneID="6Zd-E3-uMs">
             <objects>
-                <viewController modalTransitionStyle="flipHorizontal" modalPresentationStyle="formSheet" id="I2t-tQ-jx4" customClass="EpmSendMailController" sceneMemberID="viewController">
+                <viewController modalPresentationStyle="formSheet" id="I2t-tQ-jx4" customClass="EpmSendMailController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="2CO-5J-RXu"/>
                         <viewControllerLayoutGuide type="bottom" id="fF5-1c-joW"/>
@@ -926,11 +926,107 @@
                         <outlet property="tfNewMail" destination="Syz-g1-aXS" id="jmn-rE-ABd"/>
                         <outlet property="tfTitle" destination="beE-T2-vfO" id="pgp-iE-YD5"/>
                         <outlet property="viewAttached" destination="t1j-DY-cgz" id="Uc0-pP-3kO"/>
+                        <segue destination="DLl-GI-MPG" kind="modal" identifier="editPhoto" id="UlV-Dx-lyo"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TTY-o8-MbT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="8740" y="378"/>
+        </scene>
+        <!--Epm Photo Edit View Controller-->
+        <scene sceneID="ZFM-pS-fqw">
+            <objects>
+                <viewController id="DLl-GI-MPG" customClass="EpmPhotoEditViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Mra-6C-QMq"/>
+                        <viewControllerLayoutGuide type="bottom" id="opT-Ca-lNm"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="1U0-8a-hze">
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ogp-Cw-rE1">
+                                <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oht-4D-DXg">
+                                <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qWW-ED-Qsh">
+                                <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8Gt-yN-1Qw">
+                                <rect key="frame" x="0.0" y="-6" width="768" height="71"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Draw Note" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VE9-Ug-WUF">
+                                        <rect key="frame" x="331" y="30" width="106" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="24"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eYl-Sr-Hbl">
+                                        <rect key="frame" x="702" y="26" width="46" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="Done">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="done:" destination="DLl-GI-MPG" eventType="touchUpInside" id="t1w-9b-Q51"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="0.93696446572580661" alpha="0.65000000000000002" colorSpace="calibratedWhite"/>
+                            </view>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6rh-qo-HEV">
+                                <rect key="frame" x="0.0" y="937" width="768" height="87"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qZ7-xP-jNL">
+                                        <rect key="frame" x="185" y="33" width="53" height="22"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="rubber"/>
+                                        <connections>
+                                            <action selector="eraser:" destination="DLl-GI-MPG" eventType="touchUpInside" id="d5g-56-AUb"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="did-0T-7Xi">
+                                        <rect key="frame" x="277" y="29" width="46" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="reset">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="reset:" destination="DLl-GI-MPG" eventType="touchUpInside" id="6rm-hg-RAt"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZuG-v8-m9f">
+                                        <rect key="frame" x="367" y="29" width="58" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="remove">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="0.951203377016129" alpha="0.65000000000000002" colorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <outlet property="backGroundImage" destination="Ogp-Cw-rE1" id="2PN-59-guX"/>
+                        <outlet property="drawingImage" destination="qWW-ED-Qsh" id="IYs-VI-DJw"/>
+                        <outlet property="mainImage" destination="oht-4D-DXg" id="Wj3-ul-cxX"/>
+                        <segue destination="U5W-7q-83m" kind="unwind" identifier="backToSendMail" unwindAction="unwindToMail:" id="suJ-UC-rND"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Fjc-Da-78U" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="U5W-7q-83m" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="8694" y="1238"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="XYm-LJ-BWe">
@@ -970,7 +1066,7 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="vYJ-gm-ecy"/>
         <segue reference="zid-27-rxp"/>
+        <segue reference="w85-eX-V5B"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -10,11 +10,13 @@
 #import "EpmMailReceiverCell.h"
 #import "EpmMailAttachmentViewCell.h"
 #import "PNChart.h"
+#import "EpmPhotoEditViewController.h"
+#import "AttachedPhoto.h"
 
 @interface EpmSendMailController ()
 @property (strong,nonatomic) NSMutableArray *contactList;
 @property(strong,nonatomic)NSMutableArray *pictures;
-
+@property(strong,nonatomic)NSMutableDictionary *pictureIds;
 @end
 
 @implementation EpmSendMailController
@@ -143,7 +145,9 @@
     else  {
         NSLog(@"%@",self.pictures);
         EpmMailAttachmentViewCell  *cell = [cv dequeueReusableCellWithReuseIdentifier:@"mailAttachCell" forIndexPath:indexPath];
-        cell.attechedImage.image = [self.pictures objectAtIndex:indexPath.row];
+        AttachedPhoto *cellData= [self.pictures objectAtIndex:indexPath.row];
+        NSLog(@"now pichtures%@",self.pictures);
+        cell.attechedImage.image = cellData.image;
         return cell;
     }
     
@@ -156,10 +160,13 @@
 {
     // [self performSegueWithIdentifier:@"sendMail" sender:self.entityGroup];
     //contact
-    NSLog(@"%@",@"touched");
     
     
-    
+    if (collectionView == self.attachCollection){
+        
+        [self performSegueWithIdentifier:@"editPhoto" sender:[self.pictures objectAtIndex:indexPath.row]];
+        //[self.pictures removeObjectAtIndex:indexPath.row];
+    }
 }
 
 
@@ -226,12 +233,13 @@
 - (IBAction)titleTouch:(id)sender {
     self.tfTitle.textColor = [UIColor blackColor];
     
-}
+  
+  }
 
 - (IBAction)takePicture:(id)sender {
     UIImagePickerController *picker = [[UIImagePickerController alloc] init];
     picker.delegate = self;
-    picker.allowsEditing = YES;
+    picker.allowsEditing = NO;
     picker.sourceType = UIImagePickerControllerSourceTypeCamera;
     [self presentViewController:picker animated:YES completion:NULL];
 }
@@ -239,20 +247,30 @@
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
     
-    UIImage *chosenImage = info[UIImagePickerControllerEditedImage];
+    UIImage *chosenImage = info[UIImagePickerControllerOriginalImage];
     //self.imageView.image = chosenImage;
     NSLog(@"%@",chosenImage);
     
     if(!self.pictures){
         self.pictures = [[NSMutableArray alloc]init];
     }
-    [self.pictures insertObject:chosenImage atIndex:0];
-
     
+    if(!self.pictureIds) {
+        self.pictureIds = [[NSMutableDictionary alloc] init];
+    }
+    
+    
+    AttachedPhoto *attached =[[AttachedPhoto alloc]initWithIdFilledAndImage:chosenImage];
+    
+    [self.pictures insertObject:attached atIndex:self.pictures.count];
+    [self.pictureIds setObject:[NSNumber numberWithInteger:self.pictures.count-1] forKey:attached.photo_id];
+
     [picker dismissViewControllerAnimated:YES completion:NULL];
     [self.attachCollection reloadData];
     
 }
+
+
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
     
@@ -260,6 +278,24 @@
     
 }
 
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    if([segue.identifier isEqualToString:@"editPhoto"])
+    {
+        EpmPhotoEditViewController *detailViewController = segue.destinationViewController;
+        detailViewController.backGround= (AttachedPhoto *)sender;
+
+    }
+}
+
+
+- (IBAction)unwindToMail:(UIStoryboardSegue *)unwindSegue
+{
+    EpmPhotoEditViewController* source = unwindSegue.sourceViewController;
+    
+    [self.pictures replaceObjectAtIndex:[[self.pictureIds objectForKey:source.editedPhoto.photo_id] integerValue] withObject:source.editedPhoto];
+    
+    [self.attachCollection reloadData];
+}
 
 
 
