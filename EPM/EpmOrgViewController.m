@@ -11,8 +11,10 @@
 #import "LineLayout.h"
 #import "AFNetworking.h"
 #import "EpmTableCell.h"
+#import "EpmSendMailController.h"
+#import "AttachedPhoto.h"
 @interface EpmOrgViewController ()
-
+@property (strong,nonatomic) NSDictionary *currentConditions;
 @end
 
 @implementation EpmOrgViewController
@@ -23,15 +25,13 @@
 @synthesize indicator = _indicator;
 @synthesize tableData = _tableData;
 @synthesize upperContainer = _upperContainer;
+@synthesize currentConditions = _currentConditions;
 
 -(void)viewDidAppear:(BOOL)animated{
     // [self changeLayoutWithOrientation:(UIDeviceOrientation)[UIApplication sharedApplication].statusBarOrientation];
-    UIBarButtonItem *shareItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:nil];
-    UIBarButtonItem *cameraItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCamera target:self action:nil];
+  
     
-    NSArray *actionButtonItems = @[shareItem, cameraItem];
-    self.navigationItem.rightBarButtonItems = actionButtonItems;
-}
+  }
 
 
 -(void)changeLayoutWithOrientation:(UIDeviceOrientation)orientation{
@@ -70,17 +70,13 @@
 }
 
 
--(void)getDataForTableWithKpi:(NSDictionary*)Kpi{
+-(void)getDataForTable{
 
      AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     
+  //  NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:[Kpi objectForKey:@"id"],@"kpi_id",@"100",@"frequency",[self.entityGroup objectForKey:@"id"],@"entity_group_id",[formatter stringFromDate:[NSDate dateWithTimeIntervalSinceNow:-1296000]],@"start_time",[formatter stringFromDate:[NSDate date]], @"end_time",nil];
     
-    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    [formatter setDateFormat:@"yyyy-MM-dd"];
-    
-    NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:[Kpi objectForKey:@"id"],@"kpi_id",@"100",@"frequency",[self.entityGroup objectForKey:@"id"],@"entity_group_id",[formatter stringFromDate:[NSDate dateWithTimeIntervalSinceNow:-1296000]],@"start_time",[formatter stringFromDate:[NSDate date]], @"end_time",nil];
-    
-    [manager GET:[NSString stringWithFormat:@"%@%@",[EpmSettings getEpmUrlSettingsWithKey:@"baseUrl"],[EpmSettings getEpmUrlSettingsWithKey: @"data"]] parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [manager GET:[NSString stringWithFormat:@"%@%@",[EpmSettings getEpmUrlSettingsWithKey:@"baseUrl"],[EpmSettings getEpmUrlSettingsWithKey: @"data"]] parameters:self.currentConditions success:^(AFHTTPRequestOperation *operation, id responseObject) {
         
         NSDictionary *result = (NSDictionary *)responseObject;
         
@@ -153,6 +149,7 @@
     self.collectionView.collectionViewLayout = flowLayout;
     self.webView.delegate=self;
     [self loadData];
+   
     
 }
 
@@ -183,8 +180,15 @@
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
+    
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"yyyy-MM-dd"];
+   
+    self.currentConditions = [NSDictionary dictionaryWithObjectsAndKeys:[[self.kpis objectAtIndex:indexPath.row] objectForKey:@"id"],@"kpi_id",@"100",@"frequency",[self.entityGroup objectForKey:@"id"],@"entity_group_id",[formatter stringFromDate:[NSDate dateWithTimeIntervalSinceNow:-1296000]],@"start_time",[formatter stringFromDate:[NSDate date]], @"end_time",[self.entityGroup objectForKey:@"name"],@"entity_group_name",[[self.kpis objectAtIndex:indexPath.row] objectForKey:@"name" ],@"kpi_name",nil];
+
+    
     [self BeginLoadWebWithKpi:[self.kpis objectAtIndex:indexPath.row]];
-    [self getDataForTableWithKpi:[self.kpis objectAtIndex:indexPath.row]];
+    [self getDataForTable];
     
     self.navigationItem.title = [self.entityGroup objectForKey:@"name"];
     
@@ -211,6 +215,38 @@
     [self.webView loadRequest:request];
     
 }
+
+- (IBAction)btCompose:(id)sender {
+    NSMutableDictionary *completeData = [[NSMutableDictionary alloc]init];
+    
+    
+        
+    if(self.currentConditions){
+        [completeData setObject:self.currentConditions forKey:@"orgCondition"];
+    }
+    
+    
+    if(self.tableData){
+        [completeData setObject:self.tableData forKey:@"orgKpiData"];
+    }
+    
+    AttachedPhoto *screen = [[AttachedPhoto alloc]initWithIdFilledAndImage: [EpmGraphicUtility FullScreenshotForCurrentWindow]];
+   
+    [completeData setObject:[NSArray arrayWithObjects:screen, nil] forKey:@"photos"];
+    
+    [self performSegueWithIdentifier:@"composeMail" sender:completeData];
+}
+
+
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if([segue.identifier isEqualToString:@"composeMail"]){
+        EpmSendMailController *mail = segue.destinationViewController;
+        mail.completeData = (NSMutableDictionary*)sender;
+    }
+}
+
+
 
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView {

@@ -47,8 +47,13 @@
     [self performSegueWithIdentifier:@"backToSendMail" sender:self];
 }
 
+- (IBAction)remobe:(id)sender {
+    self.operation=@"DELETE";
+    [self performSegueWithIdentifier:@"backToSendMail" sender:self];
+}
 
 - (IBAction)reset:(id)sender {
+    self.operation = @"NOCHANGE";
      self.mainImage.image = nil;
 }
 
@@ -70,9 +75,8 @@
     blue = 255.0/255.0;
     brush = 5.0;
     opacity = 0.8;
-    
+    self.operation = @"NOCHANGE";
     [super viewDidLoad];
-    NSLog(@"%@",self.backGround);
     self.editedPhoto = self.backGround;
     [self.backGroundImage setImage:self.backGround.image];
     
@@ -86,7 +90,7 @@
 
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
-    
+    self.operation = @"CHANGED";
     mouseSwiped = NO;
     UITouch *touch = [touches anyObject];
     lastPoint = [touch locationInView:self.view];
@@ -111,7 +115,7 @@
     self.drawingImage.image = UIGraphicsGetImageFromCurrentImageContext();
     [self.drawingImage setAlpha:opacity];
     UIGraphicsEndImageContext();
-    
+
     lastPoint = currentPoint;
 }
 

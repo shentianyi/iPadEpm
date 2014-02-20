@@ -11,6 +11,7 @@
 @interface AttachedPhoto : NSObject
 @property (strong,nonatomic) NSString *photo_id;
 @property (strong,nonatomic) UIImage *image;
+@property(strong,nonatomic) NSString *serverPath;
 -(id)initWithId;
 -(id)initWithIdFilledAndImage:(UIImage *)image;
 

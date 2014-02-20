@@ -32,6 +32,7 @@
 		0589E8D518AB1A87000173CC /* Barcode.m in Sources */ = {isa = PBXBuildFile; fileRef = 0589E8D418AB1A87000173CC /* Barcode.m */; };
 		0589E8DB18AB4121000173CC /* EpmContactCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0589E8DA18AB4121000173CC /* EpmContactCell.m */; };
 		0589E8DF18AB4812000173CC /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0589E8DE18AB4812000173CC /* ImageIO.framework */; };
+		05A2061018B5CCCA0052B569 /* EpmGraphicUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 05A2060F18B5CCCA0052B569 /* EpmGraphicUtility.m */; };
 		05C4FF5518ADC631004E1A90 /* PNBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 05C4FF4118ADC631004E1A90 /* PNBar.m */; };
 		05C4FF5618ADC631004E1A90 /* PNBarChart.m in Sources */ = {isa = PBXBuildFile; fileRef = 05C4FF4318ADC631004E1A90 /* PNBarChart.m */; };
 		05C4FF5718ADC631004E1A90 /* PNChartLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 05C4FF4718ADC631004E1A90 /* PNChartLabel.m */; };
@@ -173,6 +174,8 @@
 		0589E8D918AB4121000173CC /* EpmContactCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EpmContactCell.h; sourceTree = "<group>"; };
 		0589E8DA18AB4121000173CC /* EpmContactCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EpmContactCell.m; sourceTree = "<group>"; };
 		0589E8DE18AB4812000173CC /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
+		05A2060E18B5CCCA0052B569 /* EpmGraphicUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EpmGraphicUtility.h; sourceTree = "<group>"; };
+		05A2060F18B5CCCA0052B569 /* EpmGraphicUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EpmGraphicUtility.m; sourceTree = "<group>"; };
 		05C4FF4018ADC631004E1A90 /* PNBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PNBar.h; sourceTree = "<group>"; };
 		05C4FF4118ADC631004E1A90 /* PNBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PNBar.m; sourceTree = "<group>"; };
 		05C4FF4218ADC631004E1A90 /* PNBarChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PNBarChart.h; sourceTree = "<group>"; };
@@ -355,6 +358,15 @@
 			path = SDWebImage;
 			sourceTree = "<group>";
 		};
+		05A2060D18B5CCB20052B569 /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				05A2060E18B5CCCA0052B569 /* EpmGraphicUtility.h */,
+				05A2060F18B5CCCA0052B569 /* EpmGraphicUtility.m */,
+			);
+			name = Utility;
+			sourceTree = "<group>";
+		};
 		05C4FF3F18ADC631004E1A90 /* PNChart */ = {
 			isa = PBXGroup;
 			children = (
@@ -460,6 +472,7 @@
 		05EA4DC9187FB00C00C53FEE /* EPM */ = {
 			isa = PBXGroup;
 			children = (
+				05A2060D18B5CCB20052B569 /* Utility */,
 				05F768C918B4A6CE00055138 /* Models */,
 				05C4FF5E18ADE1CC004E1A90 /* CollectionCellView */,
 				05C4FF3F18ADC631004E1A90 /* PNChart */,
@@ -743,6 +756,7 @@
 				0576D1AB18AC64EF00AD75AB /* SDWebImagePrefetcher.m in Sources */,
 				0576D1A918AC64EF00AD75AB /* SDWebImageDownloaderOperation.m in Sources */,
 				056C3CDC18ACAE8000820524 /* EpmMailReceiverCell.m in Sources */,
+				05A2061018B5CCCA0052B569 /* EpmGraphicUtility.m in Sources */,
 				05F768CC18B4A70C00055138 /* AttachedPhoto.m in Sources */,
 				05C4FF6118ADE20F004E1A90 /* EpmMailAttachmentViewCell.m in Sources */,
 				05EA4DDD187FB00C00C53FEE /* EpmSecondViewController.m in Sources */,

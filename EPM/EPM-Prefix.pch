@@ -15,6 +15,7 @@
     #import <Foundation/Foundation.h>
     #import "EpmSettings.h"
     #import "EpmHttpUtil.h"
+#import "EpmGraphicUtility.h"
 #import "EpmUtility.h"
 
 #endif

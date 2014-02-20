@@ -23,6 +23,7 @@
 @property (weak, nonatomic) IBOutlet UIWebView *wvChart;
 - (IBAction)takePicture:(id)sender;
 @property (weak, nonatomic) IBOutlet UICollectionView *attachCollection;
-@property (strong,nonatomic) NSDictionary *completeData;
+@property (strong,nonatomic) NSMutableDictionary *completeData;
 @property (weak, nonatomic) IBOutlet UIView *chartView;
+@property (weak, nonatomic) IBOutlet UITextView *mailBody;
 @end
