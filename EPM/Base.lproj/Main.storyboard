@@ -450,9 +450,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <toolbarItems>
-                        <barButtonItem style="plain" systemItem="flexibleSpace" id="QG6-lz-T2L"/>
-                    </toolbarItems>
+                    <toolbarItems/>
                     <navigationItem key="navigationItem" id="fvJ-oj-k8T">
                         <barButtonItem key="rightBarButtonItem" style="plain" systemItem="compose" id="aTa-Cf-Lby">
                             <connections>
@@ -473,6 +471,108 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Lp9-26-ntN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="6077" y="1311"/>
+        </scene>
+        <!--Epm Color Pick View Controller-->
+        <scene sceneID="SOj-ZX-8Ol">
+            <objects>
+                <viewController modalPresentationStyle="currentContext" id="8tT-6T-A0w" customClass="EpmColorPickViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="BwE-C0-RTe"/>
+                        <viewControllerLayoutGuide type="bottom" id="0cC-ed-W6C"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="3G6-mj-cBw">
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nf4-WY-uiJ">
+                                <rect key="frame" x="10" y="10" width="748" height="251"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <state key="normal" title="black">
+                                    <color key="titleColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="colorSelected:" destination="8tT-6T-A0w" eventType="touchUpInside" id="yhc-Gl-4gN"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aHj-Gi-8KU">
+                                <rect key="frame" x="10" y="261" width="748" height="250"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="0.34000000000000002" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <state key="normal" title="white">
+                                    <color key="titleColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="colorSelected:" destination="8tT-6T-A0w" eventType="touchUpInside" id="mwf-cf-qgO"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DF6-aS-YLk">
+                                <rect key="frame" x="10" y="513" width="748" height="251"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <state key="normal" title="red">
+                                    <color key="titleColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="colorSelected:" destination="8tT-6T-A0w" eventType="touchUpInside" id="k2B-hc-pwu"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dPV-J7-hD5">
+                                <rect key="frame" x="10" y="771" width="748" height="253"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="1" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <color key="tintColor" red="1" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="yellow">
+                                    <color key="titleColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="colorSelected:" destination="8tT-6T-A0w" eventType="touchUpInside" id="DIE-pa-KtY"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="dPV-J7-hD5" firstAttribute="width" secondItem="Nf4-WY-uiJ" secondAttribute="width" id="6KZ-wc-feT"/>
+                            <constraint firstItem="dPV-J7-hD5" firstAttribute="leading" secondItem="3G6-mj-cBw" secondAttribute="leading" constant="10" id="7oz-xw-bZ8"/>
+                            <constraint firstItem="aHj-Gi-8KU" firstAttribute="leading" secondItem="3G6-mj-cBw" secondAttribute="leading" constant="10" id="Cfq-Bu-pgt"/>
+                            <constraint firstAttribute="trailing" secondItem="dPV-J7-hD5" secondAttribute="trailing" constant="10" id="OJ3-6z-OIj"/>
+                            <constraint firstItem="Nf4-WY-uiJ" firstAttribute="top" secondItem="BwE-C0-RTe" secondAttribute="bottom" constant="10" id="OJ8-uu-VIG"/>
+                            <constraint firstItem="dPV-J7-hD5" firstAttribute="width" secondItem="aHj-Gi-8KU" secondAttribute="width" id="QPA-Ih-BOv"/>
+                            <constraint firstItem="dPV-J7-hD5" firstAttribute="width" secondItem="DF6-aS-YLk" secondAttribute="width" id="SYI-vG-9CA"/>
+                            <constraint firstItem="DF6-aS-YLk" firstAttribute="top" secondItem="aHj-Gi-8KU" secondAttribute="bottom" id="TFY-aS-p7z"/>
+                            <constraint firstItem="aHj-Gi-8KU" firstAttribute="top" secondItem="Nf4-WY-uiJ" secondAttribute="bottom" id="U6u-gB-nmD"/>
+                            <constraint firstAttribute="trailing" secondItem="DF6-aS-YLk" secondAttribute="trailing" constant="10" id="cnX-J3-B2S"/>
+                            <constraint firstItem="0cC-ed-W6C" firstAttribute="top" secondItem="dPV-J7-hD5" secondAttribute="bottom" constant="10" id="gyM-CT-0LV"/>
+                            <constraint firstItem="dPV-J7-hD5" firstAttribute="top" secondItem="DF6-aS-YLk" secondAttribute="bottom" id="iJl-BM-BCi"/>
+                            <constraint firstItem="dPV-J7-hD5" firstAttribute="height" secondItem="DF6-aS-YLk" secondAttribute="height" id="ihF-nU-pT7"/>
+                            <constraint firstItem="DF6-aS-YLk" firstAttribute="leading" secondItem="3G6-mj-cBw" secondAttribute="leading" constant="10" id="ne1-qH-yfg"/>
+                            <constraint firstAttribute="trailing" secondItem="Nf4-WY-uiJ" secondAttribute="trailing" constant="10" id="ppj-n5-zKA"/>
+                            <constraint firstItem="Nf4-WY-uiJ" firstAttribute="leading" secondItem="3G6-mj-cBw" secondAttribute="leading" constant="10" id="sOm-7p-OeG"/>
+                            <constraint firstItem="dPV-J7-hD5" firstAttribute="height" secondItem="Nf4-WY-uiJ" secondAttribute="height" id="wUd-SS-rPV"/>
+                            <constraint firstItem="dPV-J7-hD5" firstAttribute="height" secondItem="aHj-Gi-8KU" secondAttribute="height" id="ybg-FJ-nMk"/>
+                        </constraints>
+                    </view>
+                    <value key="contentSizeForViewInPopover" type="size" width="70" height="220"/>
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <nil key="simulatedTopBarMetrics"/>
+                    <nil key="simulatedBottomBarMetrics"/>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <connections>
+                        <segue destination="SYk-30-O30" kind="unwind" identifier="colorBack" unwindAction="unwindToPhotoEdit:" id="Az2-d0-Kwj"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ve0-9K-c8Q" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="SYk-30-O30" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="7550" y="2270"/>
         </scene>
         <!--Epm Db Collection Controller-->
         <scene sceneID="nn7-t1-cqr">
@@ -1009,6 +1109,19 @@
                                         </state>
                                         <connections>
                                             <action selector="remobe:" destination="DLl-GI-MPG" eventType="touchUpInside" id="gRk-Jq-aa4"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NXw-dR-4g1">
+                                        <rect key="frame" x="259" y="29" width="60" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="choose">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="showPickColor:" destination="DLl-GI-MPG" eventType="touchUpInside" id="XiN-zB-TzI"/>
+                                            <segue destination="8tT-6T-A0w" kind="popover" identifier="popColor" popoverAnchorView="NXw-dR-4g1" id="MFh-eB-UjA">
+                                                <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                                            </segue>
                                         </connections>
                                     </button>
                                 </subviews>

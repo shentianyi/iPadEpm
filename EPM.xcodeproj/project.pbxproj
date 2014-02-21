@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		055F84631889153D00D88BC4 /* EpmHttpUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 055F84621889153D00D88BC4 /* EpmHttpUtil.m */; };
 		055F84661889161500D88BC4 /* EpmSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 055F84651889161500D88BC4 /* EpmSettings.m */; };
+		0566994C18B6E5AA0024AD32 /* EpmConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 0566994B18B6E5AA0024AD32 /* EpmConstants.m */; };
+		0566995518B7245D0024AD32 /* EpmColorPickViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0566995418B7245D0024AD32 /* EpmColorPickViewController.m */; };
 		056C3CD918ACAC5200820524 /* EpmSendMailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 056C3CD818ACAC5200820524 /* EpmSendMailController.m */; };
 		056C3CDC18ACAE8000820524 /* EpmMailReceiverCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 056C3CDB18ACAE8000820524 /* EpmMailReceiverCell.m */; };
 		056C3CDF18ACBC1D00820524 /* EpmUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 056C3CDE18ACBC1D00820524 /* EpmUtility.m */; };
@@ -129,6 +131,10 @@
 		055F84621889153D00D88BC4 /* EpmHttpUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EpmHttpUtil.m; sourceTree = "<group>"; };
 		055F84641889161400D88BC4 /* EpmSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EpmSettings.h; sourceTree = "<group>"; };
 		055F84651889161500D88BC4 /* EpmSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EpmSettings.m; sourceTree = "<group>"; };
+		0566994A18B6E5AA0024AD32 /* EpmConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EpmConstants.h; sourceTree = "<group>"; };
+		0566994B18B6E5AA0024AD32 /* EpmConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EpmConstants.m; sourceTree = "<group>"; };
+		0566995318B7245D0024AD32 /* EpmColorPickViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EpmColorPickViewController.h; sourceTree = "<group>"; };
+		0566995418B7245D0024AD32 /* EpmColorPickViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EpmColorPickViewController.m; sourceTree = "<group>"; };
 		056C3CD718ACAC5200820524 /* EpmSendMailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EpmSendMailController.h; sourceTree = "<group>"; };
 		056C3CD818ACAC5200820524 /* EpmSendMailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EpmSendMailController.m; sourceTree = "<group>"; };
 		056C3CDA18ACAE8000820524 /* EpmMailReceiverCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EpmMailReceiverCell.h; sourceTree = "<group>"; };
@@ -322,6 +328,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0566994D18B6F95F0024AD32 /* lib */ = {
+			isa = PBXGroup;
+			children = (
+				05D2C02E188138BE00DBBF8C /* AFNetworking */,
+				0576D18518AC64EF00AD75AB /* SDWebImage */,
+				05C4FF3F18ADC631004E1A90 /* PNChart */,
+			);
+			name = lib;
+			sourceTree = "<group>";
+		};
 		0576D18518AC64EF00AD75AB /* SDWebImage */ = {
 			isa = PBXGroup;
 			children = (
@@ -472,14 +488,12 @@
 		05EA4DC9187FB00C00C53FEE /* EPM */ = {
 			isa = PBXGroup;
 			children = (
+				0566994D18B6F95F0024AD32 /* lib */,
 				05A2060D18B5CCB20052B569 /* Utility */,
 				05F768C918B4A6CE00055138 /* Models */,
 				05C4FF5E18ADE1CC004E1A90 /* CollectionCellView */,
-				05C4FF3F18ADC631004E1A90 /* PNChart */,
-				0576D18518AC64EF00AD75AB /* SDWebImage */,
 				0589E8D318AB1A87000173CC /* Barcode.h */,
 				0589E8D418AB1A87000173CC /* Barcode.m */,
-				05D2C02E188138BE00DBBF8C /* AFNetworking */,
 				05EA4DD2187FB00C00C53FEE /* EpmAppDelegate.h */,
 				05EA4DD3187FB00C00C53FEE /* EpmAppDelegate.m */,
 				05EA4DD5187FB00C00C53FEE /* Main.storyboard */,
@@ -525,6 +539,8 @@
 				056C3CDE18ACBC1D00820524 /* EpmUtility.m */,
 				056C959A18B477EF008A2198 /* EpmPhotoEditViewController.h */,
 				056C959B18B477EF008A2198 /* EpmPhotoEditViewController.m */,
+				0566995318B7245D0024AD32 /* EpmColorPickViewController.h */,
+				0566995418B7245D0024AD32 /* EpmColorPickViewController.m */,
 			);
 			path = EPM;
 			sourceTree = "<group>";
@@ -597,6 +613,8 @@
 			children = (
 				05F768CA18B4A70C00055138 /* AttachedPhoto.h */,
 				05F768CB18B4A70C00055138 /* AttachedPhoto.m */,
+				0566994A18B6E5AA0024AD32 /* EpmConstants.h */,
+				0566994B18B6E5AA0024AD32 /* EpmConstants.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -768,6 +786,7 @@
 				05D2C049188138BE00DBBF8C /* AFURLResponseSerialization.m in Sources */,
 				056C3CDF18ACBC1D00820524 /* EpmUtility.m in Sources */,
 				0576D1A718AC64EF00AD75AB /* SDWebImageDecoder.m in Sources */,
+				0566994C18B6E5AA0024AD32 /* EpmConstants.m in Sources */,
 				05EA4DFD187FB06F00C53FEE /* EpmDbCollectionController.m in Sources */,
 				05D2C0A2188482D200DBBF8C /* EpmTableCell.m in Sources */,
 				0576D1AA18AC64EF00AD75AB /* SDWebImageManager.m in Sources */,
@@ -789,6 +808,7 @@
 				0576D1A418AC64EF00AD75AB /* NSData+GIF.m in Sources */,
 				05C4FF5518ADC631004E1A90 /* PNBar.m in Sources */,
 				0589E8D018AB161F000173CC /* EpmscanController.m in Sources */,
+				0566995518B7245D0024AD32 /* EpmColorPickViewController.m in Sources */,
 				05C4FF5A18ADC631004E1A90 /* PNLineChart.m in Sources */,
 				05D2C042188138BE00DBBF8C /* AFHTTPRequestOperation.m in Sources */,
 				0589E8D518AB1A87000173CC /* Barcode.m in Sources */,

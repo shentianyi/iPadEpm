@@ -23,6 +23,8 @@
 @end
 
 @implementation EpmSendMailController
+
+#pragma properties
 @synthesize completeData = _completeData;
 @synthesize tfTitle = _tfTitle;
 @synthesize tfNewMail = _tfNewMail;
@@ -39,14 +41,24 @@
 @synthesize queue= _queue;
 @synthesize mailBody = _mailBody;
 
+
+#pragma init function
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
     }
+    
     return self;
 }
 
+
+
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
 
 
 
@@ -57,23 +69,18 @@
     //[self.collViewList registerClass:[EpmMailReceiverCell class] forCellWithReuseIdentifier:@"simpleContact"];
 
     if (self.completeData) {
-         NSLog(@"contact received %@",self.completeData);
-       
-        NSArray *contacts =[self.completeData 	objectForKey:@"contacts"];
         
+        NSArray *contacts =[self.completeData 	objectForKey:@"contacts"];
         
         if(contacts){
             //has contact
             self.contactList = [NSMutableArray arrayWithArray:contacts];
              [self.collViewList reloadData];
         }
-        
-        
-        
         NSDictionary *orgCondition =[self.completeData objectForKey:@"orgCondition"];
         
         if(orgCondition){
-            NSString *orgId = [orgCondition objectForKey:@"entity_group_id"];
+            NSString *orgId = [[orgCondition objectForKey:@"entity_group_id"] stringValue];
             
             AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
             
@@ -98,15 +105,12 @@
                 self.contactList = [NSMutableArray arrayWithArray:[result objectForKey:@"contact"]];
                  [self.collViewList reloadData];
             }
-             
                  failure:nil];
-
-
-            [self drawChartView];
         }
         else{
             [self showSummery:NO WithAnimation:NO];
         }
+        
         
       NSArray *photos = [self.completeData objectForKey:@"photos"];
         
@@ -119,21 +123,27 @@
             [self.attachCollection  reloadData];
         
         }
-       //NSArray *orgData = [self.completeData objectForKey:@"orgKpiData"];
-    
-    
+        
+        
+     NSDictionary *orgData = [self.completeData objectForKey:@"orgKpiData"];
+        if(orgData) {
+            [self drawChartViewWithData:orgData];
+        }
     }
-  //  [self.collViewList registerClass:[EpmMailReceiverCell class] forCellWithReuseIdentifier:@"simpleContact"];
-
+ 
+    //gesture to delete contact via double click
     UITapGestureRecognizer *singleFingerOne = [[UITapGestureRecognizer alloc] initWithTarget:self
                                                                                       action:@selector(handleSingleFingerEvent:)];
-    singleFingerOne.numberOfTouchesRequired = 1; //手指数
-    singleFingerOne.numberOfTapsRequired = 2; //tap次数
+    singleFingerOne.numberOfTouchesRequired = 1;
+    singleFingerOne.numberOfTapsRequired = 2;
     singleFingerOne.delegate = self;
     [self.collViewList addGestureRecognizer:singleFingerOne];
-
 }
 
+
+
+
+#pragma utilities
 -(void)showSummery:(BOOL)show WithAnimation:(BOOL)animation{
     if(show){
         [self.viewAttached setFrame:CGRectMake(self.viewAttached.bounds.origin.x,self.viewAttached.bounds.origin.y, 502, 73)];
@@ -146,6 +156,186 @@
 
 }
 
+
+
+
+//TODO: draw chart view
+-(void)drawChartViewWithData:(NSDictionary*)data{
+    PNBarChart * barChart = [[PNBarChart alloc] initWithFrame:self.chartView.bounds];
+    barChart.backgroundColor = [UIColor clearColor];
+    //Y values
+    if(data){
+        [barChart setYValues:[data objectForKey:@"current"]];
+        //Set Color
+        
+        NSLog(@"%@",data);
+        [barChart setStrokeColors:[self decideColorWithCurrent:[data objectForKey:@"current"] Max:[data objectForKey:@"target_max"] Min:[data  objectForKey:@"target_min"]]];
+        [barChart strokeChart];
+        [self.chartView addSubview:barChart];
+    }
+
+   }
+
+
+-(NSArray *) decideColorWithCurrent:(NSArray *)current Max:(NSArray*)max Min:(NSArray*)min {
+    NSMutableArray *colors = [[NSMutableArray alloc]init];
+    if(current && max && min && (current.count == max.count) && (max.count==min.count)){
+        for (int i = 0;i<current.count;i++){
+            
+            
+            if([[current objectAtIndex:i] floatValue] == [[max objectAtIndex:i] floatValue]  || [[current objectAtIndex:i] floatValue] == [[min objectAtIndex:i] floatValue]){
+                [colors addObject:PNTwitterColor];
+            }
+            else if([[current objectAtIndex:i] floatValue]>[[max objectAtIndex:i] floatValue]|| [[current objectAtIndex:i] floatValue]< [[min objectAtIndex:i] floatValue]){
+                [colors addObject:PNRed];
+            }
+            
+            else {
+                [colors addObject:PNGreen];
+            }
+        }
+    }
+    
+    NSLog(@"%@",colors);
+    return colors;
+}
+
+
+
+-(NSMutableArray *)getContacts{
+    NSMutableArray *returned = [[NSMutableArray alloc]init];
+    
+    
+    for(NSDictionary *contact in self.contactList){
+        
+        [returned insertObject:[contact objectForKey:@"email"] atIndex:0];
+        
+        
+        
+    }
+    return returned;
+}
+
+-(NSDictionary *)composeMailBody{
+    return @{@"receivers":[[self getContacts] componentsJoinedByString:@";"],@"title":self.tfTitle.text,@"content":self.mailBody.text};
+}
+
+-(NSMutableArray *)uploadedAttachmentPath{
+    NSMutableArray *uploads = [[NSMutableArray alloc]init];
+    if(self.pictures){
+        uploads = [[NSMutableArray alloc]init];
+        for (AttachedPhoto *uploaded in self.pictures){
+            if(uploaded.serverPath !=nil){
+                [uploads insertObject:@{@"pathName":uploaded.serverPath,@"oriName":[NSString stringWithFormat:@"%@%@",uploaded.photo_id,@".jpeg"]} atIndex:0];
+            }
+        }
+    }
+    
+    return uploads;
+}
+
+
+
+
+-(BOOL)attachmentAllUploaded{
+    BOOL result = YES;
+    
+    if(self.pictures){
+        for(AttachedPhoto *photo in self.pictures){
+            if(photo.serverPath == nil){
+                return NO;
+            }
+            
+        }
+    }
+    
+    return result;
+    
+    
+}
+
+
+
+-(void) addUploadFileJobAtIndex:(int)index {
+    if([self.pictures objectAtIndex:index]){
+        if(!_queue){
+            self.queue = [NSOperationQueue new];
+        }
+        NSInvocationOperation *upload = [[NSInvocationOperation alloc]initWithTarget:self selector:@selector(uploadFileAtIndex:) object:[NSNumber numberWithInt:index]];
+        [self.queue addOperation:upload];
+    }
+}
+
+-(void)uploadFileAtIndex:(NSNumber*)index{
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    
+    AttachedPhoto *current =[self.pictures objectAtIndex:[index integerValue]];
+    
+    NSDictionary *params = @{@"data":[UIImageJPEGRepresentation(current.image,0.3) base64EncodedStringWithOptions:NSDataBase64Encoding64CharacterLineLength],@"name":@"photo.jpeg"};
+    
+    [manager POST:[NSString stringWithFormat:@"%@%@",[EpmSettings getEpmUrlSettingsWithKey:@"baseUrl"],[EpmSettings getEpmUrlSettingsWithKey:@"uploadPhoto"]] parameters:params constructingBodyWithBlock:NULL success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSDictionary *result = (NSDictionary *)responseObject;
+        
+        
+        if([result objectForKey:@"path_name"]){
+            AttachedPhoto *current = [self.pictures objectAtIndex:[index integerValue]];
+            current.serverPath =[result objectForKey:@"path_name"];
+        }
+        
+        
+    }
+          failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+              int status = [[operation response]statusCode];
+              NSString *msg = [EpmHttpUtil notificationWithStatusCode:status];
+              
+              UIAlertView *av = [[UIAlertView alloc] initWithTitle:msg
+                                                           message:@""
+                                                          delegate:nil
+                                                 cancelButtonTitle:@"OK" otherButtonTitles:nil];
+              [av show];
+              
+          } ];
+    
+}
+
+
+-(void)deletePhotoAtIndex:(int) index{
+    if(self.pictures && self.pictureIds) {
+        AttachedPhoto *toDel = [self.pictures objectAtIndex:index];
+        if (toDel){
+            
+            
+        }
+        
+    }
+    
+    
+}
+
+-(void)insertPhoto:(AttachedPhoto*)photo Uploaded:(BOOL)upload{
+    if(!self.pictures){
+        self.pictures = [[NSMutableArray alloc]init];
+    }
+    if(!self.pictureIds){
+        self.pictureIds = [[NSMutableDictionary alloc]init];
+    }
+    
+    
+    [self.pictures insertObject:photo atIndex:self.pictures.count];
+    [self.pictureIds setObject:[NSNumber numberWithInteger:self.pictures.count-1] forKey:photo.photo_id];
+    
+    if(upload){
+        [self addUploadFileJobAtIndex:(self.pictures.count-1)];
+    }
+}
+
+
+
+
+
+
+
+#pragma gesture delegate
 - (void)handleSingleFingerEvent:(UITapGestureRecognizer *)sender
 {
     if (sender.numberOfTapsRequired == 2) {
@@ -160,35 +350,14 @@
     }
 }
 
-- (void)webViewDidFinishLoad:(UIWebView *)webView {
-  //  [self.indicator stopAnimating];
-    
-    int status = [EpmHttpUtil getLastHttpStatusCodeWithRequest:self.wvChart.request];
-    
-    [self.wvChart stringByEvaluatingJavaScriptFromString:@"orientationChange()"];
-    
-    if (status>=400){
-        
-//        NSString *msg=[EpmHttpUtil notificationWithStatusCode:status];
-//        
-//        UIAlertView *av = [[UIAlertView alloc] initWithTitle:msg
-//                                                     message:@""
-//                                                    delegate:nil
-//                                           cancelButtonTitle:@"OK" otherButtonTitles:nil];
-//        [av show];
-        
-    }
-}
 
 
 
 
-- (void )webViewDidStartLoad:(UIWebView *)webView {
-  //  [self.indicator startAnimating];
-}
 
 
 
+#pragma collection view delegate
 
 - (NSInteger)collectionView:(UICollectionView *)view numberOfItemsInSection:(NSInteger)section;
 {
@@ -204,6 +373,8 @@
     }
     
     }
+
+
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)cv cellForItemAtIndexPath:(NSIndexPath *)indexPath;
 {
@@ -244,59 +415,22 @@
 }
 
 
--(void)drawChartView{
-    PNBarChart * barChart = [[PNBarChart alloc] initWithFrame:self.chartView.bounds];
-    barChart.backgroundColor = [UIColor clearColor];
-    //Y values
-    [barChart setYValues:@[@10,@24,@12,@18,@30,@10,@100]];
-    //Set Color
-    [barChart setStrokeColors:@[PNGreen,PNGreen,PNRed,PNGreen,PNGreen,PNYellow,PNGreen]];
-    [barChart strokeChart];
-    [self.chartView addSubview:barChart];
-}
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
+
+
+
+
+
+#pragma action
+
+
 
 - (IBAction)btCancel:(UIBarButtonItem *)sender {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 
--(NSMutableArray *)getContacts{
-    NSMutableArray *returned = [[NSMutableArray alloc]init];
-    
 
-    for(NSDictionary *contact in self.contactList){
-        
-        [returned insertObject:[contact objectForKey:@"email"] atIndex:0];
-        
-    
-    
-    }
-    return returned;
-}
-
--(NSDictionary *)composeMailBody{
-    return @{@"receivers":[[self getContacts] componentsJoinedByString:@";"],@"title":self.tfTitle.text,@"content":self.mailBody.text};
-}
-
--(NSMutableArray *)uploadedAttachmentPath{
-    NSMutableArray *uploads = [[NSMutableArray alloc]init];
-    if(self.pictures){
-        uploads = [[NSMutableArray alloc]init];
-    for (AttachedPhoto *uploaded in self.pictures){
-        if(uploaded.serverPath !=nil){
-            [uploads insertObject:@{@"pathName":uploaded.serverPath,@"oriName":[NSString stringWithFormat:@"%@%@",uploaded.photo_id,@".jpeg"]} atIndex:0];
-        }
-    }
-    }
-    
-    return uploads;
-}
 
 - (IBAction)btSend:(UIBarButtonItem *)sender {
     NSString *msg = nil;
@@ -344,23 +478,6 @@
     }
     
     
-}
-
--(BOOL)attachmentAllUploaded{
-    BOOL result = YES;
-    
-    if(self.pictures){
-        for(AttachedPhoto *photo in self.pictures){
-            if(photo.serverPath == nil){
-                return NO;
-            }
-        
-        }
-    }
-    
-    return result;
-    
-
 }
 
 
@@ -415,6 +532,46 @@
 }
 
 
+
+
+
+
+
+#pragma segue function
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    if([segue.identifier isEqualToString:@"editPhoto"])
+    {
+        EpmPhotoEditViewController *detailViewController = segue.destinationViewController;
+        detailViewController.backGround= (AttachedPhoto *)sender;
+
+    }
+}
+
+
+
+- (IBAction)unwindToMail:(UIStoryboardSegue *)unwindSegue
+{
+    EpmPhotoEditViewController* source = unwindSegue.sourceViewController;
+    if([source.operation isEqualToString:OperationChanged]){
+ 
+        [self.pictures replaceObjectAtIndex:[[self.pictureIds objectForKey:source.editedPhoto.photo_id] integerValue] withObject:source.editedPhoto];
+        [self.attachCollection reloadData];
+        [self addUploadFileJobAtIndex:[[self.pictureIds objectForKey:source.editedPhoto.photo_id] integerValue]];
+    }
+    
+    else if([source.operation isEqualToString:OperationDelete]){
+        [self.pictures removeObjectAtIndex:[[self.pictureIds objectForKey:source.editedPhoto.photo_id] integerValue]];
+        [self.attachCollection reloadData];
+        
+    }
+}
+
+
+
+
+
+#pragma UIImage delegate
+
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
     
     UIImage *chosenImage = info[UIImagePickerControllerOriginalImage];
@@ -432,127 +589,17 @@
     
     AttachedPhoto *attached =[[AttachedPhoto alloc]initWithIdFilledAndImage:chosenImage];
     [self insertPhoto:attached Uploaded:YES];
-
+    
     [picker dismissViewControllerAnimated:YES completion:NULL];
     [self.attachCollection reloadData];
     
     
 }
 
--(void)deletePhotoAtIndex:(int) index{
-    if(self.pictures && self.pictureIds) {
-        AttachedPhoto *toDel = [self.pictures objectAtIndex:index];
-        if (toDel){
-            
-        
-        }
-    
-    }
-
-
-}
-
--(void)insertPhoto:(AttachedPhoto*)photo Uploaded:(BOOL)upload{
-    if(!self.pictures){
-        self.pictures = [[NSMutableArray alloc]init];
-    }
-    if(!self.pictureIds){
-        self.pictureIds = [[NSMutableDictionary alloc]init];
-    }
-    
-    
-    [self.pictures insertObject:photo atIndex:self.pictures.count];
-    [self.pictureIds setObject:[NSNumber numberWithInteger:self.pictures.count-1] forKey:photo.photo_id];
-    
-    if(upload){
-        [self addUploadFileJobAtIndex:(self.pictures.count-1)];
-    }
-}
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
     
     [picker dismissViewControllerAnimated:YES completion:NULL];
     
 }
-
--(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
-    if([segue.identifier isEqualToString:@"editPhoto"])
-    {
-        EpmPhotoEditViewController *detailViewController = segue.destinationViewController;
-        detailViewController.backGround= (AttachedPhoto *)sender;
-
-    }
-}
-
-
-- (IBAction)unwindToMail:(UIStoryboardSegue *)unwindSegue
-{
-    EpmPhotoEditViewController* source = unwindSegue.sourceViewController;
-    if([source.operation isEqualToString:@"CHANGED"]){
- 
-    [self.pictures replaceObjectAtIndex:[[self.pictureIds objectForKey:source.editedPhoto.photo_id] integerValue] withObject:source.editedPhoto];
-    //NSLog(@"%d",[UIImageJPEGRepresentation(source.editedPhoto.image,0.2) base64EncodedStringWithOptions:NSDataBase64Encoding64CharacterLineLength].length);
-    //[self.attachCollection reloadItemsAtIndexPaths:[[NSArray alloc]initWithObjects:[[NSIndexPath alloc]initWithIndex:[[self.pictureIds objectForKey:source.editedPhoto.photo_id] integerValue]], nil]];
-
-    [self.attachCollection reloadData];
-    [self addUploadFileJobAtIndex:[[self.pictureIds objectForKey:source.editedPhoto.photo_id] integerValue]];
-           }
-    
-    else if([source.operation isEqualToString:@"DELETE"]){
-        [self.pictures removeObjectAtIndex:[[self.pictureIds objectForKey:source.editedPhoto.photo_id] integerValue]];
-        [self.attachCollection reloadData];
-        
-    }
-    
-
-}
-
--(void)updateCollection {
-    
-    
-}
-
--(void) addUploadFileJobAtIndex:(int)index {
-    if([self.pictures objectAtIndex:index]){
-        if(!_queue){
-            self.queue = [NSOperationQueue new];
-        }
-        NSInvocationOperation *upload = [[NSInvocationOperation alloc]initWithTarget:self selector:@selector(uploadFileAtIndex:) object:[NSNumber numberWithInt:index]];
-        [self.queue addOperation:upload];
-    }
-}
-
--(void)uploadFileAtIndex:(NSNumber*)index{
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    
-    AttachedPhoto *current =[self.pictures objectAtIndex:[index integerValue]];
-    
-    NSDictionary *params = @{@"data":[UIImageJPEGRepresentation(current.image,0.3) base64EncodedStringWithOptions:NSDataBase64Encoding64CharacterLineLength],@"name":@"photo.jpeg"};
-    
-    [manager POST:[NSString stringWithFormat:@"%@%@",[EpmSettings getEpmUrlSettingsWithKey:@"baseUrl"],[EpmSettings getEpmUrlSettingsWithKey:@"uploadPhoto"]] parameters:params constructingBodyWithBlock:NULL success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSDictionary *result = (NSDictionary *)responseObject;
-        
-        
-        if([result objectForKey:@"path_name"]){
-            AttachedPhoto *current = [self.pictures objectAtIndex:[index integerValue]];
-            current.serverPath =[result objectForKey:@"path_name"];
-                  }
-        
-        
-    }
- failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        int status = [[operation response]statusCode];
-        NSString *msg = [EpmHttpUtil notificationWithStatusCode:status];
-        
-        UIAlertView *av = [[UIAlertView alloc] initWithTitle:msg
-                                                     message:@""
-                                                    delegate:nil
-                                           cancelButtonTitle:@"OK" otherButtonTitles:nil];
-        [av show];
-        
-        } ];
-    
-}
-
-
 @end

@@ -22,47 +22,39 @@
 
 -(void)getData{
     
-    NSString *plistPath = [[NSBundle mainBundle] pathForResource:@"org" ofType:@"plist"];
-    NSMutableDictionary *orgs = [[NSMutableDictionary alloc] initWithContentsOfFile:plistPath];
-    self.Organizations = nil;
-    self.Organizations = [orgs objectForKey:@"orgs"];
+   
     
-    [self.collectionView reloadData];
-    
-    //AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     
     
-   // NSDictionary *params = nil;
+    NSDictionary *params = nil;
     
-    
-   // [manager GET:[NSString stringWithFormat:@"%@%@",[urlSetting objectForKey:@"baseUrl"],[urlSetting objectForKey:@"org"] ] parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
-    //    NSLog(@"JSON: %@", responseObject);
-    //    NSArray *result = (NSArray *)responseObject;
-        // if([result objectForKey:@"result"] == [NSNumber numberWithBool:YES]){
-        
-       // self.Organizations = result;
-       // [self.collectionView reloadData];
-       // NSLog(@"%@",self.Organizations);
-        
-        // }
-        //  else {
-        //     UIAlertView *av = [[UIAlertView alloc] initWithTitle:@"Wrong Password or user name, try again please."
-        //                                                  message:@""
-        //                                     delegate:nil
-        //                            cancelButtonTitle:@"OK" otherButtonTitles:nil];
-        //     [av show];
-        // }
-   // }
+   
+    [manager GET:[NSString stringWithFormat:@"%@%@", [EpmSettings getEpmUrlSettingsWithKey:@"baseUrl"], [EpmSettings getEpmUrlSettingsWithKey:@"org" ]] parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+          NSArray *result = (NSArray *)responseObject;
+         if(result){
+         self.Organizations = result;
+        [self.collectionView reloadData];
+            
+       }
+        else {
+            UIAlertView *av = [[UIAlertView alloc] initWithTitle:@"Wrong Password or user name, try again please."
+                                                       message:@""
+                                           delegate:nil
+        cancelButtonTitle:@"OK" otherButtonTitles:nil];
+           [av show];
+        }
+    }
      
-      //   failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-     //        NSLog(@"%@", [operation response]);
+       failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+            NSLog(@"%@", [operation response]);
              
-     //        UIAlertView *av = [[UIAlertView alloc] initWithTitle:@"Service is temporily down. Please try again later."
-        //                                                  message:@""
-       //                                                  delegate:nil
-       //                                         cancelButtonTitle:@"OK" otherButtonTitles:nil];
-     //        [av show];
-    //     }];
+          UIAlertView *av = [[UIAlertView alloc] initWithTitle:@"Service is temporily down. Please try again later."
+                                                          message:@""
+                                                         delegate:nil
+                                                cancelButtonTitle:@"OK" otherButtonTitles:nil];
+             [av show];
+         }];
     
 
 
@@ -84,6 +76,7 @@
     
     [super viewDidLoad];
     [self getData];
+    [self.collectionView reloadData];
 	// Do any additional setup after loading the view.
 }
 
@@ -104,13 +97,13 @@
     EpmOrgCellView *cell = [cv dequeueReusableCellWithReuseIdentifier:@"orgCell" forIndexPath:indexPath];
     
         cell.connectTxt.text = @"EPM Connected";
-    if(indexPath.row==0){
-          cell.connectImg.image = [UIImage imageNamed:@"disconnect.png"];
-        cell.connectTxt.text = @"EPM Not Connected";
-    }
-    else{
+//    if(indexPath.row==0){
+//          cell.connectImg.image = [UIImage imageNamed:@"disconnect.png"];
+//        cell.connectTxt.text = @"EPM Not Connected";
+//    }
+//    else{
           cell.connectImg.image = [UIImage imageNamed:@"connect.png"];
-    }
+   // }
     
        cell.mainImg.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@.png",@"organization-item-bg.png"]];
     
@@ -141,6 +134,7 @@
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
+
     [self performSegueWithIdentifier:@"viewOrgKpi" sender:[self.Organizations objectAtIndex:indexPath.row]];
     
 }

@@ -27,11 +27,13 @@
 @synthesize upperContainer = _upperContainer;
 @synthesize currentConditions = _currentConditions;
 
+
 -(void)viewDidAppear:(BOOL)animated{
     // [self changeLayoutWithOrientation:(UIDeviceOrientation)[UIApplication sharedApplication].statusBarOrientation];
   
     
   }
+
 
 
 -(void)changeLayoutWithOrientation:(UIDeviceOrientation)orientation{

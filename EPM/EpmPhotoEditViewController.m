@@ -7,6 +7,8 @@
 //
 
 #import "EpmPhotoEditViewController.h"
+#import "EpmColorPickViewController.h"
+
 
 @interface EpmPhotoEditViewController () {
     CGPoint lastPoint;
@@ -16,6 +18,7 @@
     CGFloat brush;
     CGFloat opacity;
     BOOL mouseSwiped;
+
 }
 
 
@@ -31,6 +34,10 @@
 @synthesize backGroundImage= _backGroundImage;
 @synthesize backGround = _backGround;
 
+- (IBAction)showPickColor:(UIButton *)sender {
+    
+    
+}
 
 
 - (IBAction)done:(id)sender {
@@ -48,12 +55,12 @@
 }
 
 - (IBAction)remobe:(id)sender {
-    self.operation=@"DELETE";
+    self.operation=OperationDelete;
     [self performSegueWithIdentifier:@"backToSendMail" sender:self];
 }
 
 - (IBAction)reset:(id)sender {
-    self.operation = @"NOCHANGE";
+    self.operation = OperationUnchanged;
      self.mainImage.image = nil;
 }
 
@@ -75,7 +82,7 @@
     blue = 255.0/255.0;
     brush = 5.0;
     opacity = 0.8;
-    self.operation = @"NOCHANGE";
+    self.operation = OperationUnchanged;
     [super viewDidLoad];
     self.editedPhoto = self.backGround;
     [self.backGroundImage setImage:self.backGround.image];
@@ -90,7 +97,7 @@
 
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
-    self.operation = @"CHANGED";
+    self.operation = OperationChanged;
     mouseSwiped = NO;
     UITouch *touch = [touches anyObject];
     lastPoint = [touch locationInView:self.view];
@@ -145,6 +152,12 @@
 
 
 
+- (IBAction)unwindToPhotoEdit:(UIStoryboardSegue *)unwindSegue {
+    EpmColorPickViewController* source = unwindSegue.sourceViewController;
+    red = source.red;
+    blue = source.blue;
+    green = source.green;
+}
 
 
 
