@@ -138,6 +138,10 @@
     singleFingerOne.numberOfTapsRequired = 2;
     singleFingerOne.delegate = self;
     [self.collViewList addGestureRecognizer:singleFingerOne];
+    
+    
+    self.mailBody.layer.borderWidth = 1.0f;
+    self.mailBody.layer.cornerRadius = 1.0f;
 }
 
 
@@ -483,6 +487,10 @@
 
 
 - (IBAction)btAdd:(UIButton *)sender {
+    [self addContact];
+}
+
+-(void)addContact{
     NSString *msg = @"";
     
     if([self.tfNewMail.text length]==0){
@@ -491,7 +499,7 @@
     
     else{
         if (![EpmUtility validateEmail:self.tfNewMail.text]){
-           msg= @"Please enter a valid email address";
+            msg= @"Please enter a valid email address";
         }
         
     }
@@ -507,13 +515,12 @@
     
     else{
         UIAlertView *av = [[UIAlertView alloc] initWithTitle:msg
-                                                                message:msg
-                                                                delegate:nil
-                                                                cancelButtonTitle:@"OK" otherButtonTitles:nil];
-                                   [av show];
+                                                     message:msg
+                                                    delegate:nil
+                                           cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [av show];
         self.tfNewMail.text = @"";
     }
-    
 }
 
 
@@ -602,4 +609,18 @@
     [picker dismissViewControllerAnimated:YES completion:NULL];
     
 }
+
+
+
+#pragma UITextField Delegate
+
+-(BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    //[textField resignFirstResponder];
+    [self addContact];
+    return YES;
+}
 @end
+
+
+
