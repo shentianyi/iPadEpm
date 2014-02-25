@@ -12,5 +12,7 @@
 FOUNDATION_EXPORT NSString *const OperationUnchanged;
 FOUNDATION_EXPORT NSString *const OperationChanged;
 FOUNDATION_EXPORT NSString *const OperationDelete;
+FOUNDATION_EXPORT NSString *const ShortEnglishDatetimeFormat;
+
 
 @end

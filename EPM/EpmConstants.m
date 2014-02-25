@@ -12,4 +12,5 @@
 NSString *const OperationUnchanged =  @"UNCHANGE";
 NSString *const OperationChanged = @"CHANGED";
 NSString *const OperationDelete = @"DELETE";
+NSString *const ShortEnglishDatetimeFormat = @"yy-MM-dd HH:mm";
 @end

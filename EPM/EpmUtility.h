@@ -10,4 +10,7 @@
 
 @interface EpmUtility : NSObject
 + (BOOL) validateEmail: (NSString *) candidate ;
++ (NSString *) convertDatetimeWithDate:(NSDate *)date WithFormat:(NSString *) format;
++ (NSString *) convertDatetimeWithString:(NSString *)dateString WithFormat:(NSString *) format;
+
 @end

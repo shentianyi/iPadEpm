@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0502A96A18BC747C00906C45 /* chart-clorful.png in Resources */ = {isa = PBXBuildFile; fileRef = 0502A96518BC747C00906C45 /* chart-clorful.png */; };
+		0502A96B18BC747C00906C45 /* Photo-gray.png in Resources */ = {isa = PBXBuildFile; fileRef = 0502A96618BC747C00906C45 /* Photo-gray.png */; };
+		0502A96C18BC747C00906C45 /* Photo-colorful.png in Resources */ = {isa = PBXBuildFile; fileRef = 0502A96718BC747C00906C45 /* Photo-colorful.png */; };
+		0502A96D18BC747C00906C45 /* mail.png in Resources */ = {isa = PBXBuildFile; fileRef = 0502A96818BC747C00906C45 /* mail.png */; };
+		0502A96E18BC747C00906C45 /* chart-gray.png in Resources */ = {isa = PBXBuildFile; fileRef = 0502A96918BC747C00906C45 /* chart-gray.png */; };
+		0519BA7F18BC46EA0029447E /* EpmMailListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0519BA7E18BC46EA0029447E /* EpmMailListCell.m */; };
+		0519BA8218BC48240029447E /* EpmMailListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0519BA8118BC48240029447E /* EpmMailListController.m */; };
 		055F84631889153D00D88BC4 /* EpmHttpUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 055F84621889153D00D88BC4 /* EpmHttpUtil.m */; };
 		055F84661889161500D88BC4 /* EpmSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 055F84651889161500D88BC4 /* EpmSettings.m */; };
 		0566994C18B6E5AA0024AD32 /* EpmConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 0566994B18B6E5AA0024AD32 /* EpmConstants.m */; };
@@ -127,6 +134,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0502A96518BC747C00906C45 /* chart-clorful.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chart-clorful.png"; sourceTree = "<group>"; };
+		0502A96618BC747C00906C45 /* Photo-gray.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Photo-gray.png"; sourceTree = "<group>"; };
+		0502A96718BC747C00906C45 /* Photo-colorful.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Photo-colorful.png"; sourceTree = "<group>"; };
+		0502A96818BC747C00906C45 /* mail.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mail.png; sourceTree = "<group>"; };
+		0502A96918BC747C00906C45 /* chart-gray.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chart-gray.png"; sourceTree = "<group>"; };
+		0519BA7D18BC46EA0029447E /* EpmMailListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EpmMailListCell.h; sourceTree = "<group>"; };
+		0519BA7E18BC46EA0029447E /* EpmMailListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EpmMailListCell.m; sourceTree = "<group>"; };
+		0519BA8018BC48240029447E /* EpmMailListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EpmMailListController.h; sourceTree = "<group>"; };
+		0519BA8118BC48240029447E /* EpmMailListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EpmMailListController.m; sourceTree = "<group>"; };
 		055F84611889153D00D88BC4 /* EpmHttpUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EpmHttpUtil.h; sourceTree = "<group>"; };
 		055F84621889153D00D88BC4 /* EpmHttpUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EpmHttpUtil.m; sourceTree = "<group>"; };
 		055F84641889161400D88BC4 /* EpmSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EpmSettings.h; sourceTree = "<group>"; };
@@ -328,6 +344,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0519BA7C18BC46CA0029447E /* TableCellView */ = {
+			isa = PBXGroup;
+			children = (
+				0519BA7D18BC46EA0029447E /* EpmMailListCell.h */,
+				0519BA7E18BC46EA0029447E /* EpmMailListCell.m */,
+			);
+			name = TableCellView;
+			sourceTree = "<group>";
+		};
 		0566994D18B6F95F0024AD32 /* lib */ = {
 			isa = PBXGroup;
 			children = (
@@ -488,6 +513,7 @@
 		05EA4DC9187FB00C00C53FEE /* EPM */ = {
 			isa = PBXGroup;
 			children = (
+				0519BA7C18BC46CA0029447E /* TableCellView */,
 				0566994D18B6F95F0024AD32 /* lib */,
 				05A2060D18B5CCB20052B569 /* Utility */,
 				05F768C918B4A6CE00055138 /* Models */,
@@ -541,6 +567,8 @@
 				056C959B18B477EF008A2198 /* EpmPhotoEditViewController.m */,
 				0566995318B7245D0024AD32 /* EpmColorPickViewController.h */,
 				0566995418B7245D0024AD32 /* EpmColorPickViewController.m */,
+				0519BA8018BC48240029447E /* EpmMailListController.h */,
+				0519BA8118BC48240029447E /* EpmMailListController.m */,
 			);
 			path = EPM;
 			sourceTree = "<group>";
@@ -548,6 +576,11 @@
 		05EA4DCA187FB00C00C53FEE /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				0502A96518BC747C00906C45 /* chart-clorful.png */,
+				0502A96618BC747C00906C45 /* Photo-gray.png */,
+				0502A96718BC747C00906C45 /* Photo-colorful.png */,
+				0502A96818BC747C00906C45 /* mail.png */,
+				0502A96918BC747C00906C45 /* chart-gray.png */,
 				05D2C0A31884B6C500DBBF8C /* ipad-icon-76.png */,
 				05D2C0A41884B6C600DBBF8C /* ipad-icon-120.png */,
 				05D2C0A51884B6C600DBBF8C /* ipad-icon-152.png */,
@@ -707,6 +740,7 @@
 				05D2C06D1882746A00DBBF8C /* connect.png in Resources */,
 				05D2C06F1882746A00DBBF8C /* disconnect.png in Resources */,
 				05EA4DDF187FB00C00C53FEE /* Images.xcassets in Resources */,
+				0502A96A18BC747C00906C45 /* chart-clorful.png in Resources */,
 				05D2C0661882745F00DBBF8C /* CATEGORY-efficiency.png in Resources */,
 				05D2C09B1884670100DBBF8C /* LOGIN.png in Resources */,
 				05D2C0671882745F00DBBF8C /* CATEGORY-humanresource.png in Resources */,
@@ -715,6 +749,7 @@
 				05D2C0AA1884B6C600DBBF8C /* ipad-icon-76.png in Resources */,
 				05D2C079188274C700DBBF8C /* SHANGHAI.png in Resources */,
 				05D2C07D1882752200DBBF8C /* DASHBOARD-line.png in Resources */,
+				0502A96E18BC747C00906C45 /* chart-gray.png in Resources */,
 				05EA4DCE187FB00C00C53FEE /* InfoPlist.strings in Resources */,
 				05D2C05D1882745700DBBF8C /* BUTTON-dashboard-active.png in Resources */,
 				05D2C0B01884B6C600DBBF8C /* iphone-icon@2x.png in Resources */,
@@ -725,12 +760,15 @@
 				05D2C0991884666100DBBF8C /* benz.png in Resources */,
 				05D2C0931884661500DBBF8C /* organization-bg.png in Resources */,
 				05D2C09D1884671500DBBF8C /* DASHBOARD-pie.png in Resources */,
+				0502A96B18BC747C00906C45 /* Photo-gray.png in Resources */,
 				05D2C0951884664E00DBBF8C /* organization-item-bg.png in Resources */,
 				05D2C05C1882745700DBBF8C /* MB.png in Resources */,
 				05D2C0AB1884B6C600DBBF8C /* ipad-icon-120.png in Resources */,
+				0502A96D18BC747C00906C45 /* mail.png in Resources */,
 				05D2C0AE1884B6C600DBBF8C /* ipad-icon@2x.png in Resources */,
 				05EA4DD7187FB00C00C53FEE /* Main.storyboard in Resources */,
 				05D2C0641882745F00DBBF8C /* BUTTON-organization-active.png in Resources */,
+				0502A96C18BC747C00906C45 /* Photo-colorful.png in Resources */,
 				05D2C0971884665700DBBF8C /* blue-point.png in Resources */,
 				05D2C0561882326500DBBF8C /* org.plist in Resources */,
 				05D2C09F188467B200DBBF8C /* logo-unconnacted.png in Resources */,
@@ -768,10 +806,12 @@
 				05C4FF5D18ADC631004E1A90 /* UICountingLabel.m in Sources */,
 				05C4FF5718ADC631004E1A90 /* PNChartLabel.m in Sources */,
 				0576D1A518AC64EF00AD75AB /* SDImageCache.m in Sources */,
+				0519BA7F18BC46EA0029447E /* EpmMailListCell.m in Sources */,
 				05EA4E00187FB09F00C53FEE /* EpmDbCellView.m in Sources */,
 				0576D1A618AC64EF00AD75AB /* SDWebImageCompat.m in Sources */,
 				05EA4DD0187FB00C00C53FEE /* main.m in Sources */,
 				0576D1AB18AC64EF00AD75AB /* SDWebImagePrefetcher.m in Sources */,
+				0519BA8218BC48240029447E /* EpmMailListController.m in Sources */,
 				0576D1A918AC64EF00AD75AB /* SDWebImageDownloaderOperation.m in Sources */,
 				056C3CDC18ACAE8000820524 /* EpmMailReceiverCell.m in Sources */,
 				05A2061018B5CCCA0052B569 /* EpmGraphicUtility.m in Sources */,
