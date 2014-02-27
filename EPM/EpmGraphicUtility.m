@@ -20,15 +20,26 @@
 }
 
 
-+ (UIImage*)FullScreenshotForCurrentWindow{
-    UIWindow *keyWindow = [[UIApplication sharedApplication] keyWindow];
-    CGRect rect = [keyWindow bounds];
-    UIGraphicsBeginImageContextWithOptions(rect.size,YES,0.0f);
-    CGContextRef context = UIGraphicsGetCurrentContext();
-    [keyWindow.layer renderInContext:context];
-    UIImage *capturedScreen = UIGraphicsGetImageFromCurrentImageContext();
++ (UIImage*)FullScreenshotForCurrentWindow:(UIView *)window{
+//    UIWindow *keyWindow = [[UIApplication sharedApplication] keyWindow];
+//    
+//    CGRect rect = [keyWindow bounds];
+//    UIGraphicsBeginImageContextWithOptions(rect.size,YES,0.0f);
+//    CGContextRef context = UIGraphicsGetCurrentContext();
+//    [keyWindow.layer renderInContext:context];
+//    UIImage *capturedScreen = UIGraphicsGetImageFromCurrentImageContext();
+//    UIGraphicsEndImageContext();
+//    return capturedScreen;
+    
+    if ([[UIScreen mainScreen] respondsToSelector:@selector(scale)])
+        UIGraphicsBeginImageContextWithOptions(window.bounds.size, NO, [UIScreen mainScreen].scale);
+    else
+        UIGraphicsBeginImageContext(window.bounds.size);
+   
+    [window.layer renderInContext:UIGraphicsGetCurrentContext()];
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
-    return capturedScreen;
+    return image;
 }
 
 

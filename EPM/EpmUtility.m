@@ -27,15 +27,14 @@
 
 
 + (NSString *) convertDatetimeWithDate:(NSDate *)date WithFormat:(NSString *) format {
-    NSLog(@"%@",date);
-    NSLog(@"%@",format);
+
     NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
     [formatter setDateFormat:format];
     return [formatter stringFromDate:date];
 }
 
 + (NSString *) convertDatetimeWithString:(NSString *)dateString WithFormat:(NSString *) format{
-      NSLog(@"%@",dateString);
+
     NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
     [formatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ssZ"];
     NSDate *date = [formatter dateFromString:dateString];

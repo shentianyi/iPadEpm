@@ -80,6 +80,10 @@
         NSDictionary *orgCondition =[self.completeData objectForKey:@"orgCondition"];
         
         if(orgCondition){
+            self.lbEntityGroupName.text = [orgCondition objectForKey:@"entity_group_name"];
+            self.lbEntityGroupName.textColor = [UIColor blackColor];
+            self.lbRemark.text = [NSString stringWithFormat:@"Kpi %@ of %@ from %@ to %@",[orgCondition objectForKey:@"kpi_name"],[orgCondition objectForKey:@"entity_group_name"],[orgCondition objectForKey:@"start_time"],[orgCondition objectForKey:@"end_time"]];
+            
             NSString *orgId = [[orgCondition objectForKey:@"entity_group_id"] stringValue];
             
             AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
@@ -108,7 +112,12 @@
                  failure:nil];
         }
         else{
-            [self showSummery:NO WithAnimation:NO];
+            //[self showSummery:NO WithAnimation:NO];
+        }
+        
+        NSString *title = [self.completeData objectForKey:@"title"];
+        if(title){
+            self.tfTitle.text=title;
         }
         
         
@@ -123,6 +132,7 @@
             [self.attachCollection  reloadData];
         
         }
+        
         
         
      NSDictionary *orgData = [self.completeData objectForKey:@"orgKpiData"];
@@ -438,6 +448,11 @@
 
 - (IBAction)btSend:(UIBarButtonItem *)sender {
     NSString *msg = nil;
+    
+    if(self.tfNewMail.text.length>0){
+        [self addContact];
+    }
+    
     if(!self.contactList || self.contactList.count==0){
         msg = @"Please add at least one email address";
     

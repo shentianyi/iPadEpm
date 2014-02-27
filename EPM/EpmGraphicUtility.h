@@ -10,5 +10,5 @@
 
 @interface EpmGraphicUtility : NSObject
 + (UIImage*)ScreenshotforView:(UIView*)view;
-+ (UIImage*)FullScreenshotForCurrentWindow;
++ (UIImage*)FullScreenshotForCurrentWindow:(UIView *)window;
 @end

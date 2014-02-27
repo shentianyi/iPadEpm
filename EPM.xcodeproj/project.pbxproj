@@ -12,6 +12,7 @@
 		0502A96C18BC747C00906C45 /* Photo-colorful.png in Resources */ = {isa = PBXBuildFile; fileRef = 0502A96718BC747C00906C45 /* Photo-colorful.png */; };
 		0502A96D18BC747C00906C45 /* mail.png in Resources */ = {isa = PBXBuildFile; fileRef = 0502A96818BC747C00906C45 /* mail.png */; };
 		0502A96E18BC747C00906C45 /* chart-gray.png in Resources */ = {isa = PBXBuildFile; fileRef = 0502A96918BC747C00906C45 /* chart-gray.png */; };
+		0505AD4118BF321900777E66 /* draft.png in Resources */ = {isa = PBXBuildFile; fileRef = 0505AD4018BF321900777E66 /* draft.png */; };
 		0519BA7F18BC46EA0029447E /* EpmMailListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0519BA7E18BC46EA0029447E /* EpmMailListCell.m */; };
 		0519BA8218BC48240029447E /* EpmMailListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0519BA8118BC48240029447E /* EpmMailListController.m */; };
 		055F84631889153D00D88BC4 /* EpmHttpUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 055F84621889153D00D88BC4 /* EpmHttpUtil.m */; };
@@ -139,6 +140,7 @@
 		0502A96718BC747C00906C45 /* Photo-colorful.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Photo-colorful.png"; sourceTree = "<group>"; };
 		0502A96818BC747C00906C45 /* mail.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mail.png; sourceTree = "<group>"; };
 		0502A96918BC747C00906C45 /* chart-gray.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chart-gray.png"; sourceTree = "<group>"; };
+		0505AD4018BF321900777E66 /* draft.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = draft.png; sourceTree = "<group>"; };
 		0519BA7D18BC46EA0029447E /* EpmMailListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EpmMailListCell.h; sourceTree = "<group>"; };
 		0519BA7E18BC46EA0029447E /* EpmMailListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EpmMailListCell.m; sourceTree = "<group>"; };
 		0519BA8018BC48240029447E /* EpmMailListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EpmMailListController.h; sourceTree = "<group>"; };
@@ -576,6 +578,7 @@
 		05EA4DCA187FB00C00C53FEE /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				0505AD4018BF321900777E66 /* draft.png */,
 				0502A96518BC747C00906C45 /* chart-clorful.png */,
 				0502A96618BC747C00906C45 /* Photo-gray.png */,
 				0502A96718BC747C00906C45 /* Photo-colorful.png */,
@@ -734,6 +737,7 @@
 			files = (
 				05D2C077188274BF00DBBF8C /* organization-item.png in Resources */,
 				05D2C05E1882745700DBBF8C /* BUTTON-dashboard.png in Resources */,
+				0505AD4118BF321900777E66 /* draft.png in Resources */,
 				05D2C0AD1884B6C600DBBF8C /* ipad-icon.png in Resources */,
 				05D2C071188274AD00DBBF8C /* GM.png in Resources */,
 				05D2C07B188274CF00DBBF8C /* TITLE.png in Resources */,

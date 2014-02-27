@@ -42,14 +42,8 @@
 
 - (IBAction)done:(id)sender {
     
-    UIGraphicsBeginImageContextWithOptions(self.mainImage.bounds.size, NO,0.0);
-    [self.backGroundImage.image drawInRect:CGRectMake(0, 0, self.mainImage.frame.size.width, self.mainImage.frame.size.height)];
-    
-       [self.mainImage.image drawInRect:CGRectMake(0, 0, self.mainImage.frame.size.width, self.mainImage.frame.size.height)];
-    
-    UIImage *SaveImage = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    self.editedPhoto.image = SaveImage;
+   
+    self.editedPhoto.image = [self IntegrateImage];
     //UIImageWriteToSavedPhotosAlbum(SaveImage, self,nil, nil);
     [self performSegueWithIdentifier:@"backToSendMail" sender:self];
 }
@@ -150,6 +144,26 @@
     UIGraphicsEndImageContext();
 }
 
+- (IBAction)save:(id)sender {
+    self.backGroundImage.layer.opacity = 0;
+    [UIView animateWithDuration:0.5 animations:^{
+        self.backGroundImage.layer.opacity = 1;
+        
+    }];
+    UIImageWriteToSavedPhotosAlbum([self IntegrateImage], nil, nil, nil);
+
+}
+
+-(UIImage *)IntegrateImage{
+    UIGraphicsBeginImageContextWithOptions(self.mainImage.bounds.size, NO,0.0);
+    [self.backGroundImage.image drawInRect:CGRectMake(0, 0, self.mainImage.frame.size.width, self.mainImage.frame.size.height)];
+    
+    [self.mainImage.image drawInRect:CGRectMake(0, 0, self.mainImage.frame.size.width, self.mainImage.frame.size.height)];
+    
+    UIImage *SaveImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return SaveImage;
+}
 
 
 - (IBAction)unwindToPhotoEdit:(UIStoryboardSegue *)unwindSegue {

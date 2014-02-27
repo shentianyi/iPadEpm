@@ -9,6 +9,7 @@
 #import "EpmMailListController.h"
 #import "EpmMailListCell.h"
 #import "AFNetworking.h"
+#import <SDWebImage/UIImageView+WebCache.h>
 
 @interface EpmMailListController ()
 @property (strong,nonatomic)NSMutableArray *mailList;
@@ -21,6 +22,7 @@
 @synthesize scrollView = _scrollView;
 @synthesize bigTitle = _bigTitle;
 @synthesize mailToIcon = _mailToIcon;
+
 
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -37,7 +39,13 @@
     [super viewDidLoad];
     self.leftView.layer.borderWidth = 1.0f;
     
-    [self loadData];
+    UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
+    [refreshControl addTarget:self action:@selector(loadData:) forControlEvents:UIControlEventValueChanged];
+    refreshControl.attributedTitle = [[NSAttributedString alloc] initWithString:@"Pull to update"];
+    
+    [self.listTableView addSubview:refreshControl];
+    
+    [self loadData:nil];
 	// Do any additional setup after loading the view.
 }
 
@@ -48,11 +56,22 @@
 }
 
 - (IBAction)compose:(id)sender {
+    [self performSegueWithIdentifier:@"mailCompose" sender:nil];
    }
 
+-(void)resetRefreshControl:(UIRefreshControl*)refreshControl{
+    [refreshControl endRefreshing];
+    [refreshControl setAttributedTitle: [[NSAttributedString alloc] initWithString:@"Pull to update"]];
 
+}
 
--(void)loadData{
+-(void)loadData:(id) sender{
+    if(sender){
+        
+    [sender setAttributedTitle: [[NSAttributedString alloc] initWithString:@"loading..."]];
+    
+    }
+    
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     
     
@@ -64,6 +83,8 @@
         if(result){
             self.mailList = [result objectForKey:@"values"];
             self.mailSection =[result objectForKey:@"titles"];
+            if(sender){
+                [self resetRefreshControl:sender];}
             [self.listTableView reloadData];
             
         }
@@ -84,6 +105,8 @@
                                                          delegate:nil
                                                 cancelButtonTitle:@"OK" otherButtonTitles:nil];
              [av show];
+             if(sender){
+                 [self resetRefreshControl:sender];}
          }];
 
 
@@ -135,19 +158,29 @@
     
     NSDictionary *mail = [mails objectAtIndex:indexPath.row];
     
-    
+   // NSLog(@"%d .section,%d .row:%@",indexPath.section,indexPath.row,mail);
     
     cell.title.text =[mail objectForKey:@"title"];
     cell.receiver.text =[mail objectForKey:@"receivers"];
   
     cell.time.text = [EpmUtility convertDatetimeWithString:[mail objectForKey:@"created_at"] WithFormat:ShortEnglishDatetimeFormat];
     
-    if([mail objectForKey:@"attachments"] &&[[mail objectForKey:@"attachments"] count]>1){
+    if([mail objectForKey:@"attachments"] &&[[mail objectForKey:@"attachments"] count]>=1){
         cell.phtoIndicator.image =[UIImage imageNamed:@"Photo-colorful.png"];
     }
+    else {
+        cell.phtoIndicator.image =[UIImage imageNamed:@"Photo-gray.png"];
+    }
     
-    if([mail objectForKey:@"kpi_id"]){
+    NSLog(@"kpiid %@ mail id %@",[mail objectForKey:@"kpi_id"],[mail objectForKey:@"id"]);
+
+    
+    if([mail objectForKey:@"kpi_id"] && ![[mail objectForKey:@"kpi_id" ] isKindOfClass:[NSNull class]]){
         cell.chartIndicator.image = [UIImage imageNamed:@"chart-clorful.png"];
+    }
+    else{
+        cell.chartIndicator.image = [UIImage imageNamed:@"chart-gray.png"];
+
     }
     return cell;
 }
@@ -155,34 +188,83 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
+    CGFloat margin = 40.0f;
+    
     NSArray *mails = [self.mailList objectAtIndex:indexPath.section];
     NSDictionary *mail = [mails objectAtIndex:indexPath.row];
+    
+    //to-do remove webview and picture
+    for(UIView *subView in self.scrollView.subviews){
+        if(([subView isMemberOfClass:[UIImageView class]]&& subView.tag != 991) || [subView isMemberOfClass:[UIWebView class]]){
+            [subView removeFromSuperview];
+        }
+    }
+    
     
     self.bigTitle.text= [mail objectForKey:@"title"];
     
     self.receiver.text = [mail objectForKey:@"receivers"];
     
-    self.content.numberOfLines=0;
-    self.content.text = [mail objectForKey:@"content"];
+    
+    
+    NSMutableAttributedString *attributed =[[NSMutableAttributedString alloc]initWithString:[mail objectForKey:@"content"] attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:17.0f]}];
+    
+    //[attributed addAttribute:NSFontAttributeName value:@"system" range:NSMakeRange(0,[[mail objectForKey:@"content" ] length])];
+ 
+    [self.content setAttributedText:attributed];
     [self.content sizeToFit];
-    
+    [self.content layoutIfNeeded];
+    NSString *mailContent =[mail objectForKey:@"content"];
+    CGRect rect = [mailContent  boundingRectWithSize:CGSizeMake(self.scrollView.bounds.size.width-55, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:19.0f]} context:NULL];
+    [self.content setFrame:CGRectMake(self.content.frame.origin.x,self.content.frame.origin.y, self.content.bounds.size.width,rect.size.height+30)];
 
-    NSMutableArray *images = [[NSMutableArray   alloc]init];
-    
+   
+     CGPoint lastPosition = CGPointMake(self.content.frame.origin.x, self.content.frame.origin.y + self.content.bounds.size.height+margin);
     //add image
     if([[mail objectForKey:@"attachments"] count] > 0) {
         for(NSDictionary *image in [mail objectForKey:@"attachments"]){
             UIImageView *imageView = [[UIImageView alloc]init];
-            [images addObject:imageView];
+           
+           imageView.contentMode = UIViewContentModeScaleAspectFit;
+            [self.scrollView addSubview:imageView];
+             [imageView setFrame:CGRectMake(lastPosition.x, lastPosition.y, self.scrollView.bounds.size.width-55, self.scrollView.bounds.size.width-55)];
+           lastPosition.y = lastPosition.y + imageView.bounds.size.height +margin;
+                        [imageView setImageWithURL:[NSURL URLWithString:[image objectForKey:@"path"]] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType) {
+               
+           }];
         }
-    }
+   }
     
     //add webview
     
+    if([mail objectForKey:@"kpi_id"] && ![[mail objectForKey:@"kpi_id" ] isKindOfClass:[NSNull class]]){
+        
+        
+        UIWebView *webView = [[UIWebView alloc]init];
+        
+        webView.delegate =self;
+        
+        [self.scrollView addSubview:webView];
+        
+        [webView setFrame:CGRectMake(lastPosition.x, lastPosition.y, self.scrollView.bounds.size.width-55, self.scrollView.bounds.size.width-45)];
+        
+        lastPosition.y = lastPosition.y + webView.bounds.size.height + margin;
+        
+        NSString *urlTxt =[EpmHttpUtil escapeUrl:[NSString stringWithFormat:@"%@%@/%@",[EpmSettings getEpmUrlSettingsWithKey:@"baseUrl"],[EpmSettings getEpmUrlSettingsWithKey:@"mailGraph"],[mail objectForKey:@"id"]]];
+        
+        NSURL* url = [[ NSURL alloc] initWithString :urlTxt];
+        
+        NSMutableURLRequest *request = [EpmHttpUtil initWithCookiesWithUrl:url];
+        
+        [webView loadRequest:request];
+
+            }
     
-    //
+    
+     //
 
 
+    self.scrollView.contentSize = CGSizeMake(self.scrollView.bounds.size.width, lastPosition.y);
 
 }
 

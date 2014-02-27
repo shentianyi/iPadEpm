@@ -232,7 +232,7 @@
         [completeData setObject:self.tableData forKey:@"orgKpiData"];
     }
     
-    AttachedPhoto *screen = [[AttachedPhoto alloc]initWithIdFilledAndImage: [EpmGraphicUtility FullScreenshotForCurrentWindow]];
+    AttachedPhoto *screen = [[AttachedPhoto alloc]initWithIdFilledAndImage: [EpmGraphicUtility FullScreenshotForCurrentWindow:self.view]];
    
     [completeData setObject:[NSArray arrayWithObjects:screen, nil] forKey:@"photos"];
     
