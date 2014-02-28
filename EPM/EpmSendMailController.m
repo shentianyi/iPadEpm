@@ -77,6 +77,7 @@
             self.contactList = [NSMutableArray arrayWithArray:contacts];
              [self.collViewList reloadData];
         }
+        
         NSDictionary *orgCondition =[self.completeData objectForKey:@"orgCondition"];
         
         if(orgCondition){

@@ -121,6 +121,16 @@
 		05EA4E06187FE09600C53FEE /* EpmDbHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 05EA4E05187FE09600C53FEE /* EpmDbHeader.m */; };
 		05EA4E09187FEB7800C53FEE /* EpmOrgCollectionController.m in Sources */ = {isa = PBXBuildFile; fileRef = 05EA4E08187FEB7800C53FEE /* EpmOrgCollectionController.m */; };
 		05EA4E0C187FEBDC00C53FEE /* EpmOrgCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 05EA4E0B187FEBDC00C53FEE /* EpmOrgCellView.m */; };
+		05F6CE4618C02B590040614F /* EpmOrgOverviewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 05F6CE4518C02B590040614F /* EpmOrgOverviewController.m */; };
+		05F6CE4A18C03E990040614F /* chart.png in Resources */ = {isa = PBXBuildFile; fileRef = 05F6CE4718C03E990040614F /* chart.png */; };
+		05F6CE4B18C03E990040614F /* Clock.png in Resources */ = {isa = PBXBuildFile; fileRef = 05F6CE4818C03E990040614F /* Clock.png */; };
+		05F6CE4C18C03E990040614F /* Photo.png in Resources */ = {isa = PBXBuildFile; fileRef = 05F6CE4918C03E990040614F /* Photo.png */; };
+		05F6CE4E18C07A8B0040614F /* kpiCategory-default.png in Resources */ = {isa = PBXBuildFile; fileRef = 05F6CE4D18C07A8B0040614F /* kpiCategory-default.png */; };
+		05F6CE5218C07AD10040614F /* kpiCategory-1.png in Resources */ = {isa = PBXBuildFile; fileRef = 05F6CE4F18C07AD10040614F /* kpiCategory-1.png */; };
+		05F6CE5318C07AD10040614F /* kpiCategory-2.png in Resources */ = {isa = PBXBuildFile; fileRef = 05F6CE5018C07AD10040614F /* kpiCategory-2.png */; };
+		05F6CE5418C07AD10040614F /* kpiCategory-3.png in Resources */ = {isa = PBXBuildFile; fileRef = 05F6CE5118C07AD10040614F /* kpiCategory-3.png */; };
+		05F6CE5718C098290040614F /* EPMlogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 05F6CE5518C098290040614F /* EPMlogo.png */; };
+		05F6CE5818C098290040614F /* login-bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 05F6CE5618C098290040614F /* login-bg.png */; };
 		05F768CC18B4A70C00055138 /* AttachedPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = 05F768CB18B4A70C00055138 /* AttachedPhoto.m */; };
 /* End PBXBuildFile section */
 
@@ -316,6 +326,17 @@
 		05EA4E08187FEB7800C53FEE /* EpmOrgCollectionController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EpmOrgCollectionController.m; sourceTree = "<group>"; };
 		05EA4E0A187FEBDC00C53FEE /* EpmOrgCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EpmOrgCellView.h; sourceTree = "<group>"; };
 		05EA4E0B187FEBDC00C53FEE /* EpmOrgCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EpmOrgCellView.m; sourceTree = "<group>"; };
+		05F6CE4418C02B590040614F /* EpmOrgOverviewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EpmOrgOverviewController.h; sourceTree = "<group>"; };
+		05F6CE4518C02B590040614F /* EpmOrgOverviewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EpmOrgOverviewController.m; sourceTree = "<group>"; };
+		05F6CE4718C03E990040614F /* chart.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = chart.png; sourceTree = "<group>"; };
+		05F6CE4818C03E990040614F /* Clock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Clock.png; sourceTree = "<group>"; };
+		05F6CE4918C03E990040614F /* Photo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Photo.png; sourceTree = "<group>"; };
+		05F6CE4D18C07A8B0040614F /* kpiCategory-default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "kpiCategory-default.png"; sourceTree = "<group>"; };
+		05F6CE4F18C07AD10040614F /* kpiCategory-1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "kpiCategory-1.png"; sourceTree = "<group>"; };
+		05F6CE5018C07AD10040614F /* kpiCategory-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "kpiCategory-2.png"; sourceTree = "<group>"; };
+		05F6CE5118C07AD10040614F /* kpiCategory-3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "kpiCategory-3.png"; sourceTree = "<group>"; };
+		05F6CE5518C098290040614F /* EPMlogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = EPMlogo.png; sourceTree = "<group>"; };
+		05F6CE5618C098290040614F /* login-bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login-bg.png"; sourceTree = "<group>"; };
 		05F768CA18B4A70C00055138 /* AttachedPhoto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AttachedPhoto.h; sourceTree = "<group>"; };
 		05F768CB18B4A70C00055138 /* AttachedPhoto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AttachedPhoto.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -571,6 +592,8 @@
 				0566995418B7245D0024AD32 /* EpmColorPickViewController.m */,
 				0519BA8018BC48240029447E /* EpmMailListController.h */,
 				0519BA8118BC48240029447E /* EpmMailListController.m */,
+				05F6CE4418C02B590040614F /* EpmOrgOverviewController.h */,
+				05F6CE4518C02B590040614F /* EpmOrgOverviewController.m */,
 			);
 			path = EPM;
 			sourceTree = "<group>";
@@ -578,6 +601,15 @@
 		05EA4DCA187FB00C00C53FEE /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				05F6CE5618C098290040614F /* login-bg.png */,
+				05F6CE5518C098290040614F /* EPMlogo.png */,
+				05F6CE4F18C07AD10040614F /* kpiCategory-1.png */,
+				05F6CE5018C07AD10040614F /* kpiCategory-2.png */,
+				05F6CE5118C07AD10040614F /* kpiCategory-3.png */,
+				05F6CE4D18C07A8B0040614F /* kpiCategory-default.png */,
+				05F6CE4718C03E990040614F /* chart.png */,
+				05F6CE4818C03E990040614F /* Clock.png */,
+				05F6CE4918C03E990040614F /* Photo.png */,
 				0505AD4018BF321900777E66 /* draft.png */,
 				0502A96518BC747C00906C45 /* chart-clorful.png */,
 				0502A96618BC747C00906C45 /* Photo-gray.png */,
@@ -735,11 +767,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				05F6CE5318C07AD10040614F /* kpiCategory-2.png in Resources */,
 				05D2C077188274BF00DBBF8C /* organization-item.png in Resources */,
 				05D2C05E1882745700DBBF8C /* BUTTON-dashboard.png in Resources */,
 				0505AD4118BF321900777E66 /* draft.png in Resources */,
 				05D2C0AD1884B6C600DBBF8C /* ipad-icon.png in Resources */,
 				05D2C071188274AD00DBBF8C /* GM.png in Resources */,
+				05F6CE5418C07AD10040614F /* kpiCategory-3.png in Resources */,
 				05D2C07B188274CF00DBBF8C /* TITLE.png in Resources */,
 				05D2C06D1882746A00DBBF8C /* connect.png in Resources */,
 				05D2C06F1882746A00DBBF8C /* disconnect.png in Resources */,
@@ -751,8 +785,11 @@
 				05D2C0AC1884B6C600DBBF8C /* ipad-icon-152.png in Resources */,
 				05D2C0911884518200DBBF8C /* KPI-background.png in Resources */,
 				05D2C0AA1884B6C600DBBF8C /* ipad-icon-76.png in Resources */,
+				05F6CE4C18C03E990040614F /* Photo.png in Resources */,
 				05D2C079188274C700DBBF8C /* SHANGHAI.png in Resources */,
+				05F6CE5718C098290040614F /* EPMlogo.png in Resources */,
 				05D2C07D1882752200DBBF8C /* DASHBOARD-line.png in Resources */,
+				05F6CE5818C098290040614F /* login-bg.png in Resources */,
 				0502A96E18BC747C00906C45 /* chart-gray.png in Resources */,
 				05EA4DCE187FB00C00C53FEE /* InfoPlist.strings in Resources */,
 				05D2C05D1882745700DBBF8C /* BUTTON-dashboard-active.png in Resources */,
@@ -769,6 +806,8 @@
 				05D2C05C1882745700DBBF8C /* MB.png in Resources */,
 				05D2C0AB1884B6C600DBBF8C /* ipad-icon-120.png in Resources */,
 				0502A96D18BC747C00906C45 /* mail.png in Resources */,
+				05F6CE4A18C03E990040614F /* chart.png in Resources */,
+				05F6CE5218C07AD10040614F /* kpiCategory-1.png in Resources */,
 				05D2C0AE1884B6C600DBBF8C /* ipad-icon@2x.png in Resources */,
 				05EA4DD7187FB00C00C53FEE /* Main.storyboard in Resources */,
 				05D2C0641882745F00DBBF8C /* BUTTON-organization-active.png in Resources */,
@@ -776,7 +815,9 @@
 				05D2C0971884665700DBBF8C /* blue-point.png in Resources */,
 				05D2C0561882326500DBBF8C /* org.plist in Resources */,
 				05D2C09F188467B200DBBF8C /* logo-unconnacted.png in Resources */,
+				05F6CE4E18C07A8B0040614F /* kpiCategory-default.png in Resources */,
 				05D2C04C18813CA200DBBF8C /* urlSetting.plist in Resources */,
+				05F6CE4B18C03E990040614F /* Clock.png in Resources */,
 				05D2C05F1882745700DBBF8C /* BUTTON-logout.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -814,6 +855,7 @@
 				05EA4E00187FB09F00C53FEE /* EpmDbCellView.m in Sources */,
 				0576D1A618AC64EF00AD75AB /* SDWebImageCompat.m in Sources */,
 				05EA4DD0187FB00C00C53FEE /* main.m in Sources */,
+				05F6CE4618C02B590040614F /* EpmOrgOverviewController.m in Sources */,
 				0576D1AB18AC64EF00AD75AB /* SDWebImagePrefetcher.m in Sources */,
 				0519BA8218BC48240029447E /* EpmMailListController.m in Sources */,
 				0576D1A918AC64EF00AD75AB /* SDWebImageDownloaderOperation.m in Sources */,

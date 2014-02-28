@@ -80,9 +80,11 @@
     
     [manager GET:[NSString stringWithFormat:@"%@%@", [EpmSettings getEpmUrlSettingsWithKey:@"baseUrl"], [EpmSettings getEpmUrlSettingsWithKey:@"emails" ]] parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSMutableDictionary *result = (NSMutableDictionary *)responseObject;
+      
         if(result){
             self.mailList = [result objectForKey:@"values"];
             self.mailSection =[result objectForKey:@"titles"];
+
             if(sender){
                 [self resetRefreshControl:sender];}
             [self.listTableView reloadData];

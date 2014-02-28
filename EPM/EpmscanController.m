@@ -235,6 +235,10 @@ didOutputMetadataObjects:(NSArray *)metadataObjects
         NSDictionary *result = (NSDictionary *)responseObject;
         self.entityGroup = [result objectForKey:@"entityGroup"];
         
+        NSMutableDictionary *temp =[NSMutableDictionary dictionaryWithDictionary:self.entityGroup];
+        [temp setObject:[result objectForKey:@"contact"] forKey:@"contacts"];
+        self.entityGroup = temp;
+        
         self.name.text = [[result objectForKey:@"entityGroup"] objectForKey:@"name"];
         
         self.desc.text =[[result objectForKey:@"entityGroup"] objectForKey:@"description"];
