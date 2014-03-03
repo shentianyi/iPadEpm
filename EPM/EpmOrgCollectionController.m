@@ -146,6 +146,7 @@
     {
         EpmOrgViewController *detailViewController = segue.destinationViewController;
         detailViewController.entityGroup  = (NSDictionary *)sender;
+        detailViewController.hidesBottomBarWhenPushed=YES;
     }
     
 }

@@ -12,6 +12,7 @@
 #import "AFNetworking.h"
 #import "EpmContactCell.h"
 #import "EpmSendMailController.h"
+#import "EpmOrgViewController.h"
 #import <SDWebImage/UIImageView+WebCache.h>
 
 @interface EpmOrgOverviewController ()
@@ -290,7 +291,7 @@
     if (collectionView == self.kpiCollection){
         
         //push to detail segue
-        
+        [self performSegueWithIdentifier:@"toDetail" sender:@{@"entityGroup":self.entityGroup,@"kpi":[self.kpis objectAtIndex:indexPath.row]}];
     }
     else if(collectionView == self.contactCollection){
         [self performSegueWithIdentifier:@"composeMail" sender:[self composeMailData]];
@@ -307,7 +308,15 @@
     if([segue.identifier isEqualToString:@"composeMail"]){
         EpmSendMailController *mail = segue.destinationViewController;
         mail.completeData = (NSMutableDictionary*)sender;
+        
     }
+    if([segue.identifier isEqualToString:@"toDetail"]){
+        EpmOrgViewController *detail = segue.destinationViewController;
+        detail.entityGroup = [sender objectForKey:@"entityGroup"];
+        detail.preloadKpi = [sender objectForKey:@"kpi"];
+        detail.hidesBottomBarWhenPushed = YES;
+    }
+    
 }
 
 -(NSDictionary *)composeMailData {

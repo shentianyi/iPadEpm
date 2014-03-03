@@ -29,6 +29,8 @@
 - (id)initWithFrame:(CGRect)frame andTotal:(NSNumber *)total andCurrent:(NSNumber *)current
 {
     self = [super initWithFrame:frame];
+
+    
     
     if (self) {
         _total = total;
@@ -57,7 +59,7 @@
         [self.layer addSublayer:_circle];
         [self.layer addSublayer:_circleBG];
 
-		_gradeLabel = [[UICountingLabel alloc] initWithFrame:CGRectMake(0, 0, 50.0, 50.0)];
+		_gradeLabel = [[UICountingLabel alloc] initWithFrame:CGRectMake(0, 0, 15.0, 150.0)];
         
     }
     
@@ -70,7 +72,7 @@
     //Add count label
     
     [_gradeLabel setTextAlignment:NSTextAlignmentCenter];
-    [_gradeLabel setFont:[UIFont boldSystemFontOfSize:13.0f]];
+    [_gradeLabel setFont:[UIFont boldSystemFontOfSize:5.0f]];
     [_gradeLabel setTextColor:self.labelColor];
     [_gradeLabel setCenter:CGPointMake(self.center.x,self.center.y)];
     _gradeLabel.method = UILabelCountingMethodEaseInOut;

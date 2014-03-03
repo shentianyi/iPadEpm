@@ -13,5 +13,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *value;
 @property (weak, nonatomic) IBOutlet UILabel *range;
 @property (weak, nonatomic) IBOutlet UILabel *inrange;
+@property (weak, nonatomic) IBOutlet UIImageView *trend;
+@property (weak, nonatomic) IBOutlet UIView *chart;
 
 @end

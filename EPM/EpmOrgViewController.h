@@ -9,14 +9,19 @@
 #import <UIKit/UIKit.h>
 
 @interface EpmOrgViewController : UIViewController
+@property (weak, nonatomic) IBOutlet UIScrollView *hundred;
+@property (weak, nonatomic) IBOutlet UIScrollView *bit;
+@property (weak, nonatomic) IBOutlet UIScrollView *frequency;
 
 @property (weak, nonatomic) IBOutlet UIView *upperContainer;
+@property (weak, nonatomic) IBOutlet UIScrollView *ten;
 
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property(strong,nonatomic) NSArray *kpis;
-@property (weak, nonatomic) IBOutlet UIWebView *webView;
 @property(strong,nonatomic) NSDictionary *entityGroup;
-@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *indicator;
 @property (strong,nonatomic)NSDictionary *tableData;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (weak, nonatomic) IBOutlet UILabel *entityDesc;
+@property(strong,nonatomic) NSDictionary *preloadKpi;
+@property (weak, nonatomic) IBOutlet UILabel *entityName;
 @end

@@ -13,16 +13,20 @@
 #import "EpmTableCell.h"
 #import "EpmSendMailController.h"
 #import "AttachedPhoto.h"
+#import "PNChart.h"
 @interface EpmOrgViewController ()
-@property (strong,nonatomic) NSDictionary *currentConditions;
+@property (weak, nonatomic) IBOutlet UILabel *selectedE1;
+@property (weak, nonatomic) IBOutlet UILabel *outOfRange;
+@property (weak, nonatomic) IBOutlet UILabel *average;
+@property (weak, nonatomic) IBOutlet UILabel *sum;
+@property (strong,nonatomic) NSMutableDictionary *currentConditions;
+@property (weak, nonatomic) IBOutlet UILabel *range;
 @end
 
 @implementation EpmOrgViewController
 @synthesize collectionView  = _collectionView;
 @synthesize kpis = _kpis;
 @synthesize entityGroup = _entityGroup;
-@synthesize webView = _webView;
-@synthesize indicator = _indicator;
 @synthesize tableData = _tableData;
 @synthesize upperContainer = _upperContainer;
 @synthesize currentConditions = _currentConditions;
@@ -31,34 +35,10 @@
 -(void)viewDidAppear:(BOOL)animated{
     // [self changeLayoutWithOrientation:(UIDeviceOrientation)[UIApplication sharedApplication].statusBarOrientation];
   
-    
-  }
+    [self moveScrollView:self.ten ToPage:1];
+    [self moveScrollView:self.bit ToPage:4];
+     }
 
-
-
--(void)changeLayoutWithOrientation:(UIDeviceOrientation)orientation{
-    CGRect firstFrame;
-    CGRect secondFrame;
-    if(UIDeviceOrientationIsLandscape(orientation)){
-        firstFrame = CGRectMake(self.upperContainer.bounds.origin.x, self.upperContainer.bounds.origin.y, self.upperContainer.bounds.size.width/2, self.upperContainer.bounds.size.height);
-        secondFrame =CGRectMake(self.upperContainer.bounds.size.width/2 , self.upperContainer.bounds.origin.y, self.upperContainer.bounds.size.width/2, self.upperContainer.bounds.size.height);
-    }
-    else {
-        firstFrame = CGRectMake(self.upperContainer.bounds.origin.x, self.upperContainer.bounds.origin.y, self.upperContainer.bounds.size.width, self.upperContainer.bounds.size.height/2);
-        secondFrame =CGRectMake(self.upperContainer.bounds.origin.x , self.upperContainer.bounds.size.height/2, self.upperContainer.bounds.size.width, self.upperContainer.bounds.size.height/2);
-    }
-    [self.webView setFrame:firstFrame];
-    [self.tableView setFrame:secondFrame];
-    
-    
-}
-
--(void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation{
- //   [self changeLayoutWithOrientation:[[UIDevice currentDevice]orientation]];
-       [self.webView stringByEvaluatingJavaScriptFromString:@"orientationChange()"];
-    
-    
-}
 
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -70,6 +50,7 @@
     }
     return self;
 }
+
 
 
 -(void)getDataForTable{
@@ -84,6 +65,7 @@
         
         self.tableData = result;
         [self.tableView reloadData];
+        [self loadKpiSummery];
     }
      
          failure:^(AFHTTPRequestOperation *operation, NSError *error) {
@@ -100,8 +82,20 @@
          }];
 }
 
+-(void)loadKpiSummery{
+    self.average.text = [[self.tableData objectForKey:@"average"] stringValue];
+    self.sum.text = [[self.tableData objectForKey:@"total"] stringValue];
+    self.selectedE1.text = [self.currentConditions objectForKey:@"kpi_name"];
+    
+
+}
+
+
 
 -(void)loadData{
+    self.entityName.text = [self.entityGroup objectForKey:@"name"];
+    self.entityDesc.text = [self.entityGroup objectForKey:@"description"];
+    
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     
     
@@ -149,11 +143,151 @@
 
     LineLayout * flowLayout = [[LineLayout alloc] init];
     self.collectionView.collectionViewLayout = flowLayout;
-    self.webView.delegate=self;
+//    self.webView.delegate=self;
+    
+    [self initAppearance];
+    
     [self loadData];
+    
+    if(self.preloadKpi){
+        [self loadDataForKpi:self.preloadKpi];    
+    }
+   
+    [self.hundred addGestureRecognizer:[[UITapGestureRecognizer alloc]
+                                        initWithTarget:self action:@selector(respondToTapGesture:)]];
+    [self.ten addGestureRecognizer:[[UITapGestureRecognizer alloc]
+                                    initWithTarget:self action:@selector(respondToTapGesture:)]];
+    [self.bit addGestureRecognizer:[[UITapGestureRecognizer alloc]
+                                    initWithTarget:self action:@selector(respondToTapGesture:)]];
+    [self.frequency addGestureRecognizer:[[UITapGestureRecognizer alloc]
+                                          initWithTarget:self action:@selector(respondToTapGesture:)]];
+}
+
+
+-(void)respondToTapGesture:(UITapGestureRecognizer*)sender {
+    UIScrollView *source = (UIScrollView* )sender.view;
+    source.delaysContentTouches = NO;
+    // source.delaysContentTouches = YES;
+
+    
+//    frame.origin.y = frame.origin.y - 40;
+//    [source scrollRectToVisible:frame animated:YES];
+    
+    //    CGRect frame = sender.view.frame;
+//    frame.origin.y = frame.origin.y +5;
+    
+    
+//    CAKeyframeAnimation * anim = [ CAKeyframeAnimation animationWithKeyPath:@"transform" ] ;
+//    anim.values = @[ [ NSValue valueWithCATransform3D:CATransform3DMakeTranslation(0.0f, -10.0f, 0.0f) ], [ NSValue valueWithCATransform3D:CATransform3DMakeTranslation(0.0f, 10.0f, 0.0f) ] ] ;
+//    anim.autoreverses = YES ;
+//    anim.repeatCount = 1.0f ;
+//    anim.duration = 2.0f ;
+//    
+//    [ sender.view.layer addAnimation:anim forKey:nil ] ;
+    
+ 
+
+
+}
+-(void) initAppearance{
+    [self DatePickerAppearance];
+    
+    
+
+}
+
+-(NSArray *)numberSequence:(BOOL)hasZero{
+    if(hasZero){
+        return @[@"0",@"1",@"2",@"3",@"4",@"5",@"6",@"7",@"8",@"9"];
+    }
+    
+    else {
+        return @[@"0",@"1",@"2",@"3",@"4",@"5",@"6",@"7",@"8",@"9"];
+    }
+}
+
+-(NSArray *)freqSequence{
+    return @[@"Day",@"Week",@"Month",@"Quarter",@"Year"];
+}
+
+
+
+
+-(void)DatePickerAppearance{
+    UIColor *color = [UIColor whiteColor];
+    CGFloat borderWidth = 0.5f;
+    CGFloat radius = 3.0f;
+    
+    
+    
+    NSArray *arr = @[self.hundred,self.ten,self.bit,self.frequency];
+    
+    for(UIScrollView* view in arr){
+        view.layer.borderColor = [color CGColor];
+        view.layer.borderWidth = borderWidth;
+        view.layer.cornerRadius =radius;
+        //add content for
+    }
+    
+    self.hundred.contentSize = CGSizeMake(self.hundred.bounds.size.width, self.hundred.bounds.size.height*10);
+    self.ten.contentSize = CGSizeMake(self.ten.bounds.size.width, self.ten.bounds.size.height*10);
+    self.bit.contentSize = CGSizeMake(self.bit.bounds.size.width, self.bit.bounds.size.height*10);
+    self.frequency.contentSize = CGSizeMake(self.frequency.bounds.size.width, self.frequency.bounds.size.height*[[self freqSequence]count]);
+    
+     CGPoint last  = CGPointMake(0,0);
+    
+    for(NSString *text in [self numberSequence:YES]){
+        [self.hundred addSubview:[self scrollerMaker:text inRect:CGRectMake(0, last.y, self.hundred.bounds.size.width, self.hundred.bounds.size.height) fontSize:75]];
+        [self.ten addSubview:[self scrollerMaker:text inRect:CGRectMake(0, last.y, self.ten.bounds.size.width, self.ten.bounds.size.height) fontSize:75]];
+        last.y=last.y + self.hundred.bounds.size.height;
+    }
+    last.y=0;
+    
+    for(NSString *text in [self numberSequence:NO]){
+        [self.bit addSubview:[self scrollerMaker:text inRect:CGRectMake(0, last.y, self.bit.bounds.size.width, self.bit.bounds.size.height) fontSize:75]];
+        last.y =last.y + self.bit.bounds.size.height;
+
+    }
+    last.y=0;
+    for(NSString *text in [self freqSequence]){
+        [self.frequency addSubview:[self scrollerMaker:text inRect:CGRectMake(0, last.y, self.frequency.bounds.size.width, self.frequency.bounds.size.height) fontSize:35]];
+        last.y =last.y + self.frequency.bounds.size.height;
+    }
+    
    
     
 }
+
+
+
+-(UIView *)scrollerMaker:(NSString *)text inRect:(CGRect)frame fontSize:(int)size{
+    
+
+    UIView *view = [[UIView alloc]initWithFrame:frame];
+    
+    CGRect labelRect = view.frame;
+    
+    labelRect.origin.y = 0;
+    
+    UILabel *label = [[UILabel alloc]initWithFrame:labelRect];
+    
+    label.textAlignment=NSTextAlignmentCenter;
+    
+    view.backgroundColor = [UIColor clearColor];
+    
+    label.text = text;
+    
+    label.font = [UIFont fontWithName:@"HelveticaNeue-UltraLight" size:size];
+    
+    label.textColor = [UIColor whiteColor];
+    
+    [view addSubview:label];
+    
+    NSLog(@"%@",view);
+    
+    return view;
+}
+
 
 - (void)didReceiveMemoryWarning
 {
@@ -175,7 +309,8 @@
     cell.desc.text = [currentDic  objectForKey:@"description"];
     cell.max.text = [[currentDic objectForKey:@"target_max"] stringValue];
     cell.min.text=[[currentDic   objectForKey:@"target_min"] stringValue];
-    cell.category.image = [UIImage imageNamed:[NSString stringWithFormat:@"Catergory_%@",[[currentDic    objectForKey:@"kpi_category_id"]stringValue ]]];
+    cell.category.image = [UIImage imageNamed:[NSString stringWithFormat:@"kpiCategory-%@",[[currentDic    objectForKey:@"kpi_category_id"]stringValue ]]];
+
     return cell;
 }
 
@@ -185,38 +320,57 @@
     
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateFormat:@"yyyy-MM-dd"];
-   
-    self.currentConditions = [NSDictionary dictionaryWithObjectsAndKeys:[[self.kpis objectAtIndex:indexPath.row] objectForKey:@"id"],@"kpi_id",@"100",@"frequency",[self.entityGroup objectForKey:@"id"],@"entity_group_id",[formatter stringFromDate:[NSDate dateWithTimeIntervalSinceNow:-1296000]],@"start_time",[formatter stringFromDate:[NSDate date]], @"end_time",[self.entityGroup objectForKey:@"name"],@"entity_group_name",[[self.kpis objectAtIndex:indexPath.row] objectForKey:@"name" ],@"kpi_name",nil];
-
+    [self loadDataForKpi:[self.kpis objectAtIndex:indexPath.row]];
+  //  self.currentConditions = [NSDictionary dictionaryWithObjectsAndKeys:[[self.kpis objectAtIndex:indexPath.row] objectForKey:@"id"],@"kpi_id",@"100",@"frequency",[self.entityGroup objectForKey:@"id"],@"entity_group_id",[formatter stringFromDate:[NSDate dateWithTimeIntervalSinceNow:-1296000]],@"start_time",[formatter stringFromDate:[NSDate date]], @"end_time",[self.entityGroup objectForKey:@"name"],@"entity_group_name",[[self.kpis objectAtIndex:indexPath.row] objectForKey:@"name" ],@"kpi_name",nil];
+//
+//    
+//    [self BeginLoadWebWithKpi:[self.kpis objectAtIndex:indexPath.row]];
+   // [self getDataForTable];
     
-    [self BeginLoadWebWithKpi:[self.kpis objectAtIndex:indexPath.row]];
-    [self getDataForTable];
-    
-    self.navigationItem.title = [self.entityGroup objectForKey:@"name"];
+   // self.navigationItem.title = [self.entityGroup objectForKey:@"name"];
     
 }
 
-
-
--(void)BeginLoadWebWithKpi:(NSDictionary*)Kpi
-{
-    
-    
+-(void)loadDataForKpi:(NSDictionary *)kpi{
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateFormat:@"yyyy-MM-dd"];
     
-    NSString *queryString = [NSString stringWithFormat:@"kpi_id=%@&kpi_name=%@&frequency=%@&entity_group_id=%@&entity_group_name=%@&average=YES&start_time=%@&end_time=%@",[Kpi objectForKey:@"id"],[Kpi objectForKey:@"name" ],@"100",[self.entityGroup objectForKey:@"id"],[self.entityGroup objectForKey:@"name"],[formatter stringFromDate:[NSDate dateWithTimeIntervalSinceNow:-1296000]],[formatter stringFromDate:[NSDate date]]];
+    if(self.currentConditions){
+        [self.currentConditions setObject:[kpi objectForKey:@"id"] forKey:@"kpi_id"];
+    
+    }
+    else {
+        self.currentConditions = [NSMutableDictionary dictionaryWithObjectsAndKeys:[kpi objectForKey:@"id"],@"kpi_id",@"100",@"frequency",[self.entityGroup objectForKey:@"id"],@"entity_group_id",[formatter stringFromDate:[NSDate dateWithTimeIntervalSinceNow:-1*14*24*60*60]],@"start_time",[formatter stringFromDate:[NSDate date]], @"end_time",[self.entityGroup objectForKey:@"name"],@"entity_group_name",[kpi objectForKey:@"name" ],@"kpi_name",nil];
+    
+    }
 
     
-    NSString *urlTxt =[EpmHttpUtil escapeUrl:[NSString stringWithFormat:@"%@%@?%@",[EpmSettings getEpmUrlSettingsWithKey:@"baseUrl"],[EpmSettings getEpmUrlSettingsWithKey:@"graph"],queryString]];
-    
-    NSURL* url = [[ NSURL alloc] initWithString :urlTxt];
-    
-    NSMutableURLRequest *request = [EpmHttpUtil initWithCookiesWithUrl:url];
-    
-    [self.webView loadRequest:request];
-    
+     [self getDataForTable];
 }
+
+
+//
+//
+//
+//-(void)BeginLoadWebWithKpi:(NSDictionary*)Kpi
+//{
+//    
+//    
+//    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+//    [formatter setDateFormat:@"yyyy-MM-dd"];
+//    
+//    NSString *queryString = [NSString stringWithFormat:@"kpi_id=%@&kpi_name=%@&frequency=%@&entity_group_id=%@&entity_group_name=%@&average=YES&start_time=%@&end_time=%@",[Kpi objectForKey:@"id"],[Kpi objectForKey:@"name" ],@"100",[self.entityGroup objectForKey:@"id"],[self.entityGroup objectForKey:@"name"],[formatter stringFromDate:[NSDate dateWithTimeIntervalSinceNow:-1296000]],[formatter stringFromDate:[NSDate date]]];
+//
+//    
+//    NSString *urlTxt =[EpmHttpUtil escapeUrl:[NSString stringWithFormat:@"%@%@?%@",[EpmSettings getEpmUrlSettingsWithKey:@"baseUrl"],[EpmSettings getEpmUrlSettingsWithKey:@"graph"],queryString]];
+//    
+//    NSURL* url = [[ NSURL alloc] initWithString :urlTxt];
+//    
+//    NSMutableURLRequest *request = [EpmHttpUtil initWithCookiesWithUrl:url];
+//    
+//    [self.webView loadRequest:request];
+//    
+//}
 
 - (IBAction)btCompose:(id)sender {
     NSMutableDictionary *completeData = [[NSMutableDictionary alloc]init];
@@ -249,37 +403,37 @@
 }
 
 
-
-
-- (void)webViewDidFinishLoad:(UIWebView *)webView {
-    [self.indicator stopAnimating];
-    
-    int status = [EpmHttpUtil getLastHttpStatusCodeWithRequest:self.webView.request];
-    
-     [self.webView stringByEvaluatingJavaScriptFromString:@"orientationChange()"];
-    
-    if (status>=400){
-        
-        NSString *msg=[EpmHttpUtil notificationWithStatusCode:status];
-        
-        UIAlertView *av = [[UIAlertView alloc] initWithTitle:msg
-                                                     message:@""
-                                                    delegate:nil
-                                           cancelButtonTitle:@"OK" otherButtonTitles:nil];
-        [av show];
-
-    }
-}
-
-
-
-
-- (void )webViewDidStartLoad:(UIWebView *)webView {
-    [self.indicator startAnimating];
-    
-}
-
-
+//
+//
+//- (void)webViewDidFinishLoad:(UIWebView *)webView {
+//    [self.indicator stopAnimating];
+//    
+//    int status = [EpmHttpUtil getLastHttpStatusCodeWithRequest:self.webView.request];
+//    
+//     [self.webView stringByEvaluatingJavaScriptFromString:@"orientationChange()"];
+//    
+//    if (status>=400){
+//        
+//        NSString *msg=[EpmHttpUtil notificationWithStatusCode:status];
+//        
+//        UIAlertView *av = [[UIAlertView alloc] initWithTitle:msg
+//                                                     message:@""
+//                                                    delegate:nil
+//                                           cancelButtonTitle:@"OK" otherButtonTitles:nil];
+//        [av show];
+//
+//    }
+//}
+//
+//
+//
+//
+//- (void )webViewDidStartLoad:(UIWebView *)webView {
+//    [self.indicator startAnimating];
+//    
+//}
+//
+//
 
 
 
@@ -342,23 +496,170 @@
     
     
     cell.time.text = [[self.tableData objectForKey:@"date"] objectAtIndex:indexPath.row];
+    
     cell.value.text = [[NSString stringWithFormat:@"%0.2f",[current doubleValue]] stringByAppendingString:unit];
+    
+    
     cell.range.text = [NSString stringWithFormat:@"%@-%@",[NSString stringWithFormat:@"%0.2f",[min doubleValue]],[NSString stringWithFormat:@"%0.2f",[max doubleValue]]];
     
-    if([current doubleValue] < [min doubleValue]|| [current doubleValue] > [max doubleValue]){
+    
+    
+    if([current doubleValue] < [min doubleValue]){
+        float completion = [current floatValue] / [max floatValue];
+               cell.inrange.text = @"Out of range";
+        cell.inrange.textColor = PNRed;
+    }
+    
+    if([current doubleValue] > [max doubleValue]){
+      
+
         cell.inrange.text = @"Out of range";
         cell.inrange.textColor = [UIColor redColor];
     }
+    
+    
     else{
+       
+
         cell.inrange.text = @"In Range";
         cell.inrange.textColor = [UIColor greenColor];
       
     }
+        cell.backgroundColor = [UIColor clearColor];
     
     return cell;
 }
 
 
+
+#pragma scrollview delegate
+-(void)didScrollViewEndToUpdateCondition:(UIScrollView*)scrollView{
+    BOOL needRefresh = NO;
+    
+    if(scrollView == self.frequency){
+        NSString *freq = [[self freqSequence] objectAtIndex: [self scrollViewCurrentPage:scrollView]];
+        if([freq isEqualToString:@"Day"]){
+            [self.currentConditions setObject:@"100" forKey:@"frequency"];
+            needRefresh = YES;
+        
+        }
+        if([freq isEqualToString:@"Week"]){
+            [self.currentConditions setObject:@"200" forKey:@"frequency"];
+            needRefresh = YES;
+            
+        }
+        if([freq isEqualToString:@"Month"]){
+            [self.currentConditions setObject:@"300" forKey:@"frequency"];
+            needRefresh = YES;
+            
+        }
+        if([freq isEqualToString:@"Quarter"]){
+            [self.currentConditions setObject:@"400" forKey:@"frequency"];
+            needRefresh = YES;
+            
+        }
+        if([freq isEqualToString:@"Year"]){
+            [self.currentConditions setObject:@"500" forKey:@"frequency"];
+            needRefresh = YES;
+            
+        }
+    }
+    
+    if(scrollView == self.hundred || scrollView== self.ten || scrollView || self.bit) {
+        NSString *number = [NSString stringWithFormat:@"%@%@%@",[[self numberSequence:YES]objectAtIndex:[self scrollViewCurrentPage:self.hundred]],[[self numberSequence:YES]objectAtIndex:[self scrollViewCurrentPage:self.ten]],[[self numberSequence:YES]objectAtIndex:[self scrollViewCurrentPage:self.bit]]];
+    
+         NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+        [formatter setDateFormat:@"yyyy-MM-dd"];
+        
+        [self.currentConditions setObject:[self dateSinceNow:[number integerValue]* -1 OfFrequency:[[self.currentConditions objectForKey:@"frequency"] integerValue]] forKey:@"start_time"];
+        needRefresh = YES;
+        NSLog(@"%@",self.currentConditions);
+    }
+    if(needRefresh){
+        [self getDataForTable];
+    
+    }
+}
+
+-(NSDate *)dateSinceNow:(int)offset OfFrequency:(int)frequency{
+    NSCalendar *calender = [NSCalendar currentCalendar];
+    NSDateComponents *timeOffset = [[NSDateComponents alloc]init];
+    
+
+    if(frequency==100) {
+        [timeOffset setDay:offset ];
+        
+    }
+    if(frequency==200) {
+        [timeOffset setWeek:offset ];
+
+    }
+    if(frequency==300) {
+        [timeOffset setMonth:offset ];
+
+    }
+    if(frequency==400) {
+        [timeOffset setQuarter:offset ];
+
+    }
+    if(frequency==500) {
+        [timeOffset setYear:offset ];
+    }
+    
+   return  [calender dateByAddingComponents:timeOffset toDate:[NSDate date] options:0];
+}
+
+
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
+    if(scrollView!=self.collectionView && scrollView != self.tableView){
+         [self moveToNearest:scrollView];
+        [self didScrollViewEndToUpdateCondition:scrollView];
+    }
+   
+}
+
+
+-(int)scrollViewCurrentPage:(UIScrollView *)scrollView {
+    return (int)((scrollView.contentOffset.y / scrollView.frame.size.height)+ 0.5);
+}
+
+
+
+-(CGRect)scrollTargetRect:(UIScrollView*)scrollView{
+    CGRect frame = scrollView.frame;
+    frame.origin.y = frame.size.height * [self scrollViewCurrentPage:scrollView];
+    frame.origin.x = 0;
+    return frame;
+}
+
+
+
+
+
+-(void)moveToNearest:(UIScrollView *)scrollView{
+    CGRect frame = [self scrollTargetRect:scrollView];
+    [scrollView scrollRectToVisible:frame animated:YES];
+    
+}
+
+-(void)moveScrollView:(UIScrollView *)scrollView ToPage:(int)page{
+    CGRect frame = scrollView.frame;
+    frame.origin.y = frame.size.height * page;
+    frame.origin.x = 0;
+    [scrollView scrollRectToVisible:frame animated:YES];
+   
+}
+
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate{
+    
+    if(!decelerate && scrollView!=self.collectionView && scrollView != self.tableView){
+        
+        [self moveToNearest:scrollView];
+        [self didScrollViewEndToUpdateCondition:scrollView];
+        
+    }
+    
+}
 
 
 
