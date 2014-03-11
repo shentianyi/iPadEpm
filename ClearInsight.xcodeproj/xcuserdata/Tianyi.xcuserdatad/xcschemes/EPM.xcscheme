@@ -16,8 +16,8 @@
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "05EA4DBF187FB00C00C53FEE"
                BuildableName = "EPM.app"
-               BlueprintName = "EPM"
-               ReferencedContainer = "container:EPM.xcodeproj">
+               BlueprintName = "ClearInsight"
+               ReferencedContainer = "container:ClearInsight.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -34,8 +34,8 @@
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "05EA4DE3187FB00C00C53FEE"
                BuildableName = "EPMTests.xctest"
-               BlueprintName = "EPMTests"
-               ReferencedContainer = "container:EPM.xcodeproj">
+               BlueprintName = "ClearInsightTests"
+               ReferencedContainer = "container:ClearInsight.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -44,8 +44,8 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "05EA4DBF187FB00C00C53FEE"
             BuildableName = "EPM.app"
-            BlueprintName = "EPM"
-            ReferencedContainer = "container:EPM.xcodeproj">
+            BlueprintName = "ClearInsight"
+            ReferencedContainer = "container:ClearInsight.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </TestAction>
@@ -63,8 +63,8 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "05EA4DBF187FB00C00C53FEE"
             BuildableName = "EPM.app"
-            BlueprintName = "EPM"
-            ReferencedContainer = "container:EPM.xcodeproj">
+            BlueprintName = "ClearInsight"
+            ReferencedContainer = "container:ClearInsight.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -81,8 +81,8 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "05EA4DBF187FB00C00C53FEE"
             BuildableName = "EPM.app"
-            BlueprintName = "EPM"
-            ReferencedContainer = "container:EPM.xcodeproj">
+            BlueprintName = "ClearInsight"
+            ReferencedContainer = "container:ClearInsight.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

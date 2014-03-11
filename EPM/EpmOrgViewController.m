@@ -83,11 +83,20 @@
 }
 
 -(void)loadKpiSummery{
-    self.average.text = [[self.tableData objectForKey:@"average"] stringValue];
+    self.average.text = [NSString stringWithFormat:@"%0.2f",[[self.tableData objectForKey:@"average" ]floatValue]];
     self.sum.text = [[self.tableData objectForKey:@"total"] stringValue];
     self.selectedE1.text = [self.currentConditions objectForKey:@"kpi_name"];
-    
 
+    NSArray *current =[self.tableData objectForKey:@"current"];
+    NSArray *min=[self.tableData objectForKey:@"target_min"];
+    NSArray *max=[self.tableData objectForKey:@"target_max"];
+    int abnormal = 0;
+    for(int i= 0; i<current.count;i++){
+        if([[current objectAtIndex:i] floatValue] > [[max objectAtIndex:i]floatValue] || [[current objectAtIndex:i ]floatValue]<[[min objectAtIndex:i ]floatValue ]){
+            abnormal ++;
+        }
+    }
+    self.outOfRange.text = [NSString stringWithFormat:@"%d",abnormal];
 }
 
 
@@ -483,7 +492,6 @@
    // NSDictionary *current = [data objectForKey:[[data allKeys] objectAtIndex:indexPath.row]];
     
     //NSLog(@"%@",[[data allKeys] objectAtIndex:indexPath.row]);
-    NSLog(@"%@",self.tableData);
 
    
     NSDate *date =[[self.tableData objectForKey:@"date"] objectAtIndex:indexPath.row];
@@ -492,40 +500,66 @@
     NSNumber *max=[[self.tableData objectForKey:@"target_max"] objectAtIndex:indexPath.row];
     NSString *unit = [[self.tableData objectForKey:@"unit"] objectAtIndex:indexPath.row];
 
- 
+    NSLog(@"%@",[[self.tableData objectForKey:@"date"] objectAtIndex:indexPath.row]);
     
     
     cell.time.text = [[self.tableData objectForKey:@"date"] objectAtIndex:indexPath.row];
     
     cell.value.text = [[NSString stringWithFormat:@"%0.2f",[current doubleValue]] stringByAppendingString:unit];
     
+  
+
+    if(indexPath.row > 0 ) {
+          NSIndexPath *newPath = [NSIndexPath indexPathForRow:indexPath.row-1 inSection:indexPath.section];
+        float last =[[[self.tableData objectForKey:@"current"] objectAtIndex:newPath.row] floatValue];
+        float trend = [current floatValue] - last ;
+        if(last==0.0){
+            last = 1.0;
+        }
+        if(trend > 0){
+            cell.trend.image = [UIImage imageNamed:@"trend-up"];
+            cell.range.text = [NSString stringWithFormat:@"%0.1f%%",((trend/last )*100)];
+        }
+        
+        else if (trend == 0){
+            cell.trend.image = [UIImage imageNamed:@"trend-level"];
+        
+        
+        }
+        
+        else{
+            cell.trend.image = [UIImage imageNamed:@"trend-down"];
+            
+            cell.range.text = [NSString stringWithFormat:@"%0.1f%%",((trend/last )*100)];
+        }
+        
     
-    cell.range.text = [NSString stringWithFormat:@"%@-%@",[NSString stringWithFormat:@"%0.2f",[min doubleValue]],[NSString stringWithFormat:@"%0.2f",[max doubleValue]]];
+    }
     
     
-    
+    float completion=0.0;
     if([current doubleValue] < [min doubleValue]){
-        float completion = [current floatValue] / [max floatValue];
-               cell.inrange.text = @"Out of range";
+        completion = [current floatValue] / ([min floatValue]+0.0000000001);
+        cell.inrange.text = [NSString stringWithFormat:@"%d%% lower",(int)completion*100];
         cell.inrange.textColor = PNRed;
     }
     
     if([current doubleValue] > [max doubleValue]){
-      
+        completion = [current floatValue] / ([max floatValue]+0.0000000001);
 
-        cell.inrange.text = @"Out of range";
-        cell.inrange.textColor = [UIColor redColor];
+        cell.inrange.text = [NSString stringWithFormat:@"%d%% upper",(int)completion*100];
+        cell.inrange.textColor = PNRed;
     }
     
     
     else{
-       
-
-        cell.inrange.text = @"In Range";
-        cell.inrange.textColor = [UIColor greenColor];
+        cell.inrange.text = @"normal";
+        cell.inrange.textColor = [UIColor whiteColor];
       
     }
-        cell.backgroundColor = [UIColor clearColor];
+
+    //trend
+    cell.backgroundColor = [UIColor clearColor];
     
     return cell;
 }

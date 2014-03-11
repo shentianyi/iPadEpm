@@ -42,6 +42,14 @@
 		0589E8D518AB1A87000173CC /* Barcode.m in Sources */ = {isa = PBXBuildFile; fileRef = 0589E8D418AB1A87000173CC /* Barcode.m */; };
 		0589E8DB18AB4121000173CC /* EpmContactCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0589E8DA18AB4121000173CC /* EpmContactCell.m */; };
 		0589E8DF18AB4812000173CC /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0589E8DE18AB4812000173CC /* ImageIO.framework */; };
+		05984F8F18CEAE090072B204 /* libMobClickLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 05984F8D18CEAE090072B204 /* libMobClickLibrary.a */; };
+		05984F9218CEB0BC0072B204 /* libdl.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 05984F9118CEB0BC0072B204 /* libdl.dylib */; };
+		05984F9418CEB0F30072B204 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 05984F9318CEB0F20072B204 /* libz.dylib */; };
+		05984F9B18CEFEFA0072B204 /* icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 05984F9918CEFEFA0072B204 /* icon@2x.png */; };
+		05984F9C18CEFEFA0072B204 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 05984F9A18CEFEFA0072B204 /* icon.png */; };
+		05984FA018CF03AA0072B204 /* trend-down.png in Resources */ = {isa = PBXBuildFile; fileRef = 05984F9D18CF03AA0072B204 /* trend-down.png */; };
+		05984FA118CF03AA0072B204 /* trend-level.png in Resources */ = {isa = PBXBuildFile; fileRef = 05984F9E18CF03AA0072B204 /* trend-level.png */; };
+		05984FA218CF03AA0072B204 /* trend-up.png in Resources */ = {isa = PBXBuildFile; fileRef = 05984F9F18CF03AA0072B204 /* trend-up.png */; };
 		05A2061018B5CCCA0052B569 /* EpmGraphicUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 05A2060F18B5CCCA0052B569 /* EpmGraphicUtility.m */; };
 		05C4FF5518ADC631004E1A90 /* PNBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 05C4FF4118ADC631004E1A90 /* PNBar.m */; };
 		05C4FF5618ADC631004E1A90 /* PNBarChart.m in Sources */ = {isa = PBXBuildFile; fileRef = 05C4FF4318ADC631004E1A90 /* PNBarChart.m */; };
@@ -65,14 +73,11 @@
 		05D2C04A188138BE00DBBF8C /* AFURLSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 05D2C041188138BE00DBBF8C /* AFURLSessionManager.m */; };
 		05D2C04C18813CA200DBBF8C /* urlSetting.plist in Resources */ = {isa = PBXBuildFile; fileRef = 05D2C04B18813CA200DBBF8C /* urlSetting.plist */; };
 		05D2C0561882326500DBBF8C /* org.plist in Resources */ = {isa = PBXBuildFile; fileRef = 05D2C0551882326500DBBF8C /* org.plist */; };
-		05D2C05C1882745700DBBF8C /* MB.png in Resources */ = {isa = PBXBuildFile; fileRef = 05D2C0581882745700DBBF8C /* MB.png */; };
 		05D2C05D1882745700DBBF8C /* BUTTON-dashboard-active.png in Resources */ = {isa = PBXBuildFile; fileRef = 05D2C0591882745700DBBF8C /* BUTTON-dashboard-active.png */; };
 		05D2C05E1882745700DBBF8C /* BUTTON-dashboard.png in Resources */ = {isa = PBXBuildFile; fileRef = 05D2C05A1882745700DBBF8C /* BUTTON-dashboard.png */; };
 		05D2C05F1882745700DBBF8C /* BUTTON-logout.png in Resources */ = {isa = PBXBuildFile; fileRef = 05D2C05B1882745700DBBF8C /* BUTTON-logout.png */; };
 		05D2C0641882745F00DBBF8C /* BUTTON-organization-active.png in Resources */ = {isa = PBXBuildFile; fileRef = 05D2C0601882745F00DBBF8C /* BUTTON-organization-active.png */; };
 		05D2C0651882745F00DBBF8C /* BUTTON-organization.png in Resources */ = {isa = PBXBuildFile; fileRef = 05D2C0611882745F00DBBF8C /* BUTTON-organization.png */; };
-		05D2C0661882745F00DBBF8C /* CATEGORY-efficiency.png in Resources */ = {isa = PBXBuildFile; fileRef = 05D2C0621882745F00DBBF8C /* CATEGORY-efficiency.png */; };
-		05D2C0671882745F00DBBF8C /* CATEGORY-humanresource.png in Resources */ = {isa = PBXBuildFile; fileRef = 05D2C0631882745F00DBBF8C /* CATEGORY-humanresource.png */; };
 		05D2C06C1882746A00DBBF8C /* CATEGORY-quality.png in Resources */ = {isa = PBXBuildFile; fileRef = 05D2C0681882746A00DBBF8C /* CATEGORY-quality.png */; };
 		05D2C06D1882746A00DBBF8C /* connect.png in Resources */ = {isa = PBXBuildFile; fileRef = 05D2C0691882746A00DBBF8C /* connect.png */; };
 		05D2C06E1882746A00DBBF8C /* VW.png in Resources */ = {isa = PBXBuildFile; fileRef = 05D2C06A1882746A00DBBF8C /* VW.png */; };
@@ -208,6 +213,15 @@
 		0589E8D918AB4121000173CC /* EpmContactCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EpmContactCell.h; sourceTree = "<group>"; };
 		0589E8DA18AB4121000173CC /* EpmContactCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EpmContactCell.m; sourceTree = "<group>"; };
 		0589E8DE18AB4812000173CC /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
+		05984F8D18CEAE090072B204 /* libMobClickLibrary.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libMobClickLibrary.a; path = ../../../Downloads/Analytics_iOS_SDK_2.2.1.OpenUDID/UMAnalytics_Sdk_2.2.1.OpenUDID/libMobClickLibrary.a; sourceTree = "<group>"; };
+		05984F8E18CEAE090072B204 /* MobClick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MobClick.h; path = ../../../Downloads/Analytics_iOS_SDK_2.2.1.OpenUDID/UMAnalytics_Sdk_2.2.1.OpenUDID/MobClick.h; sourceTree = "<group>"; };
+		05984F9118CEB0BC0072B204 /* libdl.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libdl.dylib; path = usr/lib/libdl.dylib; sourceTree = SDKROOT; };
+		05984F9318CEB0F20072B204 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		05984F9918CEFEFA0072B204 /* icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon@2x.png"; sourceTree = "<group>"; };
+		05984F9A18CEFEFA0072B204 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
+		05984F9D18CF03AA0072B204 /* trend-down.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "trend-down.png"; sourceTree = "<group>"; };
+		05984F9E18CF03AA0072B204 /* trend-level.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "trend-level.png"; sourceTree = "<group>"; };
+		05984F9F18CF03AA0072B204 /* trend-up.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "trend-up.png"; sourceTree = "<group>"; };
 		05A2060E18B5CCCA0052B569 /* EpmGraphicUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EpmGraphicUtility.h; sourceTree = "<group>"; };
 		05A2060F18B5CCCA0052B569 /* EpmGraphicUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EpmGraphicUtility.m; sourceTree = "<group>"; };
 		05C4FF4018ADC631004E1A90 /* PNBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PNBar.h; sourceTree = "<group>"; };
@@ -255,14 +269,11 @@
 		05D2C041188138BE00DBBF8C /* AFURLSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLSessionManager.m; sourceTree = "<group>"; };
 		05D2C04B18813CA200DBBF8C /* urlSetting.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = urlSetting.plist; sourceTree = "<group>"; };
 		05D2C0551882326500DBBF8C /* org.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = org.plist; sourceTree = "<group>"; };
-		05D2C0581882745700DBBF8C /* MB.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MB.png; sourceTree = "<group>"; };
 		05D2C0591882745700DBBF8C /* BUTTON-dashboard-active.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "BUTTON-dashboard-active.png"; sourceTree = "<group>"; };
 		05D2C05A1882745700DBBF8C /* BUTTON-dashboard.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "BUTTON-dashboard.png"; sourceTree = "<group>"; };
 		05D2C05B1882745700DBBF8C /* BUTTON-logout.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "BUTTON-logout.png"; sourceTree = "<group>"; };
 		05D2C0601882745F00DBBF8C /* BUTTON-organization-active.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "BUTTON-organization-active.png"; sourceTree = "<group>"; };
 		05D2C0611882745F00DBBF8C /* BUTTON-organization.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "BUTTON-organization.png"; sourceTree = "<group>"; };
-		05D2C0621882745F00DBBF8C /* CATEGORY-efficiency.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CATEGORY-efficiency.png"; sourceTree = "<group>"; };
-		05D2C0631882745F00DBBF8C /* CATEGORY-humanresource.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CATEGORY-humanresource.png"; sourceTree = "<group>"; };
 		05D2C0681882746A00DBBF8C /* CATEGORY-quality.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CATEGORY-quality.png"; sourceTree = "<group>"; };
 		05D2C0691882746A00DBBF8C /* connect.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = connect.png; sourceTree = "<group>"; };
 		05D2C06A1882746A00DBBF8C /* VW.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = VW.png; sourceTree = "<group>"; };
@@ -295,23 +306,23 @@
 		05D2C0A71884B6C600DBBF8C /* ipad-icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ipad-icon@2x.png"; sourceTree = "<group>"; };
 		05D2C0A81884B6C600DBBF8C /* iphone-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iphone-icon.png"; sourceTree = "<group>"; };
 		05D2C0A91884B6C600DBBF8C /* iphone-icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iphone-icon@2x.png"; sourceTree = "<group>"; };
-		05EA4DC0187FB00C00C53FEE /* EPM.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EPM.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		05EA4DC0187FB00C00C53FEE /* ClearInsight.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ClearInsight.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		05EA4DC3187FB00C00C53FEE /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		05EA4DC5187FB00C00C53FEE /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		05EA4DC7187FB00C00C53FEE /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
-		05EA4DCB187FB00C00C53FEE /* EPM-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "EPM-Info.plist"; sourceTree = "<group>"; };
+		05EA4DCB187FB00C00C53FEE /* ClearInsight-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ClearInsight-Info.plist"; sourceTree = "<group>"; };
 		05EA4DCD187FB00C00C53FEE /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		05EA4DCF187FB00C00C53FEE /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		05EA4DD1187FB00C00C53FEE /* EPM-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "EPM-Prefix.pch"; sourceTree = "<group>"; };
+		05EA4DD1187FB00C00C53FEE /* ClearInsight-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ClearInsight-Prefix.pch"; sourceTree = "<group>"; };
 		05EA4DD2187FB00C00C53FEE /* EpmAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EpmAppDelegate.h; sourceTree = "<group>"; };
 		05EA4DD3187FB00C00C53FEE /* EpmAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EpmAppDelegate.m; sourceTree = "<group>"; };
 		05EA4DD6187FB00C00C53FEE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		05EA4DDB187FB00C00C53FEE /* EpmSecondViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EpmSecondViewController.h; sourceTree = "<group>"; };
 		05EA4DDC187FB00C00C53FEE /* EpmSecondViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EpmSecondViewController.m; sourceTree = "<group>"; };
 		05EA4DDE187FB00C00C53FEE /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		05EA4DE4187FB00C00C53FEE /* EPMTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EPMTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		05EA4DE4187FB00C00C53FEE /* ClearInsightTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ClearInsightTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		05EA4DE5187FB00C00C53FEE /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
-		05EA4DED187FB00C00C53FEE /* EPMTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "EPMTests-Info.plist"; sourceTree = "<group>"; };
+		05EA4DED187FB00C00C53FEE /* ClearInsightTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ClearInsightTests-Info.plist"; sourceTree = "<group>"; };
 		05EA4DEF187FB00C00C53FEE /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		05EA4DF1187FB00C00C53FEE /* EPMTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EPMTests.m; sourceTree = "<group>"; };
 		05EA4DFB187FB06F00C53FEE /* EpmDbCollectionController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EpmDbCollectionController.h; sourceTree = "<group>"; };
@@ -346,9 +357,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				05984F9418CEB0F30072B204 /* libz.dylib in Frameworks */,
+				05984F9218CEB0BC0072B204 /* libdl.dylib in Frameworks */,
 				0589E8DF18AB4812000173CC /* ImageIO.framework in Frameworks */,
 				0589E8D218AB1842000173CC /* AVFoundation.framework in Frameworks */,
 				05EA4DC6187FB00C00C53FEE /* CoreGraphics.framework in Frameworks */,
+				05984F8F18CEAE090072B204 /* libMobClickLibrary.a in Frameworks */,
 				05EA4DC8187FB00C00C53FEE /* UIKit.framework in Frameworks */,
 				05EA4DC4187FB00C00C53FEE /* Foundation.framework in Frameworks */,
 			);
@@ -379,6 +393,7 @@
 		0566994D18B6F95F0024AD32 /* lib */ = {
 			isa = PBXGroup;
 			children = (
+				05984F9018CEAE0E0072B204 /* UMeng */,
 				05D2C02E188138BE00DBBF8C /* AFNetworking */,
 				0576D18518AC64EF00AD75AB /* SDWebImage */,
 				05C4FF3F18ADC631004E1A90 /* PNChart */,
@@ -420,6 +435,15 @@
 				0576D1A218AC64EF00AD75AB /* UIImageView+WebCache.m */,
 			);
 			path = SDWebImage;
+			sourceTree = "<group>";
+		};
+		05984F9018CEAE0E0072B204 /* UMeng */ = {
+			isa = PBXGroup;
+			children = (
+				05984F8E18CEAE090072B204 /* MobClick.h */,
+				05984F8D18CEAE090072B204 /* libMobClickLibrary.a */,
+			);
+			name = UMeng;
 			sourceTree = "<group>";
 		};
 		05A2060D18B5CCB20052B569 /* Utility */ = {
@@ -504,6 +528,8 @@
 		05EA4DB7187FB00C00C53FEE = {
 			isa = PBXGroup;
 			children = (
+				05984F9918CEFEFA0072B204 /* icon@2x.png */,
+				05984F9A18CEFEFA0072B204 /* icon.png */,
 				05EA4DC9187FB00C00C53FEE /* EPM */,
 				05EA4DEB187FB00C00C53FEE /* EPMTests */,
 				05EA4DC2187FB00C00C53FEE /* Frameworks */,
@@ -514,8 +540,8 @@
 		05EA4DC1187FB00C00C53FEE /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				05EA4DC0187FB00C00C53FEE /* EPM.app */,
-				05EA4DE4187FB00C00C53FEE /* EPMTests.xctest */,
+				05EA4DC0187FB00C00C53FEE /* ClearInsight.app */,
+				05EA4DE4187FB00C00C53FEE /* ClearInsightTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -523,6 +549,8 @@
 		05EA4DC2187FB00C00C53FEE /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				05984F9318CEB0F20072B204 /* libz.dylib */,
+				05984F9118CEB0BC0072B204 /* libdl.dylib */,
 				0589E8DE18AB4812000173CC /* ImageIO.framework */,
 				0589E8D118AB1842000173CC /* AVFoundation.framework */,
 				05EA4DC3187FB00C00C53FEE /* Foundation.framework */,
@@ -601,6 +629,9 @@
 		05EA4DCA187FB00C00C53FEE /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				05984F9D18CF03AA0072B204 /* trend-down.png */,
+				05984F9E18CF03AA0072B204 /* trend-level.png */,
+				05984F9F18CF03AA0072B204 /* trend-up.png */,
 				05F6CE5618C098290040614F /* login-bg.png */,
 				05F6CE5518C098290040614F /* EPMlogo.png */,
 				05F6CE4F18C07AD10040614F /* kpiCategory-1.png */,
@@ -642,17 +673,14 @@
 				05D2C06B1882746A00DBBF8C /* disconnect.png */,
 				05D2C0601882745F00DBBF8C /* BUTTON-organization-active.png */,
 				05D2C0611882745F00DBBF8C /* BUTTON-organization.png */,
-				05D2C0621882745F00DBBF8C /* CATEGORY-efficiency.png */,
-				05D2C0631882745F00DBBF8C /* CATEGORY-humanresource.png */,
-				05D2C0581882745700DBBF8C /* MB.png */,
 				05D2C0591882745700DBBF8C /* BUTTON-dashboard-active.png */,
 				05D2C05A1882745700DBBF8C /* BUTTON-dashboard.png */,
 				05D2C05B1882745700DBBF8C /* BUTTON-logout.png */,
 				05D2C04B18813CA200DBBF8C /* urlSetting.plist */,
-				05EA4DCB187FB00C00C53FEE /* EPM-Info.plist */,
+				05EA4DCB187FB00C00C53FEE /* ClearInsight-Info.plist */,
 				05EA4DCC187FB00C00C53FEE /* InfoPlist.strings */,
 				05EA4DCF187FB00C00C53FEE /* main.m */,
-				05EA4DD1187FB00C00C53FEE /* EPM-Prefix.pch */,
+				05EA4DD1187FB00C00C53FEE /* ClearInsight-Prefix.pch */,
 				05D2C0551882326500DBBF8C /* org.plist */,
 			);
 			name = "Supporting Files";
@@ -670,7 +698,7 @@
 		05EA4DEC187FB00C00C53FEE /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				05EA4DED187FB00C00C53FEE /* EPMTests-Info.plist */,
+				05EA4DED187FB00C00C53FEE /* ClearInsightTests-Info.plist */,
 				05EA4DEE187FB00C00C53FEE /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
@@ -690,9 +718,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		05EA4DBF187FB00C00C53FEE /* EPM */ = {
+		05EA4DBF187FB00C00C53FEE /* ClearInsight */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 05EA4DF5187FB00C00C53FEE /* Build configuration list for PBXNativeTarget "EPM" */;
+			buildConfigurationList = 05EA4DF5187FB00C00C53FEE /* Build configuration list for PBXNativeTarget "ClearInsight" */;
 			buildPhases = (
 				05EA4DBC187FB00C00C53FEE /* Sources */,
 				05EA4DBD187FB00C00C53FEE /* Frameworks */,
@@ -702,14 +730,14 @@
 			);
 			dependencies = (
 			);
-			name = EPM;
+			name = ClearInsight;
 			productName = EPM;
-			productReference = 05EA4DC0187FB00C00C53FEE /* EPM.app */;
+			productReference = 05EA4DC0187FB00C00C53FEE /* ClearInsight.app */;
 			productType = "com.apple.product-type.application";
 		};
-		05EA4DE3187FB00C00C53FEE /* EPMTests */ = {
+		05EA4DE3187FB00C00C53FEE /* ClearInsightTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 05EA4DF8187FB00C00C53FEE /* Build configuration list for PBXNativeTarget "EPMTests" */;
+			buildConfigurationList = 05EA4DF8187FB00C00C53FEE /* Build configuration list for PBXNativeTarget "ClearInsightTests" */;
 			buildPhases = (
 				05EA4DE0187FB00C00C53FEE /* Sources */,
 				05EA4DE1187FB00C00C53FEE /* Frameworks */,
@@ -720,9 +748,9 @@
 			dependencies = (
 				05EA4DEA187FB00C00C53FEE /* PBXTargetDependency */,
 			);
-			name = EPMTests;
+			name = ClearInsightTests;
 			productName = EPMTests;
-			productReference = 05EA4DE4187FB00C00C53FEE /* EPMTests.xctest */;
+			productReference = 05EA4DE4187FB00C00C53FEE /* ClearInsightTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -743,7 +771,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 05EA4DBB187FB00C00C53FEE /* Build configuration list for PBXProject "EPM" */;
+			buildConfigurationList = 05EA4DBB187FB00C00C53FEE /* Build configuration list for PBXProject "ClearInsight" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -756,8 +784,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				05EA4DBF187FB00C00C53FEE /* EPM */,
-				05EA4DE3187FB00C00C53FEE /* EPMTests */,
+				05EA4DBF187FB00C00C53FEE /* ClearInsight */,
+				05EA4DE3187FB00C00C53FEE /* ClearInsightTests */,
 			);
 		};
 /* End PBXProject section */
@@ -779,11 +807,11 @@
 				05D2C06F1882746A00DBBF8C /* disconnect.png in Resources */,
 				05EA4DDF187FB00C00C53FEE /* Images.xcassets in Resources */,
 				0502A96A18BC747C00906C45 /* chart-clorful.png in Resources */,
-				05D2C0661882745F00DBBF8C /* CATEGORY-efficiency.png in Resources */,
 				05D2C09B1884670100DBBF8C /* LOGIN.png in Resources */,
-				05D2C0671882745F00DBBF8C /* CATEGORY-humanresource.png in Resources */,
 				05D2C0AC1884B6C600DBBF8C /* ipad-icon-152.png in Resources */,
+				05984FA218CF03AA0072B204 /* trend-up.png in Resources */,
 				05D2C0911884518200DBBF8C /* KPI-background.png in Resources */,
+				05984FA018CF03AA0072B204 /* trend-down.png in Resources */,
 				05D2C0AA1884B6C600DBBF8C /* ipad-icon-76.png in Resources */,
 				05F6CE4C18C03E990040614F /* Photo.png in Resources */,
 				05D2C079188274C700DBBF8C /* SHANGHAI.png in Resources */,
@@ -798,12 +826,13 @@
 				05D2C0AF1884B6C600DBBF8C /* iphone-icon.png in Resources */,
 				05D2C06C1882746A00DBBF8C /* CATEGORY-quality.png in Resources */,
 				05D2C06E1882746A00DBBF8C /* VW.png in Resources */,
+				05984F9C18CEFEFA0072B204 /* icon.png in Resources */,
 				05D2C0991884666100DBBF8C /* benz.png in Resources */,
 				05D2C0931884661500DBBF8C /* organization-bg.png in Resources */,
 				05D2C09D1884671500DBBF8C /* DASHBOARD-pie.png in Resources */,
 				0502A96B18BC747C00906C45 /* Photo-gray.png in Resources */,
 				05D2C0951884664E00DBBF8C /* organization-item-bg.png in Resources */,
-				05D2C05C1882745700DBBF8C /* MB.png in Resources */,
+				05984FA118CF03AA0072B204 /* trend-level.png in Resources */,
 				05D2C0AB1884B6C600DBBF8C /* ipad-icon-120.png in Resources */,
 				0502A96D18BC747C00906C45 /* mail.png in Resources */,
 				05F6CE4A18C03E990040614F /* chart.png in Resources */,
@@ -819,6 +848,7 @@
 				05D2C04C18813CA200DBBF8C /* urlSetting.plist in Resources */,
 				05F6CE4B18C03E990040614F /* Clock.png in Resources */,
 				05D2C05F1882745700DBBF8C /* BUTTON-logout.png in Resources */,
+				05984F9B18CEFEFA0072B204 /* icon@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -916,7 +946,7 @@
 /* Begin PBXTargetDependency section */
 		05EA4DEA187FB00C00C53FEE /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 05EA4DBF187FB00C00C53FEE /* EPM */;
+			target = 05EA4DBF187FB00C00C53FEE /* ClearInsight */;
 			targetProxy = 05EA4DE9187FB00C00C53FEE /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -1028,17 +1058,21 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					/Users/tianyi/github/iPadEpm,
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "EPM/EPM-Prefix.pch";
-				INFOPLIST_FILE = "EPM/EPM-Info.plist";
+				GCC_PREFIX_HEADER = "EPM/ClearInsight-Prefix.pch";
+				INFOPLIST_FILE = "EPM/ClearInsight-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/tianyi/Downloads/Analytics_iOS_SDK_2.2.1.OpenUDID/UMAnalytics_Sdk_2.2.1.OpenUDID,
+				);
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = ClearInsight;
 				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
@@ -1048,17 +1082,21 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					/Users/tianyi/github/iPadEpm,
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "EPM/EPM-Prefix.pch";
-				INFOPLIST_FILE = "EPM/EPM-Info.plist";
+				GCC_PREFIX_HEADER = "EPM/ClearInsight-Prefix.pch";
+				INFOPLIST_FILE = "EPM/ClearInsight-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/tianyi/Downloads/Analytics_iOS_SDK_2.2.1.OpenUDID/UMAnalytics_Sdk_2.2.1.OpenUDID,
+				);
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = ClearInsight;
 				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
@@ -1080,8 +1118,8 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = "EPMTests/EPMTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				INFOPLIST_FILE = "EPMTests/ClearInsightTests-Info.plist";
+				PRODUCT_NAME = ClearInsightTests;
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
 			};
@@ -1099,8 +1137,8 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "EPM/EPM-Prefix.pch";
-				INFOPLIST_FILE = "EPMTests/EPMTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				INFOPLIST_FILE = "EPMTests/ClearInsightTests-Info.plist";
+				PRODUCT_NAME = ClearInsightTests;
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
 			};
@@ -1109,7 +1147,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		05EA4DBB187FB00C00C53FEE /* Build configuration list for PBXProject "EPM" */ = {
+		05EA4DBB187FB00C00C53FEE /* Build configuration list for PBXProject "ClearInsight" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				05EA4DF3187FB00C00C53FEE /* Debug */,
@@ -1118,7 +1156,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		05EA4DF5187FB00C00C53FEE /* Build configuration list for PBXNativeTarget "EPM" */ = {
+		05EA4DF5187FB00C00C53FEE /* Build configuration list for PBXNativeTarget "ClearInsight" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				05EA4DF6187FB00C00C53FEE /* Debug */,
@@ -1127,7 +1165,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		05EA4DF8187FB00C00C53FEE /* Build configuration list for PBXNativeTarget "EPMTests" */ = {
+		05EA4DF8187FB00C00C53FEE /* Build configuration list for PBXNativeTarget "ClearInsightTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				05EA4DF9187FB00C00C53FEE /* Debug */,

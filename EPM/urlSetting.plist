@@ -2,6 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>version</key>
+	<string>/api/version</string>
 	<key>mailGraph</key>
 	<string>/api/emails/analyse</string>
 	<key>emails</key>
@@ -25,7 +27,7 @@
 	<key>login</key>
 	<string>/api/user_sessions</string>
 	<key>baseUrl</key>
-	<string>http://172.21.12.52:3000</string>
+	<string>http://121.199.48.53:8000</string>
 	<key>dashboards</key>
 	<string>/api/dashboards</string>
 </dict>
