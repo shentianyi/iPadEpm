@@ -15,6 +15,7 @@
 
 @property (weak, nonatomic) IBOutlet UIView *upperContainer;
 @property (weak, nonatomic) IBOutlet UIScrollView *ten;
+@property (weak, nonatomic) IBOutlet UIView *chartview;
 
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property(strong,nonatomic) NSArray *kpis;

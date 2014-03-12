@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "05EA4DBF187FB00C00C53FEE"
-               BuildableName = "EPM.app"
+               BuildableName = "ClearInsight.app"
                BlueprintName = "ClearInsight"
                ReferencedContainer = "container:ClearInsight.xcodeproj">
             </BuildableReference>
@@ -33,7 +33,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "05EA4DE3187FB00C00C53FEE"
-               BuildableName = "EPMTests.xctest"
+               BuildableName = "ClearInsightTests.xctest"
                BlueprintName = "ClearInsightTests"
                ReferencedContainer = "container:ClearInsight.xcodeproj">
             </BuildableReference>
@@ -43,7 +43,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "05EA4DBF187FB00C00C53FEE"
-            BuildableName = "EPM.app"
+            BuildableName = "ClearInsight.app"
             BlueprintName = "ClearInsight"
             ReferencedContainer = "container:ClearInsight.xcodeproj">
          </BuildableReference>
@@ -62,7 +62,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "05EA4DBF187FB00C00C53FEE"
-            BuildableName = "EPM.app"
+            BuildableName = "ClearInsight.app"
             BlueprintName = "ClearInsight"
             ReferencedContainer = "container:ClearInsight.xcodeproj">
          </BuildableReference>
@@ -80,7 +80,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "05EA4DBF187FB00C00C53FEE"
-            BuildableName = "EPM.app"
+            BuildableName = "ClearInsight.app"
             BlueprintName = "ClearInsight"
             ReferencedContainer = "container:ClearInsight.xcodeproj">
          </BuildableReference>
