@@ -218,7 +218,7 @@
     [self.content layoutIfNeeded];
     NSString *mailContent =[mail objectForKey:@"content"];
     CGRect rect = [mailContent  boundingRectWithSize:CGSizeMake(self.scrollView.bounds.size.width-55, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:19.0f]} context:NULL];
-    [self.content setFrame:CGRectMake(self.content.frame.origin.x,self.content.frame.origin.y, self.content.bounds.size.width,rect.size.height+30)];
+    [self.content setFrame:CGRectMake(self.content.frame.origin.x,self.content.frame.origin.y, self.scrollView.bounds.size.width-55,rect.size.height+30)];
 
    
      CGPoint lastPosition = CGPointMake(self.content.frame.origin.x, self.content.frame.origin.y + self.content.bounds.size.height+margin);

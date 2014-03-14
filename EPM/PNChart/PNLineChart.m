@@ -79,12 +79,16 @@
     if(_showLabel){
         _xLabelWidth = _chartCavanWidth/[xLabels count];
         
+        CGFloat _xLabelFixWidth = 50.0f;
+        
+        
         for(int index = 0; index < xLabels.count; index++)
         {
             labelText = xLabels[index];
-            PNChartLabel * label = [[PNChartLabel alloc] initWithFrame:CGRectMake(2*_chartMargin +  (index * _xLabelWidth) - (_xLabelWidth / 2), _chartMargin + _chartCavanHeight, _xLabelWidth, _chartMargin)];
+            PNChartLabel * label = [[PNChartLabel alloc] initWithFrame:CGRectMake(2*_chartMargin +  (index * _xLabelWidth) - (_xLabelWidth / 2), _chartMargin + _chartCavanHeight, _xLabelFixWidth, _chartMargin)];
             [label setTextAlignment:NSTextAlignmentCenter];
             label.text = labelText;
+            label.textColor = [UIColor whiteColor];
             [self addSubview:label];
         }
         
@@ -113,6 +117,7 @@
         CGPathRef originalPath = path.CGPath;
         CGPathRef strokedPath = CGPathCreateCopyByStrokingPath(originalPath, NULL, 3.0, kCGLineCapRound, kCGLineJoinRound, 3.0);
         BOOL pathContainsPoint = CGPathContainsPoint(strokedPath, NULL, touchPoint, NO);
+        
         if (pathContainsPoint)
         {
             [_delegate userClickedOnLinePoint:touchPoint lineIndex:[_chartPath indexOfObject:path]];
@@ -156,8 +161,8 @@
         }
         
         NSMutableArray * linePointsArray = [[NSMutableArray alloc] init];
-        [progressline setLineWidth:3.0];
-        [progressline setLineCapStyle:kCGLineCapRound];
+        [progressline setLineWidth:chartData.lineWidth];
+        [progressline setLineCapStyle: kCGLineCapRound];
         [progressline setLineJoinStyle:kCGLineJoinRound];
         
         
@@ -223,7 +228,7 @@
             chartLine.lineCap   = kCALineCapRound;
             chartLine.lineJoin  = kCALineJoinBevel;
             chartLine.fillColor = [[UIColor whiteColor] CGColor];
-            chartLine.lineWidth = 3.0;
+            chartLine.lineWidth = 2;
             chartLine.strokeEnd = 0.0;
             [self.layer addSublayer:chartLine];
             [self.chartLineArray addObject:chartLine];

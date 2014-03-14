@@ -19,6 +19,8 @@ typedef PNLineChartDataItem *(^LCLineChartDataGetter)(NSUInteger item);
 
 @property NSUInteger itemCount;
 
+@property CGFloat lineWidth;
+
 @property (copy) LCLineChartDataGetter getData;
 
 @end

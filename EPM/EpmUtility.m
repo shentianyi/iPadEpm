@@ -40,4 +40,36 @@
     NSDate *date = [formatter dateFromString:dateString];
     return [EpmUtility convertDatetimeWithDate:date WithFormat:format];
 }
+
++ (NSString *) convertDatetimeWithString:(NSString *)dateString OfPattern:(NSString *)pattern WithFormat:(NSString *) format{
+    NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
+    [formatter setTimeZone:[NSTimeZone timeZoneWithAbbreviation:@"UTC"]];
+    [formatter setDateFormat:pattern];
+    NSDate *date = [formatter dateFromString:dateString];
+    return [EpmUtility convertDatetimeWithDate:date WithFormat:format];
+}
+
++(NSString *)timeStringOfFrequency:(int)frequency{
+    NSString *format=@"";
+    if(frequency == 100) {
+        	format = @"yy/MM/dd";
+    }
+    else if(frequency==200) {
+        format = @"yyyy 'week' w";
+    
+    }
+    else if(frequency==300) {
+        format = @"yyyy MMM";
+    }
+    else if(frequency==400) {
+        format = @"yyyy QQQ";
+        
+    }
+    else if(frequency==500) {
+        format = @"yyyy";
+    }
+    
+    return format;
+
+}
 @end

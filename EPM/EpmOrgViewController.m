@@ -66,6 +66,7 @@
         self.tableData = result;
         [self.tableView reloadData];
         [self loadKpiSummery];
+        [self loadChart];
     }
      
          failure:^(AFHTTPRequestOperation *operation, NSError *error) {
@@ -82,9 +83,105 @@
          }];
 }
 
+
+-(void)loadChart{
+    if(self.tableData){
+        for (UIView *view in self.chartBody.subviews){
+            [view removeFromSuperview];
+        }
+         PNLineChart * lineChart = [[PNLineChart alloc] initWithFrame:self.chartBody.bounds];
+        NSArray *axis =[self prepareTimeAxis:[self.tableData objectForKey:@"date"] WithLimit:5];
+        [lineChart setXLabels:axis];
+        NSArray * data01Array = [self.tableData objectForKey:@"target_max"];
+        PNLineChartData *data01 = [PNLineChartData new];
+        data01.color = [[UIColor alloc] initWithRed:128.0 green:128.0 blue:128.0 alpha:0.25];
+        
+        data01.lineWidth = 1;
+        data01.itemCount = lineChart.xLabels.count;
+        data01.getData = ^(NSUInteger index) {
+            CGFloat yValue = [[data01Array objectAtIndex:index] floatValue];
+            return [PNLineChartDataItem dataItemWithY:yValue];
+        };
+        // Line Chart No.2
+        NSArray * data02Array = [self.tableData objectForKey:@"target_min"];
+        PNLineChartData *data02 = [PNLineChartData new];
+        data02.color = [[UIColor alloc] initWithRed:128.0 green:128.0 blue:128.0 alpha:0.25];;
+        data02.lineWidth = 1;
+        data02.itemCount = lineChart.xLabels.count;
+        data02.getData = ^(NSUInteger index) {
+            CGFloat yValue = [[data02Array objectAtIndex:index] floatValue];
+            return [PNLineChartDataItem dataItemWithY:yValue];
+        };
+        
+        // Line Chart No.2
+        NSArray * data03Array = [self.tableData objectForKey:@"current"];
+        PNLineChartData *data03 = [PNLineChartData new];
+        data03.color = PNWhite;
+        data03.lineWidth = 2;
+        data03.itemCount = lineChart.xLabels.count;
+        data03.getData = ^(NSUInteger index) {
+            CGFloat yValue = [[data03Array objectAtIndex:index] floatValue];
+            return [PNLineChartDataItem dataItemWithY:yValue];
+        };
+        
+        //lineChart.chartData = @[data01, data02,data03];
+        [lineChart setChartData:@[data01,data02,data03]];
+        lineChart.backgroundColor = [UIColor clearColor];
+        [lineChart strokeChart];
+        lineChart.delegate = self;
+        [self.chartBody addSubview:lineChart];
+    }
+
+}
+
+-(NSArray *)prepareTimeAxis:(NSArray *)axis WithLimit:(int)limit{
+    if(limit<2){
+        limit =2;
+    }
+    
+    if(!axis){
+        axis = [[NSArray alloc]init];
+    }
+    
+    if(axis.count<=limit){
+        return axis;
+    }
+    else{
+        NSMutableArray  *tmp = [NSMutableArray arrayWithArray:axis];
+        int *last = axis.count-1;
+        
+        int inteval = (int)(((axis.count -2)/(limit-2))+0.5);
+        int next = inteval;
+        for(int i=0; i<axis.count;i++){
+            if(i>0){
+                if(i!=next && i!=last){
+                    [tmp replaceObjectAtIndex:i withObject:@""];
+                    
+                }
+                else {
+                    [tmp replaceObjectAtIndex:i withObject:[EpmUtility convertDatetimeWithString:[[tmp objectAtIndex:i] substringToIndex:18] OfPattern:@"yyyy-MM-dd HH:mm:ss" WithFormat:[EpmUtility timeStringOfFrequency:[[self.currentConditions objectForKey:@"frequency"] integerValue]]]];
+                    
+
+                    next = i + inteval;
+                }
+                
+            }
+            else {
+                  [tmp replaceObjectAtIndex:i withObject:[EpmUtility convertDatetimeWithString:[[tmp objectAtIndex:i] substringToIndex:18] OfPattern:@"yyyy-MM-dd HH:mm:ss" WithFormat:[EpmUtility timeStringOfFrequency:[[self.currentConditions objectForKey:@"frequency"] integerValue]]]];
+            
+            }
+        }
+        axis=tmp;
+    }
+    
+    return axis;
+
+}
+
 -(void)loadKpiSummery{
     self.average.text = [NSString stringWithFormat:@"%0.2f",[[self.tableData objectForKey:@"average" ]floatValue]];
-    self.sum.text = [[self.tableData objectForKey:@"total"] stringValue];
+    self.sum.text =  [NSString stringWithFormat:@"%0.2f",[[self.tableData objectForKey:@"total" ]floatValue]];
+
     self.selectedE1.text = [self.currentConditions objectForKey:@"kpi_name"];
 
     NSArray *current =[self.tableData objectForKey:@"current"];
@@ -346,15 +443,17 @@
     
     if(self.currentConditions){
         [self.currentConditions setObject:[kpi objectForKey:@"id"] forKey:@"kpi_id"];
+         [self.currentConditions setObject:[kpi objectForKey:@"name"] forKey:@"kpi_name"];
     
     }
     else {
-        self.currentConditions = [NSMutableDictionary dictionaryWithObjectsAndKeys:[kpi objectForKey:@"id"],@"kpi_id",@"100",@"frequency",[self.entityGroup objectForKey:@"id"],@"entity_group_id",[formatter stringFromDate:[NSDate dateWithTimeIntervalSinceNow:-1*14*24*60*60]],@"start_time",[formatter stringFromDate:[NSDate date]], @"end_time",[self.entityGroup objectForKey:@"name"],@"entity_group_name",[kpi objectForKey:@"name" ],@"kpi_name",nil];
+        self.currentConditions = [NSMutableDictionary dictionaryWithObjectsAndKeys:[kpi objectForKey:@"id"],@"kpi_id",@"100",@"frequency",[self.entityGroup objectForKey:@"id"],@"entity_group_id",[formatter stringFromDate:[NSDate dateWithTimeIntervalSinceNow:-1*14*24*60*60]],@"start_time",[formatter stringFromDate:[NSDate date]], @"end_time",[self.entityGroup objectForKey:@"name"],@"entity_group_name",[kpi objectForKey:@"name"],@"kpi_name",nil];
     
     }
 
     
      [self getDataForTable];
+    
 }
 
 
@@ -399,13 +498,13 @@
    
     [completeData setObject:[NSArray arrayWithObjects:screen, nil] forKey:@"photos"];
     
-    [self performSegueWithIdentifier:@"composeMail" sender:completeData];
+    [self performSegueWithIdentifier:@"composeFromDetail" sender:completeData];
 }
 
 
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if([segue.identifier isEqualToString:@"composeMail"]){
+    if([segue.identifier isEqualToString:@"composeFromDetail"]){
         EpmSendMailController *mail = segue.destinationViewController;
         mail.completeData = (NSMutableDictionary*)sender;
     }
@@ -494,20 +593,23 @@
     //NSLog(@"%@",[[data allKeys] objectAtIndex:indexPath.row]);
 
    
-    NSDate *date =[[self.tableData objectForKey:@"date"] objectAtIndex:indexPath.row];
+    NSString *date =[[self.tableData objectForKey:@"date"] objectAtIndex:indexPath.row];
     NSNumber *current =[[self.tableData objectForKey:@"current"] objectAtIndex:indexPath.row];
+    NSString *unit = [[self.tableData objectForKey:@"unit"] objectAtIndex:indexPath.row];
     NSNumber *min=[[self.tableData objectForKey:@"target_min"] objectAtIndex:indexPath.row];
     NSNumber *max=[[self.tableData objectForKey:@"target_max"] objectAtIndex:indexPath.row];
-    NSString *unit = [[self.tableData objectForKey:@"unit"] objectAtIndex:indexPath.row];
 
-    NSLog(@"%@",[[self.tableData objectForKey:@"date"] objectAtIndex:indexPath.row]);
     
     
-    cell.time.text = [[self.tableData objectForKey:@"date"] objectAtIndex:indexPath.row];
+    NSString *convert = [EpmUtility convertDatetimeWithString:[date substringToIndex:18] OfPattern:@"yyyy-MM-dd HH:mm:ss" WithFormat:[EpmUtility timeStringOfFrequency:[[self.currentConditions objectForKey:@"frequency"] integerValue]] ];
+    
+    
+    cell.time.text = convert;
+    
     
     cell.value.text = [[NSString stringWithFormat:@"%0.2f",[current doubleValue]] stringByAppendingString:unit];
     
-  
+    cell.range.text = [NSString stringWithFormat:@"%0.2f-%0.2f %@",[min floatValue],[max floatValue],unit];
 
     if(indexPath.row > 0 ) {
           NSIndexPath *newPath = [NSIndexPath indexPathForRow:indexPath.row-1 inSection:indexPath.section];
@@ -518,19 +620,14 @@
         }
         if(trend > 0){
             cell.trend.image = [UIImage imageNamed:@"trend-up"];
-            cell.range.text = [NSString stringWithFormat:@"%0.1f%%",((trend/last )*100)];
         }
         
         else if (trend == 0){
             cell.trend.image = [UIImage imageNamed:@"trend-level"];
-        
-        
         }
         
         else{
             cell.trend.image = [UIImage imageNamed:@"trend-down"];
-            
-            cell.range.text = [NSString stringWithFormat:@"%0.1f%%",((trend/last )*100)];
         }
         
     
@@ -695,6 +792,15 @@
     
 }
 
+
+#pragma chart delegate
+-(void)userClickedOnLineKeyPoint:(CGPoint)point lineIndex:(NSInteger)lineIndex andPointIndex:(NSInteger)pointIndex{
+    NSLog(@"Click Key on line %f, %f line index is %d and point index is %d",point.x, point.y,(int)lineIndex, (int)pointIndex);
+}
+
+-(void)userClickedOnLinePoint:(CGPoint)point lineIndex:(NSInteger)lineIndex{
+    NSLog(@"Click on line %f, %f, line index is %d",point.x, point.y, (int)lineIndex);
+}
 
 
 

@@ -17,10 +17,10 @@
     if (self) {
         // Initialization code
         [self setLineBreakMode:NSLineBreakByWordWrapping];
-        [self setMinimumScaleFactor:11.0f];
+        [self setMinimumScaleFactor:8.0f];
         [self setNumberOfLines:0];
-        [self setFont:[UIFont boldSystemFontOfSize:11.0f]];
-        [self setTextColor: PNDeepGrey];
+        [self setFont:[UIFont systemFontOfSize:11.0f]];
+        [self setTextColor: PNWhite];
         self.backgroundColor = [UIColor clearColor];
         [self setTextAlignment:NSTextAlignmentLeft];
         self.userInteractionEnabled = YES;

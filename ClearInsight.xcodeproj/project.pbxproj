@@ -13,6 +13,8 @@
 		0502A96D18BC747C00906C45 /* mail.png in Resources */ = {isa = PBXBuildFile; fileRef = 0502A96818BC747C00906C45 /* mail.png */; };
 		0502A96E18BC747C00906C45 /* chart-gray.png in Resources */ = {isa = PBXBuildFile; fileRef = 0502A96918BC747C00906C45 /* chart-gray.png */; };
 		0505AD4118BF321900777E66 /* draft.png in Resources */ = {isa = PBXBuildFile; fileRef = 0505AD4018BF321900777E66 /* draft.png */; };
+		0515707D18D2EDA400FD4FE4 /* switchType-line.png in Resources */ = {isa = PBXBuildFile; fileRef = 0515707B18D2EDA400FD4FE4 /* switchType-line.png */; };
+		0515707E18D2EDA400FD4FE4 /* switchType-column.png in Resources */ = {isa = PBXBuildFile; fileRef = 0515707C18D2EDA400FD4FE4 /* switchType-column.png */; };
 		0519BA7F18BC46EA0029447E /* EpmMailListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0519BA7E18BC46EA0029447E /* EpmMailListCell.m */; };
 		0519BA8218BC48240029447E /* EpmMailListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0519BA8118BC48240029447E /* EpmMailListController.m */; };
 		055F84631889153D00D88BC4 /* EpmHttpUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 055F84621889153D00D88BC4 /* EpmHttpUtil.m */; };
@@ -156,6 +158,8 @@
 		0502A96818BC747C00906C45 /* mail.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mail.png; sourceTree = "<group>"; };
 		0502A96918BC747C00906C45 /* chart-gray.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chart-gray.png"; sourceTree = "<group>"; };
 		0505AD4018BF321900777E66 /* draft.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = draft.png; sourceTree = "<group>"; };
+		0515707B18D2EDA400FD4FE4 /* switchType-line.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "switchType-line.png"; sourceTree = "<group>"; };
+		0515707C18D2EDA400FD4FE4 /* switchType-column.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "switchType-column.png"; sourceTree = "<group>"; };
 		0519BA7D18BC46EA0029447E /* EpmMailListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EpmMailListCell.h; sourceTree = "<group>"; };
 		0519BA7E18BC46EA0029447E /* EpmMailListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EpmMailListCell.m; sourceTree = "<group>"; };
 		0519BA8018BC48240029447E /* EpmMailListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EpmMailListController.h; sourceTree = "<group>"; };
@@ -629,6 +633,8 @@
 		05EA4DCA187FB00C00C53FEE /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				0515707B18D2EDA400FD4FE4 /* switchType-line.png */,
+				0515707C18D2EDA400FD4FE4 /* switchType-column.png */,
 				05984F9D18CF03AA0072B204 /* trend-down.png */,
 				05984F9E18CF03AA0072B204 /* trend-level.png */,
 				05984F9F18CF03AA0072B204 /* trend-up.png */,
@@ -833,6 +839,7 @@
 				0502A96B18BC747C00906C45 /* Photo-gray.png in Resources */,
 				05D2C0951884664E00DBBF8C /* organization-item-bg.png in Resources */,
 				05984FA118CF03AA0072B204 /* trend-level.png in Resources */,
+				0515707D18D2EDA400FD4FE4 /* switchType-line.png in Resources */,
 				05D2C0AB1884B6C600DBBF8C /* ipad-icon-120.png in Resources */,
 				0502A96D18BC747C00906C45 /* mail.png in Resources */,
 				05F6CE4A18C03E990040614F /* chart.png in Resources */,
@@ -849,6 +856,7 @@
 				05F6CE4B18C03E990040614F /* Clock.png in Resources */,
 				05D2C05F1882745700DBBF8C /* BUTTON-logout.png in Resources */,
 				05984F9B18CEFEFA0072B204 /* icon@2x.png in Resources */,
+				0515707E18D2EDA400FD4FE4 /* switchType-column.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

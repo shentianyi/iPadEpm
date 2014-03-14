@@ -12,5 +12,7 @@
 + (BOOL) validateEmail: (NSString *) candidate ;
 + (NSString *) convertDatetimeWithDate:(NSDate *)date WithFormat:(NSString *) format;
 + (NSString *) convertDatetimeWithString:(NSString *)dateString WithFormat:(NSString *) format;
++ (NSString *) convertDatetimeWithString:(NSString *)dateString OfPattern:(NSString *)pattern WithFormat:(NSString *) format;
++(NSString *)timeStringOfFrequency:(int)frequency;
 
 @end
