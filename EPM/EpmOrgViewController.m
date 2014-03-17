@@ -568,7 +568,33 @@
     return [[self.tableData objectForKey:@"current" ] count];
 }
 
+- (IBAction)transactionTable:(id)sender {
+    [UIView transitionFromView:self.chartview
+                        toView:self.tableView
+                      duration:1
+                       options:UIViewAnimationOptionTransitionFlipFromRight | UIViewAnimationCurveEaseIn | UIViewAnimationOptionShowHideTransitionViews
+                    completion:^(BOOL finished)
+     {
+         self.chartview.hidden =YES;
+         self.tableView.hidden =NO;
+         
+     }
+     ];
+}
 
+- (IBAction)transactionChart:(id)sender {
+    [UIView transitionFromView:self.tableView
+                        toView:self.chartview
+                      duration:1
+                       options:UIViewAnimationOptionTransitionFlipFromRight | UIViewAnimationCurveEaseIn | UIViewAnimationOptionShowHideTransitionViews
+                    completion:^(BOOL finished)
+     {
+         self.chartview.hidden =NO;
+         self.tableView.hidden =YES;
+         
+     }
+     ];
+}
 
 //绘制Cell
 
@@ -581,32 +607,16 @@
     
     EpmTableCell *cell = (EpmTableCell*)[tableView  dequeueReusableCellWithIdentifier:CellIdentifier];
     
-   // NSDictionary *data =[self.tableData objectForKey:@"current" ];
-    
-   // NSDictionary *target = [self.tableData objectForKey:@"target_min"];
-    
-   // NSDictionary *target_max = [self.tableData objectForKey:@"target_max"];
-    
- //
-   // NSDictionary *current = [data objectForKey:[[data allKeys] objectAtIndex:indexPath.row]];
-    
-    //NSLog(@"%@",[[data allKeys] objectAtIndex:indexPath.row]);
-
-   
-    NSString *date =[[self.tableData objectForKey:@"date"] objectAtIndex:indexPath.row];
+      NSString *date =[[self.tableData objectForKey:@"date"] objectAtIndex:indexPath.row];
     NSNumber *current =[[self.tableData objectForKey:@"current"] objectAtIndex:indexPath.row];
     NSString *unit = [[self.tableData objectForKey:@"unit"] objectAtIndex:indexPath.row];
     NSNumber *min=[[self.tableData objectForKey:@"target_min"] objectAtIndex:indexPath.row];
     NSNumber *max=[[self.tableData objectForKey:@"target_max"] objectAtIndex:indexPath.row];
-
-    
     
     NSString *convert = [EpmUtility convertDatetimeWithString:[date substringToIndex:18] OfPattern:@"yyyy-MM-dd HH:mm:ss" WithFormat:[EpmUtility timeStringOfFrequency:[[self.currentConditions objectForKey:@"frequency"] integerValue]] ];
     
-    
     cell.time.text = convert;
-    
-    
+
     cell.value.text = [[NSString stringWithFormat:@"%0.2f",[current doubleValue]] stringByAppendingString:unit];
     
     cell.range.text = [NSString stringWithFormat:@"%0.2f-%0.2f %@",[min floatValue],[max floatValue],unit];
