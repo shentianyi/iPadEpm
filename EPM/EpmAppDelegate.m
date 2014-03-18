@@ -7,14 +7,14 @@
 //
 
 #import "EpmAppDelegate.h"
-#import "MobClick.h"
+//#import "MobClick.h"
 #import "AFNetworking.h"
 
 @implementation EpmAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    [MobClick startWithAppkey:@"531e863156240bea5d0869ad" reportPolicy:SEND_ON_EXIT channelId:@"InHouse"];
+    //[MobClick startWithAppkey:@"531e863156240bea5d0869ad" reportPolicy:SEND_ON_EXIT channelId:@"InHouse"];
     
     
     UpdatePolicy policy = LATEST;

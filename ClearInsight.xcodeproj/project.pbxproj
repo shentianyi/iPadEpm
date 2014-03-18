@@ -44,7 +44,6 @@
 		0589E8D518AB1A87000173CC /* Barcode.m in Sources */ = {isa = PBXBuildFile; fileRef = 0589E8D418AB1A87000173CC /* Barcode.m */; };
 		0589E8DB18AB4121000173CC /* EpmContactCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0589E8DA18AB4121000173CC /* EpmContactCell.m */; };
 		0589E8DF18AB4812000173CC /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0589E8DE18AB4812000173CC /* ImageIO.framework */; };
-		05984F8F18CEAE090072B204 /* libMobClickLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 05984F8D18CEAE090072B204 /* libMobClickLibrary.a */; };
 		05984F9218CEB0BC0072B204 /* libdl.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 05984F9118CEB0BC0072B204 /* libdl.dylib */; };
 		05984F9418CEB0F30072B204 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 05984F9318CEB0F20072B204 /* libz.dylib */; };
 		05984F9B18CEFEFA0072B204 /* icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 05984F9918CEFEFA0072B204 /* icon@2x.png */; };
@@ -366,7 +365,6 @@
 				0589E8DF18AB4812000173CC /* ImageIO.framework in Frameworks */,
 				0589E8D218AB1842000173CC /* AVFoundation.framework in Frameworks */,
 				05EA4DC6187FB00C00C53FEE /* CoreGraphics.framework in Frameworks */,
-				05984F8F18CEAE090072B204 /* libMobClickLibrary.a in Frameworks */,
 				05EA4DC8187FB00C00C53FEE /* UIKit.framework in Frameworks */,
 				05EA4DC4187FB00C00C53FEE /* Foundation.framework in Frameworks */,
 			);

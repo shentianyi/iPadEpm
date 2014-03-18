@@ -213,9 +213,15 @@
 
 - (UIView *) tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-    UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.improveTable.bounds.size.width, 30)];
+    UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.improveTable.bounds.size.width, 15)];
   
         [headerView setBackgroundColor:[UIColor clearColor]];
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(10, 3, tableView.bounds.size.width - 10, 18)];
+    label.text = [self.mailSection objectAtIndex:section];
+    label.font = [UIFont systemFontOfSize:13];
+    label.textColor = [UIColor whiteColor];
+    label.backgroundColor = [UIColor clearColor];
+    [headerView addSubview:label];
     
     return headerView;
 }
