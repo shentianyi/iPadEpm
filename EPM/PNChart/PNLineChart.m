@@ -100,12 +100,39 @@
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    [self touchPoint:touches withEvent:event];
+    for(UIView *view in self.subviews){
+        if(view.tag==997){
+            [view removeFromSuperview];
+        }
+    }
+    UITouch *touch = [touches anyObject];
+    CGPoint touchPoint = [touch locationInView:self];
+    UIView *indicator = [[UIView alloc]init];
+    indicator.frame = CGRectMake(touchPoint.x, 0, 0.5, self.frame.size.height - 2*_yLabelHeight);
+    indicator.backgroundColor = [UIColor whiteColor];
+    indicator.tag = 997;
+    [self addSubview:indicator];
+      [self touchPoint:touches withEvent:event];
+    
 }
 
 -(void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    [self touchPoint:touches withEvent:event];
+   
+    for(UIView *view in self.subviews){
+        if(view.tag==997){
+            [view removeFromSuperview];
+        }
+    }
+    UITouch *touch = [touches anyObject];
+    CGPoint touchPoint = [touch locationInView:self];
+    UIView *indicator = [[UIView alloc]init];
+    indicator.frame = CGRectMake(touchPoint.x, 0, 0.5, self.frame.size.height - 2*_yLabelHeight);
+    indicator.backgroundColor = [UIColor whiteColor];
+    indicator.tag = 997;
+    [self addSubview:indicator];
+     [self touchPoint:touches withEvent:event];
+
 }
 
 -(void)touchPoint:(NSSet *)touches withEvent:(UIEvent *)event
@@ -116,16 +143,38 @@
     for (UIBezierPath *path in _chartPath) {
         CGPathRef originalPath = path.CGPath;
         CGPathRef strokedPath = CGPathCreateCopyByStrokingPath(originalPath, NULL, 3.0, kCGLineCapRound, kCGLineJoinRound, 3.0);
-        BOOL pathContainsPoint = CGPathContainsPoint(strokedPath, NULL, touchPoint, NO);
+//        BOOL pathContainsPoint = CGPathContainsPoint(strokedPath, NULL, touchPoint, NO);
+       BOOL pathContainsPoint = YES;
+
         
         if (pathContainsPoint)
         {
+            for(UIView *view in self.subviews){
+                if(view.tag == 996)
+                {
+                    [view removeFromSuperview];
+                }
+            
+            }
             [_delegate userClickedOnLinePoint:touchPoint lineIndex:[_chartPath indexOfObject:path]];
             for (NSArray *linePointsArray in _pathPoints) {
                 for (NSValue *val in linePointsArray) {
                     CGPoint p = [val CGPointValue];
-                    if (p.x + 3.0 > touchPoint.x && p.x - 3.0 < touchPoint.x && p.y + 3.0 > touchPoint.y && p.y - 3.0 < touchPoint.y ) {
+                    if (p.x + 3.0 > touchPoint.x && p.x - 3.0 < touchPoint.x) {
                         //Call the delegate and pass the point and index of the point
+                        
+                        UIView *point = [[UIView alloc]init];
+                        point.frame = CGRectMake(p.x-6, p.y-6, 12, 12);
+                        
+                        point.layer.cornerRadius = 6;
+                        point.backgroundColor = [UIColor whiteColor];
+                        point.tag = 996;
+                        point.layer.opacity = 0.5;
+                        [self addSubview:point];
+                        
+                        
+                        
+                        
                         [_delegate userClickedOnLineKeyPoint:touchPoint lineIndex:[_pathPoints indexOfObject:linePointsArray] andPointIndex:[linePointsArray indexOfObject:val]];
                     }
                 }

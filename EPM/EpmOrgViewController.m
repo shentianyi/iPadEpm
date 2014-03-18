@@ -548,7 +548,7 @@
 //每个section显示的标题
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
-    return @"Details";
+    return nil;
 }
 
 
@@ -569,31 +569,39 @@
 }
 
 - (IBAction)transactionTable:(id)sender {
-    [UIView transitionFromView:self.chartview
-                        toView:self.tableView
-                      duration:1
-                       options:UIViewAnimationOptionTransitionFlipFromRight | UIViewAnimationCurveEaseIn | UIViewAnimationOptionShowHideTransitionViews
-                    completion:^(BOOL finished)
-     {
-         self.chartview.hidden =YES;
-         self.tableView.hidden =NO;
-         
-     }
-     ];
+//    [UIView transitionFromView:self.chartview
+//                        toView:self.tableView
+//                      duration:1
+//                       options:UIViewAnimationOptionTransitionFlipFromRight | UIViewAnimationCurveEaseIn | UIViewAnimationOptionShowHideTransitionViews
+//                    completion:^(BOOL finished)
+//     {
+//         self.chartview.hidden =YES;
+//         self.tableView.hidden =NO;
+//         
+//     }
+//     ];
+    
+    [UIView transitionWithView:self.chartview duration:0.7 options:UIViewAnimationOptionTransitionFlipFromLeft animations:^{
+        self.chartview.hidden =YES;
+        self.tableView.hidden =NO;
+    
+    } completion:^(BOOL finish){
+      
+    }];
+    
 }
 
 - (IBAction)transactionChart:(id)sender {
-    [UIView transitionFromView:self.tableView
-                        toView:self.chartview
-                      duration:1
-                       options:UIViewAnimationOptionTransitionFlipFromRight | UIViewAnimationCurveEaseIn | UIViewAnimationOptionShowHideTransitionViews
-                    completion:^(BOOL finished)
-     {
-         self.chartview.hidden =NO;
-         self.tableView.hidden =YES;
-         
-     }
-     ];
+    
+    [UIView transitionWithView:self.tableView duration:0.7 options:UIViewAnimationOptionTransitionFlipFromLeft animations:^{
+    
+        self.chartview.hidden =NO;
+        self.tableView.hidden =YES;
+
+    } completion:^(BOOL finish){
+
+    }];
+
 }
 
 //绘制Cell
@@ -668,7 +676,15 @@
     //trend
     cell.backgroundColor = [UIColor clearColor];
     
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    
     return cell;
+}
+
+- (UIView *) tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    
+    return nil;
 }
 
 
@@ -806,6 +822,44 @@
 #pragma chart delegate
 -(void)userClickedOnLineKeyPoint:(CGPoint)point lineIndex:(NSInteger)lineIndex andPointIndex:(NSInteger)pointIndex{
     NSLog(@"Click Key on line %f, %f line index is %d and point index is %d",point.x, point.y,(int)lineIndex, (int)pointIndex);
+    
+    //not target line
+    if(lineIndex!=0 && lineIndex !=2){
+        NSString *date =[[self.tableData objectForKey:@"date"] objectAtIndex:pointIndex];
+        NSNumber *current =[[self.tableData objectForKey:@"current"] objectAtIndex:pointIndex];
+        NSString *unit = [[self.tableData objectForKey:@"unit"] objectAtIndex:pointIndex];
+        NSNumber *min=[[self.tableData objectForKey:@"target_min"] objectAtIndex:pointIndex];
+        NSNumber *max=[[self.tableData objectForKey:@"target_max"] objectAtIndex:pointIndex];
+        
+        NSString *convert = [EpmUtility convertDatetimeWithString:[date substringToIndex:18] OfPattern:@"yyyy-MM-dd HH:mm:ss" WithFormat:[EpmUtility timeStringOfFrequency:[[self.currentConditions objectForKey:@"frequency"] integerValue]] ];
+        
+        self.chartHeadTime.text = convert;
+        
+        self.chartHeadValue.text = [[NSString stringWithFormat:@"%0.2f",[current doubleValue]] stringByAppendingString:unit];
+        
+        self.chartHeadTarget.text = [NSString stringWithFormat:@"%0.2f-%0.2f %@",[min floatValue],[max floatValue],unit];
+        
+        
+        if([current doubleValue] < [min doubleValue]){
+            self.chartHeadCompletion.text = @"LOWER";
+            self.chartHeadCompletion.textColor = PNRed;
+        }
+        
+        if([current doubleValue] > [max doubleValue]){
+            
+            self.chartHeadCompletion.text = @"UPPER";
+            self.chartHeadCompletion.textColor = PNRed;
+
+        }
+        
+        
+        else{
+            self.chartHeadCompletion.text = @"In Range";
+            self.chartHeadCompletion.textColor = [UIColor whiteColor];
+        }
+
+        
+    }
 }
 
 -(void)userClickedOnLinePoint:(CGPoint)point lineIndex:(NSInteger)lineIndex{
