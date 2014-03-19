@@ -13,13 +13,17 @@
 + (NSString *) notificationWithStatusCode:(int)statusCode{
     NSString *msg;
     if (statusCode==401){
-        msg = @"You are not login, please login again";
+        msg = NSLocalizedString(@"NOT_LOGIN", nil);
     }
     else if(statusCode==403){
-        msg = @"Sorry, you are not authorized to view the content";
+        msg = NSLocalizedString(@"NOT_AUTHORIZED", nil);
+    }
+    else if(statusCode == 404) {
+        msg = NSLocalizedString(@"NOT_FOUND", nil);
+    
     }
     else {
-        msg = @"You might encounter an unknown problem. Try later.";
+        msg = NSLocalizedString(@"UNKNOW_NETWORK_PROBLEM", nil);
     }
     return msg;
 }

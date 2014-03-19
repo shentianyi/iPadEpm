@@ -37,7 +37,7 @@
 "Czg-yi-Yga.text" = "Improvement RBA -C Line Cleanup";
 
 /* Class = "IBUIButton"; normalTitle = "red"; ObjectID = "DF6-aS-YLk"; */
-"DF6-aS-YLk.normalTitle" = "红色";
+"DF6-aS-YLk.normalTitle" = "red";
 
 /* Class = "IBUILabel"; text = "Value"; ObjectID = "DIg-SC-BIa"; */
 "DIg-SC-BIa.text" = "数值";
@@ -70,7 +70,7 @@
 "NXw-dR-4g1.normalTitle" = "颜色";
 
 /* Class = "IBUIButton"; normalTitle = "black"; ObjectID = "Nf4-WY-uiJ"; */
-"Nf4-WY-uiJ.normalTitle" = "黑色";
+"Nf4-WY-uiJ.normalTitle" = "black";
 
 /* Class = "IBUILabel"; text = "Places."; ObjectID = "Oa8-fq-7Ok"; */
 "Oa8-fq-7Ok.text" = "我的公司机构";
@@ -118,7 +118,7 @@
 "ZuG-v8-m9f.normalTitle" = "删除";
 
 /* Class = "IBUIButton"; normalTitle = "white"; ObjectID = "aHj-Gi-8KU"; */
-"aHj-Gi-8KU.normalTitle" = "白色";
+"aHj-Gi-8KU.normalTitle" = "white";
 
 /* Class = "IBUITabBarItem"; title = "Dashboard"; ObjectID = "acW-dT-cKf"; */
 "acW-dT-cKf.title" = "仪表盘";
@@ -136,7 +136,7 @@
 "dGf-RH-vzT.text" = "关键指标摘要";
 
 /* Class = "IBUIButton"; normalTitle = "yellow"; ObjectID = "dPV-J7-hD5"; */
-"dPV-J7-hD5.normalTitle" = "黄色";
+"dPV-J7-hD5.normalTitle" = "yellow";
 
 /* Class = "IBUIButton"; normalTitle = "Reset"; ObjectID = "did-0T-7Xi"; */
 "did-0T-7Xi.normalTitle" = "重置";
@@ -211,7 +211,7 @@
 "pui-kz-4es.text" = "最大:";
 
 /* Class = "IBUILabel"; text = "LAST"; ObjectID = "sug-2B-sFn"; */
-"sug-2B-sFn.text" = "最后";
+"sug-2B-sFn.text" = "最近";
 
 /* Class = "IBUIButton"; normalTitle = "查看组织详细"; ObjectID = "tJ1-oS-f3w"; */
 "tJ1-oS-f3w.normalTitle" = "查看详细";

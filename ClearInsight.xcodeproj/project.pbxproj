@@ -20,6 +20,7 @@
 		055F84631889153D00D88BC4 /* EpmHttpUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 055F84621889153D00D88BC4 /* EpmHttpUtil.m */; };
 		055F84661889161500D88BC4 /* EpmSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 055F84651889161500D88BC4 /* EpmSettings.m */; };
 		0564116418D840A400ECF680 /* EpmSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0564116318D840A400ECF680 /* EpmSettingViewController.m */; };
+		0564116E18D9277600ECF680 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0564117018D9277600ECF680 /* Localizable.strings */; };
 		0566994C18B6E5AA0024AD32 /* EpmConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 0566994B18B6E5AA0024AD32 /* EpmConstants.m */; };
 		0566995518B7245D0024AD32 /* EpmColorPickViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0566995418B7245D0024AD32 /* EpmColorPickViewController.m */; };
 		056C3CD918ACAC5200820524 /* EpmSendMailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 056C3CD818ACAC5200820524 /* EpmSendMailController.m */; };
@@ -174,6 +175,8 @@
 		0564116918D9175700ECF680 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
 		0564116A18D9175700ECF680 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		0564116B18D9175700ECF680 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		0564116F18D9277600ECF680 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		0564117118D9277F00ECF680 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		0566994A18B6E5AA0024AD32 /* EpmConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EpmConstants.h; sourceTree = "<group>"; };
 		0566994B18B6E5AA0024AD32 /* EpmConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EpmConstants.m; sourceTree = "<group>"; };
 		0566995318B7245D0024AD32 /* EpmColorPickViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EpmColorPickViewController.h; sourceTree = "<group>"; };
@@ -537,6 +540,7 @@
 		05EA4DB7187FB00C00C53FEE = {
 			isa = PBXGroup;
 			children = (
+				0564117018D9277600ECF680 /* Localizable.strings */,
 				05984F9918CEFEFA0072B204 /* icon@2x.png */,
 				05984F9A18CEFEFA0072B204 /* icon.png */,
 				05EA4DC9187FB00C00C53FEE /* EPM */,
@@ -825,6 +829,7 @@
 				05D2C0AC1884B6C600DBBF8C /* ipad-icon-152.png in Resources */,
 				05984FA218CF03AA0072B204 /* trend-up.png in Resources */,
 				05D2C0911884518200DBBF8C /* KPI-background.png in Resources */,
+				0564116E18D9277600ECF680 /* Localizable.strings in Resources */,
 				05984FA018CF03AA0072B204 /* trend-down.png in Resources */,
 				05D2C0AA1884B6C600DBBF8C /* ipad-icon-76.png in Resources */,
 				05F6CE4C18C03E990040614F /* Photo.png in Resources */,
@@ -969,6 +974,15 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		0564117018D9277600ECF680 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				0564116F18D9277600ECF680 /* en */,
+				0564117118D9277F00ECF680 /* zh-Hans */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
 		05EA4DCC187FB00C00C53FEE /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (

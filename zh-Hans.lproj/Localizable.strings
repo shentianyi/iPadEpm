@@ -1,0 +1,48 @@
+/* 
+  Localizable.strings
+  ClearInsight
+
+  Created by tianyi on 14-3-19.
+  Copyright (c) 2014年 Cao Zhuo Information&Technology Co.,Ltd. All rights reserved.
+*/
+"SERVICE_DOWN_NETWORK" = "对不起，无法连接到网络，请检查您的设备网络连接";
+
+"PULL_TO_UPDATE" = "下拉更新";
+
+"LOADING" = "正在加载...";
+
+"NEED_ONE_MAIL" = "请填写至少一个联系人邮件地址";
+
+"ATTACHMENT_NOT_FINISHED" = "附件上传尚未完成，请稍候再发送";
+
+"NEED_MORE_INFO" = "需要填写更多信息";
+
+"ENTER_AN_EMAIL_ADDRESS" = "请填写一个邮件地址";
+
+"ENTER_VALID_MAIL" = "请填写正确的邮件地址";
+
+"NOT_LOGIN" = "您尚未登录或已经注销，请再次登录";
+
+"NOT_AUTHORIZED" = "对不起，您没有权限阅览此内容";
+
+"UNKNOW_NETWORK_PROBLEM" = "我们遇到了一个未知的网络问题，请检查您的互联网连接后重试";
+
+"NOT_FOUND" = "对不起，你查找的目标不存在";
+
+"LOWER" = "低于下限";
+
+"UPPER" = "高于上限";
+
+"NORMAL" = "正常范围";
+
+"DAY" = "天";
+
+"MONTH" ="月";
+
+"WEEK" = "周";
+
+"QUARTER" = "季度";
+
+"YEAR" = "年";
+
+"WRONG_LOGIN" = "用户名密码错误，请重试";

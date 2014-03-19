@@ -39,7 +39,7 @@
           failure:^(AFHTTPRequestOperation *operation, NSError *error) {
               NSLog(@"%@", [operation response]);
               
-              UIAlertView *av = [[UIAlertView alloc] initWithTitle:@"Service is temporily down. Please try again later."
+              UIAlertView *av = [[UIAlertView alloc] initWithTitle: NSLocalizedString(@"SERVICE_DOWN_NETWORK", nil)
                                                            message:@""
                                                           delegate:nil
                                                  cancelButtonTitle:@"OK" otherButtonTitles:nil];

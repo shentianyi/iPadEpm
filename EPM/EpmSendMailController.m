@@ -455,11 +455,11 @@
     }
     
     if(!self.contactList || self.contactList.count==0){
-        msg = @"Please add at least one email address";
+        msg = NSLocalizedString(@"NEED_ONE_MAIL", nil);
     
     }
     if(![self attachmentAllUploaded]){
-        msg = @"attachment uploading is not finished";
+        msg = NSLocalizedString(@"ATTACHMENT_NOT_FINISHED", nil);
     }
     
     if(msg == nil){
@@ -493,7 +493,7 @@
     }
     
     else {
-        UIAlertView *av = [[UIAlertView alloc]initWithTitle:@"need more information" message:msg delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        UIAlertView *av = [[UIAlertView alloc]initWithTitle:NSLocalizedString(@"NEED_MORE_INFO", nil) message:msg delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
         [av show];
     }
     
@@ -510,12 +510,12 @@
     NSString *msg = @"";
     
     if([self.tfNewMail.text length]==0){
-        msg = @"Please enter an email address";
+        msg = NSLocalizedString(@"ENTER_AN_EMAIL_ADDRESS", nil);
     }
     
     else{
         if (![EpmUtility validateEmail:self.tfNewMail.text]){
-            msg= @"Please enter a valid email address";
+            msg= NSLocalizedString(@"ENTER_VALID_MAIL", nil);
         }
         
     }

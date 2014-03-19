@@ -132,7 +132,7 @@
     _videoDevice = [AVCaptureDevice
                     defaultDeviceWithMediaType:AVMediaTypeVideo];
     if (!_videoDevice) {
-        NSLog(@"No video camera on this device!");
+        
         return;
     }
     // 3

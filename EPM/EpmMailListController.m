@@ -41,7 +41,7 @@
     
     UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
     [refreshControl addTarget:self action:@selector(loadData:) forControlEvents:UIControlEventValueChanged];
-    refreshControl.attributedTitle = [[NSAttributedString alloc] initWithString:@"Pull to update"];
+    refreshControl.attributedTitle = [[NSAttributedString alloc] initWithString:NSLocalizedString(@"PULL_TO_UPDATE", nil)];
     
     [self.listTableView addSubview:refreshControl];
     
@@ -61,14 +61,14 @@
 
 -(void)resetRefreshControl:(UIRefreshControl*)refreshControl{
     [refreshControl endRefreshing];
-    [refreshControl setAttributedTitle: [[NSAttributedString alloc] initWithString:@"Pull to update"]];
+    [refreshControl setAttributedTitle: [[NSAttributedString alloc] initWithString:NSLocalizedString(@"PULL_TO_UPDATE", nil)]];
 
 }
 
 -(void)loadData:(id) sender{
     if(sender){
         
-    [sender setAttributedTitle: [[NSAttributedString alloc] initWithString:@"loading..."]];
+    [sender setAttributedTitle: [[NSAttributedString alloc] initWithString:NSLocalizedString(@"LOADING", nil)]];
     
     }
     
@@ -91,7 +91,7 @@
             
         }
         else {
-            UIAlertView *av = [[UIAlertView alloc] initWithTitle:@"Service is temporily down. Please try again later."
+            UIAlertView *av = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"SERVICE_DOWN_NETWORK", nil)
                                                          message:@""
                                                         delegate:nil
                                                cancelButtonTitle:@"OK" otherButtonTitles:nil];
@@ -102,7 +102,7 @@
          failure:^(AFHTTPRequestOperation *operation, NSError *error) {
              NSLog(@"%@", [operation response]);
              
-             UIAlertView *av = [[UIAlertView alloc] initWithTitle:@"Service is temporily down. Please try again later."
+             UIAlertView *av = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"SERVICE_DOWN_NETWORK", nil)
                                                           message:@""
                                                          delegate:nil
                                                 cancelButtonTitle:@"OK" otherButtonTitles:nil];
@@ -160,8 +160,6 @@
     
     NSDictionary *mail = [mails objectAtIndex:indexPath.row];
     
-   // NSLog(@"%d .section,%d .row:%@",indexPath.section,indexPath.row,mail);
-    
     cell.title.text =[mail objectForKey:@"title"];
     cell.receiver.text =[mail objectForKey:@"receivers"];
   
@@ -173,8 +171,6 @@
     else {
         cell.phtoIndicator.image =[UIImage imageNamed:@"Photo-gray.png"];
     }
-    
-    NSLog(@"kpiid %@ mail id %@",[mail objectForKey:@"kpi_id"],[mail objectForKey:@"id"]);
 
     
     if([mail objectForKey:@"kpi_id"] && ![[mail objectForKey:@"kpi_id" ] isKindOfClass:[NSNull class]]){
@@ -195,7 +191,6 @@
     NSArray *mails = [self.mailList objectAtIndex:indexPath.section];
     NSDictionary *mail = [mails objectAtIndex:indexPath.row];
     
-    //to-do remove webview and picture
     for(UIView *subView in self.scrollView.subviews){
         if(([subView isMemberOfClass:[UIImageView class]]&& subView.tag != 991) || [subView isMemberOfClass:[UIWebView class]]){
             [subView removeFromSuperview];

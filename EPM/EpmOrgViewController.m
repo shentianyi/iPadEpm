@@ -313,7 +313,7 @@
 }
 
 -(NSArray *)freqSequence{
-    return @[@"Day",@"Week",@"Month",@"Quarter",@"Year"];
+    return @[NSLocalizedString(@"DAY", nil),NSLocalizedString(@"WEEK", nil),NSLocalizedString(@"MONTH", nil),NSLocalizedString(@"QUARTER", nil),NSLocalizedString(@"YEAR", nil)];
 }
 
 
@@ -659,20 +659,20 @@
     float completion=0.0;
     if([current doubleValue] < [min doubleValue]){
         completion = [current floatValue] / ([min floatValue]+0.0000000001);
-        cell.inrange.text = [NSString stringWithFormat:@"%d%% lower",(int)completion*100];
+        cell.inrange.text = [NSString stringWithFormat:@"%d%% %@",(int)completion*100,NSLocalizedString(@"LOWER", nil)];
         cell.inrange.textColor = PNRed;
     }
     
     if([current doubleValue] > [max doubleValue]){
         completion = [current floatValue] / ([max floatValue]+0.0000000001);
 
-        cell.inrange.text = [NSString stringWithFormat:@"%d%% upper",(int)completion*100];
+        cell.inrange.text = [NSString stringWithFormat:@"%d%% %@",(int)completion*100,NSLocalizedString(@"UPPER", nil)];
         cell.inrange.textColor = PNRed;
     }
     
     
     else{
-        cell.inrange.text = @"normal";
+        cell.inrange.text = NSLocalizedString(@"NORMAL", nil);
         cell.inrange.textColor = [UIColor whiteColor];
       
     }
@@ -699,27 +699,27 @@
     
     if(scrollView == self.frequency){
         NSString *freq = [[self freqSequence] objectAtIndex: [self scrollViewCurrentPage:scrollView]];
-        if([freq isEqualToString:@"Day"]){
+        if([freq isEqualToString:NSLocalizedString(@"DAY", nil)]){
             [self.currentConditions setObject:@"100" forKey:@"frequency"];
             needRefresh = YES;
         
         }
-        if([freq isEqualToString:@"Week"]){
+        if([freq isEqualToString:NSLocalizedString(@"WEEK", nil)]){
             [self.currentConditions setObject:@"200" forKey:@"frequency"];
             needRefresh = YES;
             
         }
-        if([freq isEqualToString:@"Month"]){
+        if([freq isEqualToString:NSLocalizedString(@"MONTH", nil)]){
             [self.currentConditions setObject:@"300" forKey:@"frequency"];
             needRefresh = YES;
             
         }
-        if([freq isEqualToString:@"Quarter"]){
+        if([freq isEqualToString:NSLocalizedString(@"QUARTER", nil)]){
             [self.currentConditions setObject:@"400" forKey:@"frequency"];
             needRefresh = YES;
             
         }
-        if([freq isEqualToString:@"Year"]){
+        if([freq isEqualToString:NSLocalizedString(@"YEAR", nil)]){
             [self.currentConditions setObject:@"500" forKey:@"frequency"];
             needRefresh = YES;
             
@@ -825,7 +825,7 @@
 
 #pragma chart delegate
 -(void)userClickedOnLineKeyPoint:(CGPoint)point lineIndex:(NSInteger)lineIndex andPointIndex:(NSInteger)pointIndex{
-    NSLog(@"Click Key on line %f, %f line index is %d and point index is %d",point.x, point.y,(int)lineIndex, (int)pointIndex);
+   
     
     //not target line
     if(lineIndex!=0 && lineIndex !=2){
@@ -845,20 +845,20 @@
         
         
         if([current doubleValue] < [min doubleValue]){
-            self.chartHeadCompletion.text = @"LOWER";
+            self.chartHeadCompletion.text = NSLocalizedString(@"LOWER", nil);
             self.chartHeadCompletion.textColor = PNRed;
         }
         
         if([current doubleValue] > [max doubleValue]){
             
-            self.chartHeadCompletion.text = @"UPPER";
+            self.chartHeadCompletion.text = NSLocalizedString(@"UPPER", nil);
             self.chartHeadCompletion.textColor = PNRed;
 
         }
         
         
         else{
-            self.chartHeadCompletion.text = @"In Range";
+            self.chartHeadCompletion.text = NSLocalizedString(@"NORMAL", nil);
             self.chartHeadCompletion.textColor = [UIColor whiteColor];
         }
 
@@ -867,8 +867,7 @@
 }
 
 -(void)userClickedOnLinePoint:(CGPoint)point lineIndex:(NSInteger)lineIndex{
-    NSLog(@"Click on line %f, %f, line index is %d",point.x, point.y, (int)lineIndex);
-}
+    }
 
 
 
