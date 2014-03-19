@@ -1,0 +1,241 @@
+
+/* Class = "IBUILabel"; text = "E1 Effeciency"; ObjectID = "0fR-Go-7o7"; */
+"0fR-Go-7o7.text" = "E1 Effeciency";
+
+/* Class = "IBUILabel"; text = "0"; ObjectID = "2c4-o6-Tja"; */
+"2c4-o6-Tja.text" = "0";
+
+/* Class = "IBUITextField"; placeholder = "E-MAIL"; ObjectID = "4GB-Zu-QzR"; */
+"4GB-Zu-QzR.placeholder" = "E-MAIL";
+
+/* Class = "IBUILabel"; text = "Assign to"; ObjectID = "4ZX-42-kvS"; */
+"4ZX-42-kvS.text" = "Assign to";
+
+/* Class = "IBUILabel"; text = "Insights."; ObjectID = "4lJ-k7-Nc9"; */
+"4lJ-k7-Nc9.text" = "Insights.";
+
+/* Class = "IBUIBarButtonItem"; title = "New Notification"; ObjectID = "6mh-or-myO"; */
+"6mh-or-myO.title" = "New Notification";
+
+/* Class = "IBUILabel"; text = "ClearInsight"; ObjectID = "79s-4L-ZxX"; */
+"79s-4L-ZxX.text" = "ClearInsight";
+
+/* Class = "IBUILabel"; text = "14-06-01"; ObjectID = "9Er-1o-NLT"; */
+"9Er-1o-NLT.text" = "14-06-01";
+
+/* Class = "IBUILabel"; text = "Target"; ObjectID = "BKu-R9-DtS"; */
+"BKu-R9-DtS.text" = "Target";
+
+/* Class = "IBUILabel"; text = "Time"; ObjectID = "C0r-54-v5v"; */
+"C0r-54-v5v.text" = "Time";
+
+/* Class = "IBUILabel"; text = "Value"; ObjectID = "CpY-BH-H3Y"; */
+"CpY-BH-H3Y.text" = "Value";
+
+/* Class = "IBUILabel"; text = "Range"; ObjectID = "Cq6-0q-iyk"; */
+"Cq6-0q-iyk.text" = "Range";
+
+/* Class = "IBUILabel"; text = "Improvement RBA -C Line Cleanup"; ObjectID = "Czg-yi-Yga"; */
+"Czg-yi-Yga.text" = "Improvement RBA -C Line Cleanup";
+
+/* Class = "IBUIButton"; normalTitle = "red"; ObjectID = "DF6-aS-YLk"; */
+"DF6-aS-YLk.normalTitle" = "red";
+
+/* Class = "IBUILabel"; text = "Value"; ObjectID = "DIg-SC-BIa"; */
+"DIg-SC-BIa.text" = "Value";
+
+/* Class = "IBUILabel"; text = "Max."; ObjectID = "Dcj-XN-h9o"; */
+"Dcj-XN-h9o.text" = "Max.";
+
+/* Class = "IBUILabel"; text = "Currently No Summery"; ObjectID = "G51-zb-6eD"; */
+"G51-zb-6eD.text" = "Currently No Summery";
+
+/* Class = "IBUILabel"; text = "0"; ObjectID = "ICj-qV-hwO"; */
+"ICj-qV-hwO.text" = "0";
+
+/* Class = "IBUIButton"; normalTitle = "Save"; ObjectID = "ILJ-UV-J9G"; */
+"ILJ-UV-J9G.normalTitle" = "Save";
+
+/* Class = "IBUILabel"; text = "peter.xu@leoni.com;wang.peter.wang@leoni.com;yuying.hang@leoni.com"; ObjectID = "Jrp-uW-te4"; */
+"Jrp-uW-te4.text" = "peter.xu@leoni.com;wang.peter.wang@leoni.com;yuying.hang@leoni.com";
+
+/* Class = "IBUILabel"; text = "Date"; ObjectID = "L37-pF-hAu"; */
+"L37-pF-hAu.text" = "Date";
+
+/* Class = "IBUILabel"; text = "14-06-01"; ObjectID = "LdX-9d-WVQ"; */
+"LdX-9d-WVQ.text" = "14-06-01";
+
+/* Class = "IBUILabel"; text = "Contacts"; ObjectID = "NVf-ga-Q0Q"; */
+"NVf-ga-Q0Q.text" = "Contacts";
+
+/* Class = "IBUIButton"; normalTitle = "Color"; ObjectID = "NXw-dR-4g1"; */
+"NXw-dR-4g1.normalTitle" = "Color";
+
+/* Class = "IBUIButton"; normalTitle = "black"; ObjectID = "Nf4-WY-uiJ"; */
+"Nf4-WY-uiJ.normalTitle" = "black";
+
+/* Class = "IBUILabel"; text = "Places."; ObjectID = "Oa8-fq-7Ok"; */
+"Oa8-fq-7Ok.text" = "Places.";
+
+/* Class = "IBUILabel"; text = "Improvement"; ObjectID = "OoH-ri-SyM"; */
+"OoH-ri-SyM.text" = "Improvement";
+
+/* Class = "IBUILabel"; text = "KPIs"; ObjectID = "PJC-Lv-dB8"; */
+"PJC-Lv-dB8.text" = "KPIs";
+
+/* Class = "IBUILabel"; text = "christian.zuernstein@leoni.com"; ObjectID = "RVs-gB-bPZ"; */
+"RVs-gB-bPZ.text" = "christian.zuernstein@leoni.com";
+
+/* Class = "IBUILabel"; text = "0"; ObjectID = "Rda-Si-as5"; */
+"Rda-Si-as5.text" = "0";
+
+/* Class = "IBUITextField"; placeholder = "new mail address"; ObjectID = "Syz-g1-aXS"; */
+"Syz-g1-aXS.placeholder" = "new mail address";
+
+/* Class = "IBUIButton"; normalTitle = "Login"; ObjectID = "Thi-af-phU"; */
+"Thi-af-phU.normalTitle" = "Login";
+
+/* Class = "IBUITabBarItem"; title = "Organization"; ObjectID = "UMX-0R-psN"; */
+"UMX-0R-psN.title" = "Organization";
+
+/* Class = "IBUILabel"; text = "Draw Note"; ObjectID = "VE9-Ug-WUF"; */
+"VE9-Ug-WUF.text" = "Draw Note";
+
+/* Class = "IBUILabel"; text = "0"; ObjectID = "WCs-cV-gkP"; */
+"WCs-cV-gkP.text" = "0";
+
+/* Class = "IBUILabel"; text = "min:"; ObjectID = "XF4-gW-LWC"; */
+"XF4-gW-LWC.text" = "min:";
+
+/* Class = "IBUILabel"; text = "Get the effeciency of the production line partGet the effeciency of the production line part"; ObjectID = "XGf-hR-tlp"; */
+"XGf-hR-tlp.text" = "Get the effeciency of the production line partGet the effeciency of the production line part";
+
+/* Class = "IBUILabel"; text = "Out of Range"; ObjectID = "Ymb-ne-dw5"; */
+"Ymb-ne-dw5.text" = "Out of Range";
+
+/* Class = "IBUILabel"; text = "1000"; ObjectID = "ZLV-wy-1j5"; */
+"ZLV-wy-1j5.text" = "1000";
+
+/* Class = "IBUIButton"; normalTitle = "Remove"; ObjectID = "ZuG-v8-m9f"; */
+"ZuG-v8-m9f.normalTitle" = "Remove";
+
+/* Class = "IBUIButton"; normalTitle = "white"; ObjectID = "aHj-Gi-8KU"; */
+"aHj-Gi-8KU.normalTitle" = "white";
+
+/* Class = "IBUITabBarItem"; title = "Dashboard"; ObjectID = "acW-dT-cKf"; */
+"acW-dT-cKf.title" = "Dashboard";
+
+/* Class = "IBUITextField"; text = "untitled letter"; ObjectID = "beE-T2-vfO"; */
+"beE-T2-vfO.text" = "untitled letter";
+
+/* Class = "IBUILabel"; text = "2014-01-13"; ObjectID = "bmQ-YS-6Ec"; */
+"bmQ-YS-6Ec.text" = "2014-01-13";
+
+/* Class = "IBUILabel"; text = "In Range"; ObjectID = "cP4-bz-LYE"; */
+"cP4-bz-LYE.text" = "In Range";
+
+/* Class = "IBUILabel"; text = "Summery"; ObjectID = "dGf-RH-vzT"; */
+"dGf-RH-vzT.text" = "Summery";
+
+/* Class = "IBUIButton"; normalTitle = "yellow"; ObjectID = "dPV-J7-hD5"; */
+"dPV-J7-hD5.normalTitle" = "yellow";
+
+/* Class = "IBUIButton"; normalTitle = "Reset"; ObjectID = "did-0T-7Xi"; */
+"did-0T-7Xi.normalTitle" = "Reset";
+
+/* Class = "IBUITabBarItem"; title = "Settings"; ObjectID = "eAs-Wc-N2K"; */
+"eAs-Wc-N2K.title" = "Settings";
+
+/* Class = "IBUILabel"; text = "Completion"; ObjectID = "eJQ-R6-vEQ"; */
+"eJQ-R6-vEQ.text" = "Completion";
+
+/* Class = "IBUIButton"; normalTitle = "Done"; ObjectID = "eYl-Sr-Hbl"; */
+"eYl-Sr-Hbl.normalTitle" = "Done";
+
+/* Class = "IBUIButton"; normalTitle = "Logout"; ObjectID = "gwn-C1-YVw"; */
+"gwn-C1-YVw.normalTitle" = "Logout";
+
+/* Class = "IBUILabel"; text = "peter.xu@leoni.com;wang.peter.wang@leoni.com;yuying.hang@leoni.com"; ObjectID = "hY1-GS-BpE"; */
+"hY1-GS-BpE.text" = "peter.xu@leoni.com;wang.peter.wang@leoni.com;yuying.hang@leoni.com";
+
+/* Class = "IBUILabel"; text = "Improvement"; ObjectID = "he0-A4-Aoh"; */
+"he0-A4-Aoh.text" = "Improvement";
+
+/* Class = "IBUILabel"; text = "Average"; ObjectID = "hwF-1u-YAc"; */
+"hwF-1u-YAc.text" = "Average";
+
+/* Class = "IBUILabel"; text = "Sum"; ObjectID = "jBc-ov-cng"; */
+"jBc-ov-cng.text" = "Sum";
+
+/* Class = "IBUILabel"; text = "14-04-12"; ObjectID = "jPU-9f-33b"; */
+"jPU-9f-33b.text" = "14-04-12";
+
+/* Class = "IBUILabel"; text = "0"; ObjectID = "jy3-a3-6Yr"; */
+"jy3-a3-6Yr.text" = "0";
+
+/* Class = "IBUILabel"; text = "Improvement"; ObjectID = "kS9-ea-mrU"; */
+"kS9-ea-mrU.text" = "Improvement";
+
+/* Class = "IBUILabel"; text = "Completion"; ObjectID = "lCy-k5-zMN"; */
+"lCy-k5-zMN.text" = "Completion";
+
+/* Class = "IBUILabel"; text = "Integrate more organization's data into ClearInsight and get more insight of your company"; ObjectID = "lGx-NM-u2z"; */
+"lGx-NM-u2z.text" = "Integrate more organization's data into ClearInsight and get more insight of your company";
+
+/* Class = "IBUILabel"; text = "C-RBA"; ObjectID = "ltF-zU-n5k"; */
+"ltF-zU-n5k.text" = "C-RBA";
+
+/* Class = "IBUILabel"; text = "KPIs"; ObjectID = "mcb-W5-04c"; */
+"mcb-W5-04c.text" = "KPIs";
+
+/* Class = "IBUILabel"; text = "Improvement RBA -C Line Cleanup"; ObjectID = "mko-tF-aHx"; */
+"mko-tF-aHx.text" = "Improvement RBA -C Line Cleanup";
+
+/* Class = "IBUITextField"; placeholder = "PASSWORD"; ObjectID = "nnP-sk-j9o"; */
+"nnP-sk-j9o.placeholder" = "PASSWORD";
+
+/* Class = "IBUILabel"; text = "ClearInsight"; ObjectID = "ntD-la-kuj"; */
+"ntD-la-kuj.text" = "ClearInsight";
+
+/* Class = "IBUILabel"; text = "Give you clear insight"; ObjectID = "ooJ-me-XQz"; */
+"ooJ-me-XQz.text" = "Give you clear insight";
+
+/* Class = "IBUILabel"; text = "Min."; ObjectID = "pBc-qr-uJi"; */
+"pBc-qr-uJi.text" = "Min.";
+
+/* Class = "IBUILabel"; text = "Your title here"; ObjectID = "pdd-4Y-NnE"; */
+"pdd-4Y-NnE.text" = "Your title here";
+
+/* Class = "IBUILabel"; text = "8000"; ObjectID = "pme-tI-1yP"; */
+"pme-tI-1yP.text" = "8000";
+
+/* Class = "IBUILabel"; text = "max:"; ObjectID = "pui-kz-4es"; */
+"pui-kz-4es.text" = "max:";
+
+/* Class = "IBUILabel"; text = "LAST"; ObjectID = "sug-2B-sFn"; */
+"sug-2B-sFn.text" = "LAST";
+
+/* Class = "IBUIButton"; normalTitle = "View Details"; ObjectID = "tJ1-oS-f3w"; */
+"tJ1-oS-f3w.normalTitle" = "View Details";
+
+/* Class = "IBUILabel"; text = "0"; ObjectID = "wmI-bM-A97"; */
+"wmI-bM-A97.text" = "0";
+
+/* Class = "IBUILabel"; text = "Trend"; ObjectID = "xg9-5L-KWx"; */
+"xg9-5L-KWx.text" = "Trend";
+
+/* Class = "IBUILabel"; text = "Label"; ObjectID = "xwf-Sm-gz8"; */
+"xwf-Sm-gz8.text" = "Label";
+
+/* Class = "IBUILabel"; text = "Christian Zuerstein"; ObjectID = "yDy-jL-Jkx"; */
+"yDy-jL-Jkx.text" = "Christian Zuerstein";
+
+"5dl-ST-6AT.text" = "My Dashboards";
+
+"6Wx-O4-Shx.text" = "New Notification";
+
+"1fK-aa-jSj.title" = "Welcome";
+
+"QRf-Rd-AlZ.title" = "Scan";
+
+"bVh-bs-FfR.title" = "Improvement";

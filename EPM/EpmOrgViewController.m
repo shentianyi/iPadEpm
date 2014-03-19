@@ -423,17 +423,21 @@
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
+    UICollectionViewCell *cell = [collectionView cellForItemAtIndexPath:indexPath];
+    UIView *snap = [cell snapshotViewAfterScreenUpdates:YES];
+    snap.frame = cell.frame;
+    [self.collectionView addSubview:snap];
+    [UIView animateWithDuration:0.5 animations:^{
+        [snap setBounds:self.upperContainer.bounds];
+        snap.layer.opacity = 0;
+    } completion:^(BOOL finished) {
+        [snap removeFromSuperview];
+    }];
+
     
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateFormat:@"yyyy-MM-dd"];
     [self loadDataForKpi:[self.kpis objectAtIndex:indexPath.row]];
-  //  self.currentConditions = [NSDictionary dictionaryWithObjectsAndKeys:[[self.kpis objectAtIndex:indexPath.row] objectForKey:@"id"],@"kpi_id",@"100",@"frequency",[self.entityGroup objectForKey:@"id"],@"entity_group_id",[formatter stringFromDate:[NSDate dateWithTimeIntervalSinceNow:-1296000]],@"start_time",[formatter stringFromDate:[NSDate date]], @"end_time",[self.entityGroup objectForKey:@"name"],@"entity_group_name",[[self.kpis objectAtIndex:indexPath.row] objectForKey:@"name" ],@"kpi_name",nil];
-//
-//    
-//    [self BeginLoadWebWithKpi:[self.kpis objectAtIndex:indexPath.row]];
-   // [self getDataForTable];
-    
-   // self.navigationItem.title = [self.entityGroup objectForKey:@"name"];
     
 }
 

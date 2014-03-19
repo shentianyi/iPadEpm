@@ -19,6 +19,7 @@
 		0519BA8218BC48240029447E /* EpmMailListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0519BA8118BC48240029447E /* EpmMailListController.m */; };
 		055F84631889153D00D88BC4 /* EpmHttpUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 055F84621889153D00D88BC4 /* EpmHttpUtil.m */; };
 		055F84661889161500D88BC4 /* EpmSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 055F84651889161500D88BC4 /* EpmSettings.m */; };
+		0564116418D840A400ECF680 /* EpmSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0564116318D840A400ECF680 /* EpmSettingViewController.m */; };
 		0566994C18B6E5AA0024AD32 /* EpmConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 0566994B18B6E5AA0024AD32 /* EpmConstants.m */; };
 		0566995518B7245D0024AD32 /* EpmColorPickViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0566995418B7245D0024AD32 /* EpmColorPickViewController.m */; };
 		056C3CD918ACAC5200820524 /* EpmSendMailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 056C3CD818ACAC5200820524 /* EpmSendMailController.m */; };
@@ -167,6 +168,12 @@
 		055F84621889153D00D88BC4 /* EpmHttpUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EpmHttpUtil.m; sourceTree = "<group>"; };
 		055F84641889161400D88BC4 /* EpmSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EpmSettings.h; sourceTree = "<group>"; };
 		055F84651889161500D88BC4 /* EpmSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EpmSettings.m; sourceTree = "<group>"; };
+		0564116218D840A400ECF680 /* EpmSettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EpmSettingViewController.h; sourceTree = "<group>"; };
+		0564116318D840A400ECF680 /* EpmSettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EpmSettingViewController.m; sourceTree = "<group>"; };
+		0564116818D916C600ECF680 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
+		0564116918D9175700ECF680 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
+		0564116A18D9175700ECF680 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		0564116B18D9175700ECF680 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		0566994A18B6E5AA0024AD32 /* EpmConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EpmConstants.h; sourceTree = "<group>"; };
 		0566994B18B6E5AA0024AD32 /* EpmConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EpmConstants.m; sourceTree = "<group>"; };
 		0566995318B7245D0024AD32 /* EpmColorPickViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EpmColorPickViewController.h; sourceTree = "<group>"; };
@@ -624,6 +631,8 @@
 				0519BA8118BC48240029447E /* EpmMailListController.m */,
 				05F6CE4418C02B590040614F /* EpmOrgOverviewController.h */,
 				05F6CE4518C02B590040614F /* EpmOrgOverviewController.m */,
+				0564116218D840A400ECF680 /* EpmSettingViewController.h */,
+				0564116318D840A400ECF680 /* EpmSettingViewController.m */,
 			);
 			path = EPM;
 			sourceTree = "<group>";
@@ -782,6 +791,7 @@
 			knownRegions = (
 				en,
 				Base,
+				"zh-Hans",
 			);
 			mainGroup = 05EA4DB7187FB00C00C53FEE;
 			productRefGroup = 05EA4DC1187FB00C00C53FEE /* Products */;
@@ -925,6 +935,7 @@
 				0576D1B018AC64EF00AD75AB /* UIImageView+WebCache.m in Sources */,
 				0576D1AE18AC64EF00AD75AB /* UIImage+MultiFormat.m in Sources */,
 				0576D1AF18AC64EF00AD75AB /* UIImage+WebP.m in Sources */,
+				0564116418D840A400ECF680 /* EpmSettingViewController.m in Sources */,
 				0576D1AC18AC64EF00AD75AB /* UIButton+WebCache.m in Sources */,
 				05D2C00E1881305900DBBF8C /* EpmLoginViewController.m in Sources */,
 				0576D1A418AC64EF00AD75AB /* NSData+GIF.m in Sources */,
@@ -962,6 +973,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				05EA4DCD187FB00C00C53FEE /* en */,
+				0564116A18D9175700ECF680 /* zh-Hans */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -970,6 +982,8 @@
 			isa = PBXVariantGroup;
 			children = (
 				05EA4DD6187FB00C00C53FEE /* Base */,
+				0564116818D916C600ECF680 /* en */,
+				0564116918D9175700ECF680 /* zh-Hans */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -978,6 +992,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				05EA4DEF187FB00C00C53FEE /* en */,
+				0564116B18D9175700ECF680 /* zh-Hans */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";

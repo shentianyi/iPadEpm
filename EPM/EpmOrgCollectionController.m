@@ -134,8 +134,9 @@
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-
-    [self performSegueWithIdentifier:@"viewOrgKpi" sender:[self.Organizations objectAtIndex:indexPath.row]];
+    
+    
+  [self performSegueWithIdentifier:@"viewOrgKpi" sender:[self.Organizations objectAtIndex:indexPath.row]];
     
 }
 

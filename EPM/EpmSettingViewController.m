@@ -7,7 +7,7 @@
 //
 
 #import "EpmSettingViewController.h"
-
+#import "AFNetworking.h"
 @interface EpmSettingViewController ()
 
 @end
@@ -22,6 +22,33 @@
     }
     return self;
 }
+
+
+- (IBAction)logout:(id)sender {
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    
+    
+    NSDictionary *params = nil;
+    
+    
+    [manager DELETE: [NSString stringWithFormat:@"%@%@",[EpmSettings getEpmUrlSettingsWithKey: @"baseUrl"],[EpmSettings getEpmUrlSettingsWithKey: @"logout"] ] parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        [self performSegueWithIdentifier:@"logout" sender:nil];
+       
+    }
+     
+          failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+              NSLog(@"%@", [operation response]);
+              
+              UIAlertView *av = [[UIAlertView alloc] initWithTitle:@"Service is temporily down. Please try again later."
+                                                           message:@""
+                                                          delegate:nil
+                                                 cancelButtonTitle:@"OK" otherButtonTitles:nil];
+              [av show];
+          }];
+
+}
+
+
 
 - (void)viewDidLoad
 {
