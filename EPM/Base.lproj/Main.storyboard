@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5053" systemVersion="12E55" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" initialViewController="M3C-3t-DnL">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5053" systemVersion="13B42" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" initialViewController="M3C-3t-DnL">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
@@ -139,9 +139,9 @@
         <scene sceneID="D4R-3u-wBg">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="1bJ-ix-k2p" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Dashboard" image="BUTTON-dashboard.png" id="acW-dT-cKf">
+                    <tabBarItem key="tabBarItem" title="Dashboard" image="tabBarIcon-dashboard" id="acW-dT-cKf">
                         <inset key="imageInsets" minX="5" minY="0.0" maxX="0.0" maxY="0.0"/>
-                        <offsetWrapper key="titlePositionAdjustment" horizontal="3" vertical="-2"/>
+                        <offsetWrapper key="titlePositionAdjustment" horizontal="3" vertical="0.0"/>
                     </tabBarItem>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Ogq-83-Bt8">
@@ -171,7 +171,7 @@
                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
                             <inset key="sectionInset" minX="60" minY="10" maxX="60" maxY="30"/>
                         </collectionViewFlowLayout>
-                        <imageView key="backgroundView" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="draft.png" id="Kkb-OD-wd3">
+                        <imageView key="backgroundView" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="draft" id="Kkb-OD-wd3">
                             <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         </imageView>
@@ -260,7 +260,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="draft.png" id="WUe-sT-jnK">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="draft" id="WUe-sT-jnK">
                                 <rect key="frame" x="-21" y="0.0" width="789" height="1056"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
@@ -712,7 +712,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="draft.png" id="4ZB-77-VcZ">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="draft" id="4ZB-77-VcZ">
                                 <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </imageView>
@@ -1118,7 +1118,7 @@
                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
                             <inset key="sectionInset" minX="50" minY="50" maxX="100" maxY="50"/>
                         </collectionViewFlowLayout>
-                        <imageView key="backgroundView" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="draft.png" id="gBg-IO-bsE">
+                        <imageView key="backgroundView" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="draft" id="gBg-IO-bsE">
                             <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         </imageView>
@@ -1222,7 +1222,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="login-bg.png" id="gEZ-EC-EQW">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Login" id="gEZ-EC-EQW">
                                 <rect key="frame" x="0.0" y="0.0" width="773" height="1024"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                             </imageView>
@@ -1239,9 +1239,9 @@
                                     <action selector="btLogin:" destination="M3C-3t-DnL" eventType="touchUpInside" id="drf-Yb-zzY"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="EPMlogo.png" id="ceq-Nf-4CU">
-                                <rect key="frame" x="491" y="210" width="44" height="33"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" id="X82-cC-VEV">
+                                <rect key="frame" x="468" y="211" width="57" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <view contentMode="scaleToFill" id="T5O-rM-bH0">
                                 <rect key="frame" x="192" y="564" width="384" height="196"/>
@@ -1364,7 +1364,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Settings" id="eAs-Wc-N2K"/>
+                    <tabBarItem key="tabBarItem" title="Settings" image="tabBarIcon-setting" id="eAs-Wc-N2K"/>
                     <connections>
                         <segue destination="M3C-3t-DnL" kind="modal" identifier="logout" id="Lhn-Vh-YeQ"/>
                     </connections>
@@ -1377,8 +1377,8 @@
         <scene sceneID="vbD-wo-IXT">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="cq0-ZO-IGf" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Organization" image="BUTTON-organization.png" id="UMX-0R-psN">
-                        <offsetWrapper key="titlePositionAdjustment" horizontal="1" vertical="-2"/>
+                    <tabBarItem key="tabBarItem" title="Organization" image="tabBarIcon-organization" id="UMX-0R-psN">
+                        <offsetWrapper key="titlePositionAdjustment" horizontal="1" vertical="0.0"/>
                     </tabBarItem>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="xrQ-2V-gsk">
@@ -1529,7 +1529,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Improvement" id="bVh-bs-FfR"/>
+                    <tabBarItem key="tabBarItem" title="Improvement" image="tabBarIcon-improvement" id="bVh-bs-FfR"/>
                     <connections>
                         <outlet property="bigTitle" destination="t9X-cj-pPX" id="rMK-M5-eG8"/>
                         <outlet property="content" destination="P21-iL-fo4" id="cqf-wZ-Cvl"/>
@@ -1880,7 +1880,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Welcome" id="1fK-aa-jSj"/>
+                    <tabBarItem key="tabBarItem" title="Welcome" image="tabBarIcon-welcome" id="1fK-aa-jSj"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bYM-94-ULZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1890,7 +1890,7 @@
         <scene sceneID="XYm-LJ-BWe">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Wd3-D4-Kgd" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Scan" id="QRf-Rd-AlZ"/>
+                    <tabBarItem key="tabBarItem" title="Scan" image="tabBarIcon-scan" id="QRf-Rd-AlZ"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Xnn-Ho-pYO">
                         <rect key="frame" x="0.0" y="0.0" width="768" height="44"/>
@@ -2058,19 +2058,23 @@
         </scene>
     </scenes>
     <resources>
-        <image name="BUTTON-dashboard.png" width="30" height="30"/>
-        <image name="BUTTON-organization.png" width="30" height="30"/>
         <image name="Clock.png" width="125" height="125"/>
-        <image name="EPMlogo.png" width="500" height="500"/>
+        <image name="Login" width="1536" height="2048"/>
         <image name="Photo.png" width="118" height="92"/>
         <image name="chart.png" width="111" height="111"/>
-        <image name="draft.png" width="1536" height="2048"/>
+        <image name="draft" width="1536" height="2048"/>
         <image name="icon.png" width="76" height="76"/>
         <image name="kpiCategory-default.png" width="50" height="50"/>
-        <image name="login-bg.png" width="1536" height="2048"/>
+        <image name="logo" width="65" height="65"/>
         <image name="mail.png" width="60" height="60"/>
         <image name="switchType-column.png" width="60" height="60"/>
         <image name="switchType-line.png" width="60" height="60"/>
+        <image name="tabBarIcon-dashboard" width="30" height="28"/>
+        <image name="tabBarIcon-improvement" width="30" height="28"/>
+        <image name="tabBarIcon-organization" width="30" height="28"/>
+        <image name="tabBarIcon-scan" width="30" height="28"/>
+        <image name="tabBarIcon-setting" width="30" height="28"/>
+        <image name="tabBarIcon-welcome" width="30" height="28"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar" statusBarStyle="blackOpaque"/>
@@ -2079,6 +2083,6 @@
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="Hwz-lh-C6L"/>
-        <segue reference="jOP-Ja-Otv"/>
+        <segue reference="w85-eX-V5B"/>
     </inferredMetricsTieBreakers>
 </document>

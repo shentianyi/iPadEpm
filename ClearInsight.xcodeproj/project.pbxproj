@@ -12,7 +12,6 @@
 		0502A96C18BC747C00906C45 /* Photo-colorful.png in Resources */ = {isa = PBXBuildFile; fileRef = 0502A96718BC747C00906C45 /* Photo-colorful.png */; };
 		0502A96D18BC747C00906C45 /* mail.png in Resources */ = {isa = PBXBuildFile; fileRef = 0502A96818BC747C00906C45 /* mail.png */; };
 		0502A96E18BC747C00906C45 /* chart-gray.png in Resources */ = {isa = PBXBuildFile; fileRef = 0502A96918BC747C00906C45 /* chart-gray.png */; };
-		0505AD4118BF321900777E66 /* draft.png in Resources */ = {isa = PBXBuildFile; fileRef = 0505AD4018BF321900777E66 /* draft.png */; };
 		0515707D18D2EDA400FD4FE4 /* switchType-line.png in Resources */ = {isa = PBXBuildFile; fileRef = 0515707B18D2EDA400FD4FE4 /* switchType-line.png */; };
 		0515707E18D2EDA400FD4FE4 /* switchType-column.png in Resources */ = {isa = PBXBuildFile; fileRef = 0515707C18D2EDA400FD4FE4 /* switchType-column.png */; };
 		0519BA7F18BC46EA0029447E /* EpmMailListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0519BA7E18BC46EA0029447E /* EpmMailListCell.m */; };
@@ -138,7 +137,6 @@
 		05F6CE5318C07AD10040614F /* kpiCategory-2.png in Resources */ = {isa = PBXBuildFile; fileRef = 05F6CE5018C07AD10040614F /* kpiCategory-2.png */; };
 		05F6CE5418C07AD10040614F /* kpiCategory-3.png in Resources */ = {isa = PBXBuildFile; fileRef = 05F6CE5118C07AD10040614F /* kpiCategory-3.png */; };
 		05F6CE5718C098290040614F /* EPMlogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 05F6CE5518C098290040614F /* EPMlogo.png */; };
-		05F6CE5818C098290040614F /* login-bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 05F6CE5618C098290040614F /* login-bg.png */; };
 		05F768CC18B4A70C00055138 /* AttachedPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = 05F768CB18B4A70C00055138 /* AttachedPhoto.m */; };
 /* End PBXBuildFile section */
 
@@ -158,7 +156,6 @@
 		0502A96718BC747C00906C45 /* Photo-colorful.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Photo-colorful.png"; sourceTree = "<group>"; };
 		0502A96818BC747C00906C45 /* mail.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mail.png; sourceTree = "<group>"; };
 		0502A96918BC747C00906C45 /* chart-gray.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chart-gray.png"; sourceTree = "<group>"; };
-		0505AD4018BF321900777E66 /* draft.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = draft.png; sourceTree = "<group>"; };
 		0515707B18D2EDA400FD4FE4 /* switchType-line.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "switchType-line.png"; sourceTree = "<group>"; };
 		0515707C18D2EDA400FD4FE4 /* switchType-column.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "switchType-column.png"; sourceTree = "<group>"; };
 		0519BA7D18BC46EA0029447E /* EpmMailListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EpmMailListCell.h; sourceTree = "<group>"; };
@@ -360,7 +357,6 @@
 		05F6CE5018C07AD10040614F /* kpiCategory-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "kpiCategory-2.png"; sourceTree = "<group>"; };
 		05F6CE5118C07AD10040614F /* kpiCategory-3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "kpiCategory-3.png"; sourceTree = "<group>"; };
 		05F6CE5518C098290040614F /* EPMlogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = EPMlogo.png; sourceTree = "<group>"; };
-		05F6CE5618C098290040614F /* login-bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login-bg.png"; sourceTree = "<group>"; };
 		05F768CA18B4A70C00055138 /* AttachedPhoto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AttachedPhoto.h; sourceTree = "<group>"; };
 		05F768CB18B4A70C00055138 /* AttachedPhoto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AttachedPhoto.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -649,7 +645,6 @@
 				05984F9D18CF03AA0072B204 /* trend-down.png */,
 				05984F9E18CF03AA0072B204 /* trend-level.png */,
 				05984F9F18CF03AA0072B204 /* trend-up.png */,
-				05F6CE5618C098290040614F /* login-bg.png */,
 				05F6CE5518C098290040614F /* EPMlogo.png */,
 				05F6CE4F18C07AD10040614F /* kpiCategory-1.png */,
 				05F6CE5018C07AD10040614F /* kpiCategory-2.png */,
@@ -658,7 +653,6 @@
 				05F6CE4718C03E990040614F /* chart.png */,
 				05F6CE4818C03E990040614F /* Clock.png */,
 				05F6CE4918C03E990040614F /* Photo.png */,
-				0505AD4018BF321900777E66 /* draft.png */,
 				0502A96518BC747C00906C45 /* chart-clorful.png */,
 				0502A96618BC747C00906C45 /* Photo-gray.png */,
 				0502A96718BC747C00906C45 /* Photo-colorful.png */,
@@ -816,7 +810,6 @@
 				05F6CE5318C07AD10040614F /* kpiCategory-2.png in Resources */,
 				05D2C077188274BF00DBBF8C /* organization-item.png in Resources */,
 				05D2C05E1882745700DBBF8C /* BUTTON-dashboard.png in Resources */,
-				0505AD4118BF321900777E66 /* draft.png in Resources */,
 				05D2C0AD1884B6C600DBBF8C /* ipad-icon.png in Resources */,
 				05D2C071188274AD00DBBF8C /* GM.png in Resources */,
 				05F6CE5418C07AD10040614F /* kpiCategory-3.png in Resources */,
@@ -836,7 +829,6 @@
 				05D2C079188274C700DBBF8C /* SHANGHAI.png in Resources */,
 				05F6CE5718C098290040614F /* EPMlogo.png in Resources */,
 				05D2C07D1882752200DBBF8C /* DASHBOARD-line.png in Resources */,
-				05F6CE5818C098290040614F /* login-bg.png in Resources */,
 				0502A96E18BC747C00906C45 /* chart-gray.png in Resources */,
 				05EA4DCE187FB00C00C53FEE /* InfoPlist.strings in Resources */,
 				05D2C05D1882745700DBBF8C /* BUTTON-dashboard-active.png in Resources */,
@@ -1102,6 +1094,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "EPM/ClearInsight-Prefix.pch";
 				INFOPLIST_FILE = "EPM/ClearInsight-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					/Users/tianyi/Downloads/Analytics_iOS_SDK_2.2.1.OpenUDID/UMAnalytics_Sdk_2.2.1.OpenUDID,
@@ -1126,6 +1119,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "EPM/ClearInsight-Prefix.pch";
 				INFOPLIST_FILE = "EPM/ClearInsight-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					/Users/tianyi/Downloads/Analytics_iOS_SDK_2.2.1.OpenUDID/UMAnalytics_Sdk_2.2.1.OpenUDID,
