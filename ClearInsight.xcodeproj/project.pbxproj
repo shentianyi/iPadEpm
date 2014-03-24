@@ -47,8 +47,6 @@
 		0589E8DF18AB4812000173CC /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0589E8DE18AB4812000173CC /* ImageIO.framework */; };
 		05984F9218CEB0BC0072B204 /* libdl.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 05984F9118CEB0BC0072B204 /* libdl.dylib */; };
 		05984F9418CEB0F30072B204 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 05984F9318CEB0F20072B204 /* libz.dylib */; };
-		05984F9B18CEFEFA0072B204 /* icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 05984F9918CEFEFA0072B204 /* icon@2x.png */; };
-		05984F9C18CEFEFA0072B204 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 05984F9A18CEFEFA0072B204 /* icon.png */; };
 		05984FA018CF03AA0072B204 /* trend-down.png in Resources */ = {isa = PBXBuildFile; fileRef = 05984F9D18CF03AA0072B204 /* trend-down.png */; };
 		05984FA118CF03AA0072B204 /* trend-level.png in Resources */ = {isa = PBXBuildFile; fileRef = 05984F9E18CF03AA0072B204 /* trend-level.png */; };
 		05984FA218CF03AA0072B204 /* trend-up.png in Resources */ = {isa = PBXBuildFile; fileRef = 05984F9F18CF03AA0072B204 /* trend-up.png */; };
@@ -227,8 +225,6 @@
 		05984F8E18CEAE090072B204 /* MobClick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MobClick.h; path = ../../../Downloads/Analytics_iOS_SDK_2.2.1.OpenUDID/UMAnalytics_Sdk_2.2.1.OpenUDID/MobClick.h; sourceTree = "<group>"; };
 		05984F9118CEB0BC0072B204 /* libdl.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libdl.dylib; path = usr/lib/libdl.dylib; sourceTree = SDKROOT; };
 		05984F9318CEB0F20072B204 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
-		05984F9918CEFEFA0072B204 /* icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon@2x.png"; sourceTree = "<group>"; };
-		05984F9A18CEFEFA0072B204 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
 		05984F9D18CF03AA0072B204 /* trend-down.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "trend-down.png"; sourceTree = "<group>"; };
 		05984F9E18CF03AA0072B204 /* trend-level.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "trend-level.png"; sourceTree = "<group>"; };
 		05984F9F18CF03AA0072B204 /* trend-up.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "trend-up.png"; sourceTree = "<group>"; };
@@ -537,8 +533,6 @@
 			isa = PBXGroup;
 			children = (
 				0564117018D9277600ECF680 /* Localizable.strings */,
-				05984F9918CEFEFA0072B204 /* icon@2x.png */,
-				05984F9A18CEFEFA0072B204 /* icon.png */,
 				05EA4DC9187FB00C00C53FEE /* EPM */,
 				05EA4DEB187FB00C00C53FEE /* EPMTests */,
 				05EA4DC2187FB00C00C53FEE /* Frameworks */,
@@ -573,6 +567,7 @@
 		05EA4DC9187FB00C00C53FEE /* EPM */ = {
 			isa = PBXGroup;
 			children = (
+				B0045F4118DFDCA8006B1BC6 /* Controller */,
 				0519BA7C18BC46CA0029447E /* TableCellView */,
 				0566994D18B6F95F0024AD32 /* lib */,
 				05A2060D18B5CCB20052B569 /* Utility */,
@@ -599,8 +594,6 @@
 				05EA4E08187FEB7800C53FEE /* EpmOrgCollectionController.m */,
 				05EA4E0A187FEBDC00C53FEE /* EpmOrgCellView.h */,
 				05EA4E0B187FEBDC00C53FEE /* EpmOrgCellView.m */,
-				05D2C00C1881305900DBBF8C /* EpmLoginViewController.h */,
-				05D2C00D1881305900DBBF8C /* EpmLoginViewController.m */,
 				05D2C07E1884191500DBBF8C /* LineLayout.h */,
 				05D2C07F1884191500DBBF8C /* LineLayout.m */,
 				05D2C08A1884324B00DBBF8C /* EpmOrgKpiCellView.h */,
@@ -726,6 +719,15 @@
 			name = Models;
 			sourceTree = "<group>";
 		};
+		B0045F4118DFDCA8006B1BC6 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				05D2C00C1881305900DBBF8C /* EpmLoginViewController.h */,
+				05D2C00D1881305900DBBF8C /* EpmLoginViewController.m */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -837,7 +839,6 @@
 				05D2C0AF1884B6C600DBBF8C /* iphone-icon.png in Resources */,
 				05D2C06C1882746A00DBBF8C /* CATEGORY-quality.png in Resources */,
 				05D2C06E1882746A00DBBF8C /* VW.png in Resources */,
-				05984F9C18CEFEFA0072B204 /* icon.png in Resources */,
 				05D2C0991884666100DBBF8C /* benz.png in Resources */,
 				05D2C0931884661500DBBF8C /* organization-bg.png in Resources */,
 				05D2C09D1884671500DBBF8C /* DASHBOARD-pie.png in Resources */,
@@ -860,7 +861,6 @@
 				05D2C04C18813CA200DBBF8C /* urlSetting.plist in Resources */,
 				05F6CE4B18C03E990040614F /* Clock.png in Resources */,
 				05D2C05F1882745700DBBF8C /* BUTTON-logout.png in Resources */,
-				05984F9B18CEFEFA0072B204 /* icon@2x.png in Resources */,
 				0515707E18D2EDA400FD4FE4 /* switchType-column.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1084,9 +1084,10 @@
 		05EA4DF6187FB00C00C53FEE /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					/Users/tianyi/github/iPadEpm,
@@ -1109,9 +1110,10 @@
 		05EA4DF7187FB00C00C53FEE /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					/Users/tianyi/github/iPadEpm,

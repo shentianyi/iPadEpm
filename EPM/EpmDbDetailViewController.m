@@ -29,7 +29,7 @@
 
 {
     [super viewDidLoad];
-     self.webView.delegate    = self;
+     self.webView.delegate = self;
     [self BeginLoadWeb];
 }
 

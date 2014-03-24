@@ -14,8 +14,7 @@
 @end
 
 @implementation EpmLoginViewController
-@synthesize email    = _email;
-@synthesize psw = _psw;
+
 
 //- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 //{
