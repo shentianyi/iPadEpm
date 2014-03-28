@@ -246,6 +246,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    
 
     LineLayout * flowLayout = [[LineLayout alloc] init];
     self.collectionView.collectionViewLayout = flowLayout;
@@ -699,6 +701,7 @@
     
     if(scrollView == self.frequency){
         NSString *freq = [[self freqSequence] objectAtIndex: [self scrollViewCurrentPage:scrollView]];
+        NSLog(@"%@",freq);
         if([freq isEqualToString:NSLocalizedString(@"DAY", nil)]){
             [self.currentConditions setObject:@"100" forKey:@"frequency"];
             needRefresh = YES;
@@ -756,18 +759,18 @@
 
     }
     if(frequency==300) {
-        [timeOffset setMonth:offset ];
+        [timeOffset setMonth:offset];
 
     }
     if(frequency==400) {
-        [timeOffset setQuarter:offset ];
-
+        [timeOffset setMonth:offset*3];
+       
     }
     if(frequency==500) {
-        [timeOffset setYear:offset ];
+        [timeOffset setYear:offset];
     }
     
-   return  [calender dateByAddingComponents:timeOffset toDate:[NSDate date] options:0];
+    return  [calender dateByAddingComponents:timeOffset toDate:[NSDate date] options:0];
 }
 
 

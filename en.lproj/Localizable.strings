@@ -45,6 +45,14 @@
 
 "WRONG_LOGIN" = "Wrong username or password, try again please.";
 
+"CONFIRM_NEW_PASSWORD" = "Please input a new password and the correct confirmation";
+
+"PASSWORD_CHANGE_DONE" = "Password changed successfully";
+
+"PASSWORD_CHANGE_FAILED" = "Password wasn't changed, please enter the correct password";
+
+
+
 
 
 
