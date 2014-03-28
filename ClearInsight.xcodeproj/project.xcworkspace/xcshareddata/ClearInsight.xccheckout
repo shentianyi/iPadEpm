@@ -5,34 +5,34 @@
 	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
 	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
-	<string>F4715F1D-0731-4A85-8A85-007BB0D0261F</string>
+	<string>81275B75-CE26-4E39-B8E6-8876FBA3F085</string>
 	<key>IDESourceControlProjectName</key>
 	<string>ClearInsight</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>001E62C3-0C4C-41A5-B40F-10E0BB121807</key>
-		<string>ssh://github.com/shentianyi/iPadEpm</string>
+		<key>0F676B11-A104-4976-8A73-157887734647</key>
+		<string>ssh://github.com/shentianyi/iPadEpm.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>ClearInsight.xcodeproj/project.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>001E62C3-0C4C-41A5-B40F-10E0BB121807</key>
+		<key>0F676B11-A104-4976-8A73-157887734647</key>
 		<string>../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
-	<string>ssh://github.com/shentianyi/iPadEpm</string>
+	<string>ssh://github.com/shentianyi/iPadEpm.git</string>
 	<key>IDESourceControlProjectVersion</key>
 	<integer>110</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>001E62C3-0C4C-41A5-B40F-10E0BB121807</string>
+	<string>0F676B11-A104-4976-8A73-157887734647</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>001E62C3-0C4C-41A5-B40F-10E0BB121807</string>
+			<string>0F676B11-A104-4976-8A73-157887734647</string>
 			<key>IDESourceControlWCCName</key>
 			<string>iPadEpm</string>
 		</dict>
