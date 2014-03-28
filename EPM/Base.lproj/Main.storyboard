@@ -2063,7 +2063,7 @@
         <image name="Login" width="1536" height="2048"/>
         <image name="Photo.png" width="118" height="92"/>
         <image name="chart.png" width="111" height="111"/>
-        <image name="draft" width="1536" height="2048"/>
+        <image name="draft" width="768" height="1024"/>
         <image name="icon.png" width="76" height="76"/>
         <image name="kpiCategory-default.png" width="50" height="50"/>
         <image name="logo" width="65" height="65"/>
@@ -2084,6 +2084,6 @@
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="Hwz-lh-C6L"/>
-        <segue reference="w85-eX-V5B"/>
+        <segue reference="jOP-Ja-Otv"/>
     </inferredMetricsTieBreakers>
 </document>
