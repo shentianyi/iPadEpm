@@ -14,6 +14,8 @@
 #import "EpmSendMailController.h"
 #import "AttachedPhoto.h"
 #import "PNChart.h"
+#import "EpmGroupViewController.h"
+
 @interface EpmOrgViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *selectedE1;
 @property (weak, nonatomic) IBOutlet UILabel *outOfRange;
@@ -514,6 +516,12 @@
         EpmSendMailController *mail = segue.destinationViewController;
         mail.completeData = (NSMutableDictionary*)sender;
     }
+    else if([segue.identifier isEqualToString:@"viewGroupDetail"]){
+        EpmGroupViewController *group = segue.destinationViewController;
+        group.entityName = [sender objectForKey:@"entity_group_name"];
+        group.kpiName = [sender objectForKey:@"kpi_name"];
+        group.kpiId = [[sender objectForKey:@"kpi_id"] stringValue];
+    }
 }
 
 
@@ -823,6 +831,9 @@
         
     }
     
+}
+- (IBAction)viewGroup:(id)sender {
+    [self performSegueWithIdentifier:@"viewGroupDetail" sender:self.currentConditions];
 }
 
 
