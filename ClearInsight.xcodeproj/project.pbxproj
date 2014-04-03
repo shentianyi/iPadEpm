@@ -53,6 +53,10 @@
 		058CE83218ECD0F3000FA4E8 /* EpmGroupDetailTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 058CE83118ECD0F3000FA4E8 /* EpmGroupDetailTableViewCell.m */; };
 		058CE83718ED0C2A000FA4E8 /* PNBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 058CE83418ED0C2A000FA4E8 /* PNBar.m */; };
 		058CE83818ED0C2A000FA4E8 /* PNBarChart.m in Sources */ = {isa = PBXBuildFile; fileRef = 058CE83618ED0C2A000FA4E8 /* PNBarChart.m */; };
+		058CE83D18ED751D000FA4E8 /* icon-table.png in Resources */ = {isa = PBXBuildFile; fileRef = 058CE83918ED751D000FA4E8 /* icon-table.png */; };
+		058CE83F18ED751D000FA4E8 /* icon-back.png in Resources */ = {isa = PBXBuildFile; fileRef = 058CE83B18ED751D000FA4E8 /* icon-back.png */; };
+		058CE84318ED772C000FA4E8 /* icon-filter.png in Resources */ = {isa = PBXBuildFile; fileRef = 058CE84118ED772C000FA4E8 /* icon-filter.png */; };
+		058CE84418ED772C000FA4E8 /* icon-detail.png in Resources */ = {isa = PBXBuildFile; fileRef = 058CE84218ED772C000FA4E8 /* icon-detail.png */; };
 		05984F9218CEB0BC0072B204 /* libdl.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 05984F9118CEB0BC0072B204 /* libdl.dylib */; };
 		05984F9418CEB0F30072B204 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 05984F9318CEB0F20072B204 /* libz.dylib */; };
 		05984FA018CF03AA0072B204 /* trend-down.png in Resources */ = {isa = PBXBuildFile; fileRef = 05984F9D18CF03AA0072B204 /* trend-down.png */; };
@@ -244,6 +248,10 @@
 		058CE83418ED0C2A000FA4E8 /* PNBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PNBar.m; sourceTree = "<group>"; };
 		058CE83518ED0C2A000FA4E8 /* PNBarChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PNBarChart.h; sourceTree = "<group>"; };
 		058CE83618ED0C2A000FA4E8 /* PNBarChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PNBarChart.m; sourceTree = "<group>"; };
+		058CE83918ED751D000FA4E8 /* icon-table.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-table.png"; sourceTree = "<group>"; };
+		058CE83B18ED751D000FA4E8 /* icon-back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-back.png"; sourceTree = "<group>"; };
+		058CE84118ED772C000FA4E8 /* icon-filter.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-filter.png"; sourceTree = "<group>"; };
+		058CE84218ED772C000FA4E8 /* icon-detail.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-detail.png"; sourceTree = "<group>"; };
 		05984F8D18CEAE090072B204 /* libMobClickLibrary.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libMobClickLibrary.a; path = ../../../Downloads/Analytics_iOS_SDK_2.2.1.OpenUDID/UMAnalytics_Sdk_2.2.1.OpenUDID/libMobClickLibrary.a; sourceTree = "<group>"; };
 		05984F8E18CEAE090072B204 /* MobClick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MobClick.h; path = ../../../Downloads/Analytics_iOS_SDK_2.2.1.OpenUDID/UMAnalytics_Sdk_2.2.1.OpenUDID/MobClick.h; sourceTree = "<group>"; };
 		05984F9118CEB0BC0072B204 /* libdl.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libdl.dylib; path = usr/lib/libdl.dylib; sourceTree = SDKROOT; };
@@ -684,6 +692,10 @@
 		05EA4DCA187FB00C00C53FEE /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				058CE84118ED772C000FA4E8 /* icon-filter.png */,
+				058CE84218ED772C000FA4E8 /* icon-detail.png */,
+				058CE83918ED751D000FA4E8 /* icon-table.png */,
+				058CE83B18ED751D000FA4E8 /* icon-back.png */,
 				058CE82818EC3EF3000FA4E8 /* tmpGroupDetails.plist */,
 				0515707B18D2EDA400FD4FE4 /* switchType-line.png */,
 				0515707C18D2EDA400FD4FE4 /* switchType-column.png */,
@@ -871,6 +883,7 @@
 				05F6CE5418C07AD10040614F /* kpiCategory-3.png in Resources */,
 				05D2C07B188274CF00DBBF8C /* TITLE.png in Resources */,
 				05D2C06D1882746A00DBBF8C /* connect.png in Resources */,
+				058CE83F18ED751D000FA4E8 /* icon-back.png in Resources */,
 				05D2C06F1882746A00DBBF8C /* disconnect.png in Resources */,
 				05EA4DDF187FB00C00C53FEE /* Images.xcassets in Resources */,
 				0502A96A18BC747C00906C45 /* chart-clorful.png in Resources */,
@@ -908,14 +921,17 @@
 				05D2C0AE1884B6C600DBBF8C /* ipad-icon@2x.png in Resources */,
 				05EA4DD7187FB00C00C53FEE /* Main.storyboard in Resources */,
 				05D2C0641882745F00DBBF8C /* BUTTON-organization-active.png in Resources */,
+				058CE84318ED772C000FA4E8 /* icon-filter.png in Resources */,
 				0502A96C18BC747C00906C45 /* Photo-colorful.png in Resources */,
 				05D2C0971884665700DBBF8C /* blue-point.png in Resources */,
+				058CE84418ED772C000FA4E8 /* icon-detail.png in Resources */,
 				05D2C0561882326500DBBF8C /* org.plist in Resources */,
 				05D2C09F188467B200DBBF8C /* logo-unconnacted.png in Resources */,
 				05F6CE4E18C07A8B0040614F /* kpiCategory-default.png in Resources */,
 				05D2C04C18813CA200DBBF8C /* urlSetting.plist in Resources */,
 				05F6CE4B18C03E990040614F /* Clock.png in Resources */,
 				05D2C05F1882745700DBBF8C /* BUTTON-logout.png in Resources */,
+				058CE83D18ED751D000FA4E8 /* icon-table.png in Resources */,
 				0515707E18D2EDA400FD4FE4 /* switchType-column.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

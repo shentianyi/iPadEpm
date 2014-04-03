@@ -22,6 +22,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *average;
 @property (weak, nonatomic) IBOutlet UILabel *sum;
 @property (strong,nonatomic) NSMutableDictionary *currentConditions;
+@property (weak, nonatomic) IBOutlet UISegmentedControl *seg;
 @property (weak, nonatomic) IBOutlet UILabel *range;
 @end
 
@@ -243,6 +244,17 @@
 }
 
 
+- (IBAction)changeAverage:(id)sender {
+     NSInteger index = self.seg.selectedSegmentIndex;
+    
+    if(index==0){
+         [self.currentConditions setObject:@YES forKey:@"average"];
+    }
+    else{
+     [self.currentConditions setObject:@NO forKey:@"average"];
+    }
+    
+}
 
 
 - (void)viewDidLoad

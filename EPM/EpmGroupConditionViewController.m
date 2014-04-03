@@ -38,7 +38,7 @@
 }
 
 -(void)loadData {
-    self.kpiId = @"p1";
+    self.kpiId = @"127";
     NSString *plistPath = [[NSBundle mainBundle] pathForResource:@"tmpGroupDetails" ofType:@"plist"];
     
     NSDictionary *settings   = [[NSMutableDictionary alloc] initWithContentsOfFile:plistPath];

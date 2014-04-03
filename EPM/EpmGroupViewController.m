@@ -67,7 +67,7 @@
     
     
     
-    self.kpiId = @"p1";
+    self.kpiId = @"127";
     
     self.sliceColors =[NSArray arrayWithObjects:
                        [UIColor colorWithRed:246/255.0 green:155/255.0 blue:0/255.0 alpha:0.8],

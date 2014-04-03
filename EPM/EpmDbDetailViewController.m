@@ -43,15 +43,14 @@
 {
     
  
-    NSString *urlTxt =[NSString stringWithFormat:@"%@%@/%@",[EpmSettings getEpmUrlSettingsWithKey: @"baseUrl"],[EpmSettings getEpmUrlSettingsWithKey: @"dbFullsize"],self.dashboardId];
+    NSString *urlTxt =[NSString stringWithFormat:@"%@/%@",@"http://www.cz-tek.com:8084",self.dashboardId];
 
     urlTxt = [EpmHttpUtil escapeUrl:urlTxt];
       NSURL* url = [[ NSURL alloc ] initWithString :urlTxt];
-
     NSMutableURLRequest *request = [EpmHttpUtil initWithCookiesWithUrl:url];
     
     [self.webView loadRequest:request];
-    
+
 }
 
 
