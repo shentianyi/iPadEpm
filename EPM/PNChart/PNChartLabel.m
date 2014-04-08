@@ -17,7 +17,7 @@
     if (self) {
         // Initialization code
         [self setLineBreakMode:NSLineBreakByWordWrapping];
-        [self setMinimumScaleFactor:8.0f];
+        [self setMinimumScaleFactor:5.0f];
         [self setNumberOfLines:0];
         [self setFont:[UIFont systemFontOfSize:11.0f]];
         [self setTextColor: PNWhite];

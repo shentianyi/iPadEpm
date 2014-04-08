@@ -8,15 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-//#define chartMargin     10
-//#define xLabelMargin    15
-//#define yLabelMargin    15
-//#define yLabelHeight    11
-
-#define chartMargin     0
-#define xLabelMargin    0
-#define yLabelMargin    0
-#define yLabelHeight    0
+#define chartMargin     10
+#define xLabelMargin    15
+#define yLabelMargin    15
+#define yLabelHeight    11
 
 @interface PNBarChart : UIView
 

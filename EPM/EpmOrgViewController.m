@@ -14,12 +14,15 @@
 #import "EpmSendMailController.h"
 #import "AttachedPhoto.h"
 #import "PNChart.h"
+#import "EpmGroupViewController.h"
+
 @interface EpmOrgViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *selectedE1;
 @property (weak, nonatomic) IBOutlet UILabel *outOfRange;
 @property (weak, nonatomic) IBOutlet UILabel *average;
 @property (weak, nonatomic) IBOutlet UILabel *sum;
 @property (strong,nonatomic) NSMutableDictionary *currentConditions;
+@property (weak, nonatomic) IBOutlet UISegmentedControl *seg;
 @property (weak, nonatomic) IBOutlet UILabel *range;
 @end
 
@@ -241,11 +244,24 @@
 }
 
 
+- (IBAction)changeAverage:(id)sender {
+     NSInteger index = self.seg.selectedSegmentIndex;
+    
+    if(index==0){
+         [self.currentConditions setObject:@YES forKey:@"average"];
+    }
+    else{
+     [self.currentConditions setObject:@NO forKey:@"average"];
+    }
+    
+}
 
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    
 
     LineLayout * flowLayout = [[LineLayout alloc] init];
     self.collectionView.collectionViewLayout = flowLayout;
@@ -512,6 +528,12 @@
         EpmSendMailController *mail = segue.destinationViewController;
         mail.completeData = (NSMutableDictionary*)sender;
     }
+    else if([segue.identifier isEqualToString:@"viewGroupDetail"]){
+        EpmGroupViewController *group = segue.destinationViewController;
+        group.entityName = [sender objectForKey:@"entity_group_name"];
+        group.kpiName = [sender objectForKey:@"kpi_name"];
+        group.kpiId = [[sender objectForKey:@"kpi_id"] stringValue];
+    }
 }
 
 
@@ -699,6 +721,7 @@
     
     if(scrollView == self.frequency){
         NSString *freq = [[self freqSequence] objectAtIndex: [self scrollViewCurrentPage:scrollView]];
+        NSLog(@"%@",freq);
         if([freq isEqualToString:NSLocalizedString(@"DAY", nil)]){
             [self.currentConditions setObject:@"100" forKey:@"frequency"];
             needRefresh = YES;
@@ -756,18 +779,18 @@
 
     }
     if(frequency==300) {
-        [timeOffset setMonth:offset ];
+        [timeOffset setMonth:offset];
 
     }
     if(frequency==400) {
-        [timeOffset setQuarter:offset ];
-
+        [timeOffset setMonth:offset*3];
+       
     }
     if(frequency==500) {
-        [timeOffset setYear:offset ];
+        [timeOffset setYear:offset];
     }
     
-   return  [calender dateByAddingComponents:timeOffset toDate:[NSDate date] options:0];
+    return  [calender dateByAddingComponents:timeOffset toDate:[NSDate date] options:0];
 }
 
 
@@ -820,6 +843,9 @@
         
     }
     
+}
+- (IBAction)viewGroup:(id)sender {
+    [self performSegueWithIdentifier:@"viewGroupDetail" sender:self.currentConditions];
 }
 
 

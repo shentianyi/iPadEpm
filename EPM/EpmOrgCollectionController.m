@@ -34,7 +34,8 @@
           NSArray *result = (NSArray *)responseObject;
          if(result){
          self.Organizations = result;
-        [self.collectionView reloadData];
+             
+                  [self.collectionView reloadData];
             
        }
         else {
