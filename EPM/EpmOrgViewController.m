@@ -15,8 +15,9 @@
 #import "AttachedPhoto.h"
 #import "PNChart.h"
 #import "EpmGroupViewController.h"
+#import "JBLineChartView.h"
 
-@interface EpmOrgViewController ()
+@interface EpmOrgViewController ()<JBLineChartViewDataSource,JBLineChartViewDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *selectedE1;
 @property (weak, nonatomic) IBOutlet UILabel *outOfRange;
 @property (weak, nonatomic) IBOutlet UILabel *average;
@@ -24,36 +25,94 @@
 @property (strong,nonatomic) NSMutableDictionary *currentConditions;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *seg;
 @property (weak, nonatomic) IBOutlet UILabel *range;
+
+@property (weak, nonatomic) IBOutlet UILabel *kpiName;
+@property (weak, nonatomic) IBOutlet UILabel *kpiDesc;
+
 @end
 
 @implementation EpmOrgViewController
-@synthesize collectionView  = _collectionView;
+//@synthesize collectionView  = _collectionView;
 @synthesize kpis = _kpis;
 @synthesize entityGroup = _entityGroup;
 @synthesize tableData = _tableData;
 @synthesize upperContainer = _upperContainer;
 @synthesize currentConditions = _currentConditions;
 
+//segue 传来
+//detail.entityGroup = [sender objectForKey:@"entityGroup"];
+//detail.preloadKpi = [sender objectForKey:@"kpi"];
 
+-(void)viewDidLoad
+{
+    [super viewDidLoad];
+    [self initAppearance];
+    [self loadData];
+    
+    if(self.preloadKpi){
+        [self loadDataForKpi:self.preloadKpi];
+    }
+    
+    [self.hundred addGestureRecognizer:[[UITapGestureRecognizer alloc]
+                                        initWithTarget:self action:@selector(respondToTapGesture:)]];
+    [self.ten addGestureRecognizer:[[UITapGestureRecognizer alloc]
+                                    initWithTarget:self action:@selector(respondToTapGesture:)]];
+    [self.bit addGestureRecognizer:[[UITapGestureRecognizer alloc]
+                                    initWithTarget:self action:@selector(respondToTapGesture:)]];
+    [self.frequency addGestureRecognizer:[[UITapGestureRecognizer alloc]
+                                          initWithTarget:self action:@selector(respondToTapGesture:)]];
+}
+-(void) initAppearance{
+    [self DatePickerAppearance];
+}
+-(void)loadData{
+    self.navigationItem.title=[self.entityGroup objectForKey:@"name"];
+    self.kpiName.text=[self.preloadKpi objectForKey:@"name"];
+    self.kpiDesc.text=[self.preloadKpi objectForKey:@"description"];
+    
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    
+    
+    NSDictionary *params = nil;
+    
+    
+    NSString *toReplace = (NSString *)[EpmSettings getEpmUrlSettingsWithKey:@"kpis"];
+    
+    NSString *entityId;
+    if([[self.entityGroup objectForKey:@"id"] isKindOfClass:[NSString class]]){
+        entityId = [self.entityGroup objectForKey:@"id"];
+    }
+    else{
+        entityId = [[self.entityGroup objectForKey:@"id"] stringValue];
+    }
+    
+    toReplace = [toReplace stringByReplacingOccurrencesOfString:@":id"
+                                                     withString:entityId];
+    
+    [manager GET:[NSString stringWithFormat:@"%@%@",[EpmSettings getEpmUrlSettingsWithKey:@"baseUrl"],toReplace] parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSArray *result = (NSArray *)responseObject;
+        self.kpis = result;
+        //        [self.collectionView reloadData];
+    }
+     
+         failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+             int statusCode = [operation.response statusCode];
+             
+             NSString *msg=[EpmHttpUtil notificationWithStatusCode:statusCode];
+             
+             UIAlertView *av = [[UIAlertView alloc] initWithTitle:msg
+                                                          message:@""
+                                                         delegate:nil
+                                                cancelButtonTitle:@"OK" otherButtonTitles:nil];
+             [av show];
+         }];
+}
 -(void)viewDidAppear:(BOOL)animated{
     // [self changeLayoutWithOrientation:(UIDeviceOrientation)[UIApplication sharedApplication].statusBarOrientation];
   
     [self moveScrollView:self.ten ToPage:1];
     [self moveScrollView:self.bit ToPage:4];
      }
-
-
-
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    
-    }
-    return self;
-}
-
 
 
 -(void)getDataForTable{
@@ -86,53 +145,60 @@
          }];
 }
 
-
+////////////////////////////////////////////////////////////////  load chart
 -(void)loadChart{
     if(self.tableData){
+        NSLog(@"%@",self.tableData);
         for (UIView *view in self.chartBody.subviews){
             [view removeFromSuperview];
         }
-         PNLineChart * lineChart = [[PNLineChart alloc] initWithFrame:self.chartBody.bounds];
-        NSArray *axis =[self prepareTimeAxis:[self.tableData objectForKey:@"date"] WithLimit:5];
-        [lineChart setXLabels:axis];
-        NSArray * data01Array = [self.tableData objectForKey:@"target_max"];
-        PNLineChartData *data01 = [PNLineChartData new];
-        data01.color = [[UIColor alloc] initWithRed:128.0 green:128.0 blue:128.0 alpha:0.25];
+        JBLineChartView *lineChartView=[[JBLineChartView alloc] init];
+        lineChartView.delegate=self;
+        lineChartView.dataSource=self;
+        lineChartView.frame=CGRectMake(0, 0, 400, 500);
+        [lineChartView reloadData];
         
-        data01.lineWidth = 1;
-        data01.itemCount = lineChart.xLabels.count;
-        data01.getData = ^(NSUInteger index) {
-            CGFloat yValue = [[data01Array objectAtIndex:index] floatValue];
-            return [PNLineChartDataItem dataItemWithY:yValue];
-        };
-        // Line Chart No.2
-        NSArray * data02Array = [self.tableData objectForKey:@"target_min"];
-        PNLineChartData *data02 = [PNLineChartData new];
-        data02.color = [[UIColor alloc] initWithRed:128.0 green:128.0 blue:128.0 alpha:0.25];;
-        data02.lineWidth = 1;
-        data02.itemCount = lineChart.xLabels.count;
-        data02.getData = ^(NSUInteger index) {
-            CGFloat yValue = [[data02Array objectAtIndex:index] floatValue];
-            return [PNLineChartDataItem dataItemWithY:yValue];
-        };
-        
-        // Line Chart No.2
-        NSArray * data03Array = [self.tableData objectForKey:@"current"];
-        PNLineChartData *data03 = [PNLineChartData new];
-        data03.color = PNWhite;
-        data03.lineWidth = 2;
-        data03.itemCount = lineChart.xLabels.count;
-        data03.getData = ^(NSUInteger index) {
-            CGFloat yValue = [[data03Array objectAtIndex:index] floatValue];
-            return [PNLineChartDataItem dataItemWithY:yValue];
-        };
-        
-        //lineChart.chartData = @[data01, data02,data03];
-        [lineChart setChartData:@[data01,data02,data03]];
-        lineChart.backgroundColor = [UIColor clearColor];
-        [lineChart strokeChart];
-        lineChart.delegate = self;
-        [self.chartBody addSubview:lineChart];
+//         PNLineChart * lineChart = [[PNLineChart alloc] initWithFrame:self.chartBody.bounds];
+//        NSArray *axis =[self prepareTimeAxis:[self.tableData objectForKey:@"date"] WithLimit:5];
+//        [lineChart setXLabels:axis];
+//        NSArray * data01Array = [self.tableData objectForKey:@"target_max"];
+//        PNLineChartData *data01 = [PNLineChartData new];
+//        data01.color = [[UIColor alloc] initWithRed:128.0 green:128.0 blue:128.0 alpha:0.25];
+//        
+//        data01.lineWidth = 1;
+//        data01.itemCount = lineChart.xLabels.count;
+//        data01.getData = ^(NSUInteger index) {
+//            CGFloat yValue = [[data01Array objectAtIndex:index] floatValue];
+//            return [PNLineChartDataItem dataItemWithY:yValue];
+//        };
+//        // Line Chart No.2
+//        NSArray * data02Array = [self.tableData objectForKey:@"target_min"];
+//        PNLineChartData *data02 = [PNLineChartData new];
+//        data02.color = [[UIColor alloc] initWithRed:128.0 green:128.0 blue:128.0 alpha:0.25];;
+//        data02.lineWidth = 1;
+//        data02.itemCount = lineChart.xLabels.count;
+//        data02.getData = ^(NSUInteger index) {
+//            CGFloat yValue = [[data02Array objectAtIndex:index] floatValue];
+//            return [PNLineChartDataItem dataItemWithY:yValue];
+//        };
+//        
+//        // Line Chart No.2
+//        NSArray * data03Array = [self.tableData objectForKey:@"current"];
+//        PNLineChartData *data03 = [PNLineChartData new];
+//        data03.color = PNWhite;
+//        data03.lineWidth = 2;
+//        data03.itemCount = lineChart.xLabels.count;
+//        data03.getData = ^(NSUInteger index) {
+//            CGFloat yValue = [[data03Array objectAtIndex:index] floatValue];
+//            return [PNLineChartDataItem dataItemWithY:yValue];
+//        };
+//        
+//        //lineChart.chartData = @[data01, data02,data03];
+//        [lineChart setChartData:@[data01,data02,data03]];
+//        lineChart.backgroundColor = [UIColor clearColor];
+//        [lineChart strokeChart];
+//        lineChart.delegate = self;
+//        [self.chartBody addSubview:lineChart];
     }
 
 }
@@ -201,47 +267,7 @@
 
 
 
--(void)loadData{
-    self.entityName.text = [self.entityGroup objectForKey:@"name"];
-    self.entityDesc.text = [self.entityGroup objectForKey:@"description"];
-    
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    
-    
-    NSDictionary *params = nil;
-   
 
-    NSString *toReplace = (NSString *)[EpmSettings getEpmUrlSettingsWithKey:@"kpis"];
-    
-    NSString *entityId;
-    if([[self.entityGroup objectForKey:@"id"] isKindOfClass:[NSString class]]){
-        entityId = [self.entityGroup objectForKey:@"id"];
-    }
-    else{
-        entityId = [[self.entityGroup objectForKey:@"id"] stringValue];
-    }
-    
-    toReplace = [toReplace stringByReplacingOccurrencesOfString:@":id"
-                                               withString:entityId];
-    
-    [manager GET:[NSString stringWithFormat:@"%@%@",[EpmSettings getEpmUrlSettingsWithKey:@"baseUrl"],toReplace] parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSArray *result = (NSArray *)responseObject;
-        self.kpis = result;
-        [self.collectionView reloadData];
-    }
-     
-         failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-             int statusCode = [operation.response statusCode];
-             
-             NSString *msg=[EpmHttpUtil notificationWithStatusCode:statusCode];
-             
-             UIAlertView *av = [[UIAlertView alloc] initWithTitle:msg
-                                                          message:@""
-                                                         delegate:nil
-                                                cancelButtonTitle:@"OK" otherButtonTitles:nil];
-             [av show];
-         }];
-}
 
 
 - (IBAction)changeAverage:(id)sender {
@@ -256,34 +282,6 @@
     
 }
 
-
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-    
-    
-
-    LineLayout * flowLayout = [[LineLayout alloc] init];
-    self.collectionView.collectionViewLayout = flowLayout;
-//    self.webView.delegate=self;
-    
-    [self initAppearance];
-    
-    [self loadData];
-    
-    if(self.preloadKpi){
-        [self loadDataForKpi:self.preloadKpi];    
-    }
-   
-    [self.hundred addGestureRecognizer:[[UITapGestureRecognizer alloc]
-                                        initWithTarget:self action:@selector(respondToTapGesture:)]];
-    [self.ten addGestureRecognizer:[[UITapGestureRecognizer alloc]
-                                    initWithTarget:self action:@selector(respondToTapGesture:)]];
-    [self.bit addGestureRecognizer:[[UITapGestureRecognizer alloc]
-                                    initWithTarget:self action:@selector(respondToTapGesture:)]];
-    [self.frequency addGestureRecognizer:[[UITapGestureRecognizer alloc]
-                                          initWithTarget:self action:@selector(respondToTapGesture:)]];
-}
 
 
 -(void)respondToTapGesture:(UITapGestureRecognizer*)sender {
@@ -311,12 +309,7 @@
 
 
 }
--(void) initAppearance{
-    [self DatePickerAppearance];
-    
-    
 
-}
 
 -(NSArray *)numberSequence:(BOOL)hasZero{
     if(hasZero){
@@ -405,57 +398,12 @@
     
     [view addSubview:label];
     
-    NSLog(@"%@",view);
+//    NSLog(@"%@",view);
     
     return view;
 }
 
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-
-- (NSInteger)collectionView:(UICollectionView *)view numberOfItemsInSection:(NSInteger)section;
-{
-    return self.kpis.count;
-}
-
-- (UICollectionViewCell *)collectionView:(UICollectionView *)cv cellForItemAtIndexPath:(NSIndexPath *)indexPath;
-{
-    EpmOrgKpiCellView *cell = [cv dequeueReusableCellWithReuseIdentifier:@"orgKpi" forIndexPath:indexPath];
-    NSDictionary *currentDic = [self.kpis objectAtIndex:indexPath.row];
-       cell.label.text = [currentDic objectForKey:@"name"];
-    cell.desc.text = [currentDic  objectForKey:@"description"];
-    cell.max.text = [[currentDic objectForKey:@"target_max"] stringValue];
-    cell.min.text=[[currentDic   objectForKey:@"target_min"] stringValue];
-    cell.category.image = [UIImage imageNamed:[NSString stringWithFormat:@"kpiCategory-%@",[[currentDic    objectForKey:@"kpi_category_id"]stringValue ]]];
-
-    return cell;
-}
-
-
-- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
-{
-    UICollectionViewCell *cell = [collectionView cellForItemAtIndexPath:indexPath];
-    UIView *snap = [cell snapshotViewAfterScreenUpdates:YES];
-    snap.frame = cell.frame;
-    [self.collectionView addSubview:snap];
-    [UIView animateWithDuration:0.5 animations:^{
-        [snap setBounds:self.upperContainer.bounds];
-        snap.layer.opacity = 0;
-    } completion:^(BOOL finished) {
-        [snap removeFromSuperview];
-    }];
-
-    
-    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    [formatter setDateFormat:@"yyyy-MM-dd"];
-    [self loadDataForKpi:[self.kpis objectAtIndex:indexPath.row]];
-    
-}
 
 -(void)loadDataForKpi:(NSDictionary *)kpi{
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
@@ -477,28 +425,6 @@
 }
 
 
-//
-//
-//
-//-(void)BeginLoadWebWithKpi:(NSDictionary*)Kpi
-//{
-//    
-//    
-//    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-//    [formatter setDateFormat:@"yyyy-MM-dd"];
-//    
-//    NSString *queryString = [NSString stringWithFormat:@"kpi_id=%@&kpi_name=%@&frequency=%@&entity_group_id=%@&entity_group_name=%@&average=YES&start_time=%@&end_time=%@",[Kpi objectForKey:@"id"],[Kpi objectForKey:@"name" ],@"100",[self.entityGroup objectForKey:@"id"],[self.entityGroup objectForKey:@"name"],[formatter stringFromDate:[NSDate dateWithTimeIntervalSinceNow:-1296000]],[formatter stringFromDate:[NSDate date]]];
-//
-//    
-//    NSString *urlTxt =[EpmHttpUtil escapeUrl:[NSString stringWithFormat:@"%@%@?%@",[EpmSettings getEpmUrlSettingsWithKey:@"baseUrl"],[EpmSettings getEpmUrlSettingsWithKey:@"graph"],queryString]];
-//    
-//    NSURL* url = [[ NSURL alloc] initWithString :urlTxt];
-//    
-//    NSMutableURLRequest *request = [EpmHttpUtil initWithCookiesWithUrl:url];
-//    
-//    [self.webView loadRequest:request];
-//    
-//}
 
 - (IBAction)btCompose:(id)sender {
     NSMutableDictionary *completeData = [[NSMutableDictionary alloc]init];
@@ -535,39 +461,6 @@
         group.kpiId = [[sender objectForKey:@"kpi_id"] stringValue];
     }
 }
-
-
-//
-//
-//- (void)webViewDidFinishLoad:(UIWebView *)webView {
-//    [self.indicator stopAnimating];
-//    
-//    int status = [EpmHttpUtil getLastHttpStatusCodeWithRequest:self.webView.request];
-//    
-//     [self.webView stringByEvaluatingJavaScriptFromString:@"orientationChange()"];
-//    
-//    if (status>=400){
-//        
-//        NSString *msg=[EpmHttpUtil notificationWithStatusCode:status];
-//        
-//        UIAlertView *av = [[UIAlertView alloc] initWithTitle:msg
-//                                                     message:@""
-//                                                    delegate:nil
-//                                           cancelButtonTitle:@"OK" otherButtonTitles:nil];
-//        [av show];
-//
-//    }
-//}
-//
-//
-//
-//
-//- (void )webViewDidStartLoad:(UIWebView *)webView {
-//    [self.indicator startAnimating];
-//    
-//}
-//
-//
 
 
 
@@ -721,7 +614,7 @@
     
     if(scrollView == self.frequency){
         NSString *freq = [[self freqSequence] objectAtIndex: [self scrollViewCurrentPage:scrollView]];
-        NSLog(@"%@",freq);
+//        NSLog(@"%@",freq);
         if([freq isEqualToString:NSLocalizedString(@"DAY", nil)]){
             [self.currentConditions setObject:@"100" forKey:@"frequency"];
             needRefresh = YES;
@@ -757,7 +650,7 @@
         
         [self.currentConditions setObject:[self dateSinceNow:[number integerValue]* -1 OfFrequency:[[self.currentConditions objectForKey:@"frequency"] integerValue]] forKey:@"start_time"];
         needRefresh = YES;
-        NSLog(@"%@",self.currentConditions);
+//        NSLog(@"%@",self.currentConditions);
     }
     if(needRefresh){
         [self getDataForTable];
@@ -795,7 +688,7 @@
 
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
-    if(scrollView!=self.collectionView && scrollView != self.tableView){
+    if(scrollView != self.tableView){
          [self moveToNearest:scrollView];
         [self didScrollViewEndToUpdateCondition:scrollView];
     }
@@ -836,7 +729,7 @@
 
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate{
     
-    if(!decelerate && scrollView!=self.collectionView && scrollView != self.tableView){
+    if(!decelerate && scrollView != self.tableView){
         
         [self moveToNearest:scrollView];
         [self didScrollViewEndToUpdateCondition:scrollView];
@@ -895,6 +788,21 @@
 -(void)userClickedOnLinePoint:(CGPoint)point lineIndex:(NSInteger)lineIndex{
     }
 
+#pragma jbline delegate
+- (NSUInteger)numberOfLinesInLineChartView:(JBLineChartView *)lineChartView
+{
+    return 1;
+}
+
+- (NSUInteger)lineChartView:(JBLineChartView *)lineChartView numberOfVerticalValuesAtLineIndex:(NSUInteger)lineIndex
+{
+    return [[self.tableData objectForKey:@"date"] count];
+}
+- (CGFloat)lineChartView:(JBLineChartView *)lineChartView verticalValueForHorizontalIndex:(NSUInteger)horizontalIndex atLineIndex:(NSUInteger)lineIndex
+{
+
+    return 10.0f;
+}
 
 
 @end

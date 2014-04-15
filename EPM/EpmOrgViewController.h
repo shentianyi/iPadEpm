@@ -17,12 +17,12 @@
 @property (weak, nonatomic) IBOutlet UIScrollView *ten;
 @property (weak, nonatomic) IBOutlet UIView *chartview;
 
-@property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
+//@property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property(strong,nonatomic) NSArray *kpis;
 @property(strong,nonatomic) NSDictionary *entityGroup;
 @property (strong,nonatomic)NSDictionary *tableData;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (weak, nonatomic) IBOutlet UILabel *entityDesc;
+
 @property (weak, nonatomic) IBOutlet UILabel *chartHeadTime;
 @property (weak, nonatomic) IBOutlet UILabel *chartHeadCompletion;
 @property(strong,nonatomic) NSDictionary *preloadKpi;
@@ -30,5 +30,5 @@
 @property (weak, nonatomic) IBOutlet UIView *chartBody;
 @property (weak, nonatomic) IBOutlet UILabel *chartHeadValue;
 @property (weak, nonatomic) IBOutlet UILabel *chartHeadTarget;
-@property (weak, nonatomic) IBOutlet UILabel *entityName;
+
 @end

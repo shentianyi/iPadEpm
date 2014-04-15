@@ -148,6 +148,10 @@
 		05F6CE5418C07AD10040614F /* kpiCategory-3.png in Resources */ = {isa = PBXBuildFile; fileRef = 05F6CE5118C07AD10040614F /* kpiCategory-3.png */; };
 		05F6CE5718C098290040614F /* EPMlogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 05F6CE5518C098290040614F /* EPMlogo.png */; };
 		05F768CC18B4A70C00055138 /* AttachedPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = 05F768CB18B4A70C00055138 /* AttachedPhoto.m */; };
+		B0895C2418FD2FF30013A048 /* JBBarChartView.m in Sources */ = {isa = PBXBuildFile; fileRef = B0895C1E18FD2FF30013A048 /* JBBarChartView.m */; };
+		B0895C2518FD2FF30013A048 /* JBChartView.m in Sources */ = {isa = PBXBuildFile; fileRef = B0895C2018FD2FF30013A048 /* JBChartView.m */; };
+		B0895C2618FD2FF30013A048 /* JBChartView.podspec in Resources */ = {isa = PBXBuildFile; fileRef = B0895C2118FD2FF30013A048 /* JBChartView.podspec */; };
+		B0895C2718FD2FF30013A048 /* JBLineChartView.m in Sources */ = {isa = PBXBuildFile; fileRef = B0895C2318FD2FF30013A048 /* JBLineChartView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -386,6 +390,13 @@
 		05F6CE5518C098290040614F /* EPMlogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = EPMlogo.png; sourceTree = "<group>"; };
 		05F768CA18B4A70C00055138 /* AttachedPhoto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AttachedPhoto.h; sourceTree = "<group>"; };
 		05F768CB18B4A70C00055138 /* AttachedPhoto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AttachedPhoto.m; sourceTree = "<group>"; };
+		B0895C1D18FD2FF30013A048 /* JBBarChartView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBBarChartView.h; sourceTree = "<group>"; };
+		B0895C1E18FD2FF30013A048 /* JBBarChartView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBBarChartView.m; sourceTree = "<group>"; };
+		B0895C1F18FD2FF30013A048 /* JBChartView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBChartView.h; sourceTree = "<group>"; };
+		B0895C2018FD2FF30013A048 /* JBChartView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBChartView.m; sourceTree = "<group>"; };
+		B0895C2118FD2FF30013A048 /* JBChartView.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = JBChartView.podspec; sourceTree = "<group>"; };
+		B0895C2218FD2FF30013A048 /* JBLineChartView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBLineChartView.h; sourceTree = "<group>"; };
+		B0895C2318FD2FF30013A048 /* JBLineChartView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBLineChartView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -588,6 +599,7 @@
 		05EA4DB7187FB00C00C53FEE = {
 			isa = PBXGroup;
 			children = (
+				B0895C1C18FD2FF30013A048 /* JBChartViewClass */,
 				0564117018D9277600ECF680 /* Localizable.strings */,
 				05EA4DC9187FB00C00C53FEE /* EPM */,
 				05EA4DEB187FB00C00C53FEE /* EPMTests */,
@@ -655,8 +667,6 @@
 				05D2C07F1884191500DBBF8C /* LineLayout.m */,
 				05D2C08A1884324B00DBBF8C /* EpmOrgKpiCellView.h */,
 				05D2C08B1884324B00DBBF8C /* EpmOrgKpiCellView.m */,
-				05D2C08D1884332700DBBF8C /* EpmOrgViewController.h */,
-				05D2C08E1884332700DBBF8C /* EpmOrgViewController.m */,
 				05D2C0A0188482D200DBBF8C /* EpmTableCell.h */,
 				05D2C0A1188482D200DBBF8C /* EpmTableCell.m */,
 				055F84611889153D00D88BC4 /* EpmHttpUtil.h */,
@@ -679,8 +689,6 @@
 				0566995418B7245D0024AD32 /* EpmColorPickViewController.m */,
 				0519BA8018BC48240029447E /* EpmMailListController.h */,
 				0519BA8118BC48240029447E /* EpmMailListController.m */,
-				05F6CE4418C02B590040614F /* EpmOrgOverviewController.h */,
-				05F6CE4518C02B590040614F /* EpmOrgOverviewController.m */,
 				0564116218D840A400ECF680 /* EpmSettingViewController.h */,
 				0564116318D840A400ECF680 /* EpmSettingViewController.m */,
 				058CE82018EC35FF000FA4E8 /* EpmGroupViewController.h */,
@@ -786,12 +794,39 @@
 		B0045F4118DFDCA8006B1BC6 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				B0895C1B18FD1EB60013A048 /* Organization */,
 				05D2C00C1881305900DBBF8C /* EpmLoginViewController.h */,
 				05D2C00D1881305900DBBF8C /* EpmLoginViewController.m */,
 				058CE82D18ECC8CB000FA4E8 /* EpmGroupConditionViewController.h */,
 				058CE82E18ECC8CB000FA4E8 /* EpmGroupConditionViewController.m */,
 			);
 			name = Controller;
+			sourceTree = "<group>";
+		};
+		B0895C1B18FD1EB60013A048 /* Organization */ = {
+			isa = PBXGroup;
+			children = (
+				05D2C08D1884332700DBBF8C /* EpmOrgViewController.h */,
+				05D2C08E1884332700DBBF8C /* EpmOrgViewController.m */,
+				05F6CE4418C02B590040614F /* EpmOrgOverviewController.h */,
+				05F6CE4518C02B590040614F /* EpmOrgOverviewController.m */,
+			);
+			name = Organization;
+			sourceTree = "<group>";
+		};
+		B0895C1C18FD2FF30013A048 /* JBChartViewClass */ = {
+			isa = PBXGroup;
+			children = (
+				B0895C1D18FD2FF30013A048 /* JBBarChartView.h */,
+				B0895C1E18FD2FF30013A048 /* JBBarChartView.m */,
+				B0895C1F18FD2FF30013A048 /* JBChartView.h */,
+				B0895C2018FD2FF30013A048 /* JBChartView.m */,
+				B0895C2118FD2FF30013A048 /* JBChartView.podspec */,
+				B0895C2218FD2FF30013A048 /* JBLineChartView.h */,
+				B0895C2318FD2FF30013A048 /* JBLineChartView.m */,
+			);
+			name = JBChartViewClass;
+			path = Classes;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -918,6 +953,7 @@
 				0502A96D18BC747C00906C45 /* mail.png in Resources */,
 				05F6CE4A18C03E990040614F /* chart.png in Resources */,
 				05F6CE5218C07AD10040614F /* kpiCategory-1.png in Resources */,
+				B0895C2618FD2FF30013A048 /* JBChartView.podspec in Resources */,
 				05D2C0AE1884B6C600DBBF8C /* ipad-icon@2x.png in Resources */,
 				05EA4DD7187FB00C00C53FEE /* Main.storyboard in Resources */,
 				05D2C0641882745F00DBBF8C /* BUTTON-organization-active.png in Resources */,
@@ -958,10 +994,12 @@
 				05D2C046188138BE00DBBF8C /* AFSecurityPolicy.m in Sources */,
 				05EA4E03187FDC8800C53FEE /* EpmDbDetailViewController.m in Sources */,
 				05C4FF5818ADC631004E1A90 /* PNCircleChart.m in Sources */,
+				B0895C2718FD2FF30013A048 /* JBLineChartView.m in Sources */,
 				058CE82F18ECC8CB000FA4E8 /* EpmGroupConditionViewController.m in Sources */,
 				05D2C043188138BE00DBBF8C /* AFHTTPRequestOperationManager.m in Sources */,
 				05C4FF5618ADC631004E1A90 /* PNBarChartb.ml in Sources */,
 				05C4FF5918ADC631004E1A90 /* PNColor.m in Sources */,
+				B0895C2518FD2FF30013A048 /* JBChartView.m in Sources */,
 				05EA4E09187FEB7800C53FEE /* EpmOrgCollectionController.m in Sources */,
 				05C4FF5D18ADC631004E1A90 /* UICountingLabel.m in Sources */,
 				05C4FF5718ADC631004E1A90 /* PNChartLabel.m in Sources */,
@@ -984,6 +1022,7 @@
 				056C3CD918ACAC5200820524 /* EpmSendMailController.m in Sources */,
 				05EA4E06187FE09600C53FEE /* EpmDbHeader.m in Sources */,
 				05D2C04A188138BE00DBBF8C /* AFURLSessionManager.m in Sources */,
+				B0895C2418FD2FF30013A048 /* JBBarChartView.m in Sources */,
 				055F84661889161500D88BC4 /* EpmSettings.m in Sources */,
 				05D2C049188138BE00DBBF8C /* AFURLResponseSerialization.m in Sources */,
 				056C3CDF18ACBC1D00820524 /* EpmUtility.m in Sources */,

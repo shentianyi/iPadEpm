@@ -319,6 +319,7 @@
     if([segue.identifier isEqualToString:@"toDetail"]){
         EpmOrgViewController *detail = segue.destinationViewController;
         detail.entityGroup = [sender objectForKey:@"entityGroup"];
+        NSLog(@"%@",[sender objectForKey:@"kpi"]);
         detail.preloadKpi = [sender objectForKey:@"kpi"];
         detail.hidesBottomBarWhenPushed = YES;
     }
