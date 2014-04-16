@@ -148,6 +148,9 @@
 		05F6CE5418C07AD10040614F /* kpiCategory-3.png in Resources */ = {isa = PBXBuildFile; fileRef = 05F6CE5118C07AD10040614F /* kpiCategory-3.png */; };
 		05F6CE5718C098290040614F /* EPMlogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 05F6CE5518C098290040614F /* EPMlogo.png */; };
 		05F768CC18B4A70C00055138 /* AttachedPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = 05F768CB18B4A70C00055138 /* AttachedPhoto.m */; };
+		B043D2AD18FE18B400407A64 /* JBLineChartFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = B043D2AB18FE18B400407A64 /* JBLineChartFooterView.m */; };
+		B043D2D118FE58CF00407A64 /* JBChartTooltipTipView.m in Sources */ = {isa = PBXBuildFile; fileRef = B043D2CE18FE58CF00407A64 /* JBChartTooltipTipView.m */; };
+		B043D2D218FE58CF00407A64 /* JBChartTooltipView.m in Sources */ = {isa = PBXBuildFile; fileRef = B043D2D018FE58CF00407A64 /* JBChartTooltipView.m */; };
 		B0895C2418FD2FF30013A048 /* JBBarChartView.m in Sources */ = {isa = PBXBuildFile; fileRef = B0895C1E18FD2FF30013A048 /* JBBarChartView.m */; };
 		B0895C2518FD2FF30013A048 /* JBChartView.m in Sources */ = {isa = PBXBuildFile; fileRef = B0895C2018FD2FF30013A048 /* JBChartView.m */; };
 		B0895C2618FD2FF30013A048 /* JBChartView.podspec in Resources */ = {isa = PBXBuildFile; fileRef = B0895C2118FD2FF30013A048 /* JBChartView.podspec */; };
@@ -390,6 +393,12 @@
 		05F6CE5518C098290040614F /* EPMlogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = EPMlogo.png; sourceTree = "<group>"; };
 		05F768CA18B4A70C00055138 /* AttachedPhoto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AttachedPhoto.h; sourceTree = "<group>"; };
 		05F768CB18B4A70C00055138 /* AttachedPhoto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AttachedPhoto.m; sourceTree = "<group>"; };
+		B043D2AA18FE18B400407A64 /* JBLineChartFooterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBLineChartFooterView.h; sourceTree = "<group>"; };
+		B043D2AB18FE18B400407A64 /* JBLineChartFooterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBLineChartFooterView.m; sourceTree = "<group>"; };
+		B043D2CD18FE58CF00407A64 /* JBChartTooltipTipView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBChartTooltipTipView.h; sourceTree = "<group>"; };
+		B043D2CE18FE58CF00407A64 /* JBChartTooltipTipView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBChartTooltipTipView.m; sourceTree = "<group>"; };
+		B043D2CF18FE58CF00407A64 /* JBChartTooltipView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBChartTooltipView.h; sourceTree = "<group>"; };
+		B043D2D018FE58CF00407A64 /* JBChartTooltipView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBChartTooltipView.m; sourceTree = "<group>"; };
 		B0895C1D18FD2FF30013A048 /* JBBarChartView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBBarChartView.h; sourceTree = "<group>"; };
 		B0895C1E18FD2FF30013A048 /* JBBarChartView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBBarChartView.m; sourceTree = "<group>"; };
 		B0895C1F18FD2FF30013A048 /* JBChartView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBChartView.h; sourceTree = "<group>"; };
@@ -635,6 +644,7 @@
 		05EA4DC9187FB00C00C53FEE /* EPM */ = {
 			isa = PBXGroup;
 			children = (
+				B043D2A618FE189D00407A64 /* View */,
 				058CE82718EC3EDC000FA4E8 /* tmp */,
 				B0045F4118DFDCA8006B1BC6 /* Controller */,
 				0519BA7C18BC46CA0029447E /* TableCellView */,
@@ -801,6 +811,27 @@
 				058CE82E18ECC8CB000FA4E8 /* EpmGroupConditionViewController.m */,
 			);
 			name = Controller;
+			sourceTree = "<group>";
+		};
+		B043D2A618FE189D00407A64 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				B043D2A718FE18A500407A64 /* chartRelated */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		B043D2A718FE18A500407A64 /* chartRelated */ = {
+			isa = PBXGroup;
+			children = (
+				B043D2CD18FE58CF00407A64 /* JBChartTooltipTipView.h */,
+				B043D2CE18FE58CF00407A64 /* JBChartTooltipTipView.m */,
+				B043D2CF18FE58CF00407A64 /* JBChartTooltipView.h */,
+				B043D2D018FE58CF00407A64 /* JBChartTooltipView.m */,
+				B043D2AA18FE18B400407A64 /* JBLineChartFooterView.h */,
+				B043D2AB18FE18B400407A64 /* JBLineChartFooterView.m */,
+			);
+			name = chartRelated;
 			sourceTree = "<group>";
 		};
 		B0895C1B18FD1EB60013A048 /* Organization */ = {
@@ -998,6 +1029,7 @@
 				058CE82F18ECC8CB000FA4E8 /* EpmGroupConditionViewController.m in Sources */,
 				05D2C043188138BE00DBBF8C /* AFHTTPRequestOperationManager.m in Sources */,
 				05C4FF5618ADC631004E1A90 /* PNBarChartb.ml in Sources */,
+				B043D2D118FE58CF00407A64 /* JBChartTooltipTipView.m in Sources */,
 				05C4FF5918ADC631004E1A90 /* PNColor.m in Sources */,
 				B0895C2518FD2FF30013A048 /* JBChartView.m in Sources */,
 				05EA4E09187FEB7800C53FEE /* EpmOrgCollectionController.m in Sources */,
@@ -1008,6 +1040,7 @@
 				05EA4E00187FB09F00C53FEE /* EpmDbCellView.m in Sources */,
 				0576D1A618AC64EF00AD75AB /* SDWebImageCompat.m in Sources */,
 				05EA4DD0187FB00C00C53FEE /* main.m in Sources */,
+				B043D2D218FE58CF00407A64 /* JBChartTooltipView.m in Sources */,
 				05F6CE4618C02B590040614F /* EpmOrgOverviewController.m in Sources */,
 				0576D1AB18AC64EF00AD75AB /* SDWebImagePrefetcher.m in Sources */,
 				0519BA8218BC48240029447E /* EpmMailListController.m in Sources */,
@@ -1017,6 +1050,7 @@
 				058CE82618EC3C62000FA4E8 /* XYPieChart.m in Sources */,
 				05F768CC18B4A70C00055138 /* AttachedPhoto.m in Sources */,
 				05C4FF6118ADE20F004E1A90 /* EpmMailAttachmentViewCell.m in Sources */,
+				B043D2AD18FE18B400407A64 /* JBLineChartFooterView.m in Sources */,
 				05EA4DDD187FB00C00C53FEE /* EpmSecondViewController.m in Sources */,
 				0576D1A818AC64EF00AD75AB /* SDWebImageDownloader.m in Sources */,
 				056C3CD918ACAC5200820524 /* EpmSendMailController.m in Sources */,

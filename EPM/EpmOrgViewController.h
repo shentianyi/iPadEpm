@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
+
 @interface EpmOrgViewController : UIViewController
 @property (weak, nonatomic) IBOutlet UIScrollView *hundred;
 @property (weak, nonatomic) IBOutlet UIScrollView *bit;
@@ -30,5 +31,7 @@
 @property (weak, nonatomic) IBOutlet UIView *chartBody;
 @property (weak, nonatomic) IBOutlet UILabel *chartHeadValue;
 @property (weak, nonatomic) IBOutlet UILabel *chartHeadTarget;
+
+
 
 @end

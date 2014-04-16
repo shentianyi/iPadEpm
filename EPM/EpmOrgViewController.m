@@ -15,7 +15,16 @@
 #import "AttachedPhoto.h"
 #import "PNChart.h"
 #import "EpmGroupViewController.h"
+
+
 #import "JBLineChartView.h"
+#import "JBLineChartFooterView.h"
+#import "JBChartTooltipTipView.h"
+#import "JBChartTooltipView.h"
+#import "EpmUtility.h"
+
+CGFloat const kJBLineChartViewControllerChartFooterHeight = 20.0f;
+CGFloat const kJBLineChartViewControllerChartPadding = 10.0f;
 
 @interface EpmOrgViewController ()<JBLineChartViewDataSource,JBLineChartViewDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *selectedE1;
@@ -28,7 +37,14 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *kpiName;
 @property (weak, nonatomic) IBOutlet UILabel *kpiDesc;
-
+@property (strong, nonatomic) NSMutableArray *lineData;
+@property (strong, nonatomic) JBLineChartView *lineChartView;
+@property (weak, nonatomic) IBOutlet UILabel *minCurrent;
+@property (weak, nonatomic) IBOutlet UILabel *maxCurrent;
+@property (nonatomic, strong) JBChartTooltipView *tooltipView;
+@property (nonatomic, strong) JBChartTooltipTipView *tooltipTipView;
+@property (nonatomic, assign) BOOL tooltipVisible;
+@property (nonatomic, strong) NSMutableArray *dateLocate;
 @end
 
 @implementation EpmOrgViewController
@@ -107,12 +123,17 @@
              [av show];
          }];
 }
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+}
 -(void)viewDidAppear:(BOOL)animated{
     // [self changeLayoutWithOrientation:(UIDeviceOrientation)[UIApplication sharedApplication].statusBarOrientation];
   
     [self moveScrollView:self.ten ToPage:1];
     [self moveScrollView:self.bit ToPage:4];
-     }
+}
 
 
 -(void)getDataForTable{
@@ -145,18 +166,58 @@
          }];
 }
 
-////////////////////////////////////////////////////////////////  load chart
+/////////////////////////////////////////////////////////////////////////  load chart
 -(void)loadChart{
     if(self.tableData){
+        self.dateLocate=[[self.tableData objectForKey:@"date"] mutableCopy];
+        for(int i=0;i<[self.dateLocate count];i++){
+            [self.dateLocate replaceObjectAtIndex:i withObject:[EpmUtility convertDatetimeWithString:[[self.dateLocate objectAtIndex:i] substringToIndex:18] OfPattern:@"yyyy-MM-dd HH:mm:ss" WithFormat:[EpmUtility timeStringOfFrequency:[[self.currentConditions objectForKey:@"frequency"] integerValue]]]];
+        }
+        
         NSLog(@"%@",self.tableData);
+        self.lineData=[NSMutableArray array];
+        [self.lineData addObject:[self.tableData objectForKey:@"current"]];
+//        NSLog(@"%@",self.lineData);
+        
         for (UIView *view in self.chartBody.subviews){
             [view removeFromSuperview];
         }
-        JBLineChartView *lineChartView=[[JBLineChartView alloc] init];
-        lineChartView.delegate=self;
-        lineChartView.dataSource=self;
-        lineChartView.frame=CGRectMake(0, 0, 400, 500);
-        [lineChartView reloadData];
+        if(self.lineChartView){
+            [self.lineChartView removeFromSuperview];
+            self.lineChartView=nil;
+        }
+
+        self.lineChartView=[[JBLineChartView alloc] init];
+        self.lineChartView.frame=[self.view convertRect:self.chartBody.frame fromView:self.chartview];
+        [self.view addSubview:self.lineChartView];
+        self.lineChartView.delegate=self;
+        self.lineChartView.dataSource=self;
+        [self.lineChartView reloadData];
+        
+        NSComparator cmptr = ^(id obj1, id obj2){
+            if ([obj1 integerValue] > [obj2 integerValue]) {
+                return (NSComparisonResult)NSOrderedDescending;
+            }
+            
+            if ([obj1 integerValue] < [obj2 integerValue]) {
+                return (NSComparisonResult)NSOrderedAscending;
+            }
+            return (NSComparisonResult)NSOrderedSame;
+        };
+        NSArray *currentOrderArray = [[self.tableData objectForKey:@"current"] sortedArrayUsingComparator:cmptr];
+        self.minCurrent.text=[NSString stringWithFormat:@"%d",[currentOrderArray.firstObject intValue]];
+        self.maxCurrent.text=[NSString stringWithFormat:@"%d",[currentOrderArray.lastObject intValue]];
+        
+        JBLineChartFooterView *footerView = [[JBLineChartFooterView alloc] initWithFrame:CGRectMake(kJBLineChartViewControllerChartPadding, ceil(self.view.bounds.size.height * 0.5) - ceil(kJBLineChartViewControllerChartFooterHeight * 0.5), self.view.bounds.size.width - (kJBLineChartViewControllerChartPadding * 2), kJBLineChartViewControllerChartFooterHeight)];
+        footerView.backgroundColor = [UIColor clearColor];
+        footerView.leftLabel.text = @"2014-04-16";
+        footerView.leftLabel.textColor = [UIColor whiteColor];
+        footerView.rightLabel.text = @"2014-04-30";
+        footerView.rightLabel.textColor = [UIColor whiteColor];
+        footerView.sectionCount = [[self.tableData objectForKey:@"current"] count];
+        self.lineChartView.footerView = footerView;
+        
+        
         
 //         PNLineChart * lineChart = [[PNLineChart alloc] initWithFrame:self.chartBody.bounds];
 //        NSArray *axis =[self prepareTimeAxis:[self.tableData objectForKey:@"date"] WithLimit:5];
@@ -203,49 +264,49 @@
 
 }
 
--(NSArray *)prepareTimeAxis:(NSArray *)axis WithLimit:(int)limit{
-    if(limit<2){
-        limit =2;
-    }
-    
-    if(!axis){
-        axis = [[NSArray alloc]init];
-    }
-    
-    if(axis.count<=limit){
-        return axis;
-    }
-    else{
-        NSMutableArray  *tmp = [NSMutableArray arrayWithArray:axis];
-        int *last = axis.count-1;
-        
-        int inteval = (int)(((axis.count -2)/(limit-2))+0.5);
-        int next = inteval;
-        for(int i=0; i<axis.count;i++){
-            if(i>0){
-                if(i!=next && i!=last){
-                    [tmp replaceObjectAtIndex:i withObject:@""];
-                    
-                }
-                else {
-                    [tmp replaceObjectAtIndex:i withObject:[EpmUtility convertDatetimeWithString:[[tmp objectAtIndex:i] substringToIndex:18] OfPattern:@"yyyy-MM-dd HH:mm:ss" WithFormat:[EpmUtility timeStringOfFrequency:[[self.currentConditions objectForKey:@"frequency"] integerValue]]]];
-                    
-
-                    next = i + inteval;
-                }
-                
-            }
-            else {
-                  [tmp replaceObjectAtIndex:i withObject:[EpmUtility convertDatetimeWithString:[[tmp objectAtIndex:i] substringToIndex:18] OfPattern:@"yyyy-MM-dd HH:mm:ss" WithFormat:[EpmUtility timeStringOfFrequency:[[self.currentConditions objectForKey:@"frequency"] integerValue]]]];
-            
-            }
-        }
-        axis=tmp;
-    }
-    
-    return axis;
-
-}
+//-(NSArray *)prepareTimeAxis:(NSArray *)axis WithLimit:(int)limit{
+//    if(limit<2){
+//        limit =2;
+//    }
+//    
+//    if(!axis){
+//        axis = [[NSArray alloc]init];
+//    }
+//    
+//    if(axis.count<=limit){
+//        return axis;
+//    }
+//    else{
+//        NSMutableArray  *tmp = [NSMutableArray arrayWithArray:axis];
+//        int *last = axis.count-1;
+//        
+//        int inteval = (int)(((axis.count -2)/(limit-2))+0.5);
+//        int next = inteval;
+//        for(int i=0; i<axis.count;i++){
+//            if(i>0){
+//                if(i!=next && i!=last){
+//                    [tmp replaceObjectAtIndex:i withObject:@""];
+//                    
+//                }
+//                else {
+//                    [tmp replaceObjectAtIndex:i withObject:[EpmUtility convertDatetimeWithString:[[tmp objectAtIndex:i] substringToIndex:18] OfPattern:@"yyyy-MM-dd HH:mm:ss" WithFormat:[EpmUtility timeStringOfFrequency:[[self.currentConditions objectForKey:@"frequency"] integerValue]]]];
+//                    
+//
+//                    next = i + inteval;
+//                }
+//                
+//            }
+//            else {
+//                  [tmp replaceObjectAtIndex:i withObject:[EpmUtility convertDatetimeWithString:[[tmp objectAtIndex:i] substringToIndex:18] OfPattern:@"yyyy-MM-dd HH:mm:ss" WithFormat:[EpmUtility timeStringOfFrequency:[[self.currentConditions objectForKey:@"frequency"] integerValue]]]];
+//            
+//            }
+//        }
+//        axis=tmp;
+//    }
+//    
+//    return axis;
+//
+//}
 
 -(void)loadKpiSummery{
     self.average.text = [NSString stringWithFormat:@"%0.2f",[[self.tableData objectForKey:@"average" ]floatValue]];
@@ -500,8 +561,8 @@
 //     }
 //     ];
     
-    [UIView transitionWithView:self.chartview duration:0.7 options:UIViewAnimationOptionTransitionFlipFromLeft animations:^{
-        self.chartview.hidden =YES;
+    [UIView transitionWithView:self.lineChartView duration:0.7 options:UIViewAnimationOptionTransitionFlipFromLeft animations:^{
+        self.lineChartView.hidden =YES;
         self.tableView.hidden =NO;
     
     } completion:^(BOOL finish){
@@ -514,7 +575,7 @@
     
     [UIView transitionWithView:self.tableView duration:0.7 options:UIViewAnimationOptionTransitionFlipFromLeft animations:^{
     
-        self.chartview.hidden =NO;
+        self.lineChartView.hidden =NO;
         self.tableView.hidden =YES;
 
     } completion:^(BOOL finish){
@@ -650,7 +711,7 @@
         
         [self.currentConditions setObject:[self dateSinceNow:[number integerValue]* -1 OfFrequency:[[self.currentConditions objectForKey:@"frequency"] integerValue]] forKey:@"start_time"];
         needRefresh = YES;
-//        NSLog(@"%@",self.currentConditions);
+        NSLog(@"%@",self.currentConditions);
     }
     if(needRefresh){
         [self getDataForTable];
@@ -791,7 +852,7 @@
 #pragma jbline delegate
 - (NSUInteger)numberOfLinesInLineChartView:(JBLineChartView *)lineChartView
 {
-    return 1;
+    return [self.lineData count];
 }
 
 - (NSUInteger)lineChartView:(JBLineChartView *)lineChartView numberOfVerticalValuesAtLineIndex:(NSUInteger)lineIndex
@@ -800,9 +861,121 @@
 }
 - (CGFloat)lineChartView:(JBLineChartView *)lineChartView verticalValueForHorizontalIndex:(NSUInteger)horizontalIndex atLineIndex:(NSUInteger)lineIndex
 {
+    
+    return [[[self.lineData objectAtIndex:lineIndex] objectAtIndex:horizontalIndex] floatValue];
+}
+//event
 
-    return 10.0f;
+- (void)lineChartView:(JBLineChartView *)lineChartView didSelectLineAtIndex:(NSUInteger)lineIndex horizontalIndex:(NSUInteger)horizontalIndex touchPoint:(CGPoint)touchPoint
+{
+    [self setTooltipVisible:YES animated:YES atTouchPoint:touchPoint];
+    [self.tooltipView setText:[self.dateLocate objectAtIndex:horizontalIndex]];
+    [self.tooltipView setValue:[NSString stringWithFormat:@"%d",[[[self.lineData objectAtIndex:lineIndex] objectAtIndex:horizontalIndex] intValue]]];
+}
+- (void)didUnselectLineInLineChartView:(JBLineChartView *)lineChartView
+{
+    [self setTooltipVisible:NO animated:YES];
+}
+//custom
+- (UIColor *)lineChartView:(JBLineChartView *)lineChartView colorForLineAtLineIndex:(NSUInteger)lineIndex
+{
+    return [UIColor whiteColor];
 }
 
+- (CGFloat)lineChartView:(JBLineChartView *)lineChartView widthForLineAtLineIndex:(NSUInteger)lineIndex
+{
+    return 3.0f; // width of line in chart
+}
+- (BOOL)lineChartView:(JBLineChartView *)lineChartView smoothLineAtLineIndex:(NSUInteger)lineIndex{
+    return YES;
+}
+//- (JBLineChartViewLineStyle)lineChartView:(JBLineChartView *)lineChartView lineStyleForLineAtLineIndex:(NSUInteger)lineIndex
+//{
+//    return JBLineChartViewLineStyleDashed; // style of line in chart
+//}
+//tooltip
+- (void)setTooltipVisible:(BOOL)tooltipVisible animated:(BOOL)animated atTouchPoint:(CGPoint)touchPoint
+{
+    self.tooltipVisible = tooltipVisible;
+    
+    JBChartView *chartView = self.lineChartView;
+    
+    if (!self.tooltipView)
+    {
+        self.tooltipView = [[JBChartTooltipView alloc] init];
+        self.tooltipView.alpha = 0.0;
+        [self.view addSubview:self.tooltipView];
+    }
+    
+    if (!self.tooltipTipView)
+    {
+        self.tooltipTipView = [[JBChartTooltipTipView alloc] init];
+        self.tooltipTipView.alpha = 0.0;
+        [self.view addSubview:self.tooltipTipView];
+    }
+    
+    dispatch_block_t adjustTooltipPosition = ^{
+        CGPoint originalTouchPoint = [self.view convertPoint:touchPoint fromView:chartView];
+        CGPoint convertedTouchPoint = originalTouchPoint; // modified
+        JBChartView *chartView = self.lineChartView;
+
+        if (chartView)
+        {
+            CGFloat minChartX = (chartView.frame.origin.x + ceil(self.tooltipView.frame.size.width * 0.5));
+            if (convertedTouchPoint.x < minChartX)
+            {
+                convertedTouchPoint.x = minChartX;
+            }
+            CGFloat maxChartX = (chartView.frame.origin.x + chartView.frame.size.width - ceil(self.tooltipView.frame.size.width * 0.5));
+            if (convertedTouchPoint.x > maxChartX)
+            {
+                convertedTouchPoint.x = maxChartX;
+            }
+            self.tooltipView.frame = CGRectMake(convertedTouchPoint.x - ceil(self.tooltipView.frame.size.width * 0.5), self.chartview.frame.origin.y+85, self.tooltipView.frame.size.width, self.tooltipView.frame.size.height);
+            
+            CGFloat minTipX = (chartView.frame.origin.x + self.tooltipTipView.frame.size.width);
+            if (originalTouchPoint.x < minTipX)
+            {
+                originalTouchPoint.x = minTipX;
+            }
+            CGFloat maxTipX = (chartView.frame.origin.x + chartView.frame.size.width - self.tooltipTipView.frame.size.width);
+            if (originalTouchPoint.x > maxTipX)
+            {
+                originalTouchPoint.x = maxTipX;
+            }
+            self.tooltipTipView.frame = CGRectMake(originalTouchPoint.x - ceil(self.tooltipTipView.frame.size.width * 0.5),self.chartview.frame.origin.y+85+self.tooltipView.frame.size.height, self.tooltipTipView.frame.size.width, self.tooltipTipView.frame.size.height);
+        }
+    };
+    
+    dispatch_block_t adjustTooltipVisibility = ^{
+        self.tooltipView.alpha = _tooltipVisible ? 1.0 : 0.0;
+        self.tooltipTipView.alpha = _tooltipVisible ? 1.0 : 0.0;
+	};
+    
+    if (tooltipVisible)
+    {
+        adjustTooltipPosition();
+    }
+    
+    if (animated)
+    {
+        [UIView animateWithDuration:0.25f animations:^{
+            adjustTooltipVisibility();
+        } completion:^(BOOL finished) {
+            if (!tooltipVisible)
+            {
+                adjustTooltipPosition();
+            }
+        }];
+    }
+    else
+    {
+        adjustTooltipVisibility();
+    }
+}
+- (void)setTooltipVisible:(BOOL)tooltipVisible animated:(BOOL)animated
+{
+    [self setTooltipVisible:tooltipVisible animated:animated atTouchPoint:CGPointZero];
+}
 
 @end
