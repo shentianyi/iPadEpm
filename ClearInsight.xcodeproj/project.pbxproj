@@ -706,8 +706,6 @@
 				0519BA8118BC48240029447E /* EpmMailListController.m */,
 				0564116218D840A400ECF680 /* EpmSettingViewController.h */,
 				0564116318D840A400ECF680 /* EpmSettingViewController.m */,
-				058CE82018EC35FF000FA4E8 /* EpmGroupViewController.h */,
-				058CE82118EC35FF000FA4E8 /* EpmGroupViewController.m */,
 			);
 			path = EPM;
 			sourceTree = "<group>";
@@ -850,6 +848,8 @@
 		B0895C1B18FD1EB60013A048 /* Organization */ = {
 			isa = PBXGroup;
 			children = (
+				058CE82018EC35FF000FA4E8 /* EpmGroupViewController.h */,
+				058CE82118EC35FF000FA4E8 /* EpmGroupViewController.m */,
 				05D2C08D1884332700DBBF8C /* EpmOrgViewController.h */,
 				05D2C08E1884332700DBBF8C /* EpmOrgViewController.m */,
 				05F6CE4418C02B590040614F /* EpmOrgOverviewController.h */,
