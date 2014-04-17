@@ -18,15 +18,21 @@
 
 
 #import "JBLineChartView.h"
+#import "JBBarChartView.h"
 #import "JBLineChartFooterView.h"
+#import "JBBarChartFooterView.h"
 #import "JBChartTooltipTipView.h"
 #import "JBChartTooltipView.h"
 #import "EpmUtility.h"
 
 CGFloat const kJBLineChartViewControllerChartFooterHeight = 20.0f;
 CGFloat const kJBLineChartViewControllerChartPadding = 10.0f;
+CGFloat const kJBBarChartViewControllerChartFooterHeight = 30.0f;
+CGFloat const kJBBarChartViewControllerChartFooterPadding = 5.0f;
+CGFloat const kJBBarChartViewControllerChartPadding = 10.0f;
 
-@interface EpmOrgViewController ()<JBLineChartViewDataSource,JBLineChartViewDelegate>
+
+@interface EpmOrgViewController ()<JBLineChartViewDataSource,JBLineChartViewDelegate,UITableViewDataSource,UITableViewDelegate,JBBarChartViewDataSource,JBBarChartViewDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *selectedE1;
 @property (weak, nonatomic) IBOutlet UILabel *outOfRange;
 @property (weak, nonatomic) IBOutlet UILabel *average;
@@ -39,12 +45,19 @@ CGFloat const kJBLineChartViewControllerChartPadding = 10.0f;
 @property (weak, nonatomic) IBOutlet UILabel *kpiDesc;
 @property (strong, nonatomic) NSMutableArray *lineData;
 @property (strong, nonatomic) JBLineChartView *lineChartView;
+@property (strong, nonatomic) JBBarChartView *barChartView;
 @property (weak, nonatomic) IBOutlet UILabel *minCurrent;
 @property (weak, nonatomic) IBOutlet UILabel *maxCurrent;
+@property (strong,nonatomic) NSString *minCurrentClient;
 @property (nonatomic, strong) JBChartTooltipView *tooltipView;
 @property (nonatomic, strong) JBChartTooltipTipView *tooltipTipView;
 @property (nonatomic, assign) BOOL tooltipVisible;
 @property (nonatomic, strong) NSMutableArray *dateLocate;
+- (IBAction)changeBar:(id)sender;
+@property (weak, nonatomic) IBOutlet UILabel *showDate;
+@property (weak, nonatomic) IBOutlet UILabel *showTarget;
+@property (weak, nonatomic) IBOutlet UILabel *showCurrent;
+@property (strong, nonatomic) IBOutlet UIView *showView;
 @end
 
 @implementation EpmOrgViewController
@@ -145,11 +158,23 @@ CGFloat const kJBLineChartViewControllerChartPadding = 10.0f;
     [manager GET:[NSString stringWithFormat:@"%@%@",[EpmSettings getEpmUrlSettingsWithKey:@"baseUrl"],[EpmSettings getEpmUrlSettingsWithKey: @"data"]] parameters:self.currentConditions success:^(AFHTTPRequestOperation *operation, id responseObject) {
         
         NSDictionary *result = (NSDictionary *)responseObject;
+        BOOL hide=YES;
+        if(self.tableView){
+            hide=self.tableView.hidden;
+        }
+       
+        
         
         self.tableData = result;
         [self.tableView reloadData];
+        
         [self loadKpiSummery];
+        self.tableView.hidden=hide;
+        
         [self loadChart];
+        if(self.barChartView){
+            [self loadBarChart];
+        }
     }
      
          failure:^(AFHTTPRequestOperation *operation, NSError *error) {
@@ -169,6 +194,7 @@ CGFloat const kJBLineChartViewControllerChartPadding = 10.0f;
 /////////////////////////////////////////////////////////////////////////  load chart
 -(void)loadChart{
     if(self.tableData){
+        BOOL hide=NO;
         self.dateLocate=[[self.tableData objectForKey:@"date"] mutableCopy];
         for(int i=0;i<[self.dateLocate count];i++){
             [self.dateLocate replaceObjectAtIndex:i withObject:[EpmUtility convertDatetimeWithString:[[self.dateLocate objectAtIndex:i] substringToIndex:18] OfPattern:@"yyyy-MM-dd HH:mm:ss" WithFormat:[EpmUtility timeStringOfFrequency:[[self.currentConditions objectForKey:@"frequency"] integerValue]]]];
@@ -183,6 +209,7 @@ CGFloat const kJBLineChartViewControllerChartPadding = 10.0f;
             [view removeFromSuperview];
         }
         if(self.lineChartView){
+            hide=self.lineChartView.hidden;
             [self.lineChartView removeFromSuperview];
             self.lineChartView=nil;
         }
@@ -193,6 +220,7 @@ CGFloat const kJBLineChartViewControllerChartPadding = 10.0f;
         self.lineChartView.delegate=self;
         self.lineChartView.dataSource=self;
         [self.lineChartView reloadData];
+        self.lineChartView.hidden=hide;
         
         NSComparator cmptr = ^(id obj1, id obj2){
             if ([obj1 integerValue] > [obj2 integerValue]) {
@@ -206,60 +234,21 @@ CGFloat const kJBLineChartViewControllerChartPadding = 10.0f;
         };
         NSArray *currentOrderArray = [[self.tableData objectForKey:@"current"] sortedArrayUsingComparator:cmptr];
         self.minCurrent.text=[NSString stringWithFormat:@"%d",[currentOrderArray.firstObject intValue]];
+        self.minCurrentClient=[self.minCurrent.text copy];
+        if(self.barChartView && !self.barChartView.hidden){
+            self.minCurrent.text=@"0";
+        }
         self.maxCurrent.text=[NSString stringWithFormat:@"%d",[currentOrderArray.lastObject intValue]];
         
         JBLineChartFooterView *footerView = [[JBLineChartFooterView alloc] initWithFrame:CGRectMake(kJBLineChartViewControllerChartPadding, ceil(self.view.bounds.size.height * 0.5) - ceil(kJBLineChartViewControllerChartFooterHeight * 0.5), self.view.bounds.size.width - (kJBLineChartViewControllerChartPadding * 2), kJBLineChartViewControllerChartFooterHeight)];
         footerView.backgroundColor = [UIColor clearColor];
-        footerView.leftLabel.text = @"2014-04-16";
+        footerView.leftLabel.text = [self.dateLocate firstObject];
         footerView.leftLabel.textColor = [UIColor whiteColor];
-        footerView.rightLabel.text = @"2014-04-30";
+        footerView.rightLabel.text = [self.dateLocate lastObject];
         footerView.rightLabel.textColor = [UIColor whiteColor];
         footerView.sectionCount = [[self.tableData objectForKey:@"current"] count];
         self.lineChartView.footerView = footerView;
         
-        
-        
-//         PNLineChart * lineChart = [[PNLineChart alloc] initWithFrame:self.chartBody.bounds];
-//        NSArray *axis =[self prepareTimeAxis:[self.tableData objectForKey:@"date"] WithLimit:5];
-//        [lineChart setXLabels:axis];
-//        NSArray * data01Array = [self.tableData objectForKey:@"target_max"];
-//        PNLineChartData *data01 = [PNLineChartData new];
-//        data01.color = [[UIColor alloc] initWithRed:128.0 green:128.0 blue:128.0 alpha:0.25];
-//        
-//        data01.lineWidth = 1;
-//        data01.itemCount = lineChart.xLabels.count;
-//        data01.getData = ^(NSUInteger index) {
-//            CGFloat yValue = [[data01Array objectAtIndex:index] floatValue];
-//            return [PNLineChartDataItem dataItemWithY:yValue];
-//        };
-//        // Line Chart No.2
-//        NSArray * data02Array = [self.tableData objectForKey:@"target_min"];
-//        PNLineChartData *data02 = [PNLineChartData new];
-//        data02.color = [[UIColor alloc] initWithRed:128.0 green:128.0 blue:128.0 alpha:0.25];;
-//        data02.lineWidth = 1;
-//        data02.itemCount = lineChart.xLabels.count;
-//        data02.getData = ^(NSUInteger index) {
-//            CGFloat yValue = [[data02Array objectAtIndex:index] floatValue];
-//            return [PNLineChartDataItem dataItemWithY:yValue];
-//        };
-//        
-//        // Line Chart No.2
-//        NSArray * data03Array = [self.tableData objectForKey:@"current"];
-//        PNLineChartData *data03 = [PNLineChartData new];
-//        data03.color = PNWhite;
-//        data03.lineWidth = 2;
-//        data03.itemCount = lineChart.xLabels.count;
-//        data03.getData = ^(NSUInteger index) {
-//            CGFloat yValue = [[data03Array objectAtIndex:index] floatValue];
-//            return [PNLineChartDataItem dataItemWithY:yValue];
-//        };
-//        
-//        //lineChart.chartData = @[data01, data02,data03];
-//        [lineChart setChartData:@[data01,data02,data03]];
-//        lineChart.backgroundColor = [UIColor clearColor];
-//        [lineChart strokeChart];
-//        lineChart.delegate = self;
-//        [self.chartBody addSubview:lineChart];
     }
 
 }
@@ -307,7 +296,36 @@ CGFloat const kJBLineChartViewControllerChartPadding = 10.0f;
 //    return axis;
 //
 //}
+-(void)loadBarChart
+{
+    BOOL hide=NO;
+    for (UIView *view in self.chartBody.subviews){
+        [view removeFromSuperview];
+    }
+    if(self.barChartView){
+        hide=self.barChartView.hidden;
+        [self.barChartView removeFromSuperview];
+        self.barChartView=nil;
+    }
+        
+    self.barChartView=[[JBBarChartView alloc] init];
+    self.barChartView.frame=[self.view convertRect:self.chartBody.frame fromView:self.chartview];
+    [self.view addSubview:self.barChartView];
+    self.barChartView.delegate=self;
+    self.barChartView.dataSource=self;
+    self.barChartView.mininumValue=0.0f;
+    [self.barChartView reloadData];
+    self.barChartView.hidden=hide;
+    
+    JBBarChartFooterView *footerView = [[JBBarChartFooterView alloc] initWithFrame:CGRectMake(kJBBarChartViewControllerChartPadding, ceil(self.view.bounds.size.height * 0.5) - ceil(kJBBarChartViewControllerChartFooterHeight * 0.5), self.view.bounds.size.width - (kJBBarChartViewControllerChartPadding * 2), kJBBarChartViewControllerChartFooterHeight)];
+    footerView.padding = kJBBarChartViewControllerChartFooterPadding;
+    footerView.leftLabel.text = [self.dateLocate firstObject];
+    footerView.leftLabel.textColor = [UIColor whiteColor];
+    footerView.rightLabel.text = [self.dateLocate lastObject];
+    footerView.rightLabel.textColor = [UIColor whiteColor];
+    self.barChartView.footerView = footerView;
 
+}
 -(void)loadKpiSummery{
     self.average.text = [NSString stringWithFormat:@"%0.2f",[[self.tableData objectForKey:@"average" ]floatValue]];
     self.sum.text =  [NSString stringWithFormat:@"%0.2f",[[self.tableData objectForKey:@"total" ]floatValue]];
@@ -413,14 +431,14 @@ CGFloat const kJBLineChartViewControllerChartPadding = 10.0f;
      CGPoint last  = CGPointMake(0,0);
     
     for(NSString *text in [self numberSequence:YES]){
-        [self.hundred addSubview:[self scrollerMaker:text inRect:CGRectMake(0, last.y, self.hundred.bounds.size.width, self.hundred.bounds.size.height) fontSize:75]];
-        [self.ten addSubview:[self scrollerMaker:text inRect:CGRectMake(0, last.y, self.ten.bounds.size.width, self.ten.bounds.size.height) fontSize:75]];
+        [self.hundred addSubview:[self scrollerMaker:text inRect:CGRectMake(0, last.y, self.hundred.bounds.size.width, self.hundred.bounds.size.height) fontSize:55]];
+        [self.ten addSubview:[self scrollerMaker:text inRect:CGRectMake(0, last.y, self.ten.bounds.size.width, self.ten.bounds.size.height) fontSize:55]];
         last.y=last.y + self.hundred.bounds.size.height;
     }
     last.y=0;
     
     for(NSString *text in [self numberSequence:NO]){
-        [self.bit addSubview:[self scrollerMaker:text inRect:CGRectMake(0, last.y, self.bit.bounds.size.width, self.bit.bounds.size.height) fontSize:75]];
+        [self.bit addSubview:[self scrollerMaker:text inRect:CGRectMake(0, last.y, self.bit.bounds.size.width, self.bit.bounds.size.height) fontSize:55]];
         last.y =last.y + self.bit.bounds.size.height;
 
     }
@@ -480,8 +498,7 @@ CGFloat const kJBLineChartViewControllerChartPadding = 10.0f;
     
     }
 
-    
-     [self getDataForTable];
+    [self getDataForTable];
     
 }
 
@@ -507,6 +524,110 @@ CGFloat const kJBLineChartViewControllerChartPadding = 10.0f;
     
     [self performSegueWithIdentifier:@"composeFromDetail" sender:completeData];
 }
+
+////////////////////////////////////////////////////////////////change chart type
+- (IBAction)transactionTable:(id)sender {
+    //click table
+    self.minCurrent.hidden=YES;
+    self.maxCurrent.hidden=YES;
+    if(!self.lineChartView.hidden){
+        [UIView transitionWithView:self.lineChartView duration:0.7 options:UIViewAnimationOptionTransitionFlipFromBottom animations:^{
+            self.lineChartView.hidden =YES;
+            self.barChartView.hidden =YES;
+            self.tableView.hidden =NO;
+        } completion:^(BOOL finish){
+            
+        }];
+    }
+    else if(self.barChartView && !self.barChartView.hidden){
+        [UIView transitionWithView:self.barChartView duration:0.7 options:UIViewAnimationOptionTransitionFlipFromBottom animations:^{
+            self.lineChartView.hidden =YES;
+            self.barChartView.hidden =YES;
+            self.tableView.hidden =NO;
+        } completion:^(BOOL finish){
+            
+        }];
+    }
+    
+}
+
+- (IBAction)transactionChart:(id)sender {
+    //click line
+    self.minCurrent.hidden=NO;
+    self.minCurrent.text=self.minCurrentClient;
+    self.maxCurrent.hidden=NO;
+    if(self.barChartView && !self.barChartView.hidden){
+        [UIView transitionWithView:self.barChartView duration:0.7 options:UIViewAnimationOptionTransitionFlipFromBottom animations:^{
+            
+            self.barChartView.hidden =YES;
+            self.tableView.hidden =YES;
+            self.lineChartView.hidden =NO;
+        } completion:^(BOOL finish){
+            
+        }];
+    }
+    else if(!self.tableView.hidden){
+        [UIView transitionWithView:self.tableView duration:0.7 options:UIViewAnimationOptionTransitionFlipFromBottom animations:^{
+            
+            self.barChartView.hidden =YES;
+            self.tableView.hidden =YES;
+            self.lineChartView.hidden =NO;
+        } completion:^(BOOL finish){
+            
+        }];
+    }
+    
+}
+-(IBAction)changeBar:(id)sender
+{
+    //click bar
+    self.minCurrent.hidden=NO;
+    self.minCurrent.text=@"0";
+    self.maxCurrent.hidden=NO;
+    if(!self.lineChartView.hidden){
+        [UIView transitionWithView:self.lineChartView duration:0.7 options:UIViewAnimationOptionTransitionFlipFromBottom animations:^{
+            self.lineChartView.hidden =YES;
+            
+            self.tableView.hidden =YES;
+            self.barChartView.hidden =NO;
+        } completion:^(BOOL finish){
+            if(!self.barChartView){
+                [self loadBarChart];
+                if(self.tooltipView){
+                    [self.tooltipView removeFromSuperview];
+                    self.tooltipView=nil;
+                }
+                if(self.tooltipTipView){
+                    [self.tooltipTipView removeFromSuperview];
+                    self.tooltipTipView=nil;
+                }
+            }
+        }];
+    }
+    else if(!self.tableView.hidden){
+        [UIView transitionWithView:self.tableView duration:0.7 options:UIViewAnimationOptionTransitionFlipFromBottom animations:^{
+            self.lineChartView.hidden =YES;
+            
+            self.tableView.hidden =YES;
+            self.barChartView.hidden =NO;
+        } completion:^(BOOL finish){
+            if(!self.barChartView){
+                [self loadBarChart];
+                if(self.tooltipView){
+                    [self.tooltipView removeFromSuperview];
+                    self.tooltipView=nil;
+                }
+                if(self.tooltipTipView){
+                    [self.tooltipTipView removeFromSuperview];
+                    self.tooltipTipView=nil;
+                }
+            }
+        }];
+    }
+}
+
+
+
 
 
 
@@ -544,45 +665,10 @@ CGFloat const kJBLineChartViewControllerChartPadding = 10.0f;
 //指定每个分区中有多少行，默认为1
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    
     return [[self.tableData objectForKey:@"current" ] count];
 }
 
-- (IBAction)transactionTable:(id)sender {
-//    [UIView transitionFromView:self.chartview
-//                        toView:self.tableView
-//                      duration:1
-//                       options:UIViewAnimationOptionTransitionFlipFromRight | UIViewAnimationCurveEaseIn | UIViewAnimationOptionShowHideTransitionViews
-//                    completion:^(BOOL finished)
-//     {
-//         self.chartview.hidden =YES;
-//         self.tableView.hidden =NO;
-//         
-//     }
-//     ];
-    
-    [UIView transitionWithView:self.lineChartView duration:0.7 options:UIViewAnimationOptionTransitionFlipFromLeft animations:^{
-        self.lineChartView.hidden =YES;
-        self.tableView.hidden =NO;
-    
-    } completion:^(BOOL finish){
-      
-    }];
-    
-}
 
-- (IBAction)transactionChart:(id)sender {
-    
-    [UIView transitionWithView:self.tableView duration:0.7 options:UIViewAnimationOptionTransitionFlipFromLeft animations:^{
-    
-        self.lineChartView.hidden =NO;
-        self.tableView.hidden =YES;
-
-    } completion:^(BOOL finish){
-
-    }];
-
-}
 
 //绘制Cell
 
@@ -595,7 +681,7 @@ CGFloat const kJBLineChartViewControllerChartPadding = 10.0f;
     
     EpmTableCell *cell = (EpmTableCell*)[tableView  dequeueReusableCellWithIdentifier:CellIdentifier];
     
-      NSString *date =[[self.tableData objectForKey:@"date"] objectAtIndex:indexPath.row];
+    NSString *date =[[self.tableData objectForKey:@"date"] objectAtIndex:indexPath.row];
     NSNumber *current =[[self.tableData objectForKey:@"current"] objectAtIndex:indexPath.row];
     NSString *unit = [[self.tableData objectForKey:@"unit"] objectAtIndex:indexPath.row];
     NSNumber *min=[[self.tableData objectForKey:@"target_min"] objectAtIndex:indexPath.row];
@@ -672,7 +758,14 @@ CGFloat const kJBLineChartViewControllerChartPadding = 10.0f;
 #pragma scrollview delegate
 -(void)didScrollViewEndToUpdateCondition:(UIScrollView*)scrollView{
     BOOL needRefresh = NO;
-    
+    if(self.tooltipView){
+        [self.tooltipView removeFromSuperview];
+        self.tooltipView=nil;
+    }
+    if(self.tooltipTipView){
+        [self.tooltipTipView removeFromSuperview];
+        self.tooltipTipView=nil;
+    }   
     if(scrollView == self.frequency){
         NSString *freq = [[self freqSequence] objectAtIndex: [self scrollViewCurrentPage:scrollView]];
 //        NSLog(@"%@",freq);
@@ -715,7 +808,7 @@ CGFloat const kJBLineChartViewControllerChartPadding = 10.0f;
     }
     if(needRefresh){
         [self getDataForTable];
-    
+        self.showView.hidden=YES;
     }
 }
 
@@ -864,6 +957,32 @@ CGFloat const kJBLineChartViewControllerChartPadding = 10.0f;
     
     return [[[self.lineData objectAtIndex:lineIndex] objectAtIndex:horizontalIndex] floatValue];
 }
+#pragma jbbar delegate
+- (NSUInteger)numberOfBarsInBarChartView:(JBBarChartView *)barChartView
+{
+    return [[self.tableData objectForKey:@"current"] count]; // number of bars in chart
+}
+- (CGFloat)barChartView:(JBBarChartView *)barChartView heightForBarViewAtAtIndex:(NSUInteger)index
+{
+    return [[[self.tableData objectForKey:@"current"] objectAtIndex:index] floatValue]; // height of bar at index
+}
+- (void)barChartView:(JBBarChartView *)barChartView didSelectBarAtIndex:(NSUInteger)index touchPoint:(CGPoint)touchPoint
+{
+    [self setTooltipVisible:YES animated:YES atTouchPoint:touchPoint];
+    [self.tooltipView setText:[self.dateLocate objectAtIndex:index]];
+    [self.tooltipView setValue:[NSString stringWithFormat:@"%d",[[[self.tableData objectForKey:@"current"] objectAtIndex:index] intValue]]];
+    self.showView.hidden=NO;
+    self.showDate.text=[self.dateLocate objectAtIndex:index];
+    self.showTarget.text=[NSString stringWithFormat:@"%d - %d",[[self.preloadKpi objectForKey:@"target_min"] intValue],[[self.preloadKpi objectForKey:@"target_max"] intValue]];
+    self.showCurrent.adjustsFontSizeToFitWidth = YES;
+    self.showCurrent.text=[NSString stringWithFormat:@"%d",[[[self.tableData objectForKey:@"current"] objectAtIndex:index] intValue]];
+}
+
+- (void)didUnselectBarChartView:(JBBarChartView *)barChartView
+{
+    [self setTooltipVisible:NO animated:YES];
+}
+
 //event
 
 - (void)lineChartView:(JBLineChartView *)lineChartView didSelectLineAtIndex:(NSUInteger)lineIndex horizontalIndex:(NSUInteger)horizontalIndex touchPoint:(CGPoint)touchPoint
@@ -871,6 +990,11 @@ CGFloat const kJBLineChartViewControllerChartPadding = 10.0f;
     [self setTooltipVisible:YES animated:YES atTouchPoint:touchPoint];
     [self.tooltipView setText:[self.dateLocate objectAtIndex:horizontalIndex]];
     [self.tooltipView setValue:[NSString stringWithFormat:@"%d",[[[self.lineData objectAtIndex:lineIndex] objectAtIndex:horizontalIndex] intValue]]];
+    self.showView.hidden=NO;
+    self.showDate.text=[self.dateLocate objectAtIndex:horizontalIndex];
+    self.showTarget.text=[NSString stringWithFormat:@"%d - %d",[[self.preloadKpi objectForKey:@"target_min"] intValue],[[self.preloadKpi objectForKey:@"target_max"] intValue]];
+    self.showCurrent.adjustsFontSizeToFitWidth = YES;
+    self.showCurrent.text=[NSString stringWithFormat:@"%d",[[[self.lineData objectAtIndex:lineIndex] objectAtIndex:horizontalIndex] intValue]];
 }
 - (void)didUnselectLineInLineChartView:(JBLineChartView *)lineChartView
 {
@@ -879,25 +1003,46 @@ CGFloat const kJBLineChartViewControllerChartPadding = 10.0f;
 //custom
 - (UIColor *)lineChartView:(JBLineChartView *)lineChartView colorForLineAtLineIndex:(NSUInteger)lineIndex
 {
-    return [UIColor whiteColor];
+    return [[UIColor whiteColor] colorWithAlphaComponent:0.7];
 }
 
 - (CGFloat)lineChartView:(JBLineChartView *)lineChartView widthForLineAtLineIndex:(NSUInteger)lineIndex
 {
-    return 3.0f; // width of line in chart
+    return 2.0f; // width of line in chart
 }
 - (BOOL)lineChartView:(JBLineChartView *)lineChartView smoothLineAtLineIndex:(NSUInteger)lineIndex{
     return YES;
 }
+- (UIView *)barChartView:(JBBarChartView *)barChartView barViewAtIndex:(NSUInteger)index
+{
+    UIView *barView = [[UIView alloc] init];
+    barView.backgroundColor=[UIColor whiteColor];
+    return barView; // color of line in chart
+}
+- (UIColor *)barSelectionColorForBarChartView:(JBBarChartView *)barChartView
+{
+    return [[UIColor redColor] colorWithAlphaComponent:0.5]; // color of selection view
+}
+- (UIColor *)verticalSelectionColorForLineChartView:(JBLineChartView *)lineChartView
+{
+    return [[UIColor redColor] colorWithAlphaComponent:0.3]; // color of selection view
+}
+
+- (UIColor *)lineChartView:(JBLineChartView *)lineChartView selectionColorForLineAtLineIndex:(NSUInteger)lineIndex
+{
+    return [[UIColor whiteColor] colorWithAlphaComponent:1]; // color of selected line
+}
+
+
 //- (JBLineChartViewLineStyle)lineChartView:(JBLineChartView *)lineChartView lineStyleForLineAtLineIndex:(NSUInteger)lineIndex
 //{
 //    return JBLineChartViewLineStyleDashed; // style of line in chart
 //}
+
 //tooltip
 - (void)setTooltipVisible:(BOOL)tooltipVisible animated:(BOOL)animated atTouchPoint:(CGPoint)touchPoint
 {
     self.tooltipVisible = tooltipVisible;
-    
     JBChartView *chartView = self.lineChartView;
     
     if (!self.tooltipView)

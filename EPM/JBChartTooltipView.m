@@ -15,7 +15,7 @@
 
 // Numerics
 CGFloat static const kJBChartTooltipViewCornerRadius = 5.0;
-CGFloat const kJBChartTooltipViewDefaultWidth = 50.0f;
+CGFloat const kJBChartTooltipViewDefaultWidth = 55.0f;
 CGFloat const kJBChartTooltipViewDefaultHeight = 40.0f;
 
 @interface JBChartTooltipView ()
@@ -81,7 +81,7 @@ CGFloat const kJBChartTooltipViewDefaultHeight = 40.0f;
 {
     [super layoutSubviews];
     _textLabel.frame = CGRectMake(0, 0, self.bounds.size.width, self.bounds.size.height/2);
-    _valueLabel.frame = CGRectMake(0, self.bounds.size.height/2, self.bounds.size.width, self.bounds.size.height/2);
+    _valueLabel.frame = CGRectMake(0, self.bounds.size.height/3+5, self.bounds.size.width, self.bounds.size.height/2);
 }
 
 @end

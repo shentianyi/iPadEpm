@@ -148,6 +148,7 @@
 		05F6CE5418C07AD10040614F /* kpiCategory-3.png in Resources */ = {isa = PBXBuildFile; fileRef = 05F6CE5118C07AD10040614F /* kpiCategory-3.png */; };
 		05F6CE5718C098290040614F /* EPMlogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 05F6CE5518C098290040614F /* EPMlogo.png */; };
 		05F768CC18B4A70C00055138 /* AttachedPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = 05F768CB18B4A70C00055138 /* AttachedPhoto.m */; };
+		B005C80F18FF909000B8ED4B /* JBBarChartFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = B005C80E18FF909000B8ED4B /* JBBarChartFooterView.m */; };
 		B043D2AD18FE18B400407A64 /* JBLineChartFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = B043D2AB18FE18B400407A64 /* JBLineChartFooterView.m */; };
 		B043D2D118FE58CF00407A64 /* JBChartTooltipTipView.m in Sources */ = {isa = PBXBuildFile; fileRef = B043D2CE18FE58CF00407A64 /* JBChartTooltipTipView.m */; };
 		B043D2D218FE58CF00407A64 /* JBChartTooltipView.m in Sources */ = {isa = PBXBuildFile; fileRef = B043D2D018FE58CF00407A64 /* JBChartTooltipView.m */; };
@@ -393,6 +394,8 @@
 		05F6CE5518C098290040614F /* EPMlogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = EPMlogo.png; sourceTree = "<group>"; };
 		05F768CA18B4A70C00055138 /* AttachedPhoto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AttachedPhoto.h; sourceTree = "<group>"; };
 		05F768CB18B4A70C00055138 /* AttachedPhoto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AttachedPhoto.m; sourceTree = "<group>"; };
+		B005C80D18FF909000B8ED4B /* JBBarChartFooterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBBarChartFooterView.h; sourceTree = "<group>"; };
+		B005C80E18FF909000B8ED4B /* JBBarChartFooterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBBarChartFooterView.m; sourceTree = "<group>"; };
 		B043D2AA18FE18B400407A64 /* JBLineChartFooterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBLineChartFooterView.h; sourceTree = "<group>"; };
 		B043D2AB18FE18B400407A64 /* JBLineChartFooterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBLineChartFooterView.m; sourceTree = "<group>"; };
 		B043D2CD18FE58CF00407A64 /* JBChartTooltipTipView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBChartTooltipTipView.h; sourceTree = "<group>"; };
@@ -654,6 +657,8 @@
 				05C4FF5E18ADE1CC004E1A90 /* CollectionCellView */,
 				0589E8D318AB1A87000173CC /* Barcode.h */,
 				0589E8D418AB1A87000173CC /* Barcode.m */,
+				058CE82D18ECC8CB000FA4E8 /* EpmGroupConditionViewController.h */,
+				058CE82E18ECC8CB000FA4E8 /* EpmGroupConditionViewController.m */,
 				05EA4DD2187FB00C00C53FEE /* EpmAppDelegate.h */,
 				05EA4DD3187FB00C00C53FEE /* EpmAppDelegate.m */,
 				05EA4DD5187FB00C00C53FEE /* Main.storyboard */,
@@ -805,12 +810,18 @@
 			isa = PBXGroup;
 			children = (
 				B0895C1B18FD1EB60013A048 /* Organization */,
-				05D2C00C1881305900DBBF8C /* EpmLoginViewController.h */,
-				05D2C00D1881305900DBBF8C /* EpmLoginViewController.m */,
-				058CE82D18ECC8CB000FA4E8 /* EpmGroupConditionViewController.h */,
-				058CE82E18ECC8CB000FA4E8 /* EpmGroupConditionViewController.m */,
+				B005C80C18FF6FAD00B8ED4B /* login */,
 			);
 			name = Controller;
+			sourceTree = "<group>";
+		};
+		B005C80C18FF6FAD00B8ED4B /* login */ = {
+			isa = PBXGroup;
+			children = (
+				05D2C00D1881305900DBBF8C /* EpmLoginViewController.m */,
+				05D2C00C1881305900DBBF8C /* EpmLoginViewController.h */,
+			);
+			name = login;
 			sourceTree = "<group>";
 		};
 		B043D2A618FE189D00407A64 /* View */ = {
@@ -824,6 +835,8 @@
 		B043D2A718FE18A500407A64 /* chartRelated */ = {
 			isa = PBXGroup;
 			children = (
+				B005C80D18FF909000B8ED4B /* JBBarChartFooterView.h */,
+				B005C80E18FF909000B8ED4B /* JBBarChartFooterView.m */,
 				B043D2CD18FE58CF00407A64 /* JBChartTooltipTipView.h */,
 				B043D2CE18FE58CF00407A64 /* JBChartTooltipTipView.m */,
 				B043D2CF18FE58CF00407A64 /* JBChartTooltipView.h */,
@@ -1084,6 +1097,7 @@
 				0576D1AC18AC64EF00AD75AB /* UIButton+WebCache.m in Sources */,
 				05D2C00E1881305900DBBF8C /* EpmLoginViewController.m in Sources */,
 				0576D1A418AC64EF00AD75AB /* NSData+GIF.m in Sources */,
+				B005C80F18FF909000B8ED4B /* JBBarChartFooterView.m in Sources */,
 				05C4FF5518ADC631004E1A90 /* PNBarb.ml in Sources */,
 				0589E8D018AB161F000173CC /* EpmscanController.m in Sources */,
 				058CE83818ED0C2A000FA4E8 /* PNBarChart.m in Sources */,

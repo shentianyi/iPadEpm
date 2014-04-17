@@ -211,7 +211,7 @@ static UIColor *kJBBarChartViewDefaultBarColor = nil;
             self.verticalSelectionView = nil;
         }
         
-        self.verticalSelectionView = [[JBChartVerticalSelectionView alloc] initWithFrame:CGRectMake(0, 0, [self barWidth], self.bounds.size.height - self.footerView.frame.size.height)];
+        self.verticalSelectionView = [[JBChartVerticalSelectionView alloc] initWithFrame:CGRectMake(0, 0, [self barWidth], self.bounds.size.height-20.0)];
         self.verticalSelectionView.alpha = 0.0;
         self.verticalSelectionView.hidden = !self.showsVerticalSelection;
         if ([self.dataSource respondsToSelector:@selector(barSelectionColorForBarChartView:)])
