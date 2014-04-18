@@ -24,6 +24,8 @@
 #import "JBChartTooltipTipView.h"
 #import "JBChartTooltipView.h"
 #import "EpmUtility.h"
+#import "OrgChartModel.h"
+#import "entityTableViewController.h"
 
 CGFloat const kJBLineChartViewControllerChartFooterHeight = 20.0f;
 CGFloat const kJBLineChartViewControllerChartPadding = 10.0f;
@@ -52,12 +54,17 @@ CGFloat const kJBBarChartViewControllerChartPadding = 10.0f;
 @property (nonatomic, strong) JBChartTooltipView *tooltipView;
 @property (nonatomic, strong) JBChartTooltipTipView *tooltipTipView;
 @property (nonatomic, assign) BOOL tooltipVisible;
-@property (nonatomic, strong) NSMutableArray *dateLocate;
-- (IBAction)changeBar:(id)sender;
+
 @property (weak, nonatomic) IBOutlet UILabel *showDate;
 @property (weak, nonatomic) IBOutlet UILabel *showTarget;
 @property (weak, nonatomic) IBOutlet UILabel *showCurrent;
 @property (strong, nonatomic) IBOutlet UIView *showView;
+@property (strong , nonatomic) OrgChartModel *chartModel;
+@property (weak, nonatomic) IBOutlet UIButton *compareButton;
+@property (strong,nonatomic) NSMutableArray *entitiesID;
+@property (strong,nonatomic) UIPopoverController *popover;
+- (IBAction)changeBar:(id)sender;
+- (IBAction)addCompareChart:(id)sender;
 @end
 
 @implementation EpmOrgViewController
@@ -74,6 +81,7 @@ CGFloat const kJBBarChartViewControllerChartPadding = 10.0f;
 
 -(void)viewDidLoad
 {
+    self.chartModel=[OrgChartModel sharedChartDate];
     [super viewDidLoad];
     [self initAppearance];
     [self loadData];
@@ -81,7 +89,7 @@ CGFloat const kJBBarChartViewControllerChartPadding = 10.0f;
     if(self.preloadKpi){
         [self loadDataForKpi:self.preloadKpi];
     }
-    
+
     [self.hundred addGestureRecognizer:[[UITapGestureRecognizer alloc]
                                         initWithTarget:self action:@selector(respondToTapGesture:)]];
     [self.ten addGestureRecognizer:[[UITapGestureRecognizer alloc]
@@ -90,6 +98,29 @@ CGFloat const kJBBarChartViewControllerChartPadding = 10.0f;
                                     initWithTarget:self action:@selector(respondToTapGesture:)]];
     [self.frequency addGestureRecognizer:[[UITapGestureRecognizer alloc]
                                           initWithTarget:self action:@selector(respondToTapGesture:)]];
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    [manager GET:[NSString stringWithFormat:@"%@%@", [EpmSettings getEpmUrlSettingsWithKey:@"baseUrl"], [EpmSettings getEpmUrlSettingsWithKey:@"org" ]]
+      parameters:self.currentConditions
+         success:^(AFHTTPRequestOperation *operation, id responseObject){
+             self.entitiesID=[[NSMutableArray alloc] init];
+             for(int i =0;i<[responseObject count];i++){
+                 [self.entitiesID addObject:@{
+                                              @"name":[responseObject[i] objectForKey:@"name"],
+                                              @"id":[NSNumber numberWithInt:(int)[responseObject[i] objectForKey:@"id"]],
+                                              @"order":[NSNumber numberWithInt:i]
+                                              }];
+//                 NSLog(@"compare tow interger %@ : %@",[responseObject[i] objectForKey:@"id"],[self.entityGroup objectForKey:@"id"]);
+                 if([[responseObject[i] objectForKey:@"id"] intValue]==[[self.entityGroup objectForKey:@"id"] intValue]){
+                     [self.chartModel.entity addObject:@{
+                                                           @"name":[responseObject[i] objectForKey:@"name"],
+                                                           @"id":[NSNumber numberWithInt:(int)[responseObject[i] objectForKey:@"id"]],
+                                                           @"order":[NSNumber numberWithInt:i]
+                                                           }];
+                 }
+             }
+//             NSLog(@"entityid is %@",self.chartModel.entity);
+         }
+         failure:^(AFHTTPRequestOperation *operation, NSError *error) {}];
 }
 -(void) initAppearance{
     [self DatePickerAppearance];
@@ -97,8 +128,9 @@ CGFloat const kJBBarChartViewControllerChartPadding = 10.0f;
 -(void)loadData{
     self.navigationItem.title=[self.entityGroup objectForKey:@"name"];
     self.kpiName.text=[self.preloadKpi objectForKey:@"name"];
+    self.kpiName.adjustsFontSizeToFitWidth=YES;
     self.kpiDesc.text=[self.preloadKpi objectForKey:@"description"];
-    
+    self.kpiDesc.adjustsFontSizeToFitWidth=YES;
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     
     
@@ -139,6 +171,8 @@ CGFloat const kJBBarChartViewControllerChartPadding = 10.0f;
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    NSDictionary *attributes=[NSDictionary dictionaryWithObjectsAndKeys:[[UIColor blackColor] colorWithAlphaComponent:1],NSForegroundColorAttributeName, nil];
+    [self.seg setTitleTextAttributes:attributes forState:UIControlStateSelected];
     
 }
 -(void)viewDidAppear:(BOOL)animated{
@@ -157,14 +191,15 @@ CGFloat const kJBBarChartViewControllerChartPadding = 10.0f;
     
     [manager GET:[NSString stringWithFormat:@"%@%@",[EpmSettings getEpmUrlSettingsWithKey:@"baseUrl"],[EpmSettings getEpmUrlSettingsWithKey: @"data"]] parameters:self.currentConditions success:^(AFHTTPRequestOperation *operation, id responseObject) {
         
-        NSDictionary *result = (NSDictionary *)responseObject;
+        NSMutableDictionary *result = [(NSDictionary *)responseObject mutableCopy];
+        [result setObject:[self.currentConditions objectForKey:@"frequency"] forKey:@"frequency"];
+        [self.chartModel updateData:result];
+//        NSLog(@"result is : %@",result);
         BOOL hide=YES;
         if(self.tableView){
             hide=self.tableView.hidden;
         }
        
-        
-        
         self.tableData = result;
         [self.tableView reloadData];
         
@@ -195,16 +230,7 @@ CGFloat const kJBBarChartViewControllerChartPadding = 10.0f;
 -(void)loadChart{
     if(self.tableData){
         BOOL hide=NO;
-        self.dateLocate=[[self.tableData objectForKey:@"date"] mutableCopy];
-        for(int i=0;i<[self.dateLocate count];i++){
-            [self.dateLocate replaceObjectAtIndex:i withObject:[EpmUtility convertDatetimeWithString:[[self.dateLocate objectAtIndex:i] substringToIndex:18] OfPattern:@"yyyy-MM-dd HH:mm:ss" WithFormat:[EpmUtility timeStringOfFrequency:[[self.currentConditions objectForKey:@"frequency"] integerValue]]]];
-        }
-        
-        NSLog(@"%@",self.tableData);
-        self.lineData=[NSMutableArray array];
-        [self.lineData addObject:[self.tableData objectForKey:@"current"]];
-//        NSLog(@"%@",self.lineData);
-        
+
         for (UIView *view in self.chartBody.subviews){
             [view removeFromSuperview];
         }
@@ -222,80 +248,25 @@ CGFloat const kJBBarChartViewControllerChartPadding = 10.0f;
         [self.lineChartView reloadData];
         self.lineChartView.hidden=hide;
         
-        NSComparator cmptr = ^(id obj1, id obj2){
-            if ([obj1 integerValue] > [obj2 integerValue]) {
-                return (NSComparisonResult)NSOrderedDescending;
-            }
-            
-            if ([obj1 integerValue] < [obj2 integerValue]) {
-                return (NSComparisonResult)NSOrderedAscending;
-            }
-            return (NSComparisonResult)NSOrderedSame;
-        };
-        NSArray *currentOrderArray = [[self.tableData objectForKey:@"current"] sortedArrayUsingComparator:cmptr];
-        self.minCurrent.text=[NSString stringWithFormat:@"%d",[currentOrderArray.firstObject intValue]];
-        self.minCurrentClient=[self.minCurrent.text copy];
+        self.minCurrent.text=[self.chartModel.currentMin copy];
         if(self.barChartView && !self.barChartView.hidden){
             self.minCurrent.text=@"0";
         }
-        self.maxCurrent.text=[NSString stringWithFormat:@"%d",[currentOrderArray.lastObject intValue]];
+        self.maxCurrent.text=self.chartModel.currentMax;
         
         JBLineChartFooterView *footerView = [[JBLineChartFooterView alloc] initWithFrame:CGRectMake(kJBLineChartViewControllerChartPadding, ceil(self.view.bounds.size.height * 0.5) - ceil(kJBLineChartViewControllerChartFooterHeight * 0.5), self.view.bounds.size.width - (kJBLineChartViewControllerChartPadding * 2), kJBLineChartViewControllerChartFooterHeight)];
         footerView.backgroundColor = [UIColor clearColor];
-        footerView.leftLabel.text = [self.dateLocate firstObject];
+        footerView.leftLabel.text = [self.chartModel.date firstObject];
         footerView.leftLabel.textColor = [UIColor whiteColor];
-        footerView.rightLabel.text = [self.dateLocate lastObject];
+        footerView.rightLabel.text = [self.chartModel.date lastObject];
         footerView.rightLabel.textColor = [UIColor whiteColor];
-        footerView.sectionCount = [[self.tableData objectForKey:@"current"] count];
+        footerView.sectionCount = [self.chartModel.current[0] count];
         self.lineChartView.footerView = footerView;
         
     }
 
 }
 
-//-(NSArray *)prepareTimeAxis:(NSArray *)axis WithLimit:(int)limit{
-//    if(limit<2){
-//        limit =2;
-//    }
-//    
-//    if(!axis){
-//        axis = [[NSArray alloc]init];
-//    }
-//    
-//    if(axis.count<=limit){
-//        return axis;
-//    }
-//    else{
-//        NSMutableArray  *tmp = [NSMutableArray arrayWithArray:axis];
-//        int *last = axis.count-1;
-//        
-//        int inteval = (int)(((axis.count -2)/(limit-2))+0.5);
-//        int next = inteval;
-//        for(int i=0; i<axis.count;i++){
-//            if(i>0){
-//                if(i!=next && i!=last){
-//                    [tmp replaceObjectAtIndex:i withObject:@""];
-//                    
-//                }
-//                else {
-//                    [tmp replaceObjectAtIndex:i withObject:[EpmUtility convertDatetimeWithString:[[tmp objectAtIndex:i] substringToIndex:18] OfPattern:@"yyyy-MM-dd HH:mm:ss" WithFormat:[EpmUtility timeStringOfFrequency:[[self.currentConditions objectForKey:@"frequency"] integerValue]]]];
-//                    
-//
-//                    next = i + inteval;
-//                }
-//                
-//            }
-//            else {
-//                  [tmp replaceObjectAtIndex:i withObject:[EpmUtility convertDatetimeWithString:[[tmp objectAtIndex:i] substringToIndex:18] OfPattern:@"yyyy-MM-dd HH:mm:ss" WithFormat:[EpmUtility timeStringOfFrequency:[[self.currentConditions objectForKey:@"frequency"] integerValue]]]];
-//            
-//            }
-//        }
-//        axis=tmp;
-//    }
-//    
-//    return axis;
-//
-//}
 -(void)loadBarChart
 {
     BOOL hide=NO;
@@ -319,9 +290,9 @@ CGFloat const kJBBarChartViewControllerChartPadding = 10.0f;
     
     JBBarChartFooterView *footerView = [[JBBarChartFooterView alloc] initWithFrame:CGRectMake(kJBBarChartViewControllerChartPadding, ceil(self.view.bounds.size.height * 0.5) - ceil(kJBBarChartViewControllerChartFooterHeight * 0.5), self.view.bounds.size.width - (kJBBarChartViewControllerChartPadding * 2), kJBBarChartViewControllerChartFooterHeight)];
     footerView.padding = kJBBarChartViewControllerChartFooterPadding;
-    footerView.leftLabel.text = [self.dateLocate firstObject];
+    footerView.leftLabel.text = [self.chartModel.date firstObject];
     footerView.leftLabel.textColor = [UIColor whiteColor];
-    footerView.rightLabel.text = [self.dateLocate lastObject];
+    footerView.rightLabel.text = [self.chartModel.date lastObject];
     footerView.rightLabel.textColor = [UIColor whiteColor];
     self.barChartView.footerView = footerView;
 
@@ -524,8 +495,28 @@ CGFloat const kJBBarChartViewControllerChartPadding = 10.0f;
     
     [self performSegueWithIdentifier:@"composeFromDetail" sender:completeData];
 }
-
-////////////////////////////////////////////////////////////////change chart type
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// 加入对比
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+- (IBAction)addCompareChart:(id)sender
+{
+    CGRect rect=[self.view convertRect:self.compareButton.bounds fromView:self.upperContainer];
+    NSMutableArray *entites=[self.entitiesID mutableCopy];
+    for(int i=0;i<self.chartModel.entity.count;i++){
+        int order=[[self.chartModel.entity[i] objectForKey:@"order"] intValue];
+        [entites removeObjectAtIndex:order];
+    }
+    entityTableViewController *entityTable=[[entityTableViewController alloc] init];
+    entityTable.entityArray=entites;
+    self.popover=[[UIPopoverController alloc] initWithContentViewController:entityTable];
+    self.popover.delegate=self;
+    self.popover.popoverContentSize=CGSizeMake(200, 300);
+    [self.popover presentPopoverFromRect:rect
+                                  inView:self.view
+                permittedArrowDirections:UIPopoverArrowDirectionAny
+                                animated:YES];
+};
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// change chart type
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 - (IBAction)transactionTable:(id)sender {
     //click table
     self.minCurrent.hidden=YES;
@@ -554,7 +545,7 @@ CGFloat const kJBBarChartViewControllerChartPadding = 10.0f;
 - (IBAction)transactionChart:(id)sender {
     //click line
     self.minCurrent.hidden=NO;
-    self.minCurrent.text=self.minCurrentClient;
+    self.minCurrent.text=[self.chartModel.currentMin copy];
     self.maxCurrent.hidden=NO;
     if(self.barChartView && !self.barChartView.hidden){
         [UIView transitionWithView:self.barChartView duration:0.7 options:UIViewAnimationOptionTransitionFlipFromBottom animations:^{
@@ -804,7 +795,7 @@ CGFloat const kJBBarChartViewControllerChartPadding = 10.0f;
         
         [self.currentConditions setObject:[self dateSinceNow:[number integerValue]* -1 OfFrequency:[[self.currentConditions objectForKey:@"frequency"] integerValue]] forKey:@"start_time"];
         needRefresh = YES;
-        NSLog(@"%@",self.currentConditions);
+//        NSLog(@"%@",self.currentConditions);
     }
     if(needRefresh){
         [self getDataForTable];
@@ -945,37 +936,39 @@ CGFloat const kJBBarChartViewControllerChartPadding = 10.0f;
 #pragma jbline delegate
 - (NSUInteger)numberOfLinesInLineChartView:(JBLineChartView *)lineChartView
 {
-    return [self.lineData count];
+    return [self.chartModel.current count];
 }
 
 - (NSUInteger)lineChartView:(JBLineChartView *)lineChartView numberOfVerticalValuesAtLineIndex:(NSUInteger)lineIndex
 {
-    return [[self.tableData objectForKey:@"date"] count];
+    return [self.chartModel.date count];
 }
 - (CGFloat)lineChartView:(JBLineChartView *)lineChartView verticalValueForHorizontalIndex:(NSUInteger)horizontalIndex atLineIndex:(NSUInteger)lineIndex
 {
     
-    return [[[self.lineData objectAtIndex:lineIndex] objectAtIndex:horizontalIndex] floatValue];
+    return [[[self.chartModel.current objectAtIndex:lineIndex] objectAtIndex:horizontalIndex] floatValue];
 }
+
+
 #pragma jbbar delegate
 - (NSUInteger)numberOfBarsInBarChartView:(JBBarChartView *)barChartView
 {
-    return [[self.tableData objectForKey:@"current"] count]; // number of bars in chart
+    return [[self.chartModel.current objectAtIndex:0] count]; // number of bars in chart
 }
 - (CGFloat)barChartView:(JBBarChartView *)barChartView heightForBarViewAtAtIndex:(NSUInteger)index
 {
-    return [[[self.tableData objectForKey:@"current"] objectAtIndex:index] floatValue]; // height of bar at index
+    return [[[self.chartModel.current objectAtIndex:0] objectAtIndex:index] floatValue]; // height of bar at index
 }
 - (void)barChartView:(JBBarChartView *)barChartView didSelectBarAtIndex:(NSUInteger)index touchPoint:(CGPoint)touchPoint
 {
     [self setTooltipVisible:YES animated:YES atTouchPoint:touchPoint];
-    [self.tooltipView setText:[self.dateLocate objectAtIndex:index]];
-    [self.tooltipView setValue:[NSString stringWithFormat:@"%d",[[[self.tableData objectForKey:@"current"] objectAtIndex:index] intValue]]];
+    [self.tooltipView setText:[self.chartModel.date objectAtIndex:index]];
+    [self.tooltipView setValue:[NSString stringWithFormat:@"%d",[[[self.chartModel.current objectAtIndex:0] objectAtIndex:index] intValue]]];
     self.showView.hidden=NO;
-    self.showDate.text=[self.dateLocate objectAtIndex:index];
+    self.showDate.text=[self.chartModel.date objectAtIndex:index];
     self.showTarget.text=[NSString stringWithFormat:@"%d - %d",[[self.preloadKpi objectForKey:@"target_min"] intValue],[[self.preloadKpi objectForKey:@"target_max"] intValue]];
     self.showCurrent.adjustsFontSizeToFitWidth = YES;
-    self.showCurrent.text=[NSString stringWithFormat:@"%d",[[[self.tableData objectForKey:@"current"] objectAtIndex:index] intValue]];
+    self.showCurrent.text=[NSString stringWithFormat:@"%d",[[[self.chartModel.current objectAtIndex:0] objectAtIndex:index] intValue]];
 }
 
 - (void)didUnselectBarChartView:(JBBarChartView *)barChartView
@@ -988,13 +981,13 @@ CGFloat const kJBBarChartViewControllerChartPadding = 10.0f;
 - (void)lineChartView:(JBLineChartView *)lineChartView didSelectLineAtIndex:(NSUInteger)lineIndex horizontalIndex:(NSUInteger)horizontalIndex touchPoint:(CGPoint)touchPoint
 {
     [self setTooltipVisible:YES animated:YES atTouchPoint:touchPoint];
-    [self.tooltipView setText:[self.dateLocate objectAtIndex:horizontalIndex]];
-    [self.tooltipView setValue:[NSString stringWithFormat:@"%d",[[[self.lineData objectAtIndex:lineIndex] objectAtIndex:horizontalIndex] intValue]]];
+    [self.tooltipView setText:[self.chartModel.date objectAtIndex:horizontalIndex]];
+    [self.tooltipView setValue:[NSString stringWithFormat:@"%d",[[[self.chartModel.current objectAtIndex:lineIndex] objectAtIndex:horizontalIndex] intValue]]];
     self.showView.hidden=NO;
-    self.showDate.text=[self.dateLocate objectAtIndex:horizontalIndex];
+    self.showDate.text=[self.chartModel.date objectAtIndex:horizontalIndex];
     self.showTarget.text=[NSString stringWithFormat:@"%d - %d",[[self.preloadKpi objectForKey:@"target_min"] intValue],[[self.preloadKpi objectForKey:@"target_max"] intValue]];
     self.showCurrent.adjustsFontSizeToFitWidth = YES;
-    self.showCurrent.text=[NSString stringWithFormat:@"%d",[[[self.lineData objectAtIndex:lineIndex] objectAtIndex:horizontalIndex] intValue]];
+    self.showCurrent.text=[NSString stringWithFormat:@"%d",[[[self.chartModel.current objectAtIndex:lineIndex] objectAtIndex:horizontalIndex] intValue]];
 }
 - (void)didUnselectLineInLineChartView:(JBLineChartView *)lineChartView
 {
@@ -1122,5 +1115,4 @@ CGFloat const kJBBarChartViewControllerChartPadding = 10.0f;
 {
     [self setTooltipVisible:tooltipVisible animated:animated atTouchPoint:CGPointZero];
 }
-
 @end

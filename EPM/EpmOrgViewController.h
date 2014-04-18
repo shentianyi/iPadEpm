@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 
-@interface EpmOrgViewController : UIViewController
+@interface EpmOrgViewController : UIViewController<UIPopoverControllerDelegate>
 @property (weak, nonatomic) IBOutlet UIScrollView *hundred;
 @property (weak, nonatomic) IBOutlet UIScrollView *bit;
 @property (weak, nonatomic) IBOutlet UIScrollView *frequency;

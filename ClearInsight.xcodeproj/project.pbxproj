@@ -149,6 +149,8 @@
 		05F6CE5718C098290040614F /* EPMlogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 05F6CE5518C098290040614F /* EPMlogo.png */; };
 		05F768CC18B4A70C00055138 /* AttachedPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = 05F768CB18B4A70C00055138 /* AttachedPhoto.m */; };
 		B005C80F18FF909000B8ED4B /* JBBarChartFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = B005C80E18FF909000B8ED4B /* JBBarChartFooterView.m */; };
+		B03822781900BFAC0067DE2D /* OrgChartModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B03822771900BFAC0067DE2D /* OrgChartModel.m */; };
+		B038227B1900DBBF0067DE2D /* entityTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B038227A1900DBBF0067DE2D /* entityTableViewController.m */; };
 		B043D2AD18FE18B400407A64 /* JBLineChartFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = B043D2AB18FE18B400407A64 /* JBLineChartFooterView.m */; };
 		B043D2D118FE58CF00407A64 /* JBChartTooltipTipView.m in Sources */ = {isa = PBXBuildFile; fileRef = B043D2CE18FE58CF00407A64 /* JBChartTooltipTipView.m */; };
 		B043D2D218FE58CF00407A64 /* JBChartTooltipView.m in Sources */ = {isa = PBXBuildFile; fileRef = B043D2D018FE58CF00407A64 /* JBChartTooltipView.m */; };
@@ -396,6 +398,10 @@
 		05F768CB18B4A70C00055138 /* AttachedPhoto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AttachedPhoto.m; sourceTree = "<group>"; };
 		B005C80D18FF909000B8ED4B /* JBBarChartFooterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBBarChartFooterView.h; sourceTree = "<group>"; };
 		B005C80E18FF909000B8ED4B /* JBBarChartFooterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBBarChartFooterView.m; sourceTree = "<group>"; };
+		B03822761900BFAC0067DE2D /* OrgChartModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrgChartModel.h; sourceTree = "<group>"; };
+		B03822771900BFAC0067DE2D /* OrgChartModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrgChartModel.m; sourceTree = "<group>"; };
+		B03822791900DBBE0067DE2D /* entityTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = entityTableViewController.h; sourceTree = "<group>"; };
+		B038227A1900DBBF0067DE2D /* entityTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = entityTableViewController.m; sourceTree = "<group>"; };
 		B043D2AA18FE18B400407A64 /* JBLineChartFooterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBLineChartFooterView.h; sourceTree = "<group>"; };
 		B043D2AB18FE18B400407A64 /* JBLineChartFooterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBLineChartFooterView.m; sourceTree = "<group>"; };
 		B043D2CD18FE58CF00407A64 /* JBChartTooltipTipView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBChartTooltipTipView.h; sourceTree = "<group>"; };
@@ -657,8 +663,6 @@
 				05C4FF5E18ADE1CC004E1A90 /* CollectionCellView */,
 				0589E8D318AB1A87000173CC /* Barcode.h */,
 				0589E8D418AB1A87000173CC /* Barcode.m */,
-				058CE82D18ECC8CB000FA4E8 /* EpmGroupConditionViewController.h */,
-				058CE82E18ECC8CB000FA4E8 /* EpmGroupConditionViewController.m */,
 				05EA4DD2187FB00C00C53FEE /* EpmAppDelegate.h */,
 				05EA4DD3187FB00C00C53FEE /* EpmAppDelegate.m */,
 				05EA4DD5187FB00C00C53FEE /* Main.storyboard */,
@@ -674,8 +678,6 @@
 				05EA4E02187FDC8800C53FEE /* EpmDbDetailViewController.m */,
 				05EA4E04187FE09600C53FEE /* EpmDbHeader.h */,
 				05EA4E05187FE09600C53FEE /* EpmDbHeader.m */,
-				05EA4E07187FEB7800C53FEE /* EpmOrgCollectionController.h */,
-				05EA4E08187FEB7800C53FEE /* EpmOrgCollectionController.m */,
 				05EA4E0A187FEBDC00C53FEE /* EpmOrgCellView.h */,
 				05EA4E0B187FEBDC00C53FEE /* EpmOrgCellView.m */,
 				05D2C07E1884191500DBBF8C /* LineLayout.h */,
@@ -800,6 +802,8 @@
 				05F768CB18B4A70C00055138 /* AttachedPhoto.m */,
 				0566994A18B6E5AA0024AD32 /* EpmConstants.h */,
 				0566994B18B6E5AA0024AD32 /* EpmConstants.m */,
+				B03822761900BFAC0067DE2D /* OrgChartModel.h */,
+				B03822771900BFAC0067DE2D /* OrgChartModel.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -848,12 +852,18 @@
 		B0895C1B18FD1EB60013A048 /* Organization */ = {
 			isa = PBXGroup;
 			children = (
+				058CE82D18ECC8CB000FA4E8 /* EpmGroupConditionViewController.h */,
+				058CE82E18ECC8CB000FA4E8 /* EpmGroupConditionViewController.m */,
 				058CE82018EC35FF000FA4E8 /* EpmGroupViewController.h */,
 				058CE82118EC35FF000FA4E8 /* EpmGroupViewController.m */,
 				05D2C08D1884332700DBBF8C /* EpmOrgViewController.h */,
 				05D2C08E1884332700DBBF8C /* EpmOrgViewController.m */,
 				05F6CE4418C02B590040614F /* EpmOrgOverviewController.h */,
 				05F6CE4518C02B590040614F /* EpmOrgOverviewController.m */,
+				B03822791900DBBE0067DE2D /* entityTableViewController.h */,
+				B038227A1900DBBF0067DE2D /* entityTableViewController.m */,
+				05EA4E07187FEB7800C53FEE /* EpmOrgCollectionController.h */,
+				05EA4E08187FEB7800C53FEE /* EpmOrgCollectionController.m */,
 			);
 			name = Organization;
 			sourceTree = "<group>";
@@ -1037,6 +1047,7 @@
 				05EA4E0C187FEBDC00C53FEE /* EpmOrgCellView.m in Sources */,
 				05D2C046188138BE00DBBF8C /* AFSecurityPolicy.m in Sources */,
 				05EA4E03187FDC8800C53FEE /* EpmDbDetailViewController.m in Sources */,
+				B03822781900BFAC0067DE2D /* OrgChartModel.m in Sources */,
 				05C4FF5818ADC631004E1A90 /* PNCircleChart.m in Sources */,
 				B0895C2718FD2FF30013A048 /* JBLineChartView.m in Sources */,
 				058CE82F18ECC8CB000FA4E8 /* EpmGroupConditionViewController.m in Sources */,
@@ -1072,6 +1083,7 @@
 				B0895C2418FD2FF30013A048 /* JBBarChartView.m in Sources */,
 				055F84661889161500D88BC4 /* EpmSettings.m in Sources */,
 				05D2C049188138BE00DBBF8C /* AFURLResponseSerialization.m in Sources */,
+				B038227B1900DBBF0067DE2D /* entityTableViewController.m in Sources */,
 				056C3CDF18ACBC1D00820524 /* EpmUtility.m in Sources */,
 				0576D1A718AC64EF00AD75AB /* SDWebImageDecoder.m in Sources */,
 				0566994C18B6E5AA0024AD32 /* EpmConstants.m in Sources */,
