@@ -7,9 +7,9 @@
 //
 
 #import "entityTableViewController.h"
-
+#import "OrgChartModel.h"
 @interface entityTableViewController ()
-
+@property (strong,nonatomic) OrgChartModel *chartModel;
 @end
 
 @implementation entityTableViewController
@@ -35,6 +35,7 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     [self.tableView registerClass:[UITableViewCell class]
            forCellReuseIdentifier:@"cell"];
+    self.chartModel=[OrgChartModel sharedChartDate];
 }
 
 
@@ -55,14 +56,20 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
     cell.textLabel.text=[self.entityArray[indexPath.row] objectForKey:@"name"];
     // Configure the cell...
     
     return cell;
 }
-
-
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSObject *item=[self.entityArray objectAtIndex:indexPath.row];
+    [self.chartModel.entity addObject:item];
+    [self.entityArray removeObjectAtIndex:indexPath.row];
+    self.dismiss();
+}
 /*
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath

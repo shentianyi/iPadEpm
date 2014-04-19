@@ -541,10 +541,17 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="P63-qy-wnx">
-                                                <rect key="frame" x="77" y="117" width="573" height="124"/>
+                                                <rect key="frame" x="77" y="130" width="573" height="124"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="137"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ybZ-Sb-ZVU">
+                                                <rect key="frame" x="136" y="91" width="466" height="22"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
@@ -558,8 +565,22 @@
                                             <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="0.70000000000000007" colorSpace="calibratedRGB"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <state key="disabled">
+                                            <color key="titleColor" white="1" alpha="0.40000000000000002" colorSpace="calibratedWhite"/>
+                                        </state>
                                         <connections>
                                             <action selector="addCompareChart:" destination="DUW-qP-nPi" eventType="touchUpInside" id="cyv-CS-1oQ"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="ytF-3y-te3">
+                                        <rect key="frame" x="20" y="533" width="176" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="清除对比 -" backgroundImage="goForDetail">
+                                            <color key="titleColor" red="0.78961447010869568" green="0.0" blue="0.0" alpha="0.70000000000000007" colorSpace="calibratedRGB"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="clearCompare:" destination="DUW-qP-nPi" eventType="touchUpInside" id="ajd-Z1-4Jc"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -578,9 +599,11 @@
                     </navigationItem>
                     <nil key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="barButton" destination="VQB-1e-9kY" id="pgP-gU-obz"/>
                         <outlet property="bit" destination="vcj-JW-17G" id="gKa-NR-go1"/>
                         <outlet property="chartBody" destination="nOp-Xh-Aef" id="KW1-sw-giK"/>
                         <outlet property="chartview" destination="byB-gc-WF3" id="dmV-Iv-zfg"/>
+                        <outlet property="clearCompareButton" destination="ytF-3y-te3" id="Ebz-Gt-cGf"/>
                         <outlet property="compareButton" destination="FP9-s1-UqV" id="wjL-w3-nEI"/>
                         <outlet property="frequency" destination="qUc-kr-gaR" id="lJW-tw-fwq"/>
                         <outlet property="hundred" destination="Tif-bO-6qr" id="nY5-fz-NZ1"/>
@@ -591,8 +614,10 @@
                         <outlet property="seg" destination="2Dz-xl-8n8" id="Jf1-dC-mVN"/>
                         <outlet property="showCurrent" destination="P63-qy-wnx" id="opS-jC-YnE"/>
                         <outlet property="showDate" destination="7eW-1n-EHr" id="57d-Og-7fQ"/>
+                        <outlet property="showEntity" destination="ybZ-Sb-ZVU" id="NVk-FW-aTp"/>
                         <outlet property="showTarget" destination="dV7-x8-phT" id="OAM-YV-kak"/>
                         <outlet property="showView" destination="TRf-l9-l8X" id="oZc-HC-FkE"/>
+                        <outlet property="tableButton" destination="Bxm-d1-0mx" id="3HL-oF-CDn"/>
                         <outlet property="tableView" destination="7a1-Nu-g2O" id="xrm-K2-Ypo"/>
                         <outlet property="ten" destination="Jot-ct-MVi" id="zJz-Ld-SnX"/>
                         <outlet property="upperContainer" destination="39a-9C-npd" id="g0x-0m-QaN"/>

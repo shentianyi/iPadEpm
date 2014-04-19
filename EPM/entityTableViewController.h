@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface entityTableViewController : UITableViewController
-@property (strong ,nonatomic) NSArray *entityArray;
+@property (strong ,nonatomic) NSMutableArray *entityArray;
+@property (strong,nonatomic) void (^dismiss)();
 @end

@@ -23,5 +23,5 @@
 +(instancetype)sharedChartDate;
 -(void)updateData:(NSDictionary *)responds;
 -(void)addCurrent:(NSArray *)current;
--(void)clearEntity;
+-(void)clearEntityAndCurrent;
 @end

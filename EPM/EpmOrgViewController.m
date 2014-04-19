@@ -62,7 +62,13 @@ CGFloat const kJBBarChartViewControllerChartPadding = 10.0f;
 @property (strong , nonatomic) OrgChartModel *chartModel;
 @property (weak, nonatomic) IBOutlet UIButton *compareButton;
 @property (strong,nonatomic) NSMutableArray *entitiesID;
+@property (strong,nonatomic) NSMutableArray *entitiesIDShow;
 @property (strong,nonatomic) UIPopoverController *popover;
+@property (weak, nonatomic) IBOutlet UIButton *barButton;
+@property (weak, nonatomic) IBOutlet UIButton *tableButton;
+@property (weak, nonatomic) IBOutlet UIButton *clearCompareButton;
+@property (weak, nonatomic) IBOutlet UILabel *showEntity;
+- (IBAction)clearCompare:(id)sender;
 - (IBAction)changeBar:(id)sender;
 - (IBAction)addCompareChart:(id)sender;
 @end
@@ -98,6 +104,7 @@ CGFloat const kJBBarChartViewControllerChartPadding = 10.0f;
                                     initWithTarget:self action:@selector(respondToTapGesture:)]];
     [self.frequency addGestureRecognizer:[[UITapGestureRecognizer alloc]
                                           initWithTarget:self action:@selector(respondToTapGesture:)]];
+//    NSLog(@"self.crrentConditons : %@",self.currentConditions);
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     [manager GET:[NSString stringWithFormat:@"%@%@", [EpmSettings getEpmUrlSettingsWithKey:@"baseUrl"], [EpmSettings getEpmUrlSettingsWithKey:@"org" ]]
       parameters:self.currentConditions
@@ -106,17 +113,23 @@ CGFloat const kJBBarChartViewControllerChartPadding = 10.0f;
              for(int i =0;i<[responseObject count];i++){
                  [self.entitiesID addObject:@{
                                               @"name":[responseObject[i] objectForKey:@"name"],
-                                              @"id":[NSNumber numberWithInt:(int)[responseObject[i] objectForKey:@"id"]],
+                                              @"id": [responseObject[i] objectForKey:@"id"],
                                               @"order":[NSNumber numberWithInt:i]
                                               }];
+//                 NSLog(@"%@",[NSNumber numberWithInt:i]);
+                 
 //                 NSLog(@"compare tow interger %@ : %@",[responseObject[i] objectForKey:@"id"],[self.entityGroup objectForKey:@"id"]);
+//                 NSLog(@"%d",[[responseObject[i] objectForKey:@"id"] intValue]);
+//                 NSLog(@"%@",[responseObject[i] objectForKey:@"id"]);
                  if([[responseObject[i] objectForKey:@"id"] intValue]==[[self.entityGroup objectForKey:@"id"] intValue]){
                      [self.chartModel.entity addObject:@{
                                                            @"name":[responseObject[i] objectForKey:@"name"],
-                                                           @"id":[NSNumber numberWithInt:(int)[responseObject[i] objectForKey:@"id"]],
+                                                           @"id":[responseObject[i] objectForKey:@"id"],
                                                            @"order":[NSNumber numberWithInt:i]
                                                            }];
+                     [self.entitiesID removeLastObject];
                  }
+                 self.entitiesIDShow=[self.entitiesID mutableCopy];
              }
 //             NSLog(@"entityid is %@",self.chartModel.entity);
          }
@@ -173,6 +186,7 @@ CGFloat const kJBBarChartViewControllerChartPadding = 10.0f;
     [super viewWillAppear:animated];
     NSDictionary *attributes=[NSDictionary dictionaryWithObjectsAndKeys:[[UIColor blackColor] colorWithAlphaComponent:1],NSForegroundColorAttributeName, nil];
     [self.seg setTitleTextAttributes:attributes forState:UIControlStateSelected];
+    self.clearCompareButton.hidden=YES;
     
 }
 -(void)viewDidAppear:(BOOL)animated{
@@ -188,42 +202,88 @@ CGFloat const kJBBarChartViewControllerChartPadding = 10.0f;
      AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     
   //  NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:[Kpi objectForKey:@"id"],@"kpi_id",@"100",@"frequency",[self.entityGroup objectForKey:@"id"],@"entity_group_id",[formatter stringFromDate:[NSDate dateWithTimeIntervalSinceNow:-1296000]],@"start_time",[formatter stringFromDate:[NSDate date]], @"end_time",nil];
-    
-    [manager GET:[NSString stringWithFormat:@"%@%@",[EpmSettings getEpmUrlSettingsWithKey:@"baseUrl"],[EpmSettings getEpmUrlSettingsWithKey: @"data"]] parameters:self.currentConditions success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        
-        NSMutableDictionary *result = [(NSDictionary *)responseObject mutableCopy];
-        [result setObject:[self.currentConditions objectForKey:@"frequency"] forKey:@"frequency"];
-        [self.chartModel updateData:result];
-//        NSLog(@"result is : %@",result);
-        BOOL hide=YES;
-        if(self.tableView){
-            hide=self.tableView.hidden;
+    NSLog(@"current count %d",self.chartModel.current.count);
+    if(self.chartModel.current.count==1 || !self.chartModel.current)
+    {
+        [manager GET:[NSString stringWithFormat:@"%@%@",[EpmSettings getEpmUrlSettingsWithKey:@"baseUrl"],[EpmSettings getEpmUrlSettingsWithKey: @"data"]] parameters:self.currentConditions success:^(AFHTTPRequestOperation *operation, id responseObject) {
+            
+            NSMutableDictionary *result = [(NSDictionary *)responseObject mutableCopy];
+            self.chartModel.current=nil;
+            [result setObject:[self.currentConditions objectForKey:@"frequency"] forKey:@"frequency"];
+            [self.chartModel updateData:result];
+            //        NSLog(@"result is : %@",result);
+            BOOL hide=YES;
+            if(self.tableView){
+                hide=self.tableView.hidden;
+            }
+            
+            self.tableData = result;
+            [self.tableView reloadData];
+            
+            [self loadKpiSummery];
+            self.tableView.hidden=hide;
+            
+            [self loadChart];
+            if(self.barChartView){
+                [self loadBarChart];
+            }
         }
-       
-        self.tableData = result;
-        [self.tableView reloadData];
-        
-        [self loadKpiSummery];
-        self.tableView.hidden=hide;
-        
-        [self loadChart];
-        if(self.barChartView){
-            [self loadBarChart];
+         
+             failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                 int statusCode = [operation.response statusCode];
+                 
+                 NSString *msg=[EpmHttpUtil notificationWithStatusCode:statusCode];
+                 
+                 UIAlertView *av = [[UIAlertView alloc] initWithTitle:msg
+                                                              message:@""
+                                                             delegate:nil
+                                                    cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                 [av show];
+                 
+             }];
+    }
+    else if(self.chartModel.current.count>1){
+        for(int i =0 ;i<self.chartModel.entity.count;i++){
+            NSMutableDictionary *currentConditions=[self.currentConditions mutableCopy];
+            //        NSLog(@"charModel last object %@",[self.chartModel.entity lastObject]);
+            NSDictionary *newEntity=self.chartModel.entity[i];
+            BOOL isFirst=i==0?YES:NO;
+            [currentConditions setObject:[newEntity objectForKey:@"id"] forKey:@"entity_group_id"];
+            [currentConditions setObject:[newEntity objectForKey:@"name"] forKey:@"entity_group_name"];
+            
+            
+            [manager GET:[NSString stringWithFormat:@"%@%@",[EpmSettings getEpmUrlSettingsWithKey:@"baseUrl"],[EpmSettings getEpmUrlSettingsWithKey: @"data"]] parameters:self.currentConditions success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                NSMutableDictionary *result = [(NSDictionary *)responseObject mutableCopy];
+                [result setObject:[self.currentConditions objectForKey:@"frequency"] forKey:@"frequency"];
+                [self.chartModel updateData:result];
+                //        NSLog(@"result is : %@",result);
+                
+                if(isFirst){
+                    self.tableData = result;
+                    [self.tableView reloadData];
+                    
+                    [self loadKpiSummery];
+                    self.tableView.hidden=YES;
+                }
+            
+                [self loadChart];
+            }
+             
+                 failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                     int statusCode = [operation.response statusCode];
+                     
+                     NSString *msg=[EpmHttpUtil notificationWithStatusCode:statusCode];
+                     
+                     UIAlertView *av = [[UIAlertView alloc] initWithTitle:msg
+                                                                  message:@""
+                                                                 delegate:nil
+                                                        cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                     [av show];
+                     
+                 }];
         }
     }
-     
-         failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-             int statusCode = [operation.response statusCode];
-             
-             NSString *msg=[EpmHttpUtil notificationWithStatusCode:statusCode];
-             
-             UIAlertView *av = [[UIAlertView alloc] initWithTitle:msg
-                                                          message:@""
-                                                         delegate:nil
-                                                cancelButtonTitle:@"OK" otherButtonTitles:nil];
-             [av show];
-
-         }];
+   
 }
 
 /////////////////////////////////////////////////////////////////////////  load chart
@@ -499,26 +559,77 @@ CGFloat const kJBBarChartViewControllerChartPadding = 10.0f;
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 - (IBAction)addCompareChart:(id)sender
 {
-    CGRect rect=[self.view convertRect:self.compareButton.bounds fromView:self.upperContainer];
-    NSMutableArray *entites=[self.entitiesID mutableCopy];
-    for(int i=0;i<self.chartModel.entity.count;i++){
-        int order=[[self.chartModel.entity[i] objectForKey:@"order"] intValue];
-        [entites removeObjectAtIndex:order];
-    }
+    CGRect rect=[self.view convertRect:self.compareButton.frame fromView:self.upperContainer];
     entityTableViewController *entityTable=[[entityTableViewController alloc] init];
-    entityTable.entityArray=entites;
+    entityTable.entityArray=self.entitiesIDShow;
+    entityTable.dismiss=^(){
+        [self.popover dismissPopoverAnimated:YES];
+        
+        AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+        NSMutableDictionary *currentConditions=[self.currentConditions mutableCopy];
+//        NSLog(@"charModel last object %@",[self.chartModel.entity lastObject]);
+        NSDictionary *newEntity=[self.chartModel.entity lastObject];
+        
+        [currentConditions setObject:[newEntity objectForKey:@"id"] forKey:@"entity_group_id"];
+        [currentConditions setObject:[newEntity objectForKey:@"name"] forKey:@"entity_group_name"];
+        [manager GET:[NSString stringWithFormat:@"%@%@",[EpmSettings getEpmUrlSettingsWithKey:@"baseUrl"],[EpmSettings getEpmUrlSettingsWithKey: @"data"]]
+          parameters:currentConditions
+             success:^(AFHTTPRequestOperation *operation, id responseObject) {
+//            NSLog(@"%@",responseObject);
+            [self.chartModel addCurrent:[responseObject objectForKey:@"current"]];
+            [self loadChart];
+                 self.barButton.enabled=NO;
+                 self.tableButton.enabled=NO;
+                 self.clearCompareButton.hidden=NO;
+                 self.ten.scrollEnabled=NO;
+                 self.bit.scrollEnabled=NO;
+                 self.hundred.scrollEnabled=NO;
+                 self.frequency.scrollEnabled=NO;
+        }
+         
+             failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                 int statusCode = [operation.response statusCode];
+                 
+                 NSString *msg=[EpmHttpUtil notificationWithStatusCode:statusCode];
+                 
+                 UIAlertView *av = [[UIAlertView alloc] initWithTitle:msg
+                                                              message:@""
+                                                             delegate:nil
+                                                    cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                 [av show];
+                 
+             }];
+    };
     self.popover=[[UIPopoverController alloc] initWithContentViewController:entityTable];
     self.popover.delegate=self;
-    self.popover.popoverContentSize=CGSizeMake(200, 300);
+    self.popover.popoverContentSize=CGSizeMake(200, 250);
     [self.popover presentPopoverFromRect:rect
                                   inView:self.view
-                permittedArrowDirections:UIPopoverArrowDirectionAny
+                permittedArrowDirections:UIPopoverArrowDirectionLeft
                                 animated:YES];
 };
+-(void)popoverControllerDidDismissPopover:(UIPopoverController *)popoverController
+{
+    self.popover=nil;
+}
+- (IBAction)clearCompare:(id)sender {
+    self.barButton.enabled=YES;
+    self.tableButton.enabled=YES;
+    self.clearCompareButton.hidden=YES;
+    [self.chartModel clearEntityAndCurrent];
+     [self loadChart];
+    self.showView.hidden=YES;
+    self.ten.scrollEnabled=YES;
+    self.bit.scrollEnabled=YES;
+    self.hundred.scrollEnabled=YES;
+    self.frequency.scrollEnabled=YES;
+    
+}
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// change chart type
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 - (IBAction)transactionTable:(id)sender {
     //click table
+    self.compareButton.enabled=NO;
     self.minCurrent.hidden=YES;
     self.maxCurrent.hidden=YES;
     if(!self.lineChartView.hidden){
@@ -544,6 +655,7 @@ CGFloat const kJBBarChartViewControllerChartPadding = 10.0f;
 
 - (IBAction)transactionChart:(id)sender {
     //click line
+    self.compareButton.enabled=YES;
     self.minCurrent.hidden=NO;
     self.minCurrent.text=[self.chartModel.currentMin copy];
     self.maxCurrent.hidden=NO;
@@ -569,9 +681,12 @@ CGFloat const kJBBarChartViewControllerChartPadding = 10.0f;
     }
     
 }
+
+
 -(IBAction)changeBar:(id)sender
 {
     //click bar
+    self.compareButton.enabled=NO;
     self.minCurrent.hidden=NO;
     self.minCurrent.text=@"0";
     self.maxCurrent.hidden=NO;
@@ -969,6 +1084,7 @@ CGFloat const kJBBarChartViewControllerChartPadding = 10.0f;
     self.showTarget.text=[NSString stringWithFormat:@"%d - %d",[[self.preloadKpi objectForKey:@"target_min"] intValue],[[self.preloadKpi objectForKey:@"target_max"] intValue]];
     self.showCurrent.adjustsFontSizeToFitWidth = YES;
     self.showCurrent.text=[NSString stringWithFormat:@"%d",[[[self.chartModel.current objectAtIndex:0] objectAtIndex:index] intValue]];
+    self.showEntity.text=[self.entityGroup objectForKey:@"name"];
 }
 
 - (void)didUnselectBarChartView:(JBBarChartView *)barChartView
@@ -988,6 +1104,7 @@ CGFloat const kJBBarChartViewControllerChartPadding = 10.0f;
     self.showTarget.text=[NSString stringWithFormat:@"%d - %d",[[self.preloadKpi objectForKey:@"target_min"] intValue],[[self.preloadKpi objectForKey:@"target_max"] intValue]];
     self.showCurrent.adjustsFontSizeToFitWidth = YES;
     self.showCurrent.text=[NSString stringWithFormat:@"%d",[[[self.chartModel.current objectAtIndex:lineIndex] objectAtIndex:horizontalIndex] intValue]];
+    self.showEntity.text=[self.chartModel.entity[lineIndex] objectForKey:@"name"];
 }
 - (void)didUnselectLineInLineChartView:(JBLineChartView *)lineChartView
 {
@@ -996,7 +1113,9 @@ CGFloat const kJBBarChartViewControllerChartPadding = 10.0f;
 //custom
 - (UIColor *)lineChartView:(JBLineChartView *)lineChartView colorForLineAtLineIndex:(NSUInteger)lineIndex
 {
-    return [[UIColor whiteColor] colorWithAlphaComponent:0.7];
+    NSArray *colorArray=[NSArray arrayWithObjects:[UIColor whiteColor],[UIColor redColor],[UIColor greenColor],[UIColor blueColor],[UIColor orangeColor],[UIColor blackColor], nil];
+    UIColor *color=lineIndex+1>colorArray.count?[UIColor lightGrayColor]:colorArray[lineIndex] ;
+    return [color colorWithAlphaComponent:0.7];
 }
 
 - (CGFloat)lineChartView:(JBLineChartView *)lineChartView widthForLineAtLineIndex:(NSUInteger)lineIndex
@@ -1027,10 +1146,16 @@ CGFloat const kJBBarChartViewControllerChartPadding = 10.0f;
 }
 
 
-//- (JBLineChartViewLineStyle)lineChartView:(JBLineChartView *)lineChartView lineStyleForLineAtLineIndex:(NSUInteger)lineIndex
-//{
-//    return JBLineChartViewLineStyleDashed; // style of line in chart
-//}
+- (JBLineChartViewLineStyle)lineChartView:(JBLineChartView *)lineChartView lineStyleForLineAtLineIndex:(NSUInteger)lineIndex
+{
+    if(lineIndex % 2 == 0){
+       return JBLineChartViewLineStyleSolid;
+    }
+    else{
+       return JBLineChartViewLineStyleDashed;
+    }
+     // style of line in chart
+}
 
 //tooltip
 - (void)setTooltipVisible:(BOOL)tooltipVisible animated:(BOOL)animated atTouchPoint:(CGPoint)touchPoint
