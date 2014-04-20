@@ -11,4 +11,5 @@
 @interface EpmGroupConditionViewController : UITableViewController
 @property(strong,nonatomic) NSString *kpiId;
 @property (strong,nonatomic) NSString *selected;
+@property(strong , nonatomic) NSArray *entities;
 @end

@@ -59,6 +59,7 @@ CGFloat const kJBBarChartViewControllerChartPadding = 10.0f;
 @property (weak, nonatomic) IBOutlet UILabel *showTarget;
 @property (weak, nonatomic) IBOutlet UILabel *showCurrent;
 @property (strong, nonatomic) IBOutlet UIView *showView;
+@property (strong,nonatomic) NSNumber *showID;
 @property (strong , nonatomic) OrgChartModel *chartModel;
 @property (weak, nonatomic) IBOutlet UIButton *compareButton;
 @property (strong,nonatomic) NSMutableArray *entitiesID;
@@ -91,7 +92,7 @@ CGFloat const kJBBarChartViewControllerChartPadding = 10.0f;
     [super viewDidLoad];
     [self initAppearance];
     [self loadData];
-    
+    self.clearCompareButton.hidden=YES;
     if(self.preloadKpi){
         [self loadDataForKpi:self.preloadKpi];
     }
@@ -186,7 +187,7 @@ CGFloat const kJBBarChartViewControllerChartPadding = 10.0f;
     [super viewWillAppear:animated];
     NSDictionary *attributes=[NSDictionary dictionaryWithObjectsAndKeys:[[UIColor blackColor] colorWithAlphaComponent:1],NSForegroundColorAttributeName, nil];
     [self.seg setTitleTextAttributes:attributes forState:UIControlStateSelected];
-    self.clearCompareButton.hidden=YES;
+    
     
 }
 -(void)viewDidAppear:(BOOL)animated{
@@ -742,11 +743,10 @@ CGFloat const kJBBarChartViewControllerChartPadding = 10.0f;
         EpmSendMailController *mail = segue.destinationViewController;
         mail.completeData = (NSMutableDictionary*)sender;
     }
+    //选择一个点以后查看详情
     else if([segue.identifier isEqualToString:@"viewGroupDetail"]){
         EpmGroupViewController *group = segue.destinationViewController;
-        group.entityName = [sender objectForKey:@"entity_group_name"];
-        group.kpiName = [sender objectForKey:@"kpi_name"];
-        group.kpiId = [[sender objectForKey:@"kpi_id"] stringValue];
+        group.currentConditions=sender;
     }
 }
 
@@ -998,7 +998,11 @@ CGFloat const kJBBarChartViewControllerChartPadding = 10.0f;
     
 }
 - (IBAction)viewGroup:(id)sender {
-    [self performSegueWithIdentifier:@"viewGroupDetail" sender:self.currentConditions];
+    NSMutableDictionary *currentConditions=[self.currentConditions mutableCopy];
+    [currentConditions setObject:self.showEntity.text forKey:@"entity_group_name"];
+    [currentConditions setObject:self.showID forKey:@"entity_group_id"];
+    NSLog(@"%@",currentConditions);
+    [self performSegueWithIdentifier:@"viewGroupDetail" sender:currentConditions];
 }
 
 
@@ -1085,6 +1089,7 @@ CGFloat const kJBBarChartViewControllerChartPadding = 10.0f;
     self.showCurrent.adjustsFontSizeToFitWidth = YES;
     self.showCurrent.text=[NSString stringWithFormat:@"%d",[[[self.chartModel.current objectAtIndex:0] objectAtIndex:index] intValue]];
     self.showEntity.text=[self.entityGroup objectForKey:@"name"];
+    self.showID=[self.entityGroup objectForKey:@"id"];
 }
 
 - (void)didUnselectBarChartView:(JBBarChartView *)barChartView
@@ -1105,6 +1110,7 @@ CGFloat const kJBBarChartViewControllerChartPadding = 10.0f;
     self.showCurrent.adjustsFontSizeToFitWidth = YES;
     self.showCurrent.text=[NSString stringWithFormat:@"%d",[[[self.chartModel.current objectAtIndex:lineIndex] objectAtIndex:horizontalIndex] intValue]];
     self.showEntity.text=[self.chartModel.entity[lineIndex] objectForKey:@"name"];
+    self.showID=[self.chartModel.entity[lineIndex] objectForKey:@"id"];
 }
 - (void)didUnselectLineInLineChartView:(JBLineChartView *)lineChartView
 {

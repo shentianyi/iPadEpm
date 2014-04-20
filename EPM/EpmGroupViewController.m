@@ -11,8 +11,11 @@
 #import "EpmGroupConditionViewController.h"
 #import "EpmGroupDetailTableViewCell.h"
 #import "PNChart.h"
+#import "AFNetworking.h"
+#import "EpmSettings.h"
 
-@interface EpmGroupViewController ()
+
+@interface EpmGroupViewController ()<XYPieChartDataSource,XYPieChartDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *kpiNameLb;
 @property (weak, nonatomic) IBOutlet UILabel *entityNameLb;
 @property (weak, nonatomic) IBOutlet UILabel *groupByName;
@@ -21,12 +24,15 @@
 @property (weak, nonatomic) IBOutlet UILabel *pieSelectedValue;
 @property (weak, nonatomic) IBOutlet UILabel *pieSelectedPercentage;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (strong ,nonatomic) NSString *kpiID;
+
 @property (strong,nonatomic) NSMutableArray *pieData;
 @property (weak, nonatomic) IBOutlet XYPieChart *pieContainer;
 @property(strong,nonatomic)NSArray *sliceColors;
 @property(strong,nonatomic) NSString *currentCondition;
 @property(strong,nonatomic)NSArray *groupItems;
 @property(strong,nonatomic)NSDictionary *groupData;
+
 @property (weak, nonatomic) IBOutlet UILabel *variableTitle;
 @property (weak, nonatomic) IBOutlet UIView *barView;
 @property (weak, nonatomic) IBOutlet UIView *pieView;
@@ -37,8 +43,16 @@
 
 @implementation EpmGroupViewController
 - (IBAction)selectGroupCondition:(id)sender {
+    NSArray *entity=[NSArray arrayWithObjects:@"1",@"2",@"3", nil];
+    [self performSegueWithIdentifier:@"selectGroupCondition" sender:entity];
 }
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if([segue.identifier isEqualToString:@"selectGroupCondition"]){
+        EpmGroupConditionViewController  *tableEntity= segue.destinationViewController;
+        tableEntity.entities=sender;
+    }
 
+}
 
 - (IBAction)transitionToPie:(id)sender {
     [UIView transitionWithView:self.barView duration:0.7 options:UIViewAnimationOptionTransitionFlipFromLeft animations:^{
@@ -65,9 +79,7 @@
 {
     [super viewDidLoad];
     
-    
-    
-    self.kpiId = @"127";
+ 
     
     self.sliceColors =[NSArray arrayWithObjects:
                        [UIColor colorWithRed:246/255.0 green:155/255.0 blue:0/255.0 alpha:0.8],
@@ -76,8 +88,7 @@
                        [UIColor colorWithRed:229/255.0 green:66/255.0 blue:115/255.0 alpha:0.8],
                        [UIColor colorWithRed:148/255.0 green:141/255.0 blue:139/255.0 alpha:0.8],nil];
     
-    self.entityNameLb.text = self.entityName;
-    self.kpiNameLb.text = self.kpiName;
+    
     
     self.groupByView.layer.borderWidth = 0.5;
     self.groupByView.layer.borderColor = [[UIColor whiteColor] CGColor];
@@ -94,22 +105,32 @@
     [self.pieContainer setPieBackgroundColor:[UIColor colorWithWhite:0.95 alpha:0.3]];
     [self.pieContainer setPieCenter:CGPointMake(self.pieContainer.bounds.size.width/2, self.pieContainer.bounds.size.height/2)];
     [self.pieContainer setLabelShadowColor:[UIColor blackColor]];
-    
     [self loadDetail];
    
 }
 
 
 -(void)loadDetail{
+    NSString *requestURL=[NSString stringWithFormat:@"%@%@",[NSString stringWithFormat:@"%@", [EpmSettings getEpmUrlSettingsWithKey:@"kpiDetail"]],self.kpiID];
+    //请求加载数据在
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    [manager GET:requestURL
+      parameters:nil
+         success:^(AFHTTPRequestOperation *operation, id responseObject) {
+           
+         }
+         failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+             
+         }];
     
     NSString *plistPath = [[NSBundle mainBundle] pathForResource:@"tmpGroupDetails" ofType:@"plist"];
     
     NSDictionary *settings   = [[NSMutableDictionary alloc] initWithContentsOfFile:plistPath];
     
-   
-    
-    self.groupItems = [[settings objectForKey:@"groupItem"] objectForKey:self.kpiId];
-    self.groupData = [[settings objectForKey:@"groupData"] objectForKey:self.kpiId];
+    //experiment data
+    self.kpiID=@"127";
+    self.groupItems = [[settings objectForKey:@"groupItem"] objectForKey:self.kpiID];
+    self.groupData = [[settings objectForKey:@"groupData"] objectForKey:self.kpiID];
     
 
     if(!self.currentCondition && self.groupItems.count>0) {
@@ -132,7 +153,13 @@
     [super viewDidAppear:animated];
     [self.pieContainer reloadData];
 }
-
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    self.kpiID = [[self.currentConditions objectForKey:@"kpi_id"] stringValue];
+    self.entityNameLb.text = [self.currentConditions objectForKey:@"entity_group_name"];
+    self.kpiNameLb.text = [self.currentConditions objectForKey:@"kpi_name"];
+}
 
 - (void)didReceiveMemoryWarning
 {

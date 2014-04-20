@@ -9,7 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface EpmGroupViewController : UIViewController
-@property(strong,nonatomic) NSString* kpiId;
-@property(strong,nonatomic)NSString *kpiName;
-@property(strong,nonatomic)NSString *entityName;
+@property(strong,nonatomic)NSDictionary *currentConditions;
 @end
