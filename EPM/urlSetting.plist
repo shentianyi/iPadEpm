@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>kpiDetail</key>
-	<string>/kpis/properties/</string>
+	<string>/kpis/properties</string>
 	<key>newPsw</key>
 	<string>/api/subscriptions/change_password</string>
 	<key>logout</key>
