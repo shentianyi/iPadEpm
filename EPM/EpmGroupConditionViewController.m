@@ -11,9 +11,10 @@
 
 @interface EpmGroupConditionViewController ()
 @property (strong,nonatomic) NSArray *conditions;
-
 @end
 
+
+//self.entities=[{name:string,id:integer}]
 @implementation EpmGroupConditionViewController
 
 - (id)initWithStyle:(UITableViewStyle)style
@@ -34,9 +35,11 @@
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-    [self loadData];
+    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"groupConditionCell"];
+//    [self loadData];
 }
 
+//tianyi experiment
 -(void)loadData {
     self.kpiId = @"127";
     NSString *plistPath = [[NSBundle mainBundle] pathForResource:@"tmpGroupDetails" ofType:@"plist"];
@@ -65,25 +68,28 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return self.conditions.count;
+//    return self.conditions.count;
+    return [self.entities count];
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    EpmSingleTextTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"groupConditionCell" forIndexPath:indexPath];
-    
+//    EpmSingleTextTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"groupConditionCell" forIndexPath:indexPath];
+    UITableViewCell *cell=[tableView dequeueReusableCellWithIdentifier:@"groupConditionCell" forIndexPath:indexPath];
     // Configure the cell...
-    cell.textContent.text = [self.conditions objectAtIndex:indexPath.row];
-    
+//    cell.textContent.text = [self.conditions objectAtIndex:indexPath.row];
+    cell.textLabel.text=[self.entities[indexPath.row] objectForKey:@"name"];
     return cell;
 }
 
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    self.selected = [self.conditions objectAtIndex:indexPath.row];
+//    self.selected = [self.conditions objectAtIndex:indexPath.row];
+    self.selected=[self.entities objectAtIndex:indexPath.row];
     [self performSegueWithIdentifier:@"conditionSelected" sender:self];
-
+    
+//    self.dismiss();
 }
 
 /*

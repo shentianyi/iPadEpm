@@ -38,21 +38,14 @@
 @property (weak, nonatomic) IBOutlet UIView *pieView;
 @property (weak, nonatomic) IBOutlet PNLineChart *barChart;
 
+//wayne
+@property (strong , nonatomic) NSArray *entityArray;
+
 
 @end
 
 @implementation EpmGroupViewController
-- (IBAction)selectGroupCondition:(id)sender {
-    NSArray *entity=[NSArray arrayWithObjects:@"1",@"2",@"3", nil];
-    [self performSegueWithIdentifier:@"selectGroupCondition" sender:entity];
-}
--(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if([segue.identifier isEqualToString:@"selectGroupCondition"]){
-        EpmGroupConditionViewController  *tableEntity= segue.destinationViewController;
-        tableEntity.entities=sender;
-    }
 
-}
 
 - (IBAction)transitionToPie:(id)sender {
     [UIView transitionWithView:self.barView duration:0.7 options:UIViewAnimationOptionTransitionFlipFromLeft animations:^{
@@ -79,7 +72,8 @@
 {
     [super viewDidLoad];
     
- 
+    NSLog(@"detail currentCondition:%@",self.currentCondition);
+    
     
     self.sliceColors =[NSArray arrayWithObjects:
                        [UIColor colorWithRed:246/255.0 green:155/255.0 blue:0/255.0 alpha:0.8],
@@ -111,24 +105,26 @@
 
 
 -(void)loadDetail{
-    NSString *requestURL=[NSString stringWithFormat:@"%@%@",[NSString stringWithFormat:@"%@", [EpmSettings getEpmUrlSettingsWithKey:@"kpiDetail"]],self.kpiID];
+    NSString *requestURL=[NSString stringWithFormat:@"%@",[NSString stringWithFormat:@"%@", [EpmSettings getEpmUrlSettingsWithKey:@"kpiDetail"]]];
+    requestURL=[requestURL stringByAppendingPathComponent:self.kpiID];
     //请求加载数据在
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     [manager GET:requestURL
       parameters:nil
          success:^(AFHTTPRequestOperation *operation, id responseObject) {
-           
+             self.entityArray=responseObject;
          }
          failure:^(AFHTTPRequestOperation *operation, NSError *error) {
              
          }];
     
-    NSString *plistPath = [[NSBundle mainBundle] pathForResource:@"tmpGroupDetails" ofType:@"plist"];
-    
-    NSDictionary *settings   = [[NSMutableDictionary alloc] initWithContentsOfFile:plistPath];
+ 
     
     //experiment data
+    NSString *plistPath = [[NSBundle mainBundle] pathForResource:@"tmpGroupDetails" ofType:@"plist"];
+    NSDictionary *settings   = [[NSMutableDictionary alloc] initWithContentsOfFile:plistPath];
     self.kpiID=@"127";
+    
     self.groupItems = [[settings objectForKey:@"groupItem"] objectForKey:self.kpiID];
     self.groupData = [[settings objectForKey:@"groupData"] objectForKey:self.kpiID];
     
@@ -146,6 +142,25 @@
     [self.pieContainer reloadData];
     [self.tableView reloadData];
   
+}
+
+- (IBAction)selectGroupCondition:(id)sender {
+    NSArray *entity=[self.entityArray copy];
+    void (^dismiss)()=^(){
+        
+    };
+    [self performSegueWithIdentifier:@"selectGroupCondition" sender:@{
+                                                                      @"entity":entity,
+                                                                      @"dismiss":dismiss
+                                                                      }];
+}
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if([segue.identifier isEqualToString:@"selectGroupCondition"]){
+        EpmGroupConditionViewController  *tableEntity= segue.destinationViewController;
+        tableEntity.entities=[sender objectForKey:@"entity"];
+        tableEntity.dismiss=[sender objectForKey:@"dismiss"];
+    }
+    
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -316,16 +331,20 @@
 
 
 
-
+//选择一个entity后返回回来
 - (IBAction)unwindToGroupDetail:(UIStoryboardSegue *)unwindSegue {
     EpmGroupConditionViewController* source = unwindSegue.sourceViewController;
-    self.currentCondition = source.selected;
-    self.groupByName.text = self.currentCondition;
-    self.variableTitle.text = self.currentCondition;
-    [self loadDetail];
+    self.groupByName.text = [source.selected objectForKey:@"name"];
+    self.variableTitle.text = [source.selected objectForKey:@"name"];
+//    [self loadDetail];
 }
 
-
+//选择一个entity后加载pie以及tabledata
+-(void)loadDataByEntity:(int)kpi_group_id
+{
+   
+    
+}
 
 
 

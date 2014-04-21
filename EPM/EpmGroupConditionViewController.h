@@ -10,6 +10,10 @@
 
 @interface EpmGroupConditionViewController : UITableViewController
 @property(strong,nonatomic) NSString *kpiId;
-@property (strong,nonatomic) NSString *selected;
+//@property (strong,nonatomic) NSString *selected;
+
+//wayne
 @property(strong , nonatomic) NSArray *entities;
+@property (strong,nonatomic) NSDictionary *selected;
+@property(strong , nonatomic) void (^dismiss)();
 @end
