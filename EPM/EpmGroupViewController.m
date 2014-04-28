@@ -13,6 +13,7 @@
 #import "PNChart.h"
 #import "AFNetworking.h"
 #import "EpmSettings.h"
+#import "OrgDeailAttributeCellView.h"
 
 
 @interface EpmGroupViewController ()<XYPieChartDataSource,XYPieChartDelegate>
@@ -74,7 +75,7 @@
     
     NSLog(@"detail currentCondition:%@",self.currentCondition);
     
-    
+    self.navigationItem.title=[self.currentConditions objectForKey:@"chosen_time"];
     self.sliceColors =[NSArray arrayWithObjects:
                        [UIColor colorWithRed:246/255.0 green:155/255.0 blue:0/255.0 alpha:0.8],
                        [UIColor colorWithRed:129/255.0 green:195/255.0 blue:29/255.0 alpha:0.8],
@@ -100,7 +101,7 @@
     [self.pieContainer setPieCenter:CGPointMake(self.pieContainer.bounds.size.width/2, self.pieContainer.bounds.size.height/2)];
     [self.pieContainer setLabelShadowColor:[UIColor blackColor]];
     [self loadDetail];
-   
+    
 }
 
 

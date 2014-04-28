@@ -52,7 +52,7 @@
 +(NSString *)timeStringOfFrequency:(int)frequency{
     NSString *format=@"";
     if(frequency == 100) {
-        	format = @"yy/MM/dd";
+        	format = @"yyyy-MM-dd";
     }
     else if(frequency==200) {
         format = @"yyyy 'week' w";

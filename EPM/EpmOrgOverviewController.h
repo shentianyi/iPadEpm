@@ -15,13 +15,13 @@
 
 @property(strong,nonatomic) NSDictionary *entityGroup;
 
-@property (strong,nonatomic)NSDictionary *tableData;
+@property(strong,nonatomic) NSDictionary *tableData;
 
-@property(strong,nonatomic)NSArray *contacts;
+@property(strong,nonatomic) NSArray *contacts;
 
-@property(strong,nonatomic)NSArray *mailList;
+@property(strong,nonatomic) NSArray *mailList;
 
-@property(strong,nonatomic)NSArray *mailSection;
+@property(strong,nonatomic) NSArray *mailSection;
 @property (weak, nonatomic) IBOutlet UICollectionView *kpiCollection;
 
 @property (weak, nonatomic) IBOutlet UILabel *kpiNumber;

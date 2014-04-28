@@ -1001,7 +1001,7 @@ CGFloat const kJBBarChartViewControllerChartPadding = 10.0f;
     NSMutableDictionary *currentConditions=[self.currentConditions mutableCopy];
     [currentConditions setObject:self.showEntity.text forKey:@"entity_group_name"];
     [currentConditions setObject:self.showID forKey:@"entity_group_id"];
-    NSLog(@"%@",currentConditions);
+    [currentConditions setObject:self.showDate.text forKey:@"chosen_time"];
     [self performSegueWithIdentifier:@"viewGroupDetail" sender:currentConditions];
 }
 

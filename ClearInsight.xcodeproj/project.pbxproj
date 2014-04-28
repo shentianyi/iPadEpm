@@ -158,6 +158,7 @@
 		B0895C2518FD2FF30013A048 /* JBChartView.m in Sources */ = {isa = PBXBuildFile; fileRef = B0895C2018FD2FF30013A048 /* JBChartView.m */; };
 		B0895C2618FD2FF30013A048 /* JBChartView.podspec in Resources */ = {isa = PBXBuildFile; fileRef = B0895C2118FD2FF30013A048 /* JBChartView.podspec */; };
 		B0895C2718FD2FF30013A048 /* JBLineChartView.m in Sources */ = {isa = PBXBuildFile; fileRef = B0895C2318FD2FF30013A048 /* JBLineChartView.m */; };
+		B0CC638D190E52EC007BF57F /* OrgDeailAttributeCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = B0CC638C190E52EC007BF57F /* OrgDeailAttributeCellView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -415,6 +416,8 @@
 		B0895C2118FD2FF30013A048 /* JBChartView.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = JBChartView.podspec; sourceTree = "<group>"; };
 		B0895C2218FD2FF30013A048 /* JBLineChartView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBLineChartView.h; sourceTree = "<group>"; };
 		B0895C2318FD2FF30013A048 /* JBLineChartView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBLineChartView.m; sourceTree = "<group>"; };
+		B0CC638B190E52EC007BF57F /* OrgDeailAttributeCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrgDeailAttributeCellView.h; sourceTree = "<group>"; };
+		B0CC638C190E52EC007BF57F /* OrgDeailAttributeCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrgDeailAttributeCellView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -682,8 +685,6 @@
 				05EA4E0B187FEBDC00C53FEE /* EpmOrgCellView.m */,
 				05D2C07E1884191500DBBF8C /* LineLayout.h */,
 				05D2C07F1884191500DBBF8C /* LineLayout.m */,
-				05D2C08A1884324B00DBBF8C /* EpmOrgKpiCellView.h */,
-				05D2C08B1884324B00DBBF8C /* EpmOrgKpiCellView.m */,
 				05D2C0A0188482D200DBBF8C /* EpmTableCell.h */,
 				05D2C0A1188482D200DBBF8C /* EpmTableCell.m */,
 				055F84611889153D00D88BC4 /* EpmHttpUtil.h */,
@@ -829,6 +830,7 @@
 		B043D2A618FE189D00407A64 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				B0CC6387190E50B8007BF57F /* org */,
 				B043D2A718FE18A500407A64 /* chartRelated */,
 			);
 			name = View;
@@ -881,6 +883,17 @@
 			);
 			name = JBChartViewClass;
 			path = Classes;
+			sourceTree = "<group>";
+		};
+		B0CC6387190E50B8007BF57F /* org */ = {
+			isa = PBXGroup;
+			children = (
+				05D2C08A1884324B00DBBF8C /* EpmOrgKpiCellView.h */,
+				05D2C08B1884324B00DBBF8C /* EpmOrgKpiCellView.m */,
+				B0CC638B190E52EC007BF57F /* OrgDeailAttributeCellView.h */,
+				B0CC638C190E52EC007BF57F /* OrgDeailAttributeCellView.m */,
+			);
+			name = org;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1068,6 +1081,7 @@
 				05F6CE4618C02B590040614F /* EpmOrgOverviewController.m in Sources */,
 				0576D1AB18AC64EF00AD75AB /* SDWebImagePrefetcher.m in Sources */,
 				0519BA8218BC48240029447E /* EpmMailListController.m in Sources */,
+				B0CC638D190E52EC007BF57F /* OrgDeailAttributeCellView.m in Sources */,
 				0576D1A918AC64EF00AD75AB /* SDWebImageDownloaderOperation.m in Sources */,
 				056C3CDC18ACAE8000820524 /* EpmMailReceiverCell.m in Sources */,
 				05A2061018B5CCCA0052B569 /* EpmGraphicUtility.m in Sources */,
