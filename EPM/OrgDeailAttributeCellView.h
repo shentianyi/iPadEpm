@@ -10,5 +10,5 @@
 
 @interface OrgDeailAttributeCellView : UICollectionViewCell
 @property (weak, nonatomic) IBOutlet UILabel *attributeName;
-@property (weak, nonatomic) IBOutlet UILabel *chosenNumber;
+@property (weak, nonatomic) IBOutlet UILabel *attributeCount;
 @end

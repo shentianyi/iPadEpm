@@ -154,6 +154,7 @@
 		B043D2AD18FE18B400407A64 /* JBLineChartFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = B043D2AB18FE18B400407A64 /* JBLineChartFooterView.m */; };
 		B043D2D118FE58CF00407A64 /* JBChartTooltipTipView.m in Sources */ = {isa = PBXBuildFile; fileRef = B043D2CE18FE58CF00407A64 /* JBChartTooltipTipView.m */; };
 		B043D2D218FE58CF00407A64 /* JBChartTooltipView.m in Sources */ = {isa = PBXBuildFile; fileRef = B043D2D018FE58CF00407A64 /* JBChartTooltipView.m */; };
+		B06D41A3190F306D00902580 /* OrgDeailAttributeCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B06D41A2190F306D00902580 /* OrgDeailAttributeCellView.xib */; };
 		B0895C2418FD2FF30013A048 /* JBBarChartView.m in Sources */ = {isa = PBXBuildFile; fileRef = B0895C1E18FD2FF30013A048 /* JBBarChartView.m */; };
 		B0895C2518FD2FF30013A048 /* JBChartView.m in Sources */ = {isa = PBXBuildFile; fileRef = B0895C2018FD2FF30013A048 /* JBChartView.m */; };
 		B0895C2618FD2FF30013A048 /* JBChartView.podspec in Resources */ = {isa = PBXBuildFile; fileRef = B0895C2118FD2FF30013A048 /* JBChartView.podspec */; };
@@ -409,6 +410,7 @@
 		B043D2CE18FE58CF00407A64 /* JBChartTooltipTipView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBChartTooltipTipView.m; sourceTree = "<group>"; };
 		B043D2CF18FE58CF00407A64 /* JBChartTooltipView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBChartTooltipView.h; sourceTree = "<group>"; };
 		B043D2D018FE58CF00407A64 /* JBChartTooltipView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBChartTooltipView.m; sourceTree = "<group>"; };
+		B06D41A2190F306D00902580 /* OrgDeailAttributeCellView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OrgDeailAttributeCellView.xib; sourceTree = "<group>"; };
 		B0895C1D18FD2FF30013A048 /* JBBarChartView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBBarChartView.h; sourceTree = "<group>"; };
 		B0895C1E18FD2FF30013A048 /* JBBarChartView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBBarChartView.m; sourceTree = "<group>"; };
 		B0895C1F18FD2FF30013A048 /* JBChartView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBChartView.h; sourceTree = "<group>"; };
@@ -892,6 +894,7 @@
 				05D2C08B1884324B00DBBF8C /* EpmOrgKpiCellView.m */,
 				B0CC638B190E52EC007BF57F /* OrgDeailAttributeCellView.h */,
 				B0CC638C190E52EC007BF57F /* OrgDeailAttributeCellView.m */,
+				B06D41A2190F306D00902580 /* OrgDeailAttributeCellView.xib */,
 			);
 			name = org;
 			sourceTree = "<group>";
@@ -1017,6 +1020,7 @@
 				05984FA118CF03AA0072B204 /* trend-level.png in Resources */,
 				0515707D18D2EDA400FD4FE4 /* switchType-line.png in Resources */,
 				05D2C0AB1884B6C600DBBF8C /* ipad-icon-120.png in Resources */,
+				B06D41A3190F306D00902580 /* OrgDeailAttributeCellView.xib in Resources */,
 				0502A96D18BC747C00906C45 /* mail.png in Resources */,
 				05F6CE4A18C03E990040614F /* chart.png in Resources */,
 				05F6CE5218C07AD10040614F /* kpiCategory-1.png in Resources */,

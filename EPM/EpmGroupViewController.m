@@ -16,7 +16,7 @@
 #import "OrgDeailAttributeCellView.h"
 
 
-@interface EpmGroupViewController ()<XYPieChartDataSource,XYPieChartDelegate>
+@interface EpmGroupViewController ()<XYPieChartDataSource,XYPieChartDelegate,UICollectionViewDataSource,UICollectionViewDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *kpiNameLb;
 @property (weak, nonatomic) IBOutlet UILabel *entityNameLb;
 @property (weak, nonatomic) IBOutlet UILabel *groupByName;
@@ -41,8 +41,9 @@
 
 //wayne
 @property (strong , nonatomic) NSArray *entityArray;
+@property (strong , nonatomic) NSURLSession *session;
 
-
+@property (strong , nonatomic) NSString *wzx;
 @end
 
 @implementation EpmGroupViewController
@@ -65,15 +66,47 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
-    }
+       
+        
+            }
     return self;
 }
+-(instancetype)init{
+    self=[super init];
+    self.wzx=[NSString stringWithFormat:@"wangzixiao"];
+    return self;
+}
+
+//-(void)URLSession:(NSURLSession *)session didReceiveChallenge:(NSURLAuthenticationChallenge *)challenge completionHandler:(void (^)(NSURLSessionAuthChallengeDisposition, NSURLCredential *))completionHandler
+//{
+//    NSURLCredential *cred=[NSURLCredential credentialWithUser:@"jim.guo@leoni.com"
+//                                                     password:@"1111"
+//                                                  persistence:NSURLCredentialPersistenceForSession];
+//    completionHandler(NSURLSessionAuthChallengeUseCredential,cred);
+//}
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    NSLog(@"%@",self.wzx);
+    NSLog(@"detail currentCondition:%@",self.currentConditions);
+    NSURLSessionConfiguration *defaultConfig=[NSURLSessionConfiguration defaultSessionConfiguration];
+    self.session=[NSURLSession sessionWithConfiguration:defaultConfig
+                                               delegate:self
+                                          delegateQueue:nil];
+    //请求attribute的数据
+    NSString *requestString=[NSString stringWithFormat:@"http://192.168.1.107:3000/api/kpis/group_properties/%@",[self.currentConditions objectForKey:@"kpi_id"]];
+    NSURL *url=[NSURL URLWithString:requestString];
+    NSURLRequest *request=[NSURLRequest requestWithURL:url];
+    NSURLSessionDataTask *task=[self.session dataTaskWithRequest:request
+                                               completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+                                                   NSLog(@"ok");
+                                                   NSString *json=[[NSString alloc] initWithData:data
+                                                                                        encoding:NSUTF8StringEncoding];
+                                                   NSLog(@"%@",json);
+                                               }];
+    [task resume];
     
-    NSLog(@"detail currentCondition:%@",self.currentCondition);
     
     self.navigationItem.title=[self.currentConditions objectForKey:@"chosen_time"];
     self.sliceColors =[NSArray arrayWithObjects:
@@ -102,6 +135,17 @@
     [self.pieContainer setLabelShadowColor:[UIColor blackColor]];
     [self loadDetail];
     
+    UINib *attributeCell=[UINib nibWithNibName:@"OrgDeailAttributeCellView"
+                                        bundle:nil];
+    [self.attributeCollection registerNib:attributeCell
+               forCellWithReuseIdentifier:@"attributeCollection"];
+    self.attributeCollection.delegate=self;
+    self.attributeCollection.dataSource=self;
+    UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
+    [flowLayout setItemSize:CGSizeMake(170,self.attributeCollection.bounds.size.height)];
+    [flowLayout setScrollDirection:UICollectionViewScrollDirectionHorizontal];
+    
+    [self.attributeCollection setCollectionViewLayout:flowLayout];
 }
 
 
@@ -175,6 +219,8 @@
     self.kpiID = [[self.currentConditions objectForKey:@"kpi_id"] stringValue];
     self.entityNameLb.text = [self.currentConditions objectForKey:@"entity_group_name"];
     self.kpiNameLb.text = [self.currentConditions objectForKey:@"kpi_name"];
+    [self.kpiNameLb sizeToFit];
+    self.entityNameLb.adjustsFontSizeToFitWidth=YES;
 }
 
 - (void)didReceiveMemoryWarning
@@ -326,7 +372,21 @@
 }
 
 
-
+//collection delegate
+-(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
+{
+    return 1;
+}
+-(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
+    return 10;
+}
+-(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
+    OrgDeailAttributeCellView *cell=[self.attributeCollection dequeueReusableCellWithReuseIdentifier:@"attributeCollection" forIndexPath:indexPath];
+    cell.attributeName.text=@"wayne";
+    cell.attributeCount.text=@"10";
+    return cell;
+    
+}
 
 
 

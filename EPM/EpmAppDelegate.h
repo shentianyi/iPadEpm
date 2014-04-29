@@ -12,7 +12,8 @@ typedef enum {
     OPTION = 1,          //有更新，但可选
     MUST = 2,      //必须更新
   
-} UpdatePolicy;
+}
+int UpdatePolicy;
 @interface EpmAppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
