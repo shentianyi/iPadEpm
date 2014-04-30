@@ -36,7 +36,7 @@
 + (NSString *) convertDatetimeWithString:(NSString *)dateString WithFormat:(NSString *) format{
 
     NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
-    [formatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ssZ"];
+    [formatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss"];
     NSDate *date = [formatter dateFromString:dateString];
     return [EpmUtility convertDatetimeWithDate:date WithFormat:format];
 }
@@ -46,6 +46,7 @@
     [formatter setTimeZone:[NSTimeZone timeZoneWithAbbreviation:@"UTC"]];
     [formatter setDateFormat:pattern];
     NSDate *date = [formatter dateFromString:dateString];
+    NSLog(@"%@",date);
     return [EpmUtility convertDatetimeWithDate:date WithFormat:format];
 }
 

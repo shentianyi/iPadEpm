@@ -34,9 +34,10 @@
 -(void)updateData:(NSDictionary *)responds
 {
     self.date=[[responds objectForKey:@"date"] mutableCopy];
-    for(int i=0;i<[self.date count];i++){
-        [self.date replaceObjectAtIndex:i withObject:[EpmUtility convertDatetimeWithString:[[self.date objectAtIndex:i] substringToIndex:18] OfPattern:@"yyyy-MM-dd HH:mm:ss" WithFormat:[EpmUtility timeStringOfFrequency:[[responds objectForKey:@"frequency"] integerValue]]]];
-    }
+    NSLog(@"%@",self.date);
+//    for(int i=0;i<[self.date count];i++){
+//        [self.date replaceObjectAtIndex:i withObject:[EpmUtility convertDatetimeWithString:[[self.date objectAtIndex:i] substringToIndex:18] OfPattern:@"yyyy-MM-dd HH:mm:ss" WithFormat:[EpmUtility timeStringOfFrequency:[[responds objectForKey:@"frequency"] intValue]]]];
+//    }
     if(!self.current){
        self.current=[[NSMutableArray alloc] init];
     }

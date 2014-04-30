@@ -13,7 +13,9 @@
 #import "PNChart.h"
 #import "AFNetworking.h"
 #import "EpmSettings.h"
+
 #import "OrgDeailAttributeCellView.h"
+#import "DetailPropertyModel.h"
 
 
 @interface EpmGroupViewController ()<XYPieChartDataSource,XYPieChartDelegate,UICollectionViewDataSource,UICollectionViewDelegate>
@@ -43,7 +45,9 @@
 @property (strong , nonatomic) NSArray *entityArray;
 @property (strong , nonatomic) NSURLSession *session;
 
-@property (strong , nonatomic) NSString *wzx;
+//experiment data
+@property (strong , nonatomic) NSDictionary *properties;
+
 @end
 
 @implementation EpmGroupViewController
@@ -66,17 +70,10 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
-       
         
             }
     return self;
 }
--(instancetype)init{
-    self=[super init];
-    self.wzx=[NSString stringWithFormat:@"wangzixiao"];
-    return self;
-}
-
 //-(void)URLSession:(NSURLSession *)session didReceiveChallenge:(NSURLAuthenticationChallenge *)challenge completionHandler:(void (^)(NSURLSessionAuthChallengeDisposition, NSURLCredential *))completionHandler
 //{
 //    NSURLCredential *cred=[NSURLCredential credentialWithUser:@"jim.guo@leoni.com"
@@ -88,24 +85,11 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    NSLog(@"%@",self.wzx);
     NSLog(@"detail currentCondition:%@",self.currentConditions);
-    NSURLSessionConfiguration *defaultConfig=[NSURLSessionConfiguration defaultSessionConfiguration];
-    self.session=[NSURLSession sessionWithConfiguration:defaultConfig
-                                               delegate:self
-                                          delegateQueue:nil];
-    //请求attribute的数据
-    NSString *requestString=[NSString stringWithFormat:@"http://192.168.1.107:3000/api/kpis/group_properties/%@",[self.currentConditions objectForKey:@"kpi_id"]];
-    NSURL *url=[NSURL URLWithString:requestString];
-    NSURLRequest *request=[NSURLRequest requestWithURL:url];
-    NSURLSessionDataTask *task=[self.session dataTaskWithRequest:request
-                                               completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-                                                   NSLog(@"ok");
-                                                   NSString *json=[[NSString alloc] initWithData:data
-                                                                                        encoding:NSUTF8StringEncoding];
-                                                   NSLog(@"%@",json);
-                                               }];
-    [task resume];
+    
+    //experiment data ------ down
+    [DetailPropertyModel sharedProperty];
+    //experiment data ------ up
     
     
     self.navigationItem.title=[self.currentConditions objectForKey:@"chosen_time"];
@@ -382,8 +366,8 @@
 }
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     OrgDeailAttributeCellView *cell=[self.attributeCollection dequeueReusableCellWithReuseIdentifier:@"attributeCollection" forIndexPath:indexPath];
-    cell.attributeName.text=@"wayne";
-    cell.attributeCount.text=@"10";
+    cell.attributeName.text=@"属性名称";
+    cell.attributeCount.text=@"0";
     return cell;
     
 }
