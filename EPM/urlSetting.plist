@@ -36,5 +36,9 @@
 	<string>https://www.cz-tek.com:8082</string>
 	<key>dashboards</key>
 	<string>/api/dashboards</string>
+	<key>groupAttrbute</key>
+	<string>/api/kpis/group_properties</string>
+	<key>detailCompare</key>
+	<string>/api/kpi_entries/compare</string>
 </dict>
 </plist>

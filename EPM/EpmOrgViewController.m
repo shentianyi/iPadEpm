@@ -846,14 +846,14 @@ CGFloat const kJBBarChartViewControllerChartPadding = 10.0f;
     if([current doubleValue] < [min doubleValue]){
         completion = [current floatValue] / ([min floatValue]+0.0000000001);
         cell.inrange.text = [NSString stringWithFormat:@"%d%% %@",(int)completion*100,NSLocalizedString(@"LOWER", nil)];
-        cell.inrange.textColor = PNRed;
+//        cell.inrange.textColor = PNRed;
     }
     
     if([current doubleValue] > [max doubleValue]){
         completion = [current floatValue] / ([max floatValue]+0.0000000001);
 
         cell.inrange.text = [NSString stringWithFormat:@"%d%% %@",(int)completion*100,NSLocalizedString(@"UPPER", nil)];
-        cell.inrange.textColor = PNRed;
+//        cell.inrange.textColor = PNRed;
     }
     
     

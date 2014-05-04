@@ -9,11 +9,13 @@
 #import <UIKit/UIKit.h>
 
 @interface EpmGroupDetailTableViewCell : UITableViewCell
+- (IBAction)tapCompare:(id)sender;
 @property (weak, nonatomic) IBOutlet UILabel *conditionTitle;
 @property (weak, nonatomic) IBOutlet UILabel *conditionValue;
 @property (weak, nonatomic) IBOutlet UILabel *conditionPercentage;
 @property (weak, nonatomic) IBOutlet UILabel *conditionLast;
 @property (weak, nonatomic) IBOutlet UILabel *conditionLastPercent;
 @property (weak, nonatomic) IBOutlet UIImageView *conditionLastTrend;
+@property (copy, nonatomic) void(^compare)();
 
 @end

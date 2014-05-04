@@ -61,8 +61,8 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
-    NSLog(@"checked : %@",[self.property objectForKey:@"checked"]);
-    NSLog(@"property : %@",[self.property objectForKey:@"property"]);
+//    NSLog(@"checked : %@",[self.property objectForKey:@"checked"]);
+//    NSLog(@"property : %@",[self.property objectForKey:@"property"]);
     if(indexPath.row==0){
        cell.textLabel.text=@"All";
         if([[self.property objectForKey:@"checked"] count] == [[self.property objectForKey:@"property"] count]){

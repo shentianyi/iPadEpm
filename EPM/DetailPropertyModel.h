@@ -10,5 +10,7 @@
 
 @interface DetailPropertyModel : NSObject
 @property (strong , nonatomic) NSMutableArray *properties;
+
 +(instancetype)sharedProperty;
++(void)FetchData:(NSString *)kpiID;
 @end

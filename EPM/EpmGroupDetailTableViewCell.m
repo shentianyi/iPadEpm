@@ -31,4 +31,9 @@
     // Configure the view for the selected state
 }
 
+- (IBAction)tapCompare:(id)sender {
+    if(self.compare){
+        self.compare();
+    }
+}
 @end
