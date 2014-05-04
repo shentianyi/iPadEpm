@@ -33,11 +33,14 @@
 //responds need add frequency
 -(void)updateData:(NSDictionary *)responds
 {
+    NSLog(@"update");
     self.date=[[responds objectForKey:@"date"] mutableCopy];
     NSLog(@"%@",self.date);
-//    for(int i=0;i<[self.date count];i++){
-//        [self.date replaceObjectAtIndex:i withObject:[EpmUtility convertDatetimeWithString:[[self.date objectAtIndex:i] substringToIndex:18] OfPattern:@"yyyy-MM-dd HH:mm:ss" WithFormat:[EpmUtility timeStringOfFrequency:[[responds objectForKey:@"frequency"] intValue]]]];
-//    }
+    for(int i=0;i<[self.date count];i++){
+        NSLog(@"%@",[self.date objectAtIndex:i]);
+        
+        [self.date replaceObjectAtIndex:i withObject:[EpmUtility convertDatetimeWithString:[[self.date objectAtIndex:i] substringToIndex:19] OfPattern:@"yyyy-MM-dd'T'HH:mm:ss" WithFormat:[EpmUtility timeStringOfFrequency:[[responds objectForKey:@"frequency"] intValue]]]];
+    }
     if(!self.current){
        self.current=[[NSMutableArray alloc] init];
     }
@@ -81,5 +84,13 @@
     self.currentMax=nil;
     self.currentMin=nil;
     [self addCurrent:current];
+}
+-(void)clearAll
+{
+    [self.date removeAllObjects];
+    [self.entity removeAllObjects];
+    [self.current removeAllObjects];
+    self.currentMax=nil;
+    self.currentMin=nil;
 }
 @end

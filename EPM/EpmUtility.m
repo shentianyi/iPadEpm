@@ -45,8 +45,9 @@
     NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
     [formatter setTimeZone:[NSTimeZone timeZoneWithAbbreviation:@"UTC"]];
     [formatter setDateFormat:pattern];
+//    NSLog(@"datestring :%@",dateString);
     NSDate *date = [formatter dateFromString:dateString];
-    NSLog(@"%@",date);
+//    NSLog(@"date :%@",date);
     return [EpmUtility convertDatetimeWithDate:date WithFormat:format];
 }
 

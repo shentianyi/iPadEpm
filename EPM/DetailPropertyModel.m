@@ -8,8 +8,7 @@
 
 #import "DetailPropertyModel.h"
 @interface DetailPropertyModel()
-@property (strong , nonatomic) NSMutableArray *dimension;
-@property (strong , nonatomic) NSMutableArray *properties;
+
 @end
 
 @implementation DetailPropertyModel
@@ -27,10 +26,20 @@
     if(self){
         NSString *plistPath = [[NSBundle mainBundle] pathForResource:@"propertyFake" ofType:@"plist"];
         NSDictionary *settings = [[NSMutableDictionary alloc] initWithContentsOfFile:plistPath];
-        NSLog(@"%@",settings);
-        
-        self.dimension=[[NSMutableArray alloc] init];
+
         self.properties=[[NSMutableArray alloc] init];
+        
+        for(NSString *keyid in settings){
+            NSMutableDictionary *wrapDic=[[NSMutableDictionary alloc] init];
+            [wrapDic setObject:keyid forKey:@"id"];
+            for(NSString *keyname in settings[keyid]){
+                [wrapDic setObject:keyname forKey:@"name"];
+                [wrapDic setObject:[settings[keyid][keyname] mutableCopy] forKey:@"property"];
+            }
+            [wrapDic setObject:[NSMutableDictionary dictionary] forKey:@"checked"];
+            [self.properties addObject:wrapDic];
+        }
+
     }
     return self;
 }

@@ -88,7 +88,16 @@ CGFloat const kJBBarChartViewControllerChartPadding = 10.0f;
 
 -(void)viewDidLoad
 {
+
     self.chartModel=[OrgChartModel sharedChartDate];
+    NSLog(@"current count %d",self.chartModel.current.count);
+    if(self.chartModel.current.count>1){
+        int count=self.chartModel.current.count;
+        for(int i=1;i<count;i++){
+            [self.chartModel.current removeLastObject];
+//            [self.chartModel.entity removeLastObject];
+        }
+    }
     [super viewDidLoad];
     [self initAppearance];
     [self loadData];
@@ -111,6 +120,7 @@ CGFloat const kJBBarChartViewControllerChartPadding = 10.0f;
       parameters:self.currentConditions
          success:^(AFHTTPRequestOperation *operation, id responseObject){
              self.entitiesID=[[NSMutableArray alloc] init];
+             [self.chartModel.entity removeAllObjects];
              for(int i =0;i<[responseObject count];i++){
                  [self.entitiesID addObject:@{
                                               @"name":[responseObject[i] objectForKey:@"name"],
@@ -135,6 +145,9 @@ CGFloat const kJBBarChartViewControllerChartPadding = 10.0f;
 //             NSLog(@"entityid is %@",self.chartModel.entity);
          }
          failure:^(AFHTTPRequestOperation *operation, NSError *error) {}];
+    
+    [self moveScrollView:self.ten ToPage:1];
+    [self moveScrollView:self.bit ToPage:4];
 }
 -(void) initAppearance{
     [self DatePickerAppearance];
@@ -193,8 +206,7 @@ CGFloat const kJBBarChartViewControllerChartPadding = 10.0f;
 -(void)viewDidAppear:(BOOL)animated{
     // [self changeLayoutWithOrientation:(UIDeviceOrientation)[UIApplication sharedApplication].statusBarOrientation];
   
-    [self moveScrollView:self.ten ToPage:1];
-    [self moveScrollView:self.bit ToPage:4];
+    
 }
 
 
@@ -203,10 +215,14 @@ CGFloat const kJBBarChartViewControllerChartPadding = 10.0f;
      AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     
   //  NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:[Kpi objectForKey:@"id"],@"kpi_id",@"100",@"frequency",[self.entityGroup objectForKey:@"id"],@"entity_group_id",[formatter stringFromDate:[NSDate dateWithTimeIntervalSinceNow:-1296000]],@"start_time",[formatter stringFromDate:[NSDate date]], @"end_time",nil];
-    NSLog(@"current count %d",self.chartModel.current.count);
+//    NSLog(@"current count %d",self.chartModel.current.count);
     if(self.chartModel.current.count==1 || !self.chartModel.current)
     {
         [manager GET:[NSString stringWithFormat:@"%@%@",[EpmSettings getEpmUrlSettingsWithKey:@"baseUrl"],[EpmSettings getEpmUrlSettingsWithKey: @"data"]] parameters:self.currentConditions success:^(AFHTTPRequestOperation *operation, id responseObject) {
+//            NSLog(@"address: %@",[NSString stringWithFormat:@"%@%@",[EpmSettings getEpmUrlSettingsWithKey:@"baseUrl"],[EpmSettings getEpmUrlSettingsWithKey: @"data"]] );
+            NSLog(@"parameters: %@",self.currentConditions);
+//            NSLog(@"result : %@",responseObject);
+            
             
             NSMutableDictionary *result = [(NSDictionary *)responseObject mutableCopy];
             self.chartModel.current=nil;
@@ -219,6 +235,7 @@ CGFloat const kJBBarChartViewControllerChartPadding = 10.0f;
             }
             
             self.tableData = result;
+//            NSLog(@"%@",result);
             [self.tableView reloadData];
             
             [self loadKpiSummery];
@@ -367,13 +384,14 @@ CGFloat const kJBBarChartViewControllerChartPadding = 10.0f;
     NSArray *current =[self.tableData objectForKey:@"current"];
     NSArray *min=[self.tableData objectForKey:@"target_min"];
     NSArray *max=[self.tableData objectForKey:@"target_max"];
-    int abnormal = 0;
-    for(int i= 0; i<current.count;i++){
-        if([[current objectAtIndex:i] floatValue] > [[max objectAtIndex:i]floatValue] || [[current objectAtIndex:i ]floatValue]<[[min objectAtIndex:i ]floatValue ]){
-            abnormal ++;
-        }
-    }
-    self.outOfRange.text = [NSString stringWithFormat:@"%d",abnormal];
+//    int abnormal = 0;
+    NSLog(@"current:%d ; max:%d ; min:%d",current.count,max.count,min.count);
+//    for(int i= 0; i<current.count;i++){
+//        if([[current objectAtIndex:i] floatValue] > [[max objectAtIndex:i]floatValue] || [[current objectAtIndex:i ]floatValue]<[[min objectAtIndex:i ]floatValue ]){
+//            abnormal ++;
+//        }
+//    }
+//    self.outOfRange.text = [NSString stringWithFormat:@"%d",abnormal];
 }
 
 
@@ -793,8 +811,8 @@ CGFloat const kJBBarChartViewControllerChartPadding = 10.0f;
     NSNumber *min=[[self.tableData objectForKey:@"target_min"] objectAtIndex:indexPath.row];
     NSNumber *max=[[self.tableData objectForKey:@"target_max"] objectAtIndex:indexPath.row];
     
-    NSString *convert = [EpmUtility convertDatetimeWithString:[date substringToIndex:18] OfPattern:@"yyyy-MM-dd HH:mm:ss" WithFormat:[EpmUtility timeStringOfFrequency:[[self.currentConditions objectForKey:@"frequency"] integerValue]] ];
-    
+    NSString *convert = [EpmUtility convertDatetimeWithString:[date substringToIndex:19] OfPattern:@"yyyy-MM-dd'T'HH:mm:ss" WithFormat:[EpmUtility timeStringOfFrequency:[[self.currentConditions objectForKey:@"frequency"] intValue]] ];
+//    NSLog(@"%@",convert);
     cell.time.text = convert;
 
     cell.value.text = [[NSString stringWithFormat:@"%0.2f",[current doubleValue]] stringByAppendingString:unit];
@@ -908,7 +926,9 @@ CGFloat const kJBBarChartViewControllerChartPadding = 10.0f;
          NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
         [formatter setDateFormat:@"yyyy-MM-dd"];
         
-        [self.currentConditions setObject:[self dateSinceNow:[number integerValue]* -1 OfFrequency:[[self.currentConditions objectForKey:@"frequency"] integerValue]] forKey:@"start_time"];
+ 
+        [self.currentConditions setObject:[formatter stringFromDate:[self dateSinceNow:[number integerValue]* -1 OfFrequency:[[self.currentConditions objectForKey:@"frequency"] integerValue]]]
+                                   forKey:@"start_time"];
         needRefresh = YES;
 //        NSLog(@"%@",self.currentConditions);
     }
@@ -1018,7 +1038,7 @@ CGFloat const kJBBarChartViewControllerChartPadding = 10.0f;
         NSNumber *min=[[self.tableData objectForKey:@"target_min"] objectAtIndex:pointIndex];
         NSNumber *max=[[self.tableData objectForKey:@"target_max"] objectAtIndex:pointIndex];
         
-        NSString *convert = [EpmUtility convertDatetimeWithString:[date substringToIndex:18] OfPattern:@"yyyy-MM-dd HH:mm:ss" WithFormat:[EpmUtility timeStringOfFrequency:[[self.currentConditions objectForKey:@"frequency"] integerValue]] ];
+        NSString *convert = [EpmUtility convertDatetimeWithString:[date substringToIndex:19] OfPattern:@"yyyy-MM-dd'T'HH:mm:ss" WithFormat:[EpmUtility timeStringOfFrequency:[[self.currentConditions objectForKey:@"frequency"] integerValue]] ];
         
         self.chartHeadTime.text = convert;
         
@@ -1109,6 +1129,7 @@ CGFloat const kJBBarChartViewControllerChartPadding = 10.0f;
     self.showTarget.text=[NSString stringWithFormat:@"%d - %d",[[self.preloadKpi objectForKey:@"target_min"] intValue],[[self.preloadKpi objectForKey:@"target_max"] intValue]];
     self.showCurrent.adjustsFontSizeToFitWidth = YES;
     self.showCurrent.text=[NSString stringWithFormat:@"%d",[[[self.chartModel.current objectAtIndex:lineIndex] objectAtIndex:horizontalIndex] intValue]];
+//    NSLog(@"%d",lineIndex);
     self.showEntity.text=[self.chartModel.entity[lineIndex] objectForKey:@"name"];
     self.showID=[self.chartModel.entity[lineIndex] objectForKey:@"id"];
 }

@@ -4,7 +4,7 @@
 <dict>
 	<key>3</key>
 	<dict>
-		<key>球队</key>
+		<key>Teams</key>
 		<array>
 			<dict>
 				<key>value</key>
@@ -28,7 +28,7 @@
 	</dict>
 	<key>2</key>
 	<dict>
-		<key>性别</key>
+		<key>General</key>
 		<array>
 			<dict>
 				<key>value</key>
@@ -46,7 +46,7 @@
 	</dict>
 	<key>1</key>
 	<dict>
-		<key>天气</key>
+		<key>Weather</key>
 		<array>
 			<dict>
 				<key>value</key>

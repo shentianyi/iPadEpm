@@ -9,5 +9,6 @@
 #import <Foundation/Foundation.h>
 
 @interface DetailPropertyModel : NSObject
+@property (strong , nonatomic) NSMutableArray *properties;
 +(instancetype)sharedProperty;
 @end

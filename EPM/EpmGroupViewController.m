@@ -16,9 +16,10 @@
 
 #import "OrgDeailAttributeCellView.h"
 #import "DetailPropertyModel.h"
+#import "ChooseProperty.h"
 
 
-@interface EpmGroupViewController ()<XYPieChartDataSource,XYPieChartDelegate,UICollectionViewDataSource,UICollectionViewDelegate>
+@interface EpmGroupViewController ()<XYPieChartDataSource,XYPieChartDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UIPopoverControllerDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *kpiNameLb;
 @property (weak, nonatomic) IBOutlet UILabel *entityNameLb;
 @property (weak, nonatomic) IBOutlet UILabel *groupByName;
@@ -44,9 +45,11 @@
 //wayne
 @property (strong , nonatomic) NSArray *entityArray;
 @property (strong , nonatomic) NSURLSession *session;
+@property (strong , nonatomic) UIPopoverController *popController;
+
 
 //experiment data
-@property (strong , nonatomic) NSDictionary *properties;
+
 
 @end
 
@@ -85,11 +88,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    NSLog(@"detail currentCondition:%@",self.currentConditions);
-    
-    //experiment data ------ down
-    [DetailPropertyModel sharedProperty];
-    //experiment data ------ up
+//    NSLog(@"detail currentCondition:%@",self.currentConditions);
+   
     
     
     self.navigationItem.title=[self.currentConditions objectForKey:@"chosen_time"];
@@ -150,6 +150,9 @@
  
     
     //experiment data
+    //wayne
+
+    //tianyi
     NSString *plistPath = [[NSBundle mainBundle] pathForResource:@"tmpGroupDetails" ofType:@"plist"];
     NSDictionary *settings   = [[NSMutableDictionary alloc] initWithContentsOfFile:plistPath];
     self.kpiID=@"127";
@@ -361,14 +364,48 @@
 {
     return 1;
 }
--(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
-    return 10;
+-(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
+{
+    return [DetailPropertyModel sharedProperty].properties.count;
 }
--(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
+-(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    DetailPropertyModel *propertyModel=[DetailPropertyModel sharedProperty];
     OrgDeailAttributeCellView *cell=[self.attributeCollection dequeueReusableCellWithReuseIdentifier:@"attributeCollection" forIndexPath:indexPath];
-    cell.attributeName.text=@"属性名称";
+    cell.attributeName.text=[[propertyModel.properties objectAtIndex:indexPath.row] objectForKey:@"name"];
     cell.attributeCount.text=@"0";
+
+    __weak OrgDeailAttributeCellView *weakCell=cell;
+  
+    cell.tapCollection=^{
+        if(self.popController){
+            self.popController=nil;
+        }
+        ChooseProperty *chooseProperty=[[ChooseProperty alloc] init];
+        chooseProperty.property=propertyModel.properties[indexPath.row];
+        chooseProperty.chosedAmount=^(int number){
+            weakCell.attributeCount.text=[NSString stringWithFormat:@"%d",number];
+        };
+        CGRect rect=[self.view convertRect:weakCell.frame
+                                  fromView:weakCell.superview];
+        self.popController=[[UIPopoverController alloc] initWithContentViewController:chooseProperty];
+        self.popController.delegate=self;
+
+        self.popController.popoverContentSize=CGSizeMake(200, 200);
+        [self.popController presentPopoverFromRect:rect
+                                            inView:self.view
+                          permittedArrowDirections:UIPopoverArrowDirectionUp
+                                          animated:YES];
+    };
     return cell;
+    
+}
+-(void)popoverControllerDidDismissPopover:(UIPopoverController *)popoverController
+{
+    self.popController=nil;
+}
+-(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
     
 }
 

@@ -46,7 +46,7 @@
 
 -(void) loadContact{
     if(self.entityGroup){
-        NSLog(@"%@",self.entityGroup);
+//        NSLog(@"%@",self.entityGroup);
         self.contacts = [NSMutableArray arrayWithArray:[self.entityGroup objectForKey:@"contacts"]];
         [self.contactCollection reloadData];
     }

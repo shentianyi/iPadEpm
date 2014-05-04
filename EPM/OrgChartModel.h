@@ -24,4 +24,5 @@
 -(void)updateData:(NSDictionary *)responds;
 -(void)addCurrent:(NSArray *)current;
 -(void)clearEntityAndCurrent;
+-(void)clearAll;
 @end

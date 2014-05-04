@@ -151,6 +151,7 @@
 		B005C80F18FF909000B8ED4B /* JBBarChartFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = B005C80E18FF909000B8ED4B /* JBBarChartFooterView.m */; };
 		B03822781900BFAC0067DE2D /* OrgChartModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B03822771900BFAC0067DE2D /* OrgChartModel.m */; };
 		B038227B1900DBBF0067DE2D /* entityTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B038227A1900DBBF0067DE2D /* entityTableViewController.m */; };
+		B03B51BA1915D3C8003A33D2 /* ChooseProperty.m in Sources */ = {isa = PBXBuildFile; fileRef = B03B51B91915D3C8003A33D2 /* ChooseProperty.m */; };
 		B043D2AD18FE18B400407A64 /* JBLineChartFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = B043D2AB18FE18B400407A64 /* JBLineChartFooterView.m */; };
 		B043D2D118FE58CF00407A64 /* JBChartTooltipTipView.m in Sources */ = {isa = PBXBuildFile; fileRef = B043D2CE18FE58CF00407A64 /* JBChartTooltipTipView.m */; };
 		B043D2D218FE58CF00407A64 /* JBChartTooltipView.m in Sources */ = {isa = PBXBuildFile; fileRef = B043D2D018FE58CF00407A64 /* JBChartTooltipView.m */; };
@@ -406,6 +407,8 @@
 		B03822771900BFAC0067DE2D /* OrgChartModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrgChartModel.m; sourceTree = "<group>"; };
 		B03822791900DBBE0067DE2D /* entityTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = entityTableViewController.h; sourceTree = "<group>"; };
 		B038227A1900DBBF0067DE2D /* entityTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = entityTableViewController.m; sourceTree = "<group>"; };
+		B03B51B81915D3C8003A33D2 /* ChooseProperty.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChooseProperty.h; sourceTree = "<group>"; };
+		B03B51B91915D3C8003A33D2 /* ChooseProperty.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChooseProperty.m; sourceTree = "<group>"; };
 		B043D2AA18FE18B400407A64 /* JBLineChartFooterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBLineChartFooterView.h; sourceTree = "<group>"; };
 		B043D2AB18FE18B400407A64 /* JBLineChartFooterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBLineChartFooterView.m; sourceTree = "<group>"; };
 		B043D2CD18FE58CF00407A64 /* JBChartTooltipTipView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBChartTooltipTipView.h; sourceTree = "<group>"; };
@@ -875,6 +878,8 @@
 				B038227A1900DBBF0067DE2D /* entityTableViewController.m */,
 				05EA4E07187FEB7800C53FEE /* EpmOrgCollectionController.h */,
 				05EA4E08187FEB7800C53FEE /* EpmOrgCollectionController.m */,
+				B03B51B81915D3C8003A33D2 /* ChooseProperty.h */,
+				B03B51B91915D3C8003A33D2 /* ChooseProperty.m */,
 			);
 			name = Organization;
 			sourceTree = "<group>";
@@ -1102,6 +1107,7 @@
 				B043D2D218FE58CF00407A64 /* JBChartTooltipView.m in Sources */,
 				05F6CE4618C02B590040614F /* EpmOrgOverviewController.m in Sources */,
 				0576D1AB18AC64EF00AD75AB /* SDWebImagePrefetcher.m in Sources */,
+				B03B51BA1915D3C8003A33D2 /* ChooseProperty.m in Sources */,
 				0519BA8218BC48240029447E /* EpmMailListController.m in Sources */,
 				B0CC638D190E52EC007BF57F /* OrgDeailAttributeCellView.m in Sources */,
 				0576D1A918AC64EF00AD75AB /* SDWebImageDownloaderOperation.m in Sources */,

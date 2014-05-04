@@ -11,4 +11,5 @@
 @interface OrgDeailAttributeCellView : UICollectionViewCell
 @property (weak, nonatomic) IBOutlet UILabel *attributeName;
 @property (weak, nonatomic) IBOutlet UILabel *attributeCount;
+@property (copy, nonatomic) void(^tapCollection)();
 @end

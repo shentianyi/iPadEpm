@@ -8,6 +8,10 @@
 
 #import "OrgDeailAttributeCellView.h"
 
+@interface OrgDeailAttributeCellView()
+- (IBAction)tapCollectionCell:(id)sender;
+@end
+
 @implementation OrgDeailAttributeCellView
 
 - (id)initWithFrame:(CGRect)frame
@@ -27,4 +31,9 @@
 }
 */
 
+- (IBAction)tapCollectionCell:(id)sender {
+    if(self.tapCollection){
+        self.tapCollection();
+    }
+}
 @end
