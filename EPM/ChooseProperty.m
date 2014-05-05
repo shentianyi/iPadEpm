@@ -70,7 +70,7 @@
         }
     }
     else{
-      NSDictionary *item=self.propertyList[indexPath.row-1];
+      NSMutableDictionary *item=self.propertyList[indexPath.row-1];
       cell.textLabel.text=[item objectForKey:@"value"];
       if([[item objectForKey:@"checked"] isEqualToString:@"checked"]){
             cell.accessoryType=UITableViewCellAccessoryCheckmark;

@@ -10,5 +10,7 @@
 
 @interface DetailCompareChart : UIViewController
 @property (strong , nonatomic) NSArray *data;
-@property (strong , nonatomic) NSArray *date;
+@property (strong , nonatomic) NSMutableArray *date;
+@property (strong , nonatomic) NSNumber *frequency;
+@property (strong, nonatomic) NSString *label;
 @end

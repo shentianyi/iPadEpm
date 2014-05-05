@@ -18,6 +18,7 @@
 #import "DetailPropertyModel.h"
 #import "ChooseProperty.h"
 #import "DetailCompareChart.h"
+#import <math.h>
 
 
 @interface EpmGroupViewController ()<XYPieChartDataSource,XYPieChartDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UIPopoverControllerDelegate>
@@ -50,6 +51,9 @@
 @property (strong , nonatomic) NSArray *entityArray;
 @property (strong , nonatomic) NSURLSession *session;
 @property (strong , nonatomic) UIPopoverController *popController;
+@property (strong , nonatomic) UIPopoverController *comparePop;
+@property (nonatomic) float dataSum;
+@property (strong , nonatomic) NSMutableDictionary *parameterCondition;
 - (IBAction)assembleAnalyse:(id)sender;
 
 
@@ -87,9 +91,62 @@
 {
     [super viewDidLoad];
     //生成PROPERTY的模型
-    NSLog(@"%@",self.currentConditions);
-    int kpiID=(int)[self.currentConditions objectForKey:@"kpi_id"];
-    [DetailPropertyModel FetchData:[NSString stringWithFormat:@"%d",kpiID]];
+//    NSLog(@"detail current conditions : %@",self.currentConditions);
+    int kpiID=[[self.currentConditions objectForKey:@"kpi_id"] intValue];
+//    [DetailPropertyModel FetchData:[NSString stringWithFormat:@"%d",kpiID]];
+    
+    
+    //fetch data of property
+    AFHTTPRequestOperationManager *manager=[AFHTTPRequestOperationManager manager];
+    NSString *attributeAddress=[EpmSettings getEpmUrlSettingsWithKey:@"groupAttrbute"];
+    NSString *baseAddress=[NSString stringWithFormat:@"%@%@",[EpmSettings getEpmUrlSettingsWithKey:@"baseUrl"],attributeAddress];
+    NSString *getAddress=[baseAddress stringByAppendingPathComponent:[NSString stringWithFormat:@"%d",kpiID]];
+    NSLog(@"attribute address %@",getAddress);
+    
+    [manager GET:getAddress
+      parameters:nil
+         success:^(AFHTTPRequestOperation *operation, id responseObject) {
+             
+             NSLog(@"%@",responseObject);
+             
+             NSDictionary *settings = [responseObject copy];
+             DetailPropertyModel *model=[DetailPropertyModel sharedProperty];
+             model.properties=[[NSMutableArray alloc] init];
+             for(NSString *keyid in settings){
+                 NSMutableDictionary *wrapDic=[[NSMutableDictionary alloc] init];
+                 [wrapDic setObject:keyid forKey:@"id"];
+                 for(NSString *keyname in settings[keyid]){
+                     [wrapDic setObject:keyname forKey:@"name"];
+                     [wrapDic setObject:[NSMutableArray array] forKey:@"property"];
+                     NSArray *properties=settings[keyid][keyname];
+                     for(int i=0;i<properties.count;i++){
+                         [[wrapDic objectForKey:@"property"] addObject:[properties[i] mutableCopy]];
+                         
+                     }
+                  
+                 }
+                 [wrapDic setObject:[NSMutableDictionary dictionary] forKey:@"checked"];
+                 [model.properties addObject:wrapDic];
+             }
+             [self.attributeCollection reloadData];
+             
+         }
+         failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+             int statusCode = [operation.response statusCode];
+             
+             NSString *msg=[EpmHttpUtil notificationWithStatusCode:statusCode];
+             
+             UIAlertView *av = [[UIAlertView alloc] initWithTitle:msg
+                                                          message:@""
+                                                         delegate:nil
+                                                cancelButtonTitle:@"OK" otherButtonTitles:nil];
+             [av show];
+         }];
+    
+    
+    
+    
+    
     
     self.navigationItem.title=[self.currentConditions objectForKey:@"chosen_time"];
     self.sliceColors =[NSArray arrayWithObjects:
@@ -119,7 +176,7 @@
     [self.pieContainer setPieBackgroundColor:[UIColor colorWithWhite:0.95 alpha:0.3]];
     [self.pieContainer setPieCenter:CGPointMake(self.pieContainer.bounds.size.width/2, self.pieContainer.bounds.size.height/2)];
     [self.pieContainer setLabelShadowColor:[UIColor blackColor]];
-    [self loadDetail];
+//    [self loadDetail];
     
     //collection
     UINib *attributeCell=[UINib nibWithNibName:@"OrgDeailAttributeCellView"
@@ -154,7 +211,7 @@
 
             for( NSNumber *key in checkedArray){
                 int order=[key intValue];
-                [propertyPost[groupID] addObject:[property[order] objectForKey:@"id"]];
+                [propertyPost[groupID] addObject:[property[order] objectForKey:@"value"]];
             }
         }
         else{
@@ -165,15 +222,17 @@
 //    NSLog(@"property_group:%@",property_map_group);
     
     NSMutableDictionary *parameterCondition=[NSMutableDictionary dictionary];
-    //差一个平均or总和 结束时间
+    //
+
     [parameterCondition setObject:[self.currentConditions objectForKey:@"kpi_id"] forKey:@"kpi_id"];
+    [parameterCondition setObject:[self.currentConditions objectForKey:@"average"] forKey:@"average"];
     [parameterCondition setObject:[self.currentConditions objectForKey:@"entity_group_id"] forKey:@"entity_group_id"];
     [parameterCondition setObject:[self.currentConditions objectForKey:@"frequency"] forKey:@"frequency"];
     [parameterCondition setObject:propertyPost forKey:@"property"];
     [parameterCondition setObject:property_map_group forKey:@"property_map_group"];
     [parameterCondition setObject:[NSMutableDictionary dictionary] forKey:@"base_time"];
     
-    //时间
+    //开始时间
     NSDateFormatter *formatter=[[NSDateFormatter alloc] init];
     NSLocale *enUSPOSIXLocale = [NSLocale localeWithLocaleIdentifier:@"zh_CN"];
     [formatter setLocale:enUSPOSIXLocale];
@@ -193,42 +252,43 @@
     
    [[parameterCondition objectForKey:@"base_time"] setObject:[dateString substringToIndex:20]
                                                       forKey:@"start_time"];
-//    NSLog(@"date %@",[dateString substringToIndex:20]);
     
+   //结束时间
     
-    NSString *requestURL=[NSString stringWithFormat:@"%@%@",[NSString stringWithFormat:@"%@", [EpmSettings getEpmUrlSettingsWithKey:@"baseUrl"]],[NSString stringWithFormat:@"%@", [EpmSettings getEpmUrlSettingsWithKey:@"detailCompare"]]];
-//    NSLog(@"%@",requestURL);
-    //请求加载数据在
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    [manager POST:requestURL
-       parameters:parameterCondition
-         success:^(AFHTTPRequestOperation *operation, id responseObject) {
-             
-         }
-         failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-             
-         }];
+    self.parameterCondition=[parameterCondition mutableCopy];
+    NSLog(@"self.parameterCondition : %@",self.parameterCondition);
+    
+    if([[self.parameterCondition objectForKey:@"property_map_group"] count]>0){
+        NSString *requestURL=[NSString stringWithFormat:@"%@%@",[NSString stringWithFormat:@"%@", [EpmSettings getEpmUrlSettingsWithKey:@"baseUrl"]],[NSString stringWithFormat:@"%@", [EpmSettings getEpmUrlSettingsWithKey:@"detailCompare"]]];
+        NSLog(@"detail address:%@",requestURL);
+        AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+        [manager POST:requestURL
+           parameters:parameterCondition
+              success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                  self.wrapView.hidden=NO;
+                  NSLog(@"respond%@",responseObject);
+                  self.pieData=responseObject;
+                  self.dataSum=0.0;
+                  for(int i =0;i<[self.pieData count];i++){
+                      int value=[[self.pieData[i] objectForKey:@"value"] intValue];
+                      self.dataSum+=value;
+                  }
+                  [self.pieContainer reloadData];
+                  [self.tableView reloadData];
+              }
+              failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                  
+              }];
+ 
+    }
     
 }
 
+//算结束时间
+
+
+
 -(void)loadDetail{
-    NSString *requestURL=[NSString stringWithFormat:@"%@",[NSString stringWithFormat:@"%@", [EpmSettings getEpmUrlSettingsWithKey:@"kpiDetail"]]];
-    requestURL=[requestURL stringByAppendingPathComponent:self.kpiID];
-    //请求加载数据在
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    [manager GET:requestURL
-      parameters:nil
-         success:^(AFHTTPRequestOperation *operation, id responseObject) {
-             self.entityArray=responseObject;
-         }
-         failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-             
-         }];
-    
- 
-    
-    //experiment data
-    //wayne
 
     //tianyi
     NSString *plistPath = [[NSBundle mainBundle] pathForResource:@"tmpGroupDetails" ofType:@"plist"];
@@ -288,23 +348,6 @@
     self.entityNameLb.adjustsFontSizeToFitWidth=YES;
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
-
 
 //pie delegate
 #pragma mark - datasource
@@ -342,14 +385,30 @@
 
 - (void)pieChart:(XYPieChart *)pieChart didSelectSliceAtIndex:(NSUInteger)index
 {
-    self.pieSelectedName.text = [[self.pieData objectAtIndex:index] objectForKey:@"name"];
+    NSArray *names=[[self.pieData objectAtIndex:index] objectForKey:@"name"];
+    NSString *name=[NSMutableString stringWithFormat:@""];
+    
+    for(int i=0;i<names.count;i++){
+        if(i==0){
+            name=[name stringByAppendingString:[NSString stringWithFormat:@"%@",names[i]] ];
+        }
+        else{
+            name=[name stringByAppendingString:[NSString stringWithFormat:@" - %@",names[i]] ];
+        }
+    }
+    
+    self.pieSelectedName.text = name;
     self.pieSelectedName.adjustsFontSizeToFitWidth=YES;
     self.pieSelectedName.hidden=NO;
 //    self.pieSelectedValue.text = [[self.pieData objectAtIndex:index] objectForKey:@"value"];
-    self.pieSelectedPercentage.text = [[self.pieData objectAtIndex:index ] objectForKey:@"percentage"];
+    int value=[[[self.pieData objectAtIndex:index] objectForKey:@"value"] floatValue];
+    self.pieSelectedPercentage.text = [NSString stringWithFormat:@"%0.1f%%",value/self.dataSum*100];
     self.pieSelectedPercentage.hidden=NO;
 }
 
+
+
+//////////////////////////////////////////////////////////// table delegate
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -366,39 +425,104 @@
 {
     EpmGroupDetailTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"groupDetailCell" forIndexPath:indexPath];
     // Configure the cell...
-    cell.conditionTitle.text = [[self.pieData objectAtIndex:indexPath.row] objectForKey:@"name"];
-    cell.conditionValue.text = [[self.pieData objectAtIndex:indexPath.row] objectForKey:@"value"];
-    cell.conditionPercentage.text = [[self.pieData objectAtIndex:indexPath.row ] objectForKey:@"percentage"];
-    cell.conditionLast.text =[[self.pieData objectAtIndex:indexPath.row ] objectForKey:@"last"];
-    cell.conditionLastPercent.text =[[self.pieData objectAtIndex:indexPath.row ] objectForKey:@"lastCompare"];
-    if([[[self.pieData objectAtIndex:indexPath.row ] objectForKey:@"last"] integerValue]>[[[self.pieData objectAtIndex:indexPath.row] objectForKey:@"value"] integerValue]){
-        cell.conditionLastTrend.image =[UIImage imageNamed:@"trend-down.png"];
+    NSArray *names=[[self.pieData objectAtIndex:indexPath.row] objectForKey:@"name"];
     
     
+    NSString *name=[NSMutableString stringWithFormat:@""];
+    
+    for(int i=0;i<names.count;i++){
+        if(i==0){
+           name=[name stringByAppendingString:[NSString stringWithFormat:@"%@",names[i]] ];
+        }
+        else{
+           name=[name stringByAppendingString:[NSString stringWithFormat:@" - %@",names[i]] ];
+        }
+        
     }
-    else if ([[[self.pieData objectAtIndex:indexPath.row ] objectForKey:@"last"] integerValue]==[[[self.pieData objectAtIndex:indexPath.row] objectForKey:@"value"] integerValue]){
+
+    cell.conditionTitle.text = name;
+    cell.conditionTitle.adjustsFontSizeToFitWidth=YES;
+    
+    cell.conditionValue.text =[NSString stringWithFormat:@"%@",[[self.pieData objectAtIndex:indexPath.row] objectForKey:@"value"]];
+    
+    float value=[[[self.pieData objectAtIndex:indexPath.row] objectForKey:@"value"] floatValue];
+    float last_value=[[[self.pieData objectAtIndex:indexPath.row] objectForKey:@"last_value"] floatValue];
+    cell.conditionPercentage.text = [NSString stringWithFormat:@"%0.1f%%",value/self.dataSum*100];
+
+    cell.conditionLast.text =[NSString stringWithFormat:@"%@",[[self.pieData objectAtIndex:indexPath.row ] objectForKey:@"last_value"]];
+    float compare=fabsf(value - last_value);
+    NSString *compareResult;
+    if(last_value==0.0){
+        compareResult=[NSString stringWithFormat:@"%0.1f",compare];
+    }
+    else{
+        compareResult=[NSString stringWithFormat:@"%0.1f%%",compare/last_value*100];
+    }
+    cell.conditionLastPercent.text =compareResult;
+
+    if([[[self.pieData objectAtIndex:indexPath.row ] objectForKey:@"last_value"] integerValue]>[[[self.pieData objectAtIndex:indexPath.row] objectForKey:@"value"] integerValue]){
+        cell.conditionLastTrend.image =[UIImage imageNamed:@"trend-down.png"];
+    }
+    else if ([[[self.pieData objectAtIndex:indexPath.row ] objectForKey:@"last_value"] integerValue]==[[[self.pieData objectAtIndex:indexPath.row] objectForKey:@"value"] integerValue]){
     cell.conditionLastTrend.image =[UIImage imageNamed:@"trend-level.png"];
     }
     
-    else if ([[[self.pieData objectAtIndex:indexPath.row ] objectForKey:@"last"] integerValue]<[[[self.pieData objectAtIndex:indexPath.row] objectForKey:@"value"] integerValue]){
+    else if ([[[self.pieData objectAtIndex:indexPath.row ] objectForKey:@"last_value"] integerValue]<[[[self.pieData objectAtIndex:indexPath.row] objectForKey:@"value"] integerValue]){
         cell.conditionLastTrend.image =[UIImage imageNamed:@"trend-up.png"];
     
     }
     cell.backgroundColor = [UIColor clearColor];
+    
     __weak EpmGroupDetailTableViewCell *weakCell=cell;
     cell.compare=^(){
-        CGRect rect=[self.view convertRect:weakCell.frame
-                                fromView:weakCell.superview];
-        DetailCompareChart *compareChart=[[DetailCompareChart alloc] init];
-        compareChart.data=[NSArray arrayWithObjects:@1,@2,@10,@123,@13, nil];
-        compareChart.date=[NSArray arrayWithObjects:@"2011",@"2012",@"2013",@"2014",@"2015", nil];
-        self.popController=[[UIPopoverController alloc] initWithContentViewController:compareChart];
-        self.popController.delegate=self;
-        self.popController.popoverContentSize=CGSizeMake(550, 350);
-        [self.popController presentPopoverFromRect:rect
-                                            inView:self.view
-                          permittedArrowDirections:UIPopoverArrowDirectionDown
-                                          animated:YES];
+        NSArray *properties=[DetailPropertyModel sharedProperty].properties;
+        NSMutableArray *property_group_id=[NSMutableArray array];
+        NSMutableDictionary *superProperty=[NSMutableDictionary dictionary];
+        
+        for(int i=0;i<properties.count;i++){
+            if([[properties[i] objectForKey:@"checked"] count]>0){
+                [property_group_id addObject:[properties[i] objectForKey:@"id"]];
+            }
+        }
+        
+        for(int j=0;j<property_group_id.count;j++){
+            [superProperty setObject:names[j] forKey:property_group_id[j]];
+        }
+        
+        NSMutableDictionary *parameter=[self.parameterCondition mutableCopy];
+        [parameter setObject:[NSNumber numberWithInt:10] forKey:@"point_num"];
+        [parameter setObject:superProperty forKey:@"property"];
+        [parameter removeObjectForKey:@"property_map_group"];
+        
+        NSString *requestURL=[NSString stringWithFormat:@"%@%@",[NSString stringWithFormat:@"%@", [EpmSettings getEpmUrlSettingsWithKey:@"baseUrl"]],[NSString stringWithFormat:@"%@", [EpmSettings getEpmUrlSettingsWithKey:@"detailAroundCompare"]]];
+        
+        AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+        [manager POST:requestURL
+           parameters:parameter
+              success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                  NSLog(@"respond %@",responseObject);
+                  CGRect rect=[self.view convertRect:weakCell.frame
+                                            fromView:weakCell.superview];
+                  DetailCompareChart *compareChart=[[DetailCompareChart alloc] init];
+                  compareChart.data=[[responseObject objectForKey:@"values"] copy];
+                  compareChart.label=name;
+                  compareChart.frequency=[parameter objectForKey:@"frequency"];
+                  compareChart.date= [[responseObject objectForKey:@"keys"] mutableCopy];
+                  if(self.comparePop){
+                      self.comparePop=nil;
+                  }
+                  self.comparePop=[[UIPopoverController alloc] initWithContentViewController:compareChart];
+                  self.comparePop.delegate=self;
+                  self.comparePop.popoverContentSize=CGSizeMake(550, 350);
+                  [self.comparePop presentPopoverFromRect:rect
+                                                      inView:self.view
+                                    permittedArrowDirections:UIPopoverArrowDirectionDown
+                                                    animated:YES];
+                  
+              }
+              failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                  
+              }];
     };
     
     return cell;
@@ -468,6 +592,9 @@
     __weak OrgDeailAttributeCellView *weakCell=cell;
   
     cell.tapCollection=^{
+        if( self.popController){
+            self.popController=nil;
+        }
         ChooseProperty *chooseProperty=[[ChooseProperty alloc] init];
         chooseProperty.property=propertyModel.properties[indexPath.row];
         chooseProperty.chosedAmount=^(int number){
@@ -490,6 +617,7 @@
 -(void)popoverControllerDidDismissPopover:(UIPopoverController *)popoverController
 {
     self.popController=nil;
+    self.comparePop=nil;
 }
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {

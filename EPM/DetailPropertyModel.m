@@ -27,10 +27,13 @@
     NSString *attributeAddress=[EpmSettings getEpmUrlSettingsWithKey:@"groupAttrbute"];
     NSString *baseAddress=[NSString stringWithFormat:@"%@%@",[EpmSettings getEpmUrlSettingsWithKey:@"baseUrl"],attributeAddress];
     NSString *getAddress=[baseAddress stringByAppendingPathComponent:kpiID];
+    NSLog(@"attribute address %@",getAddress);
+    
     [manager GET:getAddress
       parameters:nil
          success:^(AFHTTPRequestOperation *operation, id responseObject) {
-             NSDictionary *settings = responseObject;
+             NSLog(@"%@",responseObject);
+             NSDictionary *settings = [responseObject copy];
              DetailPropertyModel *model=[DetailPropertyModel sharedProperty];
              model.properties=[[NSMutableArray alloc] init];
              for(NSString *keyid in settings){
@@ -43,6 +46,7 @@
                  [wrapDic setObject:[NSMutableDictionary dictionary] forKey:@"checked"];
                  [model.properties addObject:wrapDic];
              }
+             
          }
          failure:^(AFHTTPRequestOperation *operation, NSError *error) {
              int statusCode = [operation.response statusCode];
@@ -62,21 +66,21 @@
     if(self){
         //在这里请求KPI相应地attribute数据
         //真实数据下面全部都要注释掉
-        NSString *plistPath = [[NSBundle mainBundle] pathForResource:@"propertyFake" ofType:@"plist"];
-        NSDictionary *settings = [[NSMutableDictionary alloc] initWithContentsOfFile:plistPath];
-
-        self.properties=[[NSMutableArray alloc] init];
-        
-        for(NSString *keyid in settings){
-            NSMutableDictionary *wrapDic=[[NSMutableDictionary alloc] init];
-            [wrapDic setObject:keyid forKey:@"id"];
-            for(NSString *keyname in settings[keyid]){
-                [wrapDic setObject:keyname forKey:@"name"];
-                [wrapDic setObject:[settings[keyid][keyname] mutableCopy] forKey:@"property"];
-            }
-            [wrapDic setObject:[NSMutableDictionary dictionary] forKey:@"checked"];
-            [self.properties addObject:wrapDic];
-        }
+//        NSString *plistPath = [[NSBundle mainBundle] pathForResource:@"propertyFake" ofType:@"plist"];
+//        NSDictionary *settings = [[NSMutableDictionary alloc] initWithContentsOfFile:plistPath];
+//
+//        self.properties=[[NSMutableArray alloc] init];
+//        
+//        for(NSString *keyid in settings){
+//            NSMutableDictionary *wrapDic=[[NSMutableDictionary alloc] init];
+//            [wrapDic setObject:keyid forKey:@"id"];
+//            for(NSString *keyname in settings[keyid]){
+//                [wrapDic setObject:keyname forKey:@"name"];
+//                [wrapDic setObject:[settings[keyid][keyname] mutableCopy] forKey:@"property"];
+//            }
+//            [wrapDic setObject:[NSMutableDictionary dictionary] forKey:@"checked"];
+//            [self.properties addObject:wrapDic];
+//        }
 
     }
     return self;

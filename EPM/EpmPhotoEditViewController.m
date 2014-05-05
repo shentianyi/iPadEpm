@@ -10,7 +10,8 @@
 #import "EpmColorPickViewController.h"
 
 
-@interface EpmPhotoEditViewController () {
+@interface EpmPhotoEditViewController ()
+{
     CGPoint lastPoint;
     CGFloat red;
     CGFloat green;
@@ -20,7 +21,7 @@
     BOOL mouseSwiped;
 
 }
-
+@property (strong , nonatomic) UIPopoverController *popover;
 
 
 
@@ -35,10 +36,20 @@
 @synthesize backGround = _backGround;
 
 - (IBAction)showPickColor:(UIButton *)sender {
-    
+//    CGRect rect=[self.view convertRect:sender.frame fromView:[sender superview]];
+//    EpmColorPickViewController *colorPicker=[[EpmColorPickViewController alloc] init];
+//    self.popover=[[UIPopoverController alloc] initWithContentViewController:colorPicker];
+//    self.popover.popoverContentSize=CGSizeMake(60, 200);
+//    [self.popover presentPopoverFromRect:rect
+//                                  inView:self.view
+//                permittedArrowDirections:UIPopoverArrowDirectionDown
+//                                animated:YES];
     
 }
-
+//-(void)popoverControllerDidDismissPopover:(UIPopoverController *)popoverController
+//{
+//    self.popover=nil;
+//}
 
 - (IBAction)done:(id)sender {
     
@@ -80,6 +91,8 @@
     [super viewDidLoad];
     self.editedPhoto = self.backGround;
     [self.backGroundImage setImage:self.backGround.image];
+    
+    
     
 }
 
@@ -135,7 +148,8 @@
         self.drawingImage.image = UIGraphicsGetImageFromCurrentImageContext();
         UIGraphicsEndImageContext();
     }
-    
+    self.mainImage.frame=CGRectMake(0, 0, self.view.frame.size.width,self.view.frame.size.height);
+    NSLog(@"width:%f ;height:%f",self.mainImage.frame.size.width,self.mainImage.frame.size.height);
     UIGraphicsBeginImageContext(self.mainImage.frame.size);
     [self.mainImage.image drawInRect:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height) blendMode:kCGBlendModeNormal alpha:1.0];
     [self.drawingImage.image drawInRect:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height) blendMode:kCGBlendModeNormal alpha:opacity];

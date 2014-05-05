@@ -19,7 +19,11 @@
 @synthesize green;
 
 
-
+-(void)viewDidLoad
+{
+      [super viewDidLoad];
+    NSLog(@"width:%f ; height:%f",self.view.frame.size.width,self.view.frame.size.height);
+}
 - (IBAction)colorSelected:(UIButton *)sender {
     if([sender.titleLabel.text isEqualToString:@"red"]) {
         red = 220.0/255.0;
@@ -57,11 +61,7 @@
     return self;
 }
 
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-	// Do any additional setup after loading the view.
-}
+
 
 - (void)didReceiveMemoryWarning
 {

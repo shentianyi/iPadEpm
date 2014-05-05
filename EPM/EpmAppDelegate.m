@@ -17,72 +17,72 @@
     //[MobClick startWithAppkey:@"531e863156240bea5d0869ad" reportPolicy:SEND_ON_EXIT channelId:@"InHouse"];
     
     
-    UpdatePolicy policy = LATEST;
-    
-    @try {
-        
-        NSString *version = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
-        
-        
-        NSString *toReplace = (NSString *)[EpmSettings getEpmUrlSettingsWithKey:@"version"];
-        
-        
-        NSString* path  =[NSString stringWithFormat:@"%@%@%@%@",(NSString *)[EpmSettings getEpmUrlSettingsWithKey:@"baseUrl" ],toReplace,@"?version=",version];
-        
-        NSLog(@"%@",path);
-        
-        NSURL* url = [NSURL URLWithString:path];
-        
-        NSString* jsonString = [[NSString alloc]initWithContentsOfURL:url encoding:NSUTF8StringEncoding error:nil];
-        
-        NSData* jsonData = [jsonString dataUsingEncoding:NSUTF8StringEncoding];
-        
-        NSDictionary* dic = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableLeaves error:nil];
-        
-        
-        
-        
-        if(dic){
-            if([[dic objectForKey:@"result"] boolValue]==YES) {
-                if([[dic objectForKey:@"is_option"] boolValue]==YES){
-                    policy = MUST;
-                    
-                }
-                else {
-                    policy = OPTION;
-                }
-            }
-        }
-    }
-    @catch (NSException *exception) {
-        
-    }
-    @finally {
-        
-    }
-   
-    
-    
-
-    
-    
-    
-    NSString *title = @"New version avilable";
-    NSString *cancelTxt = @"No,thanks";
-    NSString *otherTxt = @"Update now";
-
-    if(policy== OPTION){
-        UIAlertView *view = [[UIAlertView alloc ]initWithTitle:title message:nil delegate:self cancelButtonTitle:cancelTxt otherButtonTitles:otherTxt,nil];
-        [view show ];
-    }
-    
-    else if (policy == MUST){
-        UIAlertView *view = [[UIAlertView alloc ]initWithTitle:title message:@"It's a mere update and you have to update to this version" delegate:self cancelButtonTitle:cancelTxt otherButtonTitles:otherTxt, nil];
-        [view show ];
-        
-    }
-    
-          return YES;
+//    UpdatePolicy policy = LATEST;
+//    
+//    @try {
+//        
+//        NSString *version = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
+//        
+//        
+//        NSString *toReplace = (NSString *)[EpmSettings getEpmUrlSettingsWithKey:@"version"];
+//        
+//        
+//        NSString* path  =[NSString stringWithFormat:@"%@%@%@%@",(NSString *)[EpmSettings getEpmUrlSettingsWithKey:@"baseUrl" ],toReplace,@"?version=",version];
+//        
+//        NSLog(@"%@",path);
+//        
+//        NSURL* url = [NSURL URLWithString:path];
+//        
+//        NSString* jsonString = [[NSString alloc]initWithContentsOfURL:url encoding:NSUTF8StringEncoding error:nil];
+//        
+//        NSData* jsonData = [jsonString dataUsingEncoding:NSUTF8StringEncoding];
+//        
+//        NSDictionary* dic = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableLeaves error:nil];
+//        
+//        
+//        
+//        
+//        if(dic){
+//            if([[dic objectForKey:@"result"] boolValue]==YES) {
+//                if([[dic objectForKey:@"is_option"] boolValue]==YES){
+//                    policy = MUST;
+//                    
+//                }
+//                else {
+//                    policy = OPTION;
+//                }
+//            }
+//        }
+//    }
+//    @catch (NSException *exception) {
+//        
+//    }
+//    @finally {
+//        
+//    }
+//   
+//    
+//    
+//
+//    
+//    
+//    
+//    NSString *title = @"New version avilable";
+//    NSString *cancelTxt = @"No,thanks";
+//    NSString *otherTxt = @"Update now";
+//
+//    if(policy== OPTION){
+//        UIAlertView *view = [[UIAlertView alloc ]initWithTitle:title message:nil delegate:self cancelButtonTitle:cancelTxt otherButtonTitles:otherTxt,nil];
+//        [view show ];
+//    }
+//    
+//    else if (policy == MUST){
+//        UIAlertView *view = [[UIAlertView alloc ]initWithTitle:title message:@"It's a mere update and you have to update to this version" delegate:self cancelButtonTitle:cancelTxt otherButtonTitles:otherTxt, nil];
+//        [view show ];
+//        
+//    }
+//    
+        return YES;
 }
 
 

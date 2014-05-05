@@ -40,5 +40,7 @@
 	<string>/api/kpis/group_properties</string>
 	<key>detailCompare</key>
 	<string>/api/kpi_entries/compare</string>
+	<key>detailAroundCompare</key>
+	<string>/api/kpi_entries/compares</string>
 </dict>
 </plist>

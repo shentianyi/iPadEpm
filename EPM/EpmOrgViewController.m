@@ -213,9 +213,6 @@ CGFloat const kJBBarChartViewControllerChartPadding = 10.0f;
 -(void)getDataForTable{
 
      AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    
-  //  NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:[Kpi objectForKey:@"id"],@"kpi_id",@"100",@"frequency",[self.entityGroup objectForKey:@"id"],@"entity_group_id",[formatter stringFromDate:[NSDate dateWithTimeIntervalSinceNow:-1296000]],@"start_time",[formatter stringFromDate:[NSDate date]], @"end_time",nil];
-//    NSLog(@"current count %d",self.chartModel.current.count);
     if(self.chartModel.current.count==1 || !self.chartModel.current)
     {
         [manager GET:[NSString stringWithFormat:@"%@%@",[EpmSettings getEpmUrlSettingsWithKey:@"baseUrl"],[EpmSettings getEpmUrlSettingsWithKey: @"data"]] parameters:self.currentConditions success:^(AFHTTPRequestOperation *operation, id responseObject) {
@@ -401,7 +398,7 @@ CGFloat const kJBBarChartViewControllerChartPadding = 10.0f;
 
 - (IBAction)changeAverage:(id)sender {
      NSInteger index = self.seg.selectedSegmentIndex;
-    
+    NSLog(@"index : %d",index);
     if(index==0){
          [self.currentConditions setObject:@YES forKey:@"average"];
     }
@@ -409,6 +406,7 @@ CGFloat const kJBBarChartViewControllerChartPadding = 10.0f;
      [self.currentConditions setObject:@NO forKey:@"average"];
     }
     
+    [self getDataForTable];
 }
 
 
@@ -545,6 +543,7 @@ CGFloat const kJBBarChartViewControllerChartPadding = 10.0f;
     }
     else {
         self.currentConditions = [NSMutableDictionary dictionaryWithObjectsAndKeys:[kpi objectForKey:@"id"],@"kpi_id",@"100",@"frequency",[self.entityGroup objectForKey:@"id"],@"entity_group_id",[formatter stringFromDate:[NSDate dateWithTimeIntervalSinceNow:-1*14*24*60*60]],@"start_time",[formatter stringFromDate:[NSDate date]], @"end_time",[self.entityGroup objectForKey:@"name"],@"entity_group_name",[kpi objectForKey:@"name"],@"kpi_name",nil];
+        [self.currentConditions setObject:@YES forKey:@"average"];
     
     }
 
@@ -604,6 +603,7 @@ CGFloat const kJBBarChartViewControllerChartPadding = 10.0f;
                  self.bit.scrollEnabled=NO;
                  self.hundred.scrollEnabled=NO;
                  self.frequency.scrollEnabled=NO;
+                 self.seg.hidden=YES;
         }
          
              failure:^(AFHTTPRequestOperation *operation, NSError *error) {
@@ -632,6 +632,7 @@ CGFloat const kJBBarChartViewControllerChartPadding = 10.0f;
     self.popover=nil;
 }
 - (IBAction)clearCompare:(id)sender {
+    self.entitiesIDShow=[self.entitiesID mutableCopy];
     self.barButton.enabled=YES;
     self.tableButton.enabled=YES;
     self.clearCompareButton.hidden=YES;
@@ -642,6 +643,8 @@ CGFloat const kJBBarChartViewControllerChartPadding = 10.0f;
     self.bit.scrollEnabled=YES;
     self.hundred.scrollEnabled=YES;
     self.frequency.scrollEnabled=YES;
+     self.seg.hidden=NO;
+    
     
 }
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// change chart type
@@ -1122,8 +1125,12 @@ CGFloat const kJBBarChartViewControllerChartPadding = 10.0f;
 - (void)lineChartView:(JBLineChartView *)lineChartView didSelectLineAtIndex:(NSUInteger)lineIndex horizontalIndex:(NSUInteger)horizontalIndex touchPoint:(CGPoint)touchPoint
 {
     [self setTooltipVisible:YES animated:YES atTouchPoint:touchPoint];
-    [self.tooltipView setText:[self.chartModel.date objectAtIndex:horizontalIndex]];
-    [self.tooltipView setValue:[NSString stringWithFormat:@"%d",[[[self.chartModel.current objectAtIndex:lineIndex] objectAtIndex:horizontalIndex] intValue]]];
+    if(self.chartModel.date){
+        [self.tooltipView setText:[self.chartModel.date objectAtIndex:horizontalIndex]];
+    }
+    if(self.chartModel.current){
+        [self.tooltipView setValue:[NSString stringWithFormat:@"%d",[[[self.chartModel.current objectAtIndex:lineIndex] objectAtIndex:horizontalIndex] intValue]]];
+    }
     self.showView.hidden=NO;
     self.showDate.text=[self.chartModel.date objectAtIndex:horizontalIndex];
     self.showTarget.text=[NSString stringWithFormat:@"%d - %d",[[self.preloadKpi objectForKey:@"target_min"] intValue],[[self.preloadKpi objectForKey:@"target_max"] intValue]];

@@ -11,6 +11,7 @@
 #import "JBBarChartFooterView.h"
 #import "JBChartTooltipTipView.h"
 #import "JBChartTooltipView.h"
+#import "EpmUtility.h"
 
 //CGFloat const kJBBarChartViewControllerChartFooterHeight = 30.0f;
 //CGFloat const kJBBarChartViewControllerChartFooterPadding = 5.0f;
@@ -40,12 +41,17 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.barChartView=[[JBBarChartView alloc] init];
-    self.barChartView.frame=CGRectMake(25, 40, 500, 270);
+    self.barChartView.frame=CGRectMake(25, 70, 500, 270);
     [self.view addSubview:self.barChartView];
     self.barChartView.dataSource=self;
     self.barChartView.delegate=self;
     self.barChartView.mininumValue=0.0f;
     [self.barChartView reloadData];
+    
+    for(int i=0;i<[self.date count];i++){
+    [self.date replaceObjectAtIndex:i withObject:[EpmUtility convertDatetimeWithString:[[self.date objectAtIndex:i] substringToIndex:19] OfPattern:@"yyyy-MM-dd'T'HH:mm:ss" WithFormat:[EpmUtility timeStringOfFrequency:[self.frequency intValue]]]];
+    }
+    
     
     JBBarChartFooterView *footerView = [[JBBarChartFooterView alloc] initWithFrame:CGRectMake(10.0f, ceil(self.view.bounds.size.height * 0.5) - ceil(30.0f * 0.5), self.view.bounds.size.width - (10.0f * 2), 30.0f)];
     footerView.padding = 5.0f;
@@ -55,22 +61,37 @@
     footerView.rightLabel.textColor = [UIColor blackColor];
     self.barChartView.footerView = footerView;
 }
-
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    UILabel *label=[[UILabel alloc] init];
+    label.text=self.label;
+    [label sizeToFit];
+    label.frame=CGRectMake(30, 22, 300, 50);
+    [self.view addSubview:label];
+    
+    UILabel *labelTitle=[[UILabel alloc] init];
+    labelTitle.text=@"Compare in last 10 years";
+    labelTitle.frame=CGRectMake(30, 0, 300, 50);
+    labelTitle.font=[UIFont systemFontOfSize:21];
+    [self.view addSubview:labelTitle];
+}
 
 #pragma jbbar delegate
 - (NSUInteger)numberOfBarsInBarChartView:(JBBarChartView *)barChartView
 {
-    return 10; // number of bars in chart
+    return [self.data count]; // number of bars in chart
 }
 - (CGFloat)barChartView:(JBBarChartView *)barChartView heightForBarViewAtAtIndex:(NSUInteger)index
 {
-    return 11.0f; // height of bar at index
+
+    return [self.data[index] floatValue]; // height of bar at index
 }
 - (void)barChartView:(JBBarChartView *)barChartView didSelectBarAtIndex:(NSUInteger)index touchPoint:(CGPoint)touchPoint
 {
     [self setTooltipVisible:YES animated:YES atTouchPoint:touchPoint];
-    [self.tooltipView setText:@"2013"];
-    [self.tooltipView setValue:@"12"];
+    [self.tooltipView setText:[NSString stringWithFormat:@"%@",self.date[index]]];
+    [self.tooltipView setValue:[NSString stringWithFormat:@"%@",self.data[index]]];
 }
 
 - (void)didUnselectBarChartView:(JBBarChartView *)barChartView
@@ -83,7 +104,7 @@
 - (UIView *)barChartView:(JBBarChartView *)barChartView barViewAtIndex:(NSUInteger)index
 {
     UIView *barView = [[UIView alloc] init];
-    barView.backgroundColor=[UIColor blackColor];
+    barView.backgroundColor=[UIColor colorWithRed:246/255.0 green:155/255.0 blue:0/255.0 alpha:1.0];
     return barView; // color of line in chart
 }
 - (UIColor *)barSelectionColorForBarChartView:(JBBarChartView *)barChartView

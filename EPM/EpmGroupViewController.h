@@ -11,4 +11,5 @@
 @interface EpmGroupViewController : UIViewController
 @property(strong,nonatomic)NSDictionary *currentConditions;
 @property (strong, nonatomic) IBOutlet UICollectionView *attributeCollection;
+@property (weak, nonatomic) IBOutlet UIView *wrapView;
 @end
