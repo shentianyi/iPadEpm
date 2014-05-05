@@ -49,24 +49,24 @@
 -(void)addCurrent:(NSArray *)current
 {
     [self.current addObject:current];
-    NSComparator cmptr = ^(id obj1, id obj2){
-        if ([obj1 integerValue] > [obj2 integerValue]) {
-            return (NSComparisonResult)NSOrderedDescending;
-        }
-        
-        if ([obj1 integerValue] < [obj2 integerValue]) {
-            return (NSComparisonResult)NSOrderedAscending;
-        }
-        return (NSComparisonResult)NSOrderedSame;
-    };
-    int tempCurrentMin=self.currentMin?[self.currentMin intValue]:[[current firstObject] intValue];
-    int tempCurrentMax=self.currentMax?[self.currentMax intValue]:0;
-    NSArray *currentOrderArray = [[current copy] sortedArrayUsingComparator:cmptr];
-    NSLog(@"%@",currentOrderArray);
-    tempCurrentMin=[[currentOrderArray firstObject] intValue]<tempCurrentMin?[[currentOrderArray firstObject] intValue]:tempCurrentMin;
-    tempCurrentMax=[[currentOrderArray lastObject] intValue]>tempCurrentMax?[[currentOrderArray lastObject] intValue]:tempCurrentMax;
-    self.currentMin=[NSString stringWithFormat:@"%d",tempCurrentMin];
-    self.currentMax=[NSString stringWithFormat:@"%d",tempCurrentMax];
+//    NSComparator cmptr = ^(id obj1, id obj2){
+//        if ([obj1 integerValue] > [obj2 integerValue]) {
+//            return (NSComparisonResult)NSOrderedDescending;
+//        }
+//        
+//        if ([obj1 integerValue] < [obj2 integerValue]) {
+//            return (NSComparisonResult)NSOrderedAscending;
+//        }
+//        return (NSComparisonResult)NSOrderedSame;
+//    };
+//    int tempCurrentMin=self.currentMin?[self.currentMin intValue]:[[current firstObject] intValue];
+//    int tempCurrentMax=self.currentMax?[self.currentMax intValue]:0;
+//    NSArray *currentOrderArray = [[current copy] sortedArrayUsingComparator:cmptr];
+//    NSLog(@"%@",currentOrderArray);
+//    tempCurrentMin=[[currentOrderArray firstObject] intValue]<tempCurrentMin?[[currentOrderArray firstObject] intValue]:tempCurrentMin;
+//    tempCurrentMax=[[currentOrderArray lastObject] intValue]>tempCurrentMax?[[currentOrderArray lastObject] intValue]:tempCurrentMax;
+//    self.currentMin=[NSString stringWithFormat:@"%d",tempCurrentMin];
+//    self.currentMax=[NSString stringWithFormat:@"%d",tempCurrentMax];
 }
 -(NSArray *)getCurrent
 {
@@ -92,5 +92,30 @@
     [self.current removeAllObjects];
     self.currentMax=nil;
     self.currentMin=nil;
+}
+-(NSString *)getCurrentMin{
+    int min;
+    for(int i=0;i<self.current.count;i++){
+        NSArray *currentSingle=self.current[i];
+        for(int j=0;j<currentSingle.count;j++){
+            if(i==0 && j==0){
+                min=[currentSingle[j] intValue];
+            }
+            else{
+                min=[currentSingle[j] intValue]<min?[currentSingle[j] intValue]:min;
+            }
+        }
+    }
+    return [NSString stringWithFormat:@"%d",min];
+}
+-(NSString *)getCurrentMax{
+    int max=0;
+    for(int i=0;i<self.current.count;i++){
+        NSArray *currentSingle=self.current[i];
+        for(int j=0;j<currentSingle.count;j++){
+                max=[currentSingle[j] intValue]>max?[currentSingle[j] intValue]:max;
+        }
+    }
+    return [NSString stringWithFormat:@"%d",max];
 }
 @end

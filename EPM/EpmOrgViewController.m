@@ -90,7 +90,7 @@ CGFloat const kJBBarChartViewControllerChartPadding = 10.0f;
 {
 
     self.chartModel=[OrgChartModel sharedChartDate];
-    NSLog(@"current count %d",self.chartModel.current.count);
+//    NSLog(@"current count %d",self.chartModel.current.count);
     if(self.chartModel.current.count>1){
         int count=self.chartModel.current.count;
         for(int i=1;i<count;i++){
@@ -323,11 +323,11 @@ CGFloat const kJBBarChartViewControllerChartPadding = 10.0f;
         [self.lineChartView reloadData];
         self.lineChartView.hidden=hide;
         
-        self.minCurrent.text=[self.chartModel.currentMin copy];
+        self.minCurrent.text=[self.chartModel getCurrentMin];
         if(self.barChartView && !self.barChartView.hidden){
             self.minCurrent.text=@"0";
         }
-        self.maxCurrent.text=self.chartModel.currentMax;
+        self.maxCurrent.text=[self.chartModel getCurrentMax];
         
         JBLineChartFooterView *footerView = [[JBLineChartFooterView alloc] initWithFrame:CGRectMake(kJBLineChartViewControllerChartPadding, ceil(self.view.bounds.size.height * 0.5) - ceil(kJBLineChartViewControllerChartFooterHeight * 0.5), self.view.bounds.size.width - (kJBLineChartViewControllerChartPadding * 2), kJBLineChartViewControllerChartFooterHeight)];
         footerView.backgroundColor = [UIColor clearColor];
