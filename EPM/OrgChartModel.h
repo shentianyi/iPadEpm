@@ -25,4 +25,6 @@
 -(void)addCurrent:(NSArray *)current;
 -(void)clearEntityAndCurrent;
 -(void)clearAll;
+-(NSString *)getCurrentMax;
+-(NSString *)getCurrentMin;
 @end
