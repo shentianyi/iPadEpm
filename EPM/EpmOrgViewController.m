@@ -1115,18 +1115,21 @@ CGFloat const kJBBarChartViewControllerChartPadding = 10.0f;
 }
 - (void)barChartView:(JBBarChartView *)barChartView didSelectBarAtIndex:(NSUInteger)index touchPoint:(CGPoint)touchPoint
 {
-    [self setTooltipVisible:YES animated:YES atTouchPoint:touchPoint];
-    [self.tooltipView setText:[self.chartModel.date objectAtIndex:index]];
-    [self.tooltipView setValue:[NSString stringWithFormat:@"%d",[[[self.chartModel.current objectAtIndex:0] objectAtIndex:index] intValue]]];
-    self.showView.hidden=NO;
-    self.showDate.text=[self.chartModel.date objectAtIndex:index];
-    self.showTarget.text=[NSString stringWithFormat:@"%d - %d",[[self.preloadKpi objectForKey:@"target_min"] intValue],[[self.preloadKpi objectForKey:@"target_max"] intValue]];
-    self.showCurrent.adjustsFontSizeToFitWidth = YES;
-    self.showCurrent.text=[NSString stringWithFormat:@"%d",[[[self.chartModel.current objectAtIndex:0] objectAtIndex:index] intValue]];
-    self.showEntity.text=[self.entityGroup objectForKey:@"name"];
-    self.showID=[self.entityGroup objectForKey:@"id"];
+    if(self.chartModel.date && self.chartModel.date.count>0){
+        [self setTooltipVisible:YES animated:YES atTouchPoint:touchPoint];
+        [self.tooltipView setText:[self.chartModel.date objectAtIndex:index]];
+        [self.tooltipView setValue:[NSString stringWithFormat:@"%d",[[[self.chartModel.current objectAtIndex:0] objectAtIndex:index] intValue]]];
+        self.showView.hidden=NO;
+        self.showDate.text=[self.chartModel.date objectAtIndex:index];
+        self.showTarget.text=[NSString stringWithFormat:@"%d - %d",[[self.preloadKpi objectForKey:@"target_min"] intValue],[[self.preloadKpi objectForKey:@"target_max"] intValue]];
+        self.showCurrent.adjustsFontSizeToFitWidth = YES;
+        self.showCurrent.text=[NSString stringWithFormat:@"%d",[[[self.chartModel.current objectAtIndex:0] objectAtIndex:index] intValue]];
+        self.showEntity.text=[self.entityGroup objectForKey:@"name"];
+        self.showID=[self.entityGroup objectForKey:@"id"];
+        
+        self.chosenDate=[self.chartModel.dateStandard objectAtIndex:index];
+    }
     
-    self.chosenDate=[self.chartModel.dateStandard objectAtIndex:index];
     
 }
 
@@ -1139,23 +1142,22 @@ CGFloat const kJBBarChartViewControllerChartPadding = 10.0f;
 
 - (void)lineChartView:(JBLineChartView *)lineChartView didSelectLineAtIndex:(NSUInteger)lineIndex horizontalIndex:(NSUInteger)horizontalIndex touchPoint:(CGPoint)touchPoint
 {
-    [self setTooltipVisible:YES animated:YES atTouchPoint:touchPoint];
-    if(self.chartModel.date){
+    if(self.chartModel.date && self.chartModel.date.count>0){
+        [self setTooltipVisible:YES animated:YES atTouchPoint:touchPoint];
         [self.tooltipView setText:[self.chartModel.date objectAtIndex:horizontalIndex]];
-    }
-    if(self.chartModel.current){
         [self.tooltipView setValue:[NSString stringWithFormat:@"%d",[[[self.chartModel.current objectAtIndex:lineIndex] objectAtIndex:horizontalIndex] intValue]]];
+        self.showView.hidden=NO;
+        self.showDate.text=[self.chartModel.date objectAtIndex:horizontalIndex];
+        self.showTarget.text=[NSString stringWithFormat:@"%d - %d",[[self.preloadKpi objectForKey:@"target_min"] intValue],[[self.preloadKpi objectForKey:@"target_max"] intValue]];
+        self.showCurrent.adjustsFontSizeToFitWidth = YES;
+        self.showCurrent.text=[NSString stringWithFormat:@"%d",[[[self.chartModel.current objectAtIndex:lineIndex] objectAtIndex:horizontalIndex] intValue]];
+        
+        self.showEntity.text=[self.chartModel.entity[lineIndex] objectForKey:@"name"];
+        self.showID=[self.chartModel.entity[lineIndex] objectForKey:@"id"];
+        
+        self.chosenDate=[self.chartModel.dateStandard objectAtIndex:horizontalIndex];
     }
-    self.showView.hidden=NO;
-    self.showDate.text=[self.chartModel.date objectAtIndex:horizontalIndex];
-    self.showTarget.text=[NSString stringWithFormat:@"%d - %d",[[self.preloadKpi objectForKey:@"target_min"] intValue],[[self.preloadKpi objectForKey:@"target_max"] intValue]];
-    self.showCurrent.adjustsFontSizeToFitWidth = YES;
-    self.showCurrent.text=[NSString stringWithFormat:@"%d",[[[self.chartModel.current objectAtIndex:lineIndex] objectAtIndex:horizontalIndex] intValue]];
-//    NSLog(@"%d",lineIndex);
-    self.showEntity.text=[self.chartModel.entity[lineIndex] objectForKey:@"name"];
-    self.showID=[self.chartModel.entity[lineIndex] objectForKey:@"id"];
     
-    self.chosenDate=[self.chartModel.dateStandard objectAtIndex:horizontalIndex];
 }
 - (void)didUnselectLineInLineChartView:(JBLineChartView *)lineChartView
 {

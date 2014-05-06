@@ -173,6 +173,13 @@
                        [UIColor colorWithRed:148/255.0 green:141/255.0 blue:139/255.0 alpha:1.0],
                        [UIColor colorWithRed:31/255.0 green:186/255.0 blue:162/255.0 alpha:1.0],
                        [UIColor colorWithRed:191/255.0 green:73/255.0 blue:73/255.0 alpha:1.0],
+                       [UIColor colorWithRed:41/255.0 green:32/255.0 blue:32/255.0 alpha:1.0],
+                       [UIColor colorWithRed:24/255.0 green:33/255.0 blue:210/255.0 alpha:1.0],
+                       [UIColor colorWithRed:17/255.0 green:193/255.0 blue:46/255.0 alpha:1.0],
+                       [UIColor colorWithRed:187/255.0 green:193/255.0 blue:17/255.0 alpha:1.0],
+                       [UIColor colorWithRed:18/255.0 green:212/255.0 blue:196/255.0 alpha:1.0],
+                       [UIColor colorWithRed:171/255.0 green:222/255.0 blue:32/255.0 alpha:1.0],
+                       [UIColor colorWithRed:214/255.0 green:59/255.0 blue:117/255.0 alpha:1.0],
                        nil];
     
     
@@ -188,7 +195,7 @@
     [self.pieContainer setAnimationSpeed:1.0];
     [self.pieContainer setLabelFont:[UIFont fontWithName:@"DBLCDTempBlack" size:24]];
     [self.pieContainer setLabelRadius:160];
-    [self.pieContainer setShowPercentage:YES];
+    [self.pieContainer setShowPercentage:NO];
     [self.pieContainer setPieBackgroundColor:[UIColor colorWithWhite:0.95 alpha:0.3]];
     [self.pieContainer setPieCenter:CGPointMake(self.pieContainer.bounds.size.width/2, self.pieContainer.bounds.size.height/2)];
     [self.pieContainer setLabelShadowColor:[UIColor blackColor]];
@@ -391,7 +398,16 @@
 {
     return [self.sliceColors objectAtIndex:(index % self.sliceColors.count)];
 }
-
+- (NSString *)pieChart:(XYPieChart *)pieChart textForSliceAtIndex:(NSUInteger)index
+{
+    float value = [[[self.pieData objectAtIndex:index] objectForKey:@"value"] floatValue];
+    if(value==0.0 || self.dataSum==0.0){
+        return [NSString stringWithFormat:@"0"];
+    }
+    else{
+        return [NSString stringWithFormat:@"%0.0f%%",value/self.dataSum*100];
+    }
+}
 
 #pragma mark - XYPieChart Delegate
 - (void)pieChart:(XYPieChart *)pieChart willSelectSliceAtIndex:(NSUInteger)index
@@ -426,7 +442,7 @@
     self.pieSelectedName.hidden=NO;
 //    self.pieSelectedValue.text = [[self.pieData objectAtIndex:index] objectForKey:@"value"];
     int value=[[[self.pieData objectAtIndex:index] objectForKey:@"value"] floatValue];
-    self.pieSelectedPercentage.text = [NSString stringWithFormat:@"%0.1f%%",value/self.dataSum*100];
+    self.pieSelectedPercentage.text = [NSString stringWithFormat:@"%d",value];
     self.pieSelectedPercentage.hidden=NO;
 }
 
