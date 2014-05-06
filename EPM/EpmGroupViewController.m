@@ -113,7 +113,9 @@
                     [propertyArray[j] setObject:@"unchecked" forKey:@"checked"];
                 }
             }
+            [[item objectForKey:@"checked"] removeAllObjects];
         }
+        
     }
     [manager GET:getAddress
       parameters:nil
