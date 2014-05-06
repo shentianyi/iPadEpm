@@ -500,24 +500,26 @@
         [manager POST:requestURL
            parameters:parameter
               success:^(AFHTTPRequestOperation *operation, id responseObject) {
-                  NSLog(@"respond %@",responseObject);
-                  CGRect rect=[self.view convertRect:weakCell.frame
-                                            fromView:weakCell.superview];
-                  DetailCompareChart *compareChart=[[DetailCompareChart alloc] init];
-                  compareChart.data=[[responseObject objectForKey:@"values"] copy];
-                  compareChart.label=name;
-                  compareChart.frequency=[parameter objectForKey:@"frequency"];
-                  compareChart.date= [[responseObject objectForKey:@"keys"] mutableCopy];
-                  if(self.comparePop){
-                      self.comparePop=nil;
+                  if(![self.comparePop isPopoverVisible]){
+                      NSLog(@"respond %@",responseObject);
+                      CGRect rect=[self.view convertRect:weakCell.frame
+                                                fromView:weakCell.superview];
+                      DetailCompareChart *compareChart=[[DetailCompareChart alloc] init];
+                      compareChart.data=[[responseObject objectForKey:@"values"] copy];
+                      compareChart.label=name;
+                      compareChart.frequency=[parameter objectForKey:@"frequency"];
+                      compareChart.date= [[responseObject objectForKey:@"keys"] mutableCopy];
+                      
+                      self.comparePop = [[UIPopoverController alloc] initWithContentViewController:compareChart];
+                      self.comparePop.delegate=self;
+                      self.comparePop.passthroughViews = nil;
+                      self.comparePop.popoverContentSize=CGSizeMake(550, 350);
+                      [self.comparePop presentPopoverFromRect:rect
+                                                       inView:self.view
+                                     permittedArrowDirections:UIPopoverArrowDirectionDown
+                                                     animated:YES];
                   }
-                  self.comparePop=[[UIPopoverController alloc] initWithContentViewController:compareChart];
-                  self.comparePop.delegate=self;
-                  self.comparePop.popoverContentSize=CGSizeMake(550, 350);
-                  [self.comparePop presentPopoverFromRect:rect
-                                                      inView:self.view
-                                    permittedArrowDirections:UIPopoverArrowDirectionDown
-                                                    animated:YES];
+                 
                   
               }
               failure:^(AFHTTPRequestOperation *operation, NSError *error) {
@@ -592,9 +594,6 @@
     __weak OrgDeailAttributeCellView *weakCell=cell;
   
     cell.tapCollection=^{
-        if( self.popController){
-            self.popController=nil;
-        }
         ChooseProperty *chooseProperty=[[ChooseProperty alloc] init];
         chooseProperty.property=propertyModel.properties[indexPath.row];
         chooseProperty.chosedAmount=^(int number){
@@ -604,7 +603,7 @@
                                   fromView:weakCell.superview];
         self.popController=[[UIPopoverController alloc] initWithContentViewController:chooseProperty];
         self.popController.delegate=self;
-
+        self.popController.passthroughViews = nil;
         self.popController.popoverContentSize=CGSizeMake(200, 200);
         [self.popController presentPopoverFromRect:rect
                                             inView:self.view
@@ -616,8 +615,13 @@
 }
 -(void)popoverControllerDidDismissPopover:(UIPopoverController *)popoverController
 {
-    self.popController=nil;
-    self.comparePop=nil;
+    if(self.popController){
+         self.popController=nil;
+    }
+    if(self.comparePop){
+         self.comparePop=nil;
+    }
+   
 }
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
