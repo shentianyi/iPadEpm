@@ -9,6 +9,7 @@
 
 #import "EpmLoginViewController.h"
 #import "AFNetworking.h"
+#import "KeychainItemWrapper.h"
 @interface EpmLoginViewController ()
 
 @end
@@ -30,7 +31,15 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
 }
-
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    KeychainItemWrapper *keychain=[[KeychainItemWrapper alloc] initWithIdentifier:@"clearinsight"
+                                                                      accessGroup:nil];
+    if( [keychain objectForKey:(__bridge id)kSecAttrAccount]){
+        self.email .text = [keychain objectForKey:(__bridge id)kSecAttrAccount];
+    }
+}
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -54,6 +63,11 @@
         NSLog(@"JSON: %@", responseObject);
         NSDictionary *result = (NSDictionary *)responseObject;
         if([result objectForKey:@"result"] == [NSNumber numberWithBool:YES]){
+            //save user name
+            KeychainItemWrapper *keychain=[[KeychainItemWrapper alloc] initWithIdentifier:@"clearinsight"
+                                                                              accessGroup:nil];
+            [keychain setObject:self.psw.text forKey:(__bridge id)kSecValueData];
+            [keychain setObject:self.email.text forKey:(__bridge id)kSecAttrAccount];
             
             [self performSegueWithIdentifier:@"loginSegue" sender:self];
             

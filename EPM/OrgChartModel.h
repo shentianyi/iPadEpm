@@ -18,6 +18,7 @@
 @property(strong , nonatomic) NSString *currentMin;
 @property(strong , nonatomic) NSMutableArray *current;
 @property(strong , nonatomic) NSMutableArray *date;
+@property(strong , nonatomic) NSMutableArray *dateStandard;
 @property(strong , nonatomic) NSMutableArray *entity;
 
 +(instancetype)sharedChartDate;

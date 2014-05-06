@@ -145,6 +145,8 @@
 		B043D2D118FE58CF00407A64 /* JBChartTooltipTipView.m in Sources */ = {isa = PBXBuildFile; fileRef = B043D2CE18FE58CF00407A64 /* JBChartTooltipTipView.m */; };
 		B043D2D218FE58CF00407A64 /* JBChartTooltipView.m in Sources */ = {isa = PBXBuildFile; fileRef = B043D2D018FE58CF00407A64 /* JBChartTooltipView.m */; };
 		B0561977190FA03B003CEADC /* propertyFake.plist in Resources */ = {isa = PBXBuildFile; fileRef = B0561976190FA03B003CEADC /* propertyFake.plist */; };
+		B05AF68C1918861500B8F928 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B05AF68A191884FD00B8F928 /* Security.framework */; };
+		B05AF68F191886B600B8F928 /* KeychainItemWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = B05AF68E191886B600B8F928 /* KeychainItemWrapper.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		B06D41A3190F306D00902580 /* OrgDeailAttributeCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B06D41A2190F306D00902580 /* OrgDeailAttributeCellView.xib */; };
 		B08089B51916825C0008D909 /* DetailCompareChart.m in Sources */ = {isa = PBXBuildFile; fileRef = B08089B41916825C0008D909 /* DetailCompareChart.m */; };
 		B08089D019169CD40008D909 /* PNBar in Resources */ = {isa = PBXBuildFile; fileRef = B08089B719169CD40008D909 /* PNBar */; };
@@ -395,6 +397,9 @@
 		B043D2CF18FE58CF00407A64 /* JBChartTooltipView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBChartTooltipView.h; sourceTree = "<group>"; };
 		B043D2D018FE58CF00407A64 /* JBChartTooltipView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBChartTooltipView.m; sourceTree = "<group>"; };
 		B0561976190FA03B003CEADC /* propertyFake.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = propertyFake.plist; sourceTree = "<group>"; };
+		B05AF68A191884FD00B8F928 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		B05AF68D191886B600B8F928 /* KeychainItemWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeychainItemWrapper.h; sourceTree = "<group>"; };
+		B05AF68E191886B600B8F928 /* KeychainItemWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeychainItemWrapper.m; sourceTree = "<group>"; };
 		B06D41A2190F306D00902580 /* OrgDeailAttributeCellView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OrgDeailAttributeCellView.xib; sourceTree = "<group>"; };
 		B08089B31916825C0008D909 /* DetailCompareChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailCompareChart.h; sourceTree = "<group>"; };
 		B08089B41916825C0008D909 /* DetailCompareChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailCompareChart.m; sourceTree = "<group>"; };
@@ -440,6 +445,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B05AF68C1918861500B8F928 /* Security.framework in Frameworks */,
 				05984F9418CEB0F30072B204 /* libz.dylib in Frameworks */,
 				05984F9218CEB0BC0072B204 /* libdl.dylib in Frameworks */,
 				0589E8DF18AB4812000173CC /* ImageIO.framework in Frameworks */,
@@ -617,6 +623,7 @@
 		05EA4DC2187FB00C00C53FEE /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B05AF68A191884FD00B8F928 /* Security.framework */,
 				05984F9318CEB0F20072B204 /* libz.dylib */,
 				05984F9118CEB0BC0072B204 /* libdl.dylib */,
 				0589E8DE18AB4812000173CC /* ImageIO.framework */,
@@ -799,6 +806,8 @@
 		B005C80C18FF6FAD00B8ED4B /* login */ = {
 			isa = PBXGroup;
 			children = (
+				B05AF68D191886B600B8F928 /* KeychainItemWrapper.h */,
+				B05AF68E191886B600B8F928 /* KeychainItemWrapper.m */,
 				05D2C00D1881305900DBBF8C /* EpmLoginViewController.m */,
 				05D2C00C1881305900DBBF8C /* EpmLoginViewController.h */,
 			);
@@ -1167,6 +1176,7 @@
 				0576D1A418AC64EF00AD75AB /* NSData+GIF.m in Sources */,
 				B005C80F18FF909000B8ED4B /* JBBarChartFooterView.m in Sources */,
 				0589E8D018AB161F000173CC /* EpmscanController.m in Sources */,
+				B05AF68F191886B600B8F928 /* KeychainItemWrapper.m in Sources */,
 				0566995518B7245D0024AD32 /* EpmColorPickViewController.m in Sources */,
 				05D2C042188138BE00DBBF8C /* AFHTTPRequestOperation.m in Sources */,
 				0589E8D518AB1A87000173CC /* Barcode.m in Sources */,

@@ -101,7 +101,7 @@
     NSString *attributeAddress=[EpmSettings getEpmUrlSettingsWithKey:@"groupAttrbute"];
     NSString *baseAddress=[NSString stringWithFormat:@"%@%@",[EpmSettings getEpmUrlSettingsWithKey:@"baseUrl"],attributeAddress];
     NSString *getAddress=[baseAddress stringByAppendingPathComponent:[NSString stringWithFormat:@"%d",kpiID]];
-    NSLog(@"attribute address %@",getAddress);
+//    NSLog(@"attribute address %@",getAddress);
     
     [manager GET:getAddress
       parameters:nil
@@ -148,7 +148,8 @@
     
     
     
-    self.navigationItem.title=[self.currentConditions objectForKey:@"chosen_time"];
+    self.navigationItem.title=[self.currentConditions objectForKey:@"chosen_time_show"];
+    
     self.sliceColors =[NSArray arrayWithObjects:
                        [UIColor colorWithRed:246/255.0 green:155/255.0 blue:0/255.0 alpha:1.0],
                        [UIColor colorWithRed:129/255.0 green:195/255.0 blue:29/255.0 alpha:1.0],
@@ -191,7 +192,7 @@
     
     [self.attributeCollection setCollectionViewLayout:flowLayout];
     
-
+//    NSLog(@"detail current conditions : %@",self.currentConditions);
 }
 
 //点击聚合分析
@@ -232,41 +233,41 @@
     [parameterCondition setObject:property_map_group forKey:@"property_map_group"];
     [parameterCondition setObject:[NSMutableDictionary dictionary] forKey:@"base_time"];
     
-    //开始时间
-    NSDateFormatter *formatter=[[NSDateFormatter alloc] init];
-    NSLocale *enUSPOSIXLocale = [NSLocale localeWithLocaleIdentifier:@"zh_CN"];
-    [formatter setLocale:enUSPOSIXLocale];
-    [formatter setDateFormat:@"yyyy-MM-dd"];
-    NSDate *date=[formatter dateFromString:[self.currentConditions objectForKey:@"chosen_time"]];
-    NSMutableString *dateString=[NSMutableString stringWithFormat:@"%@",date.description];
-    NSRange range=NSMakeRange(10, 1);
-    [dateString replaceOccurrencesOfString:@" "
-                                withString:@"T"
-                                   options:NSCaseInsensitiveSearch
-                                     range:range];
-    NSRange Zrange=NSMakeRange(19, 1);
-    [dateString replaceOccurrencesOfString:@" "
-                                withString:@"Z"
-                                   options:NSCaseInsensitiveSearch
-                                     range:Zrange];
+//    //开始时间
+//    NSDateFormatter *formatter=[[NSDateFormatter alloc] init];
+//    NSLocale *enUSPOSIXLocale = [NSLocale localeWithLocaleIdentifier:@"zh_CN"];
+//    [formatter setLocale:enUSPOSIXLocale];
+//    [formatter setDateFormat:@"yyyy-MM-dd"];
+//    NSDate *date=[formatter dateFromString:[self.currentConditions objectForKey:@"chosen_time"]];
+//    NSMutableString *dateString=[NSMutableString stringWithFormat:@"%@",date.description];
+//    NSRange range=NSMakeRange(10, 1);
+//    [dateString replaceOccurrencesOfString:@" "
+//                                withString:@"T"
+//                                   options:NSCaseInsensitiveSearch
+//                                     range:range];
+//    NSRange Zrange=NSMakeRange(19, 1);
+//    [dateString replaceOccurrencesOfString:@" "
+//                                withString:@"Z"
+//                                   options:NSCaseInsensitiveSearch
+//                                     range:Zrange];
     
-   [[parameterCondition objectForKey:@"base_time"] setObject:[dateString substringToIndex:20]
+   [[parameterCondition objectForKey:@"base_time"] setObject:[self.currentConditions objectForKey:@"chosen_time"]
                                                       forKey:@"start_time"];
     
-   //结束时间
+ 
     
     self.parameterCondition=[parameterCondition mutableCopy];
-    NSLog(@"self.parameterCondition : %@",self.parameterCondition);
+//    NSLog(@"self.parameterCondition : %@",self.parameterCondition);
     
     if([[self.parameterCondition objectForKey:@"property_map_group"] count]>0){
         NSString *requestURL=[NSString stringWithFormat:@"%@%@",[NSString stringWithFormat:@"%@", [EpmSettings getEpmUrlSettingsWithKey:@"baseUrl"]],[NSString stringWithFormat:@"%@", [EpmSettings getEpmUrlSettingsWithKey:@"detailCompare"]]];
-        NSLog(@"detail address:%@",requestURL);
+//        NSLog(@"detail address:%@",requestURL);
         AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
         [manager POST:requestURL
            parameters:parameterCondition
               success:^(AFHTTPRequestOperation *operation, id responseObject) {
                   self.wrapView.hidden=NO;
-                  NSLog(@"respond%@",responseObject);
+//                  NSLog(@"respond%@",responseObject);
                   self.pieData=responseObject;
                   self.dataSum=0.0;
                   for(int i =0;i<[self.pieData count];i++){
@@ -284,7 +285,7 @@
     
 }
 
-//算结束时间
+
 
 
 
@@ -501,7 +502,7 @@
            parameters:parameter
               success:^(AFHTTPRequestOperation *operation, id responseObject) {
                   if(![self.comparePop isPopoverVisible]){
-                      NSLog(@"respond %@",responseObject);
+//                      NSLog(@"respond %@",responseObject);
                       CGRect rect=[self.view convertRect:weakCell.frame
                                                 fromView:weakCell.superview];
                       DetailCompareChart *compareChart=[[DetailCompareChart alloc] init];

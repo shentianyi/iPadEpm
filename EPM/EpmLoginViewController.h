@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+@import Security;
 
 @interface EpmLoginViewController : UIViewController
 @property (weak, nonatomic) IBOutlet UITextField *email;

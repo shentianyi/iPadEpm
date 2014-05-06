@@ -69,6 +69,7 @@ CGFloat const kJBBarChartViewControllerChartPadding = 10.0f;
 @property (weak, nonatomic) IBOutlet UIButton *tableButton;
 @property (weak, nonatomic) IBOutlet UIButton *clearCompareButton;
 @property (weak, nonatomic) IBOutlet UILabel *showEntity;
+@property (strong , nonatomic) NSString *chosenDate;
 - (IBAction)clearCompare:(id)sender;
 - (IBAction)changeBar:(id)sender;
 - (IBAction)addCompareChart:(id)sender;
@@ -217,11 +218,13 @@ CGFloat const kJBBarChartViewControllerChartPadding = 10.0f;
     {
         [manager GET:[NSString stringWithFormat:@"%@%@",[EpmSettings getEpmUrlSettingsWithKey:@"baseUrl"],[EpmSettings getEpmUrlSettingsWithKey: @"data"]] parameters:self.currentConditions success:^(AFHTTPRequestOperation *operation, id responseObject) {
 //            NSLog(@"address: %@",[NSString stringWithFormat:@"%@%@",[EpmSettings getEpmUrlSettingsWithKey:@"baseUrl"],[EpmSettings getEpmUrlSettingsWithKey: @"data"]] );
-            NSLog(@"parameters: %@",self.currentConditions);
+//            NSLog(@"parameters: %@",self.currentConditions);
 //            NSLog(@"result : %@",responseObject);
             
-            
+         
             NSMutableDictionary *result = [(NSDictionary *)responseObject mutableCopy];
+            
+               NSLog(@"result :%@",result);
             self.chartModel.current=nil;
             [result setObject:[self.currentConditions objectForKey:@"frequency"] forKey:@"frequency"];
             [self.chartModel updateData:result];
@@ -395,7 +398,7 @@ CGFloat const kJBBarChartViewControllerChartPadding = 10.0f;
 
 
 
-
+//切换平均/合计
 - (IBAction)changeAverage:(id)sender {
      NSInteger index = self.seg.selectedSegmentIndex;
     NSLog(@"index : %d",index);
@@ -405,7 +408,14 @@ CGFloat const kJBBarChartViewControllerChartPadding = 10.0f;
     else{
      [self.currentConditions setObject:@NO forKey:@"average"];
     }
-    
+    if(self.tooltipView){
+        [self.tooltipView removeFromSuperview];
+        self.tooltipView=nil;
+    }
+    if(self.tooltipTipView){
+        [self.tooltipTipView removeFromSuperview];
+        self.tooltipTipView=nil;
+    }
     [self getDataForTable];
 }
 
@@ -672,7 +682,7 @@ CGFloat const kJBBarChartViewControllerChartPadding = 10.0f;
             
         }];
     }
-    
+    self.showView.hidden=YES;
 }
 
 - (IBAction)transactionChart:(id)sender {
@@ -820,8 +830,8 @@ CGFloat const kJBBarChartViewControllerChartPadding = 10.0f;
 
     cell.value.text = [[NSString stringWithFormat:@"%0.2f",[current doubleValue]] stringByAppendingString:unit];
     
-    cell.range.text = [NSString stringWithFormat:@"%0.2f-%0.2f %@",[min floatValue],[max floatValue],unit];
-
+    cell.range.text = [NSString stringWithFormat:@"%0.0f-%0.0f %@",[min floatValue],[max floatValue],unit];
+    cell.range.adjustsFontSizeToFitWidth=YES;
     if(indexPath.row > 0 ) {
           NSIndexPath *newPath = [NSIndexPath indexPathForRow:indexPath.row-1 inSection:indexPath.section];
         float last =[[[self.tableData objectForKey:@"current"] objectAtIndex:newPath.row] floatValue];
@@ -1024,7 +1034,9 @@ CGFloat const kJBBarChartViewControllerChartPadding = 10.0f;
     NSMutableDictionary *currentConditions=[self.currentConditions mutableCopy];
     [currentConditions setObject:self.showEntity.text forKey:@"entity_group_name"];
     [currentConditions setObject:self.showID forKey:@"entity_group_id"];
-    [currentConditions setObject:self.showDate.text forKey:@"chosen_time"];
+    [currentConditions setObject:self.chosenDate forKey:@"chosen_time"];
+    [currentConditions setObject:self.showDate.text forKey:@"chosen_time_show"];
+    
     [self performSegueWithIdentifier:@"viewGroupDetail" sender:currentConditions];
 }
 
@@ -1113,6 +1125,9 @@ CGFloat const kJBBarChartViewControllerChartPadding = 10.0f;
     self.showCurrent.text=[NSString stringWithFormat:@"%d",[[[self.chartModel.current objectAtIndex:0] objectAtIndex:index] intValue]];
     self.showEntity.text=[self.entityGroup objectForKey:@"name"];
     self.showID=[self.entityGroup objectForKey:@"id"];
+    
+    self.chosenDate=[self.chartModel.dateStandard objectAtIndex:index];
+    
 }
 
 - (void)didUnselectBarChartView:(JBBarChartView *)barChartView
@@ -1139,6 +1154,8 @@ CGFloat const kJBBarChartViewControllerChartPadding = 10.0f;
 //    NSLog(@"%d",lineIndex);
     self.showEntity.text=[self.chartModel.entity[lineIndex] objectForKey:@"name"];
     self.showID=[self.chartModel.entity[lineIndex] objectForKey:@"id"];
+    
+    self.chosenDate=[self.chartModel.dateStandard objectAtIndex:horizontalIndex];
 }
 - (void)didUnselectLineInLineChartView:(JBLineChartView *)lineChartView
 {

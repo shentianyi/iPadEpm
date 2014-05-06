@@ -33,12 +33,12 @@
 //responds need add frequency
 -(void)updateData:(NSDictionary *)responds
 {
-    NSLog(@"update");
+//    NSLog(@"update");
     self.date=[[responds objectForKey:@"date"] mutableCopy];
-    NSLog(@"%@",self.date);
+    self.dateStandard=[[responds objectForKey:@"date"] mutableCopy];
+//    NSLog(@"%@",self.date);
     for(int i=0;i<[self.date count];i++){
-        NSLog(@"%@",[self.date objectAtIndex:i]);
-        
+//        NSLog(@"%@",[self.date objectAtIndex:i]);
         [self.date replaceObjectAtIndex:i withObject:[EpmUtility convertDatetimeWithString:[[self.date objectAtIndex:i] substringToIndex:19] OfPattern:@"yyyy-MM-dd'T'HH:mm:ss" WithFormat:[EpmUtility timeStringOfFrequency:[[responds objectForKey:@"frequency"] intValue]]]];
     }
     if(!self.current){
@@ -49,24 +49,6 @@
 -(void)addCurrent:(NSArray *)current
 {
     [self.current addObject:current];
-//    NSComparator cmptr = ^(id obj1, id obj2){
-//        if ([obj1 integerValue] > [obj2 integerValue]) {
-//            return (NSComparisonResult)NSOrderedDescending;
-//        }
-//        
-//        if ([obj1 integerValue] < [obj2 integerValue]) {
-//            return (NSComparisonResult)NSOrderedAscending;
-//        }
-//        return (NSComparisonResult)NSOrderedSame;
-//    };
-//    int tempCurrentMin=self.currentMin?[self.currentMin intValue]:[[current firstObject] intValue];
-//    int tempCurrentMax=self.currentMax?[self.currentMax intValue]:0;
-//    NSArray *currentOrderArray = [[current copy] sortedArrayUsingComparator:cmptr];
-//    NSLog(@"%@",currentOrderArray);
-//    tempCurrentMin=[[currentOrderArray firstObject] intValue]<tempCurrentMin?[[currentOrderArray firstObject] intValue]:tempCurrentMin;
-//    tempCurrentMax=[[currentOrderArray lastObject] intValue]>tempCurrentMax?[[currentOrderArray lastObject] intValue]:tempCurrentMax;
-//    self.currentMin=[NSString stringWithFormat:@"%d",tempCurrentMin];
-//    self.currentMax=[NSString stringWithFormat:@"%d",tempCurrentMax];
 }
 -(NSArray *)getCurrent
 {
