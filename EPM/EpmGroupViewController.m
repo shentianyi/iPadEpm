@@ -530,7 +530,7 @@
         [manager POST:requestURL
            parameters:parameter
               success:^(AFHTTPRequestOperation *operation, id responseObject) {
-                  if(![self.comparePop isPopoverVisible]){
+                  if(![self.popController isPopoverVisible] && ![self.comparePop isPopoverVisible]){
                       NSLog(@"respond %@",responseObject);
                       CGRect rect=[self.view convertRect:weakCell.frame
                                                 fromView:weakCell.superview];
@@ -634,14 +634,17 @@
         };
         CGRect rect=[self.view convertRect:weakCell.frame
                                   fromView:weakCell.superview];
-        self.popController=[[UIPopoverController alloc] initWithContentViewController:chooseProperty];
-        self.popController.delegate=self;
-        self.popController.passthroughViews = nil;
-        self.popController.popoverContentSize=CGSizeMake(200, 200);
-        [self.popController presentPopoverFromRect:rect
-                                            inView:self.view
-                          permittedArrowDirections:UIPopoverArrowDirectionUp
-                                          animated:YES];
+        if(![self.popController isPopoverVisible] && ![self.comparePop isPopoverVisible]){
+            self.popController=[[UIPopoverController alloc] initWithContentViewController:chooseProperty];
+            self.popController.delegate=self;
+            self.popController.passthroughViews = nil;
+            self.popController.popoverContentSize=CGSizeMake(200, 200);
+            [self.popController presentPopoverFromRect:rect
+                                                inView:self.view
+                              permittedArrowDirections:UIPopoverArrowDirectionUp
+                                              animated:YES];
+        }
+        
     };
     return cell;
     
