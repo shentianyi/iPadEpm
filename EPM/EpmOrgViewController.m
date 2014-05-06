@@ -821,8 +821,8 @@ CGFloat const kJBBarChartViewControllerChartPadding = 10.0f;
     NSString *date =[[self.tableData objectForKey:@"date"] objectAtIndex:indexPath.row];
     NSNumber *current =[[self.tableData objectForKey:@"current"] objectAtIndex:indexPath.row];
     NSString *unit = [[self.tableData objectForKey:@"unit"] objectAtIndex:indexPath.row];
-    NSNumber *min=[[self.tableData objectForKey:@"target_min"] objectAtIndex:indexPath.row];
-    NSNumber *max=[[self.tableData objectForKey:@"target_max"] objectAtIndex:indexPath.row];
+    NSNumber *min=[[self.tableData objectForKey:@"target_min"] objectAtIndex:0];
+    NSNumber *max=[[self.tableData objectForKey:@"target_max"] objectAtIndex:0];
     
     NSString *convert = [EpmUtility convertDatetimeWithString:[date substringToIndex:19] OfPattern:@"yyyy-MM-dd'T'HH:mm:ss" WithFormat:[EpmUtility timeStringOfFrequency:[[self.currentConditions objectForKey:@"frequency"] intValue]] ];
 //    NSLog(@"%@",convert);
@@ -958,6 +958,7 @@ CGFloat const kJBBarChartViewControllerChartPadding = 10.0f;
 
     if(frequency==100) {
         [timeOffset setDay:offset ];
+        
         
     }
     if(frequency==200) {
