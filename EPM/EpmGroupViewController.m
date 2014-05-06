@@ -304,13 +304,13 @@
               }];
  
     }
-    
-    if(self.popController){
-        self.popController=nil;
-    }
-    if(self.comparePop){
-         self.comparePop=nil;
-    }
+//    
+//    if(self.popController){
+//        self.popController=nil;
+//    }
+//    if(self.comparePop){
+//         self.comparePop=nil;
+//    }
    
     
 }
