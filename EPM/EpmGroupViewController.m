@@ -103,11 +103,23 @@
     NSString *getAddress=[baseAddress stringByAppendingPathComponent:[NSString stringWithFormat:@"%d",kpiID]];
 //    NSLog(@"attribute address %@",getAddress);
     
+     DetailPropertyModel *model=[DetailPropertyModel sharedProperty];
+    if([model.properties count]>0){
+        for(int i = 0 ;i<model.properties.count;i++){
+            NSDictionary *item=model.properties[i];
+            if([[item objectForKey:@"property"] count]>0){
+                NSArray *propertyArray=[item objectForKey:@"property"];
+                for(int j=0;j<propertyArray.count;j++){
+                    [propertyArray[j] setObject:@"unchecked" forKey:@"checked"];
+                }
+            }
+        }
+    }
     [manager GET:getAddress
       parameters:nil
          success:^(AFHTTPRequestOperation *operation, id responseObject) {
              
-             NSLog(@"%@",responseObject);
+//             NSLog(@"view did load %@",responseObject);
              
              NSDictionary *settings = [responseObject copy];
              DetailPropertyModel *model=[DetailPropertyModel sharedProperty];
@@ -117,6 +129,7 @@
                  [wrapDic setObject:keyid forKey:@"id"];
                  for(NSString *keyname in settings[keyid]){
                      [wrapDic setObject:keyname forKey:@"name"];
+                     [wrapDic setObject:@"unchecked"forKey:@"checked"];
                      [wrapDic setObject:[NSMutableArray array] forKey:@"property"];
                      NSArray *properties=settings[keyid][keyname];
                      for(int i=0;i<properties.count;i++){
@@ -283,6 +296,14 @@
  
     }
     
+    if(self.popController){
+        self.popController=nil;
+    }
+    if(self.comparePop){
+         self.comparePop=nil;
+    }
+   
+    
 }
 
 
@@ -448,7 +469,13 @@
     
     float value=[[[self.pieData objectAtIndex:indexPath.row] objectForKey:@"value"] floatValue];
     float last_value=[[[self.pieData objectAtIndex:indexPath.row] objectForKey:@"last_value"] floatValue];
-    cell.conditionPercentage.text = [NSString stringWithFormat:@"%0.1f%%",value/self.dataSum*100];
+    if(self.dataSum==0){
+        cell.conditionPercentage.text = [NSString stringWithFormat:@"%0.1f%%",0.0];
+    }
+    else{
+        cell.conditionPercentage.text = [NSString stringWithFormat:@"%0.1f%%",value/self.dataSum*100];
+    }
+    
 
     cell.conditionLast.text =[NSString stringWithFormat:@"%@",[[self.pieData objectAtIndex:indexPath.row ] objectForKey:@"last_value"]];
     float compare=fabsf(value - last_value);
@@ -502,7 +529,7 @@
            parameters:parameter
               success:^(AFHTTPRequestOperation *operation, id responseObject) {
                   if(![self.comparePop isPopoverVisible]){
-//                      NSLog(@"respond %@",responseObject);
+                      NSLog(@"respond %@",responseObject);
                       CGRect rect=[self.view convertRect:weakCell.frame
                                                 fromView:weakCell.superview];
                       DetailCompareChart *compareChart=[[DetailCompareChart alloc] init];
@@ -515,10 +542,13 @@
                       self.comparePop.delegate=self;
                       self.comparePop.passthroughViews = nil;
                       self.comparePop.popoverContentSize=CGSizeMake(550, 350);
-                      [self.comparePop presentPopoverFromRect:rect
-                                                       inView:self.view
-                                     permittedArrowDirections:UIPopoverArrowDirectionDown
-                                                     animated:YES];
+                      if(self.view.window!=nil){
+                          [self.comparePop presentPopoverFromRect:rect
+                                                           inView:self.view
+                                         permittedArrowDirections:UIPopoverArrowDirectionDown
+                                                         animated:YES];
+                      }
+                      
                   }
                  
                   
@@ -616,13 +646,8 @@
 }
 -(void)popoverControllerDidDismissPopover:(UIPopoverController *)popoverController
 {
-    if(self.popController){
-         self.popController=nil;
-    }
-    if(self.comparePop){
-         self.comparePop=nil;
-    }
-   
+    self.popController=nil;
+    self.comparePop=nil;
 }
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
