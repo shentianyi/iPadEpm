@@ -218,13 +218,13 @@ CGFloat const kJBBarChartViewControllerChartPadding = 10.0f;
     {
         [manager GET:[NSString stringWithFormat:@"%@%@",[EpmSettings getEpmUrlSettingsWithKey:@"baseUrl"],[EpmSettings getEpmUrlSettingsWithKey: @"data"]] parameters:self.currentConditions success:^(AFHTTPRequestOperation *operation, id responseObject) {
 //            NSLog(@"address: %@",[NSString stringWithFormat:@"%@%@",[EpmSettings getEpmUrlSettingsWithKey:@"baseUrl"],[EpmSettings getEpmUrlSettingsWithKey: @"data"]] );
-//            NSLog(@"parameters: %@",self.currentConditions);
+            NSLog(@"parameters: %@",self.currentConditions);
 //            NSLog(@"result : %@",responseObject);
             
          
             NSMutableDictionary *result = [(NSDictionary *)responseObject mutableCopy];
             
-               NSLog(@"result :%@",result);
+//               NSLog(@"result :%@",result);
             self.chartModel.current=nil;
             [result setObject:[self.currentConditions objectForKey:@"frequency"] forKey:@"frequency"];
             [self.chartModel updateData:result];
@@ -401,7 +401,7 @@ CGFloat const kJBBarChartViewControllerChartPadding = 10.0f;
 //切换平均/合计
 - (IBAction)changeAverage:(id)sender {
      NSInteger index = self.seg.selectedSegmentIndex;
-    NSLog(@"index : %d",index);
+//    NSLog(@"index : %d",index);
     if(index==0){
          [self.currentConditions setObject:@YES forKey:@"average"];
     }
@@ -552,7 +552,46 @@ CGFloat const kJBBarChartViewControllerChartPadding = 10.0f;
     
     }
     else {
-        self.currentConditions = [NSMutableDictionary dictionaryWithObjectsAndKeys:[kpi objectForKey:@"id"],@"kpi_id",@"100",@"frequency",[self.entityGroup objectForKey:@"id"],@"entity_group_id",[formatter stringFromDate:[NSDate dateWithTimeIntervalSinceNow:-1*14*24*60*60]],@"start_time",[formatter stringFromDate:[NSDate date]], @"end_time",[self.entityGroup objectForKey:@"name"],@"entity_group_name",[kpi objectForKey:@"name"],@"kpi_name",nil];
+        //////////////////////////////////////////////////////////// begin
+        NSString *start_time=[formatter stringFromDate:[NSDate dateWithTimeIntervalSinceNow:-1*14*24*60*60]];
+        NSDateFormatter *formatterBegin=[[NSDateFormatter alloc] init];
+        NSLocale *enUSPOSIXLocale = [NSLocale localeWithLocaleIdentifier:@"zh_CN"];
+        [formatterBegin setLocale:enUSPOSIXLocale];
+        [formatterBegin setDateFormat:@"yyyy-MM-dd"];
+        NSDate *date=[formatter dateFromString:start_time];
+        NSMutableString *dateString=[NSMutableString stringWithFormat:@"%@",date.description];
+        NSRange range=NSMakeRange(10, 1);
+        [dateString replaceOccurrencesOfString:@" "
+                                    withString:@"T"
+                                       options:NSCaseInsensitiveSearch
+                                         range:range];
+        NSRange Zrange=NSMakeRange(19, 1);
+        [dateString replaceOccurrencesOfString:@" "
+                                    withString:@"Z"
+                                       options:NSCaseInsensitiveSearch
+                                         range:Zrange];
+        NSString *dateBegin=[dateString substringToIndex:20];
+        ////////////////////////////////////////////////////////////  end
+        NSString *end_time=[formatter stringFromDate:[NSDate date]];
+        NSDateFormatter *formatterEnd=[[NSDateFormatter alloc] init];
+        NSLocale *endUSPOSIXLocale = [NSLocale localeWithLocaleIdentifier:@"zh_CN"];
+        [formatterEnd setLocale:endUSPOSIXLocale];
+        [formatterEnd setDateFormat:@"yyyy-MM-dd"];
+        NSDate *endDate=[formatter dateFromString:end_time];
+        NSMutableString *dateStringEnd=[NSMutableString stringWithFormat:@"%@",endDate.description];
+        NSRange rangeEnd=NSMakeRange(10, 1);
+        [dateStringEnd replaceOccurrencesOfString:@" "
+                                    withString:@"T"
+                                       options:NSCaseInsensitiveSearch
+                                         range:rangeEnd];
+        NSRange ZrangeEnd=NSMakeRange(19, 1);
+        [dateStringEnd replaceOccurrencesOfString:@" "
+                                    withString:@"Z"
+                                       options:NSCaseInsensitiveSearch
+                                         range:ZrangeEnd];
+        NSString *dateStringEndSub=[dateStringEnd substringToIndex:20];
+        
+        self.currentConditions = [NSMutableDictionary dictionaryWithObjectsAndKeys:[kpi objectForKey:@"id"],@"kpi_id",@"100",@"frequency",[self.entityGroup objectForKey:@"id"],@"entity_group_id",dateBegin,@"start_time",dateStringEndSub, @"end_time",[self.entityGroup objectForKey:@"name"],@"entity_group_name",[kpi objectForKey:@"name"],@"kpi_name",nil];
         [self.currentConditions setObject:@YES forKey:@"average"];
     
     }
@@ -818,11 +857,14 @@ CGFloat const kJBBarChartViewControllerChartPadding = 10.0f;
     
     EpmTableCell *cell = (EpmTableCell*)[tableView  dequeueReusableCellWithIdentifier:CellIdentifier];
     
+    
     NSString *date =[[self.tableData objectForKey:@"date"] objectAtIndex:indexPath.row];
     NSNumber *current =[[self.tableData objectForKey:@"current"] objectAtIndex:indexPath.row];
     NSString *unit = [[self.tableData objectForKey:@"unit"] objectAtIndex:indexPath.row];
-    NSNumber *min=[[self.tableData objectForKey:@"target_min"] objectAtIndex:0];
-    NSNumber *max=[[self.tableData objectForKey:@"target_max"] objectAtIndex:0];
+    NSNumber *min=[[self.tableData objectForKey:@"target_min"] objectAtIndex:indexPath.row];
+    NSNumber *max=[[self.tableData objectForKey:@"target_max"] objectAtIndex:indexPath.row];
+    
+    
     
     NSString *convert = [EpmUtility convertDatetimeWithString:[date substringToIndex:19] OfPattern:@"yyyy-MM-dd'T'HH:mm:ss" WithFormat:[EpmUtility timeStringOfFrequency:[[self.currentConditions objectForKey:@"frequency"] intValue]] ];
 //    NSLog(@"%@",convert);
@@ -905,7 +947,7 @@ CGFloat const kJBBarChartViewControllerChartPadding = 10.0f;
     }   
     if(scrollView == self.frequency){
         NSString *freq = [[self freqSequence] objectAtIndex: [self scrollViewCurrentPage:scrollView]];
-//        NSLog(@"%@",freq);
+        //NSLog(@"%@",freq);
         if([freq isEqualToString:NSLocalizedString(@"DAY", nil)]){
             [self.currentConditions setObject:@"100" forKey:@"frequency"];
             needRefresh = YES;
@@ -939,8 +981,31 @@ CGFloat const kJBBarChartViewControllerChartPadding = 10.0f;
          NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
         [formatter setDateFormat:@"yyyy-MM-dd"];
         
- 
-        [self.currentConditions setObject:[formatter stringFromDate:[self dateSinceNow:[number integerValue]* -1 OfFrequency:[[self.currentConditions objectForKey:@"frequency"] integerValue]]]
+        
+        NSString *start_time=[formatter stringFromDate:[self dateSinceNow:[number integerValue]* -1 OfFrequency:[[self.currentConditions objectForKey:@"frequency"] integerValue]]];
+        NSDateFormatter *formatterBegin=[[NSDateFormatter alloc] init];
+        NSLocale *enUSPOSIXLocale = [NSLocale localeWithLocaleIdentifier:@"zh_CN"];
+        [formatterBegin setLocale:enUSPOSIXLocale];
+        [formatterBegin setDateFormat:@"yyyy-MM-dd"];
+        NSDate *date=[formatter dateFromString:start_time];
+        NSMutableString *dateString=[NSMutableString stringWithFormat:@"%@",date.description];
+        NSRange range=NSMakeRange(10, 1);
+        [dateString replaceOccurrencesOfString:@" "
+                                    withString:@"T"
+                                       options:NSCaseInsensitiveSearch
+                                         range:range];
+        NSRange Zrange=NSMakeRange(19, 1);
+        [dateString replaceOccurrencesOfString:@" "
+                                    withString:@"Z"
+                                       options:NSCaseInsensitiveSearch
+                                         range:Zrange];
+        NSString *subDateString=[dateString substringToIndex:20];
+//        NSLog(@"utc time %@",dateString);
+//        NSLog(@"start_time %@",start_time);
+        
+        
+        
+        [self.currentConditions setObject:subDateString
                                    forKey:@"start_time"];
         needRefresh = YES;
 //        NSLog(@"%@",self.currentConditions);

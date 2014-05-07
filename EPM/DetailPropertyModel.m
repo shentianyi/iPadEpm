@@ -27,12 +27,12 @@
     NSString *attributeAddress=[EpmSettings getEpmUrlSettingsWithKey:@"groupAttrbute"];
     NSString *baseAddress=[NSString stringWithFormat:@"%@%@",[EpmSettings getEpmUrlSettingsWithKey:@"baseUrl"],attributeAddress];
     NSString *getAddress=[baseAddress stringByAppendingPathComponent:kpiID];
-    NSLog(@"attribute address %@",getAddress);
+//    NSLog(@"attribute address %@",getAddress);
     
     [manager GET:getAddress
       parameters:nil
          success:^(AFHTTPRequestOperation *operation, id responseObject) {
-             NSLog(@"%@",responseObject);
+//             NSLog(@"%@",responseObject);
              NSDictionary *settings = [responseObject copy];
              DetailPropertyModel *model=[DetailPropertyModel sharedProperty];
              model.properties=[[NSMutableArray alloc] init];
