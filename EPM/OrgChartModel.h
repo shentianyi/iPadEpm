@@ -20,10 +20,12 @@
 @property(strong , nonatomic) NSMutableArray *date;
 @property(strong , nonatomic) NSMutableArray *dateStandard;
 @property(strong , nonatomic) NSMutableArray *entity;
+@property(strong , nonatomic) NSMutableArray *units;
 
 +(instancetype)sharedChartDate;
 -(void)updateData:(NSDictionary *)responds;
 -(void)addCurrent:(NSArray *)current;
+-(void)addUnit:(NSArray *)unit;
 -(void)clearEntityAndCurrent;
 -(void)clearAll;
 -(NSString *)getCurrentMax;

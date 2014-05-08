@@ -33,7 +33,7 @@
 //responds need add frequency
 -(void)updateData:(NSDictionary *)responds
 {
-//    NSLog(@"update");
+//    NSLog(@"orgChartModel receive %@",responds);
     self.date=[[responds objectForKey:@"date"] mutableCopy];
     self.dateStandard=[[responds objectForKey:@"date"] mutableCopy];
 //    NSLog(@"%@",self.date);
@@ -43,12 +43,18 @@
     }
     if(!self.current){
        self.current=[[NSMutableArray alloc] init];
+       self.units=[[NSMutableArray alloc] init];
     }
     [self addCurrent:[responds objectForKey:@"current"]];
+    [self addUnit:[responds objectForKey:@"unit"]];
 }
 -(void)addCurrent:(NSArray *)current
 {
     [self.current addObject:current];
+}
+-(void)addUnit:(NSArray *)unit
+{
+    [self.units addObject:unit];
 }
 -(NSArray *)getCurrent
 {

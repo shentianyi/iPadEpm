@@ -547,7 +547,7 @@
            parameters:parameter
               success:^(AFHTTPRequestOperation *operation, id responseObject) {
                   if(![self.popController isPopoverVisible] && ![self.comparePop isPopoverVisible]){
-                      NSLog(@"respond %@",responseObject);
+                      NSLog(@"table select compare 10 years %@",responseObject);
                       CGRect rect=[self.view convertRect:weakCell.frame
                                                 fromView:weakCell.superview];
                       DetailCompareChart *compareChart=[[DetailCompareChart alloc] init];

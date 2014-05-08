@@ -644,6 +644,7 @@ CGFloat const kJBBarChartViewControllerChartPadding = 10.0f;
              success:^(AFHTTPRequestOperation *operation, id responseObject) {
 //            NSLog(@"%@",responseObject);
             [self.chartModel addCurrent:[responseObject objectForKey:@"current"]];
+            [self.chartModel addUnit:[responseObject objectForKey:@"unit"]];
             [self loadChart];
                  self.barButton.enabled=NO;
                  self.tableButton.enabled=NO;
@@ -1184,12 +1185,12 @@ CGFloat const kJBBarChartViewControllerChartPadding = 10.0f;
     if(self.chartModel.date && self.chartModel.date.count>0){
         [self setTooltipVisible:YES animated:YES atTouchPoint:touchPoint];
         [self.tooltipView setText:[self.chartModel.date objectAtIndex:index]];
-        [self.tooltipView setValue:[NSString stringWithFormat:@"%d",[[[self.chartModel.current objectAtIndex:0] objectAtIndex:index] intValue]]];
+        [self.tooltipView setValue:[NSString stringWithFormat:@"%d%@",[[[self.chartModel.current objectAtIndex:0] objectAtIndex:index] intValue],[[self.chartModel.units objectAtIndex:0] objectAtIndex:index]]];
         self.showView.hidden=NO;
         self.showDate.text=[self.chartModel.date objectAtIndex:index];
-        self.showTarget.text=[NSString stringWithFormat:@"%d - %d",[[self.preloadKpi objectForKey:@"target_min"] intValue],[[self.preloadKpi objectForKey:@"target_max"] intValue]];
+        self.showTarget.text=[NSString stringWithFormat:@"%d%@ - %d%@",[[self.preloadKpi objectForKey:@"target_min"] intValue],[[self.chartModel.units objectAtIndex:0] objectAtIndex:index],[[self.preloadKpi objectForKey:@"target_max"] intValue],[[self.chartModel.units objectAtIndex:0] objectAtIndex:index]];
         self.showCurrent.adjustsFontSizeToFitWidth = YES;
-        self.showCurrent.text=[NSString stringWithFormat:@"%d",[[[self.chartModel.current objectAtIndex:0] objectAtIndex:index] intValue]];
+        self.showCurrent.text=[NSString stringWithFormat:@"%d%@",[[[self.chartModel.current objectAtIndex:0] objectAtIndex:index] intValue],[[self.chartModel.units objectAtIndex:0] objectAtIndex:index]];
         self.showEntity.text=[self.entityGroup objectForKey:@"name"];
         self.showID=[self.entityGroup objectForKey:@"id"];
         
@@ -1211,12 +1212,12 @@ CGFloat const kJBBarChartViewControllerChartPadding = 10.0f;
     if(self.chartModel.date && self.chartModel.date.count>0){
         [self setTooltipVisible:YES animated:YES atTouchPoint:touchPoint];
         [self.tooltipView setText:[self.chartModel.date objectAtIndex:horizontalIndex]];
-        [self.tooltipView setValue:[NSString stringWithFormat:@"%d",[[[self.chartModel.current objectAtIndex:lineIndex] objectAtIndex:horizontalIndex] intValue]]];
+        [self.tooltipView setValue:[NSString stringWithFormat:@"%d%@",[[[self.chartModel.current objectAtIndex:lineIndex] objectAtIndex:horizontalIndex] intValue],[[self.chartModel.units objectAtIndex:lineIndex] objectAtIndex:horizontalIndex]]];
         self.showView.hidden=NO;
         self.showDate.text=[self.chartModel.date objectAtIndex:horizontalIndex];
-        self.showTarget.text=[NSString stringWithFormat:@"%d - %d",[[self.preloadKpi objectForKey:@"target_min"] intValue],[[self.preloadKpi objectForKey:@"target_max"] intValue]];
+        self.showTarget.text=[NSString stringWithFormat:@"%d%@ - %d%@",[[self.preloadKpi objectForKey:@"target_min"] intValue],[[self.chartModel.units objectAtIndex:lineIndex] objectAtIndex:horizontalIndex],[[self.preloadKpi objectForKey:@"target_max"] intValue],[[self.chartModel.units objectAtIndex:lineIndex] objectAtIndex:horizontalIndex]];
         self.showCurrent.adjustsFontSizeToFitWidth = YES;
-        self.showCurrent.text=[NSString stringWithFormat:@"%d",[[[self.chartModel.current objectAtIndex:lineIndex] objectAtIndex:horizontalIndex] intValue]];
+        self.showCurrent.text=[NSString stringWithFormat:@"%d%@",[[[self.chartModel.current objectAtIndex:lineIndex] objectAtIndex:horizontalIndex] intValue],[[self.chartModel.units objectAtIndex:lineIndex] objectAtIndex:horizontalIndex]];
         
         self.showEntity.text=[self.chartModel.entity[lineIndex] objectForKey:@"name"];
         self.showID=[self.chartModel.entity[lineIndex] objectForKey:@"id"];
