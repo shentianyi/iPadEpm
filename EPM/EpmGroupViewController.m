@@ -496,6 +496,7 @@
     
 
     cell.conditionLast.text =[NSString stringWithFormat:@"%@",[[self.pieData objectAtIndex:indexPath.row ] objectForKey:@"last_value"]];
+    
     float compare=fabsf(value - last_value);
     NSString *compareResult;
     if(last_value==0.0){
@@ -505,6 +506,7 @@
         compareResult=[NSString stringWithFormat:@"%0.1f%%",compare/last_value*100];
     }
     cell.conditionLastPercent.text =compareResult;
+    cell.conditionLastPercent.adjustsFontSizeToFitWidth=YES;
 
     if([[[self.pieData objectAtIndex:indexPath.row ] objectForKey:@"last_value"] integerValue]>[[[self.pieData objectAtIndex:indexPath.row] objectForKey:@"value"] integerValue]){
         cell.conditionLastTrend.image =[UIImage imageNamed:@"trend-down.png"];
