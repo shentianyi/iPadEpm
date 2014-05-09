@@ -641,7 +641,7 @@
     OrgDeailAttributeCellView *cell=[self.attributeCollection dequeueReusableCellWithReuseIdentifier:@"attributeCollection" forIndexPath:indexPath];
     cell.attributeName.text=[[propertyModel.properties objectAtIndex:indexPath.row] objectForKey:@"name"];
     cell.attributeCount.text=@"0";
-
+    cell.attributeCount.adjustsFontSizeToFitWidth=YES;
     __weak OrgDeailAttributeCellView *weakCell=cell;
   
     cell.tapCollection=^{
