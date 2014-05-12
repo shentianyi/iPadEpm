@@ -66,10 +66,13 @@
 //    NSLog(@"property : %@",[self.property objectForKey:@"property"]);
     
     if(indexPath.row==0){
-       cell.textLabel.text=@"All";
-        NSLog(@"checked account %d",[[self.property objectForKey:@"checked"] count]);
-        NSLog(@"property account %d",[[self.property objectForKey:@"property"] count]);
-        if([[self.property objectForKey:@"checked"] count] == [[self.property objectForKey:@"property"] count]){
+        if([[self.property objectForKey:@"property"] count]==0){
+           cell.textLabel.text=@"";
+        }
+        else{
+           cell.textLabel.text=@"All";
+        }
+        if([[self.property objectForKey:@"checked"] count] == [[self.property objectForKey:@"property"] count] && [[self.property objectForKey:@"checked"] count]!=0){
             cell.accessoryType=UITableViewCellAccessoryCheckmark;
         }
         else{
@@ -120,7 +123,9 @@
     }
     else{
         //选中
-         cell.accessoryType=UITableViewCellAccessoryCheckmark;
+        if([[self.property objectForKey:@"property"] count]>0){
+            cell.accessoryType=UITableViewCellAccessoryCheckmark;
+        }
         if(indexPath.row==0){
             for(int i=0;i<self.propertyList.count;i++){
                 NSIndexPath *copyIndex=[NSIndexPath indexPathForRow:i+1 inSection:indexPath.section];

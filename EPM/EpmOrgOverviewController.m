@@ -57,7 +57,7 @@
     if(self.entityGroup){
         self.entityGroupName.text = [self.entityGroup objectForKey:@"name"];
         self.entityGroupDesc.text = [self.entityGroup objectForKey:@"description"];
-        
+        self.entityGroupName.adjustsFontSizeToFitWidth=YES;
     }
 
 }

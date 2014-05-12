@@ -33,7 +33,7 @@
 	<key>login</key>
 	<string>/api/user_sessions</string>
 	<key>baseUrl</key>
-	<string>https://www.cz-tek.com:8082</string>
+	<string>http://192.168.1.111:3000</string>
 	<key>dashboards</key>
 	<string>/api/dashboards</string>
 	<key>groupAttrbute</key>

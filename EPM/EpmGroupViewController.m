@@ -54,6 +54,8 @@
 @property (strong , nonatomic) UIPopoverController *comparePop;
 @property (nonatomic) float dataSum;
 @property (strong , nonatomic) NSMutableDictionary *parameterCondition;
+@property (strong, nonatomic) IBOutlet UILabel *AttrPlaceholder;
+@property (strong , nonatomic) UIActivityIndicatorView *activeView;
 - (IBAction)assembleAnalyse:(id)sender;
 
 
@@ -90,6 +92,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    //init active
+    self.activeView=[[UIActivityIndicatorView alloc]     initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+    self.activeView.center=self.view.center;
+    [self.activeView startAnimating];
     //生成PROPERTY的模型
 //    NSLog(@"detail current conditions : %@",self.currentConditions);
     int kpiID=[[self.currentConditions objectForKey:@"kpi_id"] intValue];
@@ -97,6 +103,7 @@
     
     
     //fetch data of property
+      [self.view addSubview:self.activeView];
     AFHTTPRequestOperationManager *manager=[AFHTTPRequestOperationManager manager];
     NSString *attributeAddress=[EpmSettings getEpmUrlSettingsWithKey:@"groupAttrbute"];
     NSString *baseAddress=[NSString stringWithFormat:@"%@%@",[EpmSettings getEpmUrlSettingsWithKey:@"baseUrl"],attributeAddress];
@@ -122,7 +129,7 @@
          success:^(AFHTTPRequestOperation *operation, id responseObject) {
              
 //             NSLog(@"view did load %@",responseObject);
-             
+                 [self.activeView removeFromSuperview];
              NSDictionary *settings = [responseObject copy];
              DetailPropertyModel *model=[DetailPropertyModel sharedProperty];
              model.properties=[[NSMutableArray alloc] init];
@@ -148,7 +155,7 @@
          }
          failure:^(AFHTTPRequestOperation *operation, NSError *error) {
              int statusCode = [operation.response statusCode];
-             
+                 [self.activeView removeFromSuperview];
              NSString *msg=[EpmHttpUtil notificationWithStatusCode:statusCode];
              
              UIAlertView *av = [[UIAlertView alloc] initWithTitle:msg
@@ -215,6 +222,8 @@
     [self.attributeCollection setCollectionViewLayout:flowLayout];
     
 //    NSLog(@"detail current conditions : %@",self.currentConditions);
+    
+    
 }
 
 //点击聚合分析
@@ -284,10 +293,12 @@
     if([[self.parameterCondition objectForKey:@"property_map_group"] count]>0){
         NSString *requestURL=[NSString stringWithFormat:@"%@%@",[NSString stringWithFormat:@"%@", [EpmSettings getEpmUrlSettingsWithKey:@"baseUrl"]],[NSString stringWithFormat:@"%@", [EpmSettings getEpmUrlSettingsWithKey:@"detailCompare"]]];
 //        NSLog(@"detail address:%@",requestURL);
+           [self.view addSubview:self.activeView];
         AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
         [manager POST:requestURL
            parameters:parameterCondition
               success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                      [self.activeView removeFromSuperview];
                   self.wrapView.hidden=NO;
 //                  NSLog(@"respond%@",responseObject);
                   self.pieData=responseObject;
@@ -300,7 +311,7 @@
                   [self.tableView reloadData];
               }
               failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-                  
+                      [self.activeView removeFromSuperview];
               }];
  
     }
@@ -375,8 +386,10 @@
     self.kpiID = [[self.currentConditions objectForKey:@"kpi_id"] stringValue];
     self.entityNameLb.text = [self.currentConditions objectForKey:@"entity_group_name"];
     self.kpiNameLb.text = [self.currentConditions objectForKey:@"kpi_name"];
+   
     [self.kpiNameLb sizeToFit];
-    self.entityNameLb.adjustsFontSizeToFitWidth=YES;
+
+     self.entityNameLb.adjustsFontSizeToFitWidth=YES;
 }
 
 
@@ -488,10 +501,10 @@
     float value=[[[self.pieData objectAtIndex:indexPath.row] objectForKey:@"value"] floatValue];
     float last_value=[[[self.pieData objectAtIndex:indexPath.row] objectForKey:@"last_value"] floatValue];
     if(self.dataSum==0){
-        cell.conditionPercentage.text = [NSString stringWithFormat:@"%0.1f%%",0.0];
+        cell.conditionPercentage.text = [NSString stringWithFormat:@"%0.0f%%",0.0];
     }
     else{
-        cell.conditionPercentage.text = [NSString stringWithFormat:@"%0.1f%%",value/self.dataSum*100];
+        cell.conditionPercentage.text = [NSString stringWithFormat:@"%0.0f%%",value/self.dataSum*100];
     }
     
 
@@ -543,11 +556,12 @@
         [parameter removeObjectForKey:@"property_map_group"];
         
         NSString *requestURL=[NSString stringWithFormat:@"%@%@",[NSString stringWithFormat:@"%@", [EpmSettings getEpmUrlSettingsWithKey:@"baseUrl"]],[NSString stringWithFormat:@"%@", [EpmSettings getEpmUrlSettingsWithKey:@"detailAroundCompare"]]];
-        
+           [self.view addSubview:self.activeView];
         AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
         [manager POST:requestURL
            parameters:parameter
               success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                  [self.activeView removeFromSuperview];
                   if(![self.popController isPopoverVisible] && ![self.comparePop isPopoverVisible]){
                       NSLog(@"table select compare 10 years %@",responseObject);
                       CGRect rect=[self.view convertRect:weakCell.frame
@@ -574,7 +588,7 @@
                   
               }
               failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-                  
+                 [self.activeView removeFromSuperview];
               }];
     };
     
@@ -633,6 +647,13 @@
 }
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
+    if([DetailPropertyModel sharedProperty].properties.count>0){
+        self.AttrPlaceholder.text=@"";
+    }
+    else{
+        self.AttrPlaceholder.text=@"该KPI没有维度值";
+    }
+    [self.AttrPlaceholder sizeToFit];
     return [DetailPropertyModel sharedProperty].properties.count;
 }
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
