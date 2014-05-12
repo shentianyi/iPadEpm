@@ -65,6 +65,8 @@
 //    NSLog(@"property : %@",[self.property objectForKey:@"property"]);
     if(indexPath.row==0){
        cell.textLabel.text=@"All";
+        NSLog(@"checked account %d",[[self.property objectForKey:@"checked"] count]);
+        NSLog(@"property account %d",[[self.property objectForKey:@"property"] count]);
         if([[self.property objectForKey:@"checked"] count] == [[self.property objectForKey:@"property"] count]){
             cell.accessoryType=UITableViewCellAccessoryCheckmark;
         }
