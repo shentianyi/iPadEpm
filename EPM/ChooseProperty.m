@@ -61,8 +61,10 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
+     NSLog(@"%d",indexPath.row);
 //    NSLog(@"checked : %@",[self.property objectForKey:@"checked"]);
 //    NSLog(@"property : %@",[self.property objectForKey:@"property"]);
+    
     if(indexPath.row==0){
        cell.textLabel.text=@"All";
         NSLog(@"checked account %d",[[self.property objectForKey:@"checked"] count]);
@@ -77,16 +79,17 @@
       if([[item objectForKey:@"checked"] isEqualToString:@"checked"]){
             cell.accessoryType=UITableViewCellAccessoryCheckmark;
       }
+      else{
+          cell.accessoryType=UITableViewCellAccessoryNone;
+      }
     }
-    
-    
-    // Configure the cell...
+
     
     return cell;
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
+   
     UITableViewCell *cell=[tableView cellForRowAtIndexPath:indexPath];
     if(cell.accessoryType==UITableViewCellAccessoryCheckmark){
         //取消
