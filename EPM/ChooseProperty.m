@@ -72,6 +72,9 @@
         if([[self.property objectForKey:@"checked"] count] == [[self.property objectForKey:@"property"] count]){
             cell.accessoryType=UITableViewCellAccessoryCheckmark;
         }
+        else{
+             cell.accessoryType=UITableViewCellAccessoryNone;
+        }
     }
     else{
       NSMutableDictionary *item=self.propertyList[indexPath.row-1];
