@@ -1292,9 +1292,11 @@ CGFloat const kJBBarChartViewControllerChartPadding = 10.0f;
             unit=[[self.chartModel.units objectAtIndex:lineIndex] objectAtIndex:horizontalIndex];
         }
         
+//        NSLog(@"%@",[[self.chartModel.current objectAtIndex:lineIndex] objectAtIndex:horizontalIndex]);
+        
         [self setTooltipVisible:YES animated:YES atTouchPoint:touchPoint];
         [self.tooltipView setText:[self.chartModel.date objectAtIndex:horizontalIndex]];
-        [self.tooltipView setValue:[NSString stringWithFormat:@"%d%@",[[[self.chartModel.current objectAtIndex:lineIndex] objectAtIndex:horizontalIndex] intValue],unit]];
+        [self.tooltipView setValue:[NSString stringWithFormat:@"%@%@",[[self.chartModel.current objectAtIndex:lineIndex] objectAtIndex:horizontalIndex],unit]];
         self.showView.hidden=NO;
         self.showDate.text=[self.chartModel.date objectAtIndex:horizontalIndex];
         
@@ -1311,7 +1313,7 @@ CGFloat const kJBBarChartViewControllerChartPadding = 10.0f;
         
         self.showTarget.text=[NSString stringWithFormat:@"%d%@ - %d%@",[min intValue],unit,[max intValue],unit];
         self.showCurrent.adjustsFontSizeToFitWidth = YES;
-        self.showCurrent.text=[NSString stringWithFormat:@"%d%@",[[[self.chartModel.current objectAtIndex:lineIndex] objectAtIndex:horizontalIndex] intValue],unit];
+        self.showCurrent.text=[NSString stringWithFormat:@"%@%@",[[self.chartModel.current objectAtIndex:lineIndex] objectAtIndex:horizontalIndex],unit];
         
         self.showEntity.text=[self.chartModel.entity[lineIndex] objectForKey:@"name"];
         self.showID=[self.chartModel.entity[lineIndex] objectForKey:@"id"];
