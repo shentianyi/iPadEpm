@@ -280,6 +280,8 @@
         cell.title.text = [data objectForKey:@"title"];
         [cell.img setImageWithURL:[NSURL URLWithString:[data objectForKey:@"image_url"]]];
         
+        NSLog(@"address %@",[NSURL URLWithString:[data objectForKey:@"image_url"]]);
+        
         return cell;
    }
     else {

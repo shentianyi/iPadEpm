@@ -32,6 +32,7 @@
    
     [manager GET:[NSString stringWithFormat:@"%@%@", [EpmSettings getEpmUrlSettingsWithKey:@"baseUrl"], [EpmSettings getEpmUrlSettingsWithKey:@"org" ]] parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
           NSArray *result = (NSArray *)responseObject;
+       
          if(result){
          self.Organizations = result;
              
