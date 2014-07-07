@@ -7,7 +7,7 @@
 //
 
 #import "EpmAppDelegate.h"
-//#import "MobClick.h"
+#import "NotificationViewController.h"
 #import "AFNetworking.h"
 
 @implementation EpmAppDelegate
@@ -107,6 +107,18 @@
 {
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later. 
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+
+        UILocalNotification *notification=[[UILocalNotification alloc] init];
+        if(notification!=nil){
+            NSDate *now=[NSDate new];
+            notification.fireDate=[now dateByAddingTimeInterval:3];
+            notification.timeZone=[NSTimeZone defaultTimeZone];
+            notification.alertBody=@"你的主题有了新评论";
+            notification.alertAction = @"打开";
+            notification.applicationIconBadgeNumber=1;
+            notification.soundName= UILocalNotificationDefaultSoundName;
+            [[UIApplication sharedApplication] presentLocalNotificationNow:notification];
+        }
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application
@@ -123,5 +135,26 @@
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
+-(void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification
+{
+    notification.applicationIconBadgeNumber=0;
+    
+    
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    UITabBarController *tbc = [storyboard instantiateViewControllerWithIdentifier:@"tabbar"];
+    self.window.rootViewController = tbc;
+//    [self presentViewController:tbc animated:YES completion:nil];
+    
+    
+    
+//    NotificationViewController *notificationVC=[[NotificationViewController alloc] init];
+    
+//     [self.window.rootViewController performSegueWithIdentifier:@"directToNotification" sender:self.window.rootViewController];
+//    [self.window.rootViewController presentViewController:notificationVC
+//                                                     animated:YES
+//                                                  completion:nil];
+//    UITabBarController *tabb = (UITabBarController *)self.window.rootViewController;
+    tbc.selectedIndex = 4;
 
+}
 @end

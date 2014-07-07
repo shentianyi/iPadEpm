@@ -115,7 +115,6 @@
 		05EA4DD4187FB00C00C53FEE /* EpmAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 05EA4DD3187FB00C00C53FEE /* EpmAppDelegate.m */; };
 		05EA4DD7187FB00C00C53FEE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 05EA4DD5187FB00C00C53FEE /* Main.storyboard */; };
 		05EA4DDD187FB00C00C53FEE /* EpmSecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 05EA4DDC187FB00C00C53FEE /* EpmSecondViewController.m */; };
-		05EA4DDF187FB00C00C53FEE /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 05EA4DDE187FB00C00C53FEE /* Images.xcassets */; };
 		05EA4DE6187FB00C00C53FEE /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05EA4DE5187FB00C00C53FEE /* XCTest.framework */; };
 		05EA4DE7187FB00C00C53FEE /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05EA4DC3187FB00C00C53FEE /* Foundation.framework */; };
 		05EA4DE8187FB00C00C53FEE /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05EA4DC7187FB00C00C53FEE /* UIKit.framework */; };
@@ -144,6 +143,10 @@
 		B043D2AD18FE18B400407A64 /* JBLineChartFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = B043D2AB18FE18B400407A64 /* JBLineChartFooterView.m */; };
 		B043D2D118FE58CF00407A64 /* JBChartTooltipTipView.m in Sources */ = {isa = PBXBuildFile; fileRef = B043D2CE18FE58CF00407A64 /* JBChartTooltipTipView.m */; };
 		B043D2D218FE58CF00407A64 /* JBChartTooltipView.m in Sources */ = {isa = PBXBuildFile; fileRef = B043D2D018FE58CF00407A64 /* JBChartTooltipView.m */; };
+		B04FED51196A8A2100136824 /* NotificationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B04FED50196A8A2100136824 /* NotificationViewController.m */; };
+		B04FED53196A8EFB00136824 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B04FED52196A8EFB00136824 /* Images.xcassets */; };
+		B04FED57196A900A00136824 /* NotificationTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B04FED55196A900A00136824 /* NotificationTableViewCell.m */; };
+		B04FED58196A900A00136824 /* NotificationTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B04FED56196A900A00136824 /* NotificationTableViewCell.xib */; };
 		B0561977190FA03B003CEADC /* propertyFake.plist in Resources */ = {isa = PBXBuildFile; fileRef = B0561976190FA03B003CEADC /* propertyFake.plist */; };
 		B05AF68C1918861500B8F928 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B05AF68A191884FD00B8F928 /* Security.framework */; };
 		B05AF68F191886B600B8F928 /* KeychainItemWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = B05AF68E191886B600B8F928 /* KeychainItemWrapper.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -352,7 +355,6 @@
 		05EA4DD6187FB00C00C53FEE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		05EA4DDB187FB00C00C53FEE /* EpmSecondViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EpmSecondViewController.h; sourceTree = "<group>"; };
 		05EA4DDC187FB00C00C53FEE /* EpmSecondViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EpmSecondViewController.m; sourceTree = "<group>"; };
-		05EA4DDE187FB00C00C53FEE /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		05EA4DE4187FB00C00C53FEE /* ClearInsightTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ClearInsightTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		05EA4DE5187FB00C00C53FEE /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		05EA4DED187FB00C00C53FEE /* ClearInsightTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ClearInsightTests-Info.plist"; sourceTree = "<group>"; };
@@ -396,6 +398,12 @@
 		B043D2CE18FE58CF00407A64 /* JBChartTooltipTipView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBChartTooltipTipView.m; sourceTree = "<group>"; };
 		B043D2CF18FE58CF00407A64 /* JBChartTooltipView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBChartTooltipView.h; sourceTree = "<group>"; };
 		B043D2D018FE58CF00407A64 /* JBChartTooltipView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBChartTooltipView.m; sourceTree = "<group>"; };
+		B04FED4F196A8A2100136824 /* NotificationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotificationViewController.h; sourceTree = "<group>"; };
+		B04FED50196A8A2100136824 /* NotificationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotificationViewController.m; sourceTree = "<group>"; };
+		B04FED52196A8EFB00136824 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		B04FED54196A900A00136824 /* NotificationTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotificationTableViewCell.h; sourceTree = "<group>"; };
+		B04FED55196A900A00136824 /* NotificationTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotificationTableViewCell.m; sourceTree = "<group>"; };
+		B04FED56196A900A00136824 /* NotificationTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NotificationTableViewCell.xib; sourceTree = "<group>"; };
 		B0561976190FA03B003CEADC /* propertyFake.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = propertyFake.plist; sourceTree = "<group>"; };
 		B05AF68A191884FD00B8F928 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		B05AF68D191886B600B8F928 /* KeychainItemWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeychainItemWrapper.h; sourceTree = "<group>"; };
@@ -654,10 +662,10 @@
 				05EA4DD5187FB00C00C53FEE /* Main.storyboard */,
 				05EA4DDB187FB00C00C53FEE /* EpmSecondViewController.h */,
 				05EA4DDC187FB00C00C53FEE /* EpmSecondViewController.m */,
-				05EA4DDE187FB00C00C53FEE /* Images.xcassets */,
 				05EA4DCA187FB00C00C53FEE /* Supporting Files */,
 				05EA4DFB187FB06F00C53FEE /* EpmDbCollectionController.h */,
 				05EA4DFC187FB06F00C53FEE /* EpmDbCollectionController.m */,
+				B04FED52196A8EFB00136824 /* Images.xcassets */,
 				05EA4DFE187FB09F00C53FEE /* EpmDbCellView.h */,
 				05EA4DFF187FB09F00C53FEE /* EpmDbCellView.m */,
 				05EA4E01187FDC8800C53FEE /* EpmDbDetailViewController.h */,
@@ -797,6 +805,7 @@
 		B0045F4118DFDCA8006B1BC6 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				B04FED4E196A8A0B00136824 /* notification */,
 				B0895C1B18FD1EB60013A048 /* Organization */,
 				B005C80C18FF6FAD00B8ED4B /* login */,
 			);
@@ -808,8 +817,8 @@
 			children = (
 				B05AF68D191886B600B8F928 /* KeychainItemWrapper.h */,
 				B05AF68E191886B600B8F928 /* KeychainItemWrapper.m */,
-				05D2C00D1881305900DBBF8C /* EpmLoginViewController.m */,
 				05D2C00C1881305900DBBF8C /* EpmLoginViewController.h */,
+				05D2C00D1881305900DBBF8C /* EpmLoginViewController.m */,
 			);
 			name = login;
 			sourceTree = "<group>";
@@ -819,6 +828,9 @@
 			children = (
 				B0CC6387190E50B8007BF57F /* org */,
 				B043D2A718FE18A500407A64 /* chartRelated */,
+				B04FED54196A900A00136824 /* NotificationTableViewCell.h */,
+				B04FED55196A900A00136824 /* NotificationTableViewCell.m */,
+				B04FED56196A900A00136824 /* NotificationTableViewCell.xib */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -836,6 +848,15 @@
 				B043D2AB18FE18B400407A64 /* JBLineChartFooterView.m */,
 			);
 			name = chartRelated;
+			sourceTree = "<group>";
+		};
+		B04FED4E196A8A0B00136824 /* notification */ = {
+			isa = PBXGroup;
+			children = (
+				B04FED4F196A8A2100136824 /* NotificationViewController.h */,
+				B04FED50196A8A2100136824 /* NotificationViewController.m */,
+			);
+			name = notification;
 			sourceTree = "<group>";
 		};
 		B08089B619169CD40008D909 /* PNChart */ = {
@@ -1028,12 +1049,13 @@
 				058CE83F18ED751D000FA4E8 /* icon-back.png in Resources */,
 				05D2C06F1882746A00DBBF8C /* disconnect.png in Resources */,
 				B08089D219169CD40008D909 /* PNBarb.ml in Resources */,
-				05EA4DDF187FB00C00C53FEE /* Images.xcassets in Resources */,
 				0502A96A18BC747C00906C45 /* chart-clorful.png in Resources */,
 				05D2C09B1884670100DBBF8C /* LOGIN.png in Resources */,
 				05D2C0AC1884B6C600DBBF8C /* ipad-icon-152.png in Resources */,
+				B04FED58196A900A00136824 /* NotificationTableViewCell.xib in Resources */,
 				05984FA218CF03AA0072B204 /* trend-up.png in Resources */,
 				05D2C0911884518200DBBF8C /* KPI-background.png in Resources */,
+				B04FED53196A8EFB00136824 /* Images.xcassets in Resources */,
 				0564116E18D9277600ECF680 /* Localizable.strings in Resources */,
 				05984FA018CF03AA0072B204 /* trend-down.png in Resources */,
 				05D2C0AA1884B6C600DBBF8C /* ipad-icon-76.png in Resources */,
@@ -1102,6 +1124,7 @@
 			files = (
 				0576D1AD18AC64EF00AD75AB /* UIImage+GIF.m in Sources */,
 				05D2C047188138BE00DBBF8C /* AFURLConnectionOperation.m in Sources */,
+				B04FED57196A900A00136824 /* NotificationTableViewCell.m in Sources */,
 				05D2C08F1884332700DBBF8C /* EpmOrgViewController.m in Sources */,
 				05EA4E0C187FEBDC00C53FEE /* EpmOrgCellView.m in Sources */,
 				05D2C046188138BE00DBBF8C /* AFSecurityPolicy.m in Sources */,
@@ -1177,6 +1200,7 @@
 				B005C80F18FF909000B8ED4B /* JBBarChartFooterView.m in Sources */,
 				0589E8D018AB161F000173CC /* EpmscanController.m in Sources */,
 				B05AF68F191886B600B8F928 /* KeychainItemWrapper.m in Sources */,
+				B04FED51196A8A2100136824 /* NotificationViewController.m in Sources */,
 				0566995518B7245D0024AD32 /* EpmColorPickViewController.m in Sources */,
 				05D2C042188138BE00DBBF8C /* AFHTTPRequestOperation.m in Sources */,
 				0589E8D518AB1A87000173CC /* Barcode.m in Sources */,
