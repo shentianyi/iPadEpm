@@ -17,7 +17,6 @@
                         <rect key="frame" x="20" y="23" width="564" height="42"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LRu-c6-asJ">
@@ -37,6 +36,7 @@
                 </subviews>
             </tableViewCellContentView>
             <connections>
+                <outlet property="badgeView" destination="LRu-c6-asJ" id="5gj-xZ-SZK"/>
                 <outlet property="content" destination="6YK-aP-ITx" id="v5p-yo-BGV"/>
                 <outlet property="count" destination="tW6-iJ-faj" id="P0l-OI-obQ"/>
             </connections>

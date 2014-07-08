@@ -40,8 +40,8 @@
        parameters:nil
           success:^(AFHTTPRequestOperation *operation, id responseObject) {
               self.notificationArray=responseObject;
-              NSLog(@"%@",self.notificationArray[0] );
-              NSLog(@"%@",[self.notificationArray[0] objectForKey:@"content"]);
+//              NSLog(@"%@",self.notificationArray);
+//              NSLog(@"%@",[self.notificationArray[0] objectForKey:@"content"]);
               [self.notificationTable reloadData];
           }
           failure:^(AFHTTPRequestOperation *operation, NSError *error) {
@@ -52,13 +52,11 @@
     [self.notificationTable registerNib:nib forCellReuseIdentifier:@"notificationCell"];
 
 }
-
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
 /*
 #pragma mark - Navigation
 
@@ -82,7 +80,16 @@
     NotificationTableViewCell *cell=[tableView dequeueReusableCellWithIdentifier:@"notificationCell" forIndexPath:indexPath];
     NSDictionary *item=self.notificationArray[indexPath.row];
     cell.content.text=[item objectForKey:@"content"];
-    cell.count.text=[NSString stringWithFormat:@"%@", [item objectForKey:@"count"]];
+    NSString *count=[NSString stringWithFormat:@"%@", [item objectForKey:@"count"]];
+    if([count isEqualToString:@"0"]){
+        cell.count.text=@"";
+        cell.badgeView.hidden=YES;
+    }
+    else{
+        cell.count.text=[NSString stringWithFormat:@"%@", [item objectForKey:@"count"]];
+        cell.badgeView.hidden=NO;
+    }
+    
     return cell;
 }
 

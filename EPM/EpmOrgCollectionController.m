@@ -112,7 +112,7 @@
         cell.rightImg.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@.png",[[self.Organizations objectAtIndex:indexPath.row] objectForKey:@"code"]]];
         cell.orgName.text =[[self.Organizations objectAtIndex:indexPath.row] objectForKey:@"name"];
           cell.orgDetail.text =[[self.Organizations objectAtIndex:indexPath.row] objectForKey:@"description"];
-        
+    cell.orgDetail.adjustsFontSizeToFitWidth=YES;
 
     
     //  UICollectionViewCell *cell = [collectionView    dequeueReusableCellWithReuseIdentifier:@"itemCell" forIndexPath:indexPath];
