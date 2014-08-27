@@ -137,6 +137,7 @@
 		05F6CE5718C098290040614F /* EPMlogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 05F6CE5518C098290040614F /* EPMlogo.png */; };
 		05F768CC18B4A70C00055138 /* AttachedPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = 05F768CB18B4A70C00055138 /* AttachedPhoto.m */; };
 		B005C80F18FF909000B8ED4B /* JBBarChartFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = B005C80E18FF909000B8ED4B /* JBBarChartFooterView.m */; };
+		B0217778196CDB4500142613 /* qoros2.png in Resources */ = {isa = PBXBuildFile; fileRef = B0217777196CDB4500142613 /* qoros2.png */; };
 		B03822781900BFAC0067DE2D /* OrgChartModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B03822771900BFAC0067DE2D /* OrgChartModel.m */; };
 		B038227B1900DBBF0067DE2D /* entityTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B038227A1900DBBF0067DE2D /* entityTableViewController.m */; };
 		B03B51BA1915D3C8003A33D2 /* ChooseProperty.m in Sources */ = {isa = PBXBuildFile; fileRef = B03B51B91915D3C8003A33D2 /* ChooseProperty.m */; };
@@ -148,6 +149,7 @@
 		B04FED57196A900A00136824 /* NotificationTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B04FED55196A900A00136824 /* NotificationTableViewCell.m */; };
 		B04FED58196A900A00136824 /* NotificationTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B04FED56196A900A00136824 /* NotificationTableViewCell.xib */; };
 		B0561977190FA03B003CEADC /* propertyFake.plist in Resources */ = {isa = PBXBuildFile; fileRef = B0561976190FA03B003CEADC /* propertyFake.plist */; };
+		B05A47A419AC86EE002BDDA9 /* leoni-logo.gif in Resources */ = {isa = PBXBuildFile; fileRef = B05A47A319AC86ED002BDDA9 /* leoni-logo.gif */; };
 		B05AF68C1918861500B8F928 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B05AF68A191884FD00B8F928 /* Security.framework */; };
 		B05AF68F191886B600B8F928 /* KeychainItemWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = B05AF68E191886B600B8F928 /* KeychainItemWrapper.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		B06D41A3190F306D00902580 /* OrgDeailAttributeCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B06D41A2190F306D00902580 /* OrgDeailAttributeCellView.xib */; };
@@ -386,6 +388,7 @@
 		05F768CB18B4A70C00055138 /* AttachedPhoto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AttachedPhoto.m; sourceTree = "<group>"; };
 		B005C80D18FF909000B8ED4B /* JBBarChartFooterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBBarChartFooterView.h; sourceTree = "<group>"; };
 		B005C80E18FF909000B8ED4B /* JBBarChartFooterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBBarChartFooterView.m; sourceTree = "<group>"; };
+		B0217777196CDB4500142613 /* qoros2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = qoros2.png; sourceTree = "<group>"; };
 		B03822761900BFAC0067DE2D /* OrgChartModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrgChartModel.h; sourceTree = "<group>"; };
 		B03822771900BFAC0067DE2D /* OrgChartModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrgChartModel.m; sourceTree = "<group>"; };
 		B03822791900DBBE0067DE2D /* entityTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = entityTableViewController.h; sourceTree = "<group>"; };
@@ -405,6 +408,7 @@
 		B04FED55196A900A00136824 /* NotificationTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotificationTableViewCell.m; sourceTree = "<group>"; };
 		B04FED56196A900A00136824 /* NotificationTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NotificationTableViewCell.xib; sourceTree = "<group>"; };
 		B0561976190FA03B003CEADC /* propertyFake.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = propertyFake.plist; sourceTree = "<group>"; };
+		B05A47A319AC86ED002BDDA9 /* leoni-logo.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "leoni-logo.gif"; sourceTree = "<group>"; };
 		B05AF68A191884FD00B8F928 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		B05AF68D191886B600B8F928 /* KeychainItemWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeychainItemWrapper.h; sourceTree = "<group>"; };
 		B05AF68E191886B600B8F928 /* KeychainItemWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeychainItemWrapper.m; sourceTree = "<group>"; };
@@ -707,6 +711,8 @@
 		05EA4DCA187FB00C00C53FEE /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				B05A47A319AC86ED002BDDA9 /* leoni-logo.gif */,
+				B0217777196CDB4500142613 /* qoros2.png */,
 				058CE84118ED772C000FA4E8 /* icon-filter.png */,
 				058CE84218ED772C000FA4E8 /* icon-detail.png */,
 				058CE83918ED751D000FA4E8 /* icon-table.png */,
@@ -1048,6 +1054,7 @@
 				05D2C06D1882746A00DBBF8C /* connect.png in Resources */,
 				058CE83F18ED751D000FA4E8 /* icon-back.png in Resources */,
 				05D2C06F1882746A00DBBF8C /* disconnect.png in Resources */,
+				B0217778196CDB4500142613 /* qoros2.png in Resources */,
 				B08089D219169CD40008D909 /* PNBarb.ml in Resources */,
 				0502A96A18BC747C00906C45 /* chart-clorful.png in Resources */,
 				05D2C09B1884670100DBBF8C /* LOGIN.png in Resources */,
@@ -1092,6 +1099,7 @@
 				05D2C0AE1884B6C600DBBF8C /* ipad-icon@2x.png in Resources */,
 				05EA4DD7187FB00C00C53FEE /* Main.storyboard in Resources */,
 				05D2C0641882745F00DBBF8C /* BUTTON-organization-active.png in Resources */,
+				B05A47A419AC86EE002BDDA9 /* leoni-logo.gif in Resources */,
 				058CE84318ED772C000FA4E8 /* icon-filter.png in Resources */,
 				0502A96C18BC747C00906C45 /* Photo-colorful.png in Resources */,
 				05D2C0971884665700DBBF8C /* blue-point.png in Resources */,
@@ -1347,8 +1355,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Tianyi Shen (4EMN9LEDP3)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Tianyi Shen (4EMN9LEDP3)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					/Users/tianyi/github/iPadEpm,
@@ -1356,7 +1364,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "EPM/ClearInsight-Prefix.pch";
 				INFOPLIST_FILE = "EPM/ClearInsight-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					/Users/tianyi/Downloads/Analytics_iOS_SDK_2.2.1.OpenUDID/UMAnalytics_Sdk_2.2.1.OpenUDID,
@@ -1374,8 +1382,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Shanghai Cai Zhuo Information Technology Co., Ltd";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Shanghai Cai Zhuo Information Technology Co., Ltd";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					/Users/tianyi/github/iPadEpm,
@@ -1383,7 +1391,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "EPM/ClearInsight-Prefix.pch";
 				INFOPLIST_FILE = "EPM/ClearInsight-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					/Users/tianyi/Downloads/Analytics_iOS_SDK_2.2.1.OpenUDID/UMAnalytics_Sdk_2.2.1.OpenUDID,

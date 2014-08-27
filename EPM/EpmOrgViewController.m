@@ -951,16 +951,19 @@ CGFloat const kJBBarChartViewControllerChartPadding = 10.0f;
     
     
     float completion=0.0;
+ 
     if([current doubleValue] < [min doubleValue]){
         completion = [current floatValue] / ([min floatValue]+0.0000000001);
-        cell.inrange.text = [NSString stringWithFormat:@"%d%% %@",(int)completion*100,NSLocalizedString(@"LOWER", nil)];
-//        cell.inrange.textColor = PNRed;
+//        cell.inrange.text = [NSString stringWithFormat:@"%d%% %@",(int)completion*100,NSLocalizedString(@"LOWER", nil)];
+        cell.inrange.text = [NSString stringWithFormat:@"%@",NSLocalizedString(@"LOWER", nil)];
+        cell.inrange.textColor = PNRed;
     }
     
-    if([current doubleValue] > [max doubleValue]){
+    else if([current doubleValue] > [max doubleValue]){
         completion = [current floatValue] / ([max floatValue]+0.0000000001);
 
-        cell.inrange.text = [NSString stringWithFormat:@"%d%% %@",(int)completion*100,NSLocalizedString(@"UPPER", nil)];
+//        cell.inrange.text = [NSString stringWithFormat:@"%d%% %@",(int)completion*100,NSLocalizedString(@"UPPER", nil)];
+        cell.inrange.text = [NSString stringWithFormat:@"%@",NSLocalizedString(@"UPPER", nil)];
 //        cell.inrange.textColor = PNRed;
     }
     
@@ -1247,9 +1250,12 @@ CGFloat const kJBBarChartViewControllerChartPadding = 10.0f;
             unit=[[self.chartModel.units objectAtIndex:0] objectAtIndex:index];
         }
         
+        
+        NSString *valueShow=[NSString stringWithFormat:@"%.2f",[[[self.chartModel.current objectAtIndex:0] objectAtIndex:index] doubleValue]];
+        
         [self setTooltipVisible:YES animated:YES atTouchPoint:touchPoint];
         [self.tooltipView setText:[self.chartModel.date objectAtIndex:index]];
-        [self.tooltipView setValue:[NSString stringWithFormat:@"%d%@",[[[self.chartModel.current objectAtIndex:0] objectAtIndex:index] intValue],unit]];
+        [self.tooltipView setValue:[NSString stringWithFormat:@"%@%@",valueShow,unit]];
         self.showView.hidden=NO;
         self.showDate.text=[self.chartModel.date objectAtIndex:index];
         
@@ -1267,7 +1273,7 @@ CGFloat const kJBBarChartViewControllerChartPadding = 10.0f;
         
         self.showTarget.text=[NSString stringWithFormat:@"%d%@ - %d%@",[min intValue],unit,[max intValue],unit];
         self.showCurrent.adjustsFontSizeToFitWidth = YES;
-        self.showCurrent.text=[NSString stringWithFormat:@"%d%@",[[[self.chartModel.current objectAtIndex:0] objectAtIndex:index] intValue],unit];
+        self.showCurrent.text=[NSString stringWithFormat:@"%@%@",valueShow,unit];
         self.showEntity.text=[self.entityGroup objectForKey:@"name"];
         self.showID=[self.entityGroup objectForKey:@"id"];
         
@@ -1294,9 +1300,12 @@ CGFloat const kJBBarChartViewControllerChartPadding = 10.0f;
         
 //        NSLog(@"%@",[[self.chartModel.current objectAtIndex:lineIndex] objectAtIndex:horizontalIndex]);
         
+        
+         NSString *valueShow=[NSString stringWithFormat:@"%.2f",[[[self.chartModel.current objectAtIndex:lineIndex] objectAtIndex:horizontalIndex] doubleValue]];
+        
         [self setTooltipVisible:YES animated:YES atTouchPoint:touchPoint];
         [self.tooltipView setText:[self.chartModel.date objectAtIndex:horizontalIndex]];
-        [self.tooltipView setValue:[NSString stringWithFormat:@"%@%@",[[self.chartModel.current objectAtIndex:lineIndex] objectAtIndex:horizontalIndex],unit]];
+        [self.tooltipView setValue:[NSString stringWithFormat:@"%@%@",valueShow,unit]];
         self.showView.hidden=NO;
         self.showDate.text=[self.chartModel.date objectAtIndex:horizontalIndex];
         
@@ -1313,7 +1322,12 @@ CGFloat const kJBBarChartViewControllerChartPadding = 10.0f;
         
         self.showTarget.text=[NSString stringWithFormat:@"%d%@ - %d%@",[min intValue],unit,[max intValue],unit];
         self.showCurrent.adjustsFontSizeToFitWidth = YES;
-        self.showCurrent.text=[NSString stringWithFormat:@"%@%@",[[self.chartModel.current objectAtIndex:lineIndex] objectAtIndex:horizontalIndex],unit];
+        
+//        NSLog(@"float: %.2f",[[[self.chartModel.current objectAtIndex:lineIndex] objectAtIndex:horizontalIndex] doubleValue]);
+        
+       
+        
+        self.showCurrent.text=[NSString stringWithFormat:@"%@%@",valueShow,unit];
         
         self.showEntity.text=[self.chartModel.entity[lineIndex] objectForKey:@"name"];
         self.showID=[self.chartModel.entity[lineIndex] objectForKey:@"id"];

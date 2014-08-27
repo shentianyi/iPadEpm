@@ -32,7 +32,7 @@
         
         NSString* path  =[NSString stringWithFormat:@"%@%@%@%@",(NSString *)[EpmSettings getEpmUrlSettingsWithKey:@"baseUrl" ],toReplace,@"?version=",version];
         
-        NSLog(@"%@",path);
+//        NSLog(@"%@",path);
         
         NSURL* url = [NSURL URLWithString:path];
         
@@ -44,7 +44,7 @@
         
         
         
-        
+//        NSLog(@"%@",dic);
         if(dic){
             if([[dic objectForKey:@"result"] boolValue]==YES) {
                 if([[dic objectForKey:@"is_option"] boolValue]==YES){
@@ -84,15 +84,16 @@
         [view show ];
         
     }
+
     self.state=1;
-        return YES;
+   return YES;
 }
 
 
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     if (buttonIndex == 1) {
-         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"itms-services://?action=download-manifest&url=http://121.199.48.53/clearinsight.plist"]];
+         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"itms-services://?action=download-manifest&url=https://www.cz-tek.com/clearinsight.plist"]];
     }
 }
 

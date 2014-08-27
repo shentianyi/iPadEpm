@@ -58,9 +58,9 @@
     NSDictionary *params = @{@"user_session[email]": self.email.text,
                              @"user_session[password]": self.psw .text};
     
-   
+    NSLog(@"address:%@",[NSString stringWithFormat:@"%@%@",[urlSetting objectForKey:@"baseUrl"],[urlSetting objectForKey:@"login"] ]);
     [manager POST:[NSString stringWithFormat:@"%@%@",[urlSetting objectForKey:@"baseUrl"],[urlSetting objectForKey:@"login"] ] parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSLog(@"JSON: %@", responseObject);
+        //NSLog(@"JSON: %@", responseObject);
         NSDictionary *result = (NSDictionary *)responseObject;
         if([result objectForKey:@"result"] == [NSNumber numberWithBool:YES]){
             //save user name
@@ -82,7 +82,7 @@
     }
      
           failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-              NSLog(@"%@", [operation response]);
+              NSLog(@"error is %@",[error localizedDescription]);
               
               UIAlertView *av = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"SERVICE_DOWN_NETWORK", nil)
                                                            message:@""
