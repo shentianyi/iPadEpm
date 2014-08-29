@@ -28,8 +28,7 @@
         
         
         NSString* path  =[NSString stringWithFormat:@"%@%@%@%@",(NSString *)[EpmSettings getEpmUrlSettingsWithKey:@"baseUrl" ],toReplace,@"?version=",version];
-        
-        NSLog(@"%@",path);
+
         
         NSURL* url = [NSURL URLWithString:path];
         
@@ -61,12 +60,6 @@
         
     }
    
-    
-    
-
-    
-    
-    
     NSString *title = @"New version avilable";
     NSString *cancelTxt = @"No,thanks";
     NSString *otherTxt = @"Update now";

@@ -41,26 +41,27 @@
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     
-    
     NSDictionary *params = nil;
     
     
-    [manager GET:[NSString stringWithFormat:@"%@%@",[EpmSettings getEpmUrlSettingsWithKey: @"baseUrl"],[EpmSettings getEpmUrlSettingsWithKey: @"dashboards"] ] parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSArray *result = (NSArray *)responseObject;
-        self.dashboards = result;
-        [self.collectionView reloadData];
-    }
-     
-          failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-              int status = [[operation response]statusCode];
-              NSString *msg = [EpmHttpUtil notificationWithStatusCode:status];
-              
-              UIAlertView *av = [[UIAlertView alloc] initWithTitle:msg
-                                                           message:@""
-                                                          delegate:nil
-                                                 cancelButtonTitle:@"OK" otherButtonTitles:nil];
-              [av show];
-          }];
+//    [manager GET:[NSString stringWithFormat:@"%@%@",[EpmSettings getEpmUrlSettingsWithKey: @"baseUrl"],[EpmSettings getEpmUrlSettingsWithKey: @"dashboards"] ] parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+//        NSArray *result = (NSArray *)responseObject;
+//        self.dashboards = result;
+//        [self.collectionView reloadData];
+//    }
+//     
+//          failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+//              int status = [[operation response]statusCode];
+//              NSString *msg = [EpmHttpUtil notificationWithStatusCode:status];
+//              
+//              UIAlertView *av = [[UIAlertView alloc] initWithTitle:msg
+//                                                           message:@""
+//                                                          delegate:nil
+//                                                 cancelButtonTitle:@"OK" otherButtonTitles:nil];
+//              [av show];
+//          }];
+    self.dashboards = @[@{@"name":@"Daily BU Performance",@"id":@21}];
+    [self.collectionView reloadData];
 }
 
 
