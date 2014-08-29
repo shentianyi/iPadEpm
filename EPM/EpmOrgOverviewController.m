@@ -57,7 +57,7 @@
     if(self.entityGroup){
         self.entityGroupName.text = [self.entityGroup objectForKey:@"name"];
         self.entityGroupDesc.text = [self.entityGroup objectForKey:@"description"];
-        
+        self.entityGroupName.adjustsFontSizeToFitWidth=YES;
     }
 
 }
@@ -279,6 +279,8 @@
         cell.mobil.text = [data objectForKey:@"phone"];
         cell.title.text = [data objectForKey:@"title"];
         [cell.img setImageWithURL:[NSURL URLWithString:[data objectForKey:@"image_url"]]];
+        
+        NSLog(@"address %@",[NSURL URLWithString:[data objectForKey:@"image_url"]]);
         
         return cell;
    }

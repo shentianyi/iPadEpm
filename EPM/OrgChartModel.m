@@ -44,9 +44,13 @@
     if(!self.current){
        self.current=[[NSMutableArray alloc] init];
        self.units=[[NSMutableArray alloc] init];
+        self.target_max=[[NSMutableArray alloc] init];
+        self.target_min=[[NSMutableArray alloc] init];
     }
     [self addCurrent:[responds objectForKey:@"current"]];
     [self addUnit:[responds objectForKey:@"unit"]];
+    [self addTargetMax:[responds objectForKey:@"target_max"]];
+    [self addTargetMin:[responds objectForKey:@"target_min"]];
 }
 -(void)addCurrent:(NSArray *)current
 {
@@ -56,6 +60,15 @@
 {
     [self.units addObject:unit];
 }
+-(void)addTargetMax:(NSArray *)target_max
+{
+    [self.target_max addObject:target_max];
+}
+-(void)addTargetMin:(NSArray *)target_min
+{
+    [self.target_min addObject:target_min];
+}
+
 -(NSArray *)getCurrent
 {
     return [self.current copy];

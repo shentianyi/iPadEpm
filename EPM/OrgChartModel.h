@@ -21,11 +21,16 @@
 @property(strong , nonatomic) NSMutableArray *dateStandard;
 @property(strong , nonatomic) NSMutableArray *entity;
 @property(strong , nonatomic) NSMutableArray *units;
+@property(strong , nonatomic) NSMutableArray *target_max;
+@property(strong , nonatomic) NSMutableArray *target_min;
 
 +(instancetype)sharedChartDate;
 -(void)updateData:(NSDictionary *)responds;
 -(void)addCurrent:(NSArray *)current;
 -(void)addUnit:(NSArray *)unit;
+-(void)addTargetMax:(NSArray *)target_max;
+-(void)addTargetMin:(NSArray *)target_min;
+
 -(void)clearEntityAndCurrent;
 -(void)clearAll;
 -(NSString *)getCurrentMax;
