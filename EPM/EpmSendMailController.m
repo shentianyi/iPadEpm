@@ -288,7 +288,9 @@
     
     NSDictionary *params = @{@"data":[UIImageJPEGRepresentation(current.image,0.3) base64EncodedStringWithOptions:NSDataBase64Encoding64CharacterLineLength],@"name":@"photo.jpeg"};
     
-    [manager POST:[NSString stringWithFormat:@"%@%@",[EpmSettings getEpmUrlSettingsWithKey:@"baseUrl"],[EpmSettings getEpmUrlSettingsWithKey:@"uploadPhoto"]] parameters:params constructingBodyWithBlock:NULL success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [manager POST:[NSString stringWithFormat:@"%@%@",[EpmSettings getEpmUrlSettingsWithKey:@"baseUrl"],[EpmSettings getEpmUrlSettingsWithKey:@"uploadPhoto"]]
+       parameters:params constructingBodyWithBlock:NULL
+          success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSDictionary *result = (NSDictionary *)responseObject;
         
         
