@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5053" systemVersion="13C64" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" initialViewController="M3C-3t-DnL">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14B25" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" initialViewController="M3C-3t-DnL">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
     </dependencies>
     <scenes>
         <!--Epmscan Controller-->
@@ -135,7 +136,7 @@
             </objects>
             <point key="canvasLocation" x="4953" y="-1231"/>
         </scene>
-        <!--Navigation Controller - Dashboard-->
+        <!--Dashboard-->
         <scene sceneID="D4R-3u-wBg">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="1bJ-ix-k2p" sceneMemberID="viewController">
@@ -1681,7 +1682,7 @@
             </objects>
             <point key="canvasLocation" x="2585" y="230"/>
         </scene>
-        <!--Epm Setting View Controller - Settings-->
+        <!--Settings-->
         <scene sceneID="eTH-XO-qDe">
             <objects>
                 <viewController id="FQw-gj-TF2" customClass="EpmSettingViewController" sceneMemberID="viewController">
@@ -1776,7 +1777,7 @@
             </objects>
             <point key="canvasLocation" x="2741" y="2041"/>
         </scene>
-        <!--Navigation Controller - Organization-->
+        <!--Organization-->
         <scene sceneID="vbD-wo-IXT">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="cq0-ZO-IGf" sceneMemberID="viewController">
@@ -1797,7 +1798,7 @@
             </objects>
             <point key="canvasLocation" x="4028" y="1463"/>
         </scene>
-        <!--Epm Mail List Controller - Improvement-->
+        <!--Improvement-->
         <scene sceneID="7Mx-tF-EgI">
             <objects>
                 <viewController id="BtQ-pt-HbI" customClass="EpmMailListController" sceneMemberID="viewController">
@@ -2165,7 +2166,7 @@
             <objects>
                 <viewController id="DLl-GI-MPG" customClass="EpmPhotoEditViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="1U0-8a-hze">
-                        <rect key="frame" x="0.0" y="0.0" width="540" height="620"/>
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="Ogp-Cw-rE1">
@@ -2173,7 +2174,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="oht-4D-DXg">
-                                <rect key="frame" x="0.0" y="0.0" width="540" height="620"/>
+                                <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="qWW-ED-Qsh">
@@ -2274,7 +2275,7 @@
             </objects>
             <point key="canvasLocation" x="8694" y="1238"/>
         </scene>
-        <!--Navigation Controller - Scan-->
+        <!--Scan-->
         <scene sceneID="XYm-LJ-BWe">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Wd3-D4-Kgd" sceneMemberID="viewController">
@@ -2472,6 +2473,6 @@
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="Hwz-lh-C6L"/>
-        <segue reference="jOP-Ja-Otv"/>
+        <segue reference="CaG-b0-54F"/>
     </inferredMetricsTieBreakers>
 </document>
