@@ -39,28 +39,35 @@
 
 -(void)loadData{
     
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    NSDictionary *mainDash=@{@"id:":@"1",@"name":@"TV DashBoard"};
+    NSMutableArray *ds=[[NSMutableArray alloc] init];
+    [ds addObject:mainDash];
+    self.dashboards=ds;
+    [self.collectionView reloadData];
     
-    
-    NSDictionary *params = nil;
-    
-    
-    [manager GET:[NSString stringWithFormat:@"%@%@",[EpmSettings getEpmUrlSettingsWithKey: @"baseUrl"],[EpmSettings getEpmUrlSettingsWithKey: @"dashboards"] ] parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSArray *result = (NSArray *)responseObject;
-        self.dashboards = result;
-        [self.collectionView reloadData];
-    }
-     
-          failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-              int status = [[operation response]statusCode];
-              NSString *msg = [EpmHttpUtil notificationWithStatusCode:status];
-              
-              UIAlertView *av = [[UIAlertView alloc] initWithTitle:msg
-                                                           message:@""
-                                                          delegate:nil
-                                                 cancelButtonTitle:@"OK" otherButtonTitles:nil];
-              [av show];
-          }];
+//
+//    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+//    
+//    
+//    NSDictionary *params = nil;
+//    
+//    
+//    [manager GET:[NSString stringWithFormat:@"%@%@",[EpmSettings getEpmUrlSettingsWithKey: @"baseUrl"],[EpmSettings getEpmUrlSettingsWithKey: @"dashboards"] ] parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+//        NSArray *result = (NSArray *)responseObject;
+//        self.dashboards = result;
+//        [self.collectionView reloadData];
+//    }
+//     
+//          failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+//              int status = [[operation response]statusCode];
+//              NSString *msg = [EpmHttpUtil notificationWithStatusCode:status];
+//              
+//              UIAlertView *av = [[UIAlertView alloc] initWithTitle:msg
+//                                                           message:@""
+//                                                          delegate:nil
+//                                                 cancelButtonTitle:@"OK" otherButtonTitles:nil];
+//              [av show];
+//          }];
 }
 
 

@@ -288,7 +288,7 @@
     
     NSDictionary *params = @{@"data":[UIImageJPEGRepresentation(current.image,0.3) base64EncodedStringWithOptions:NSDataBase64Encoding64CharacterLineLength],@"name":@"photo.jpeg"};
     
-    [manager POST:[NSString stringWithFormat:@"%@%@",[EpmSettings getEpmUrlSettingsWithKey:@"baseUrl"],[EpmSettings getEpmUrlSettingsWithKey:@"uploadPhoto"]] parameters:params constructingBodyWithBlock:NULL success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [manager POST:[NSString stringWithFormat:@"%@%@",[EpmSettings getEpmUrlSettingsWithKey:@"baseUrl"],[EpmSettings getEpmUrlSettingsWithKey:@"uploadPhoto"]] parameters:params  success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSDictionary *result = (NSDictionary *)responseObject;
         
         
@@ -472,8 +472,11 @@
         if([self.completeData objectForKey:@"orgCondition"]){
             [params setObject:[self.completeData objectForKey:@"orgCondition"] forKey:@"analysis"];
         }
+        NSLog([EpmSettings getEpmUrlSettingsWithKey:@"sendMail"]);
+        NSLog([NSString stringWithFormat:@"%@%@",[EpmSettings getEpmUrlSettingsWithKey:@"baseUrl"],[EpmSettings getEpmUrlSettingsWithKey:@"sendMail"]]);
         
-        [manager POST:[NSString stringWithFormat:@"%@%@",[EpmSettings getEpmUrlSettingsWithKey:@"baseUrl"],[EpmSettings getEpmUrlSettingsWithKey:@"sendMail"]] parameters:params constructingBodyWithBlock:NULL success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        
+        [manager POST:[NSString stringWithFormat:@"%@%@",[EpmSettings getEpmUrlSettingsWithKey:@"baseUrl"],[EpmSettings getEpmUrlSettingsWithKey:@"sendMail"]] parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
         
             [self dismissViewControllerAnimated:YES completion:nil];
         }

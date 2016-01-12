@@ -29,7 +29,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
+    
+	
+    // Do any additional setup after loading the view.
 }
 -(void)viewWillAppear:(BOOL)animated
 {
@@ -39,6 +41,11 @@
     if( [keychain objectForKey:(__bridge id)kSecAttrAccount]){
         self.email .text = [keychain objectForKey:(__bridge id)kSecAttrAccount];
     }
+    
+    
+    
+    self.email.text=@"admin@leoni.com";
+    self.psw.text=@"123456@*";
 }
 - (void)didReceiveMemoryWarning
 {

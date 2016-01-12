@@ -46,8 +46,8 @@
 
 -(void) loadContact{
     if(self.entityGroup){
-//        NSLog(@"%@",self.entityGroup);
-        self.contacts = [NSMutableArray arrayWithArray:[self.entityGroup objectForKey:@"contacts"]];
+        NSLog(@"%@",self.entityGroup);
+      self.contacts = [NSMutableArray arrayWithArray:[self.entityGroup objectForKey:@"contacts"]];
         [self.contactCollection reloadData];
     }
 }
@@ -140,7 +140,7 @@
 -(void)loadAll{
     [self loadTitle];
     [self loadContact];
-       [self loadKpi];
+    [self loadKpi];
     [self loadImprovement];
 }
 
@@ -316,7 +316,9 @@
     if([segue.identifier isEqualToString:@"composeMail"]){
         EpmSendMailController *mail = segue.destinationViewController;
         mail.completeData = (NSMutableDictionary*)sender;
-        
+//        mail.entitryGroupId=[self.entityGroup objectForKey:@"id"];
+//        
+//        mail.entitryGroupId=[self.entityGroup objectForKey:@"id"];
     }
     if([segue.identifier isEqualToString:@"toDetail"]){
         EpmOrgViewController *detail = segue.destinationViewController;
