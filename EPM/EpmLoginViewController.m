@@ -28,6 +28,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.email.text=@"admin@ci.com";
+    self.psw.text=@"123456@";
 	// Do any additional setup after loading the view.
 }
 
@@ -47,7 +49,7 @@
     
     
     NSDictionary *params = @{@"user_session[email]": self.email.text,
-                             @"user_session[password]": self.psw .text};
+                             @"user_session[password]": self.psw.text};
     
    
     [manager POST:[NSString stringWithFormat:@"%@%@",[urlSetting objectForKey:@"baseUrl"],[urlSetting objectForKey:@"login"] ] parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
