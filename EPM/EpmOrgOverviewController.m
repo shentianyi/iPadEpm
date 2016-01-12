@@ -139,9 +139,9 @@
 
 -(void)loadAll{
     [self loadTitle];
-    [self loadContact];
-       [self loadKpi];
-    [self loadImprovement];
+   [self loadContact];
+ //  [self loadKpi];
+//    [self loadImprovement];
 }
 
 

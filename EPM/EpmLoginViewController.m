@@ -28,8 +28,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.email.text=@"admin@ci.com";
-    self.psw.text=@"123456@";
+    self.email.text=@"admin@leoni.com";
+    self.psw.text=@"123456@*";
 	// Do any additional setup after loading the view.
 }
 

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		02B6FAE91C44DBDE001F04C5 /* EpmLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 05D2C00D1881305900DBBF8C /* EpmLoginViewController.m */; };
 		0502A96A18BC747C00906C45 /* chart-clorful.png in Resources */ = {isa = PBXBuildFile; fileRef = 0502A96518BC747C00906C45 /* chart-clorful.png */; };
 		0502A96B18BC747C00906C45 /* Photo-gray.png in Resources */ = {isa = PBXBuildFile; fileRef = 0502A96618BC747C00906C45 /* Photo-gray.png */; };
 		0502A96C18BC747C00906C45 /* Photo-colorful.png in Resources */ = {isa = PBXBuildFile; fileRef = 0502A96718BC747C00906C45 /* Photo-colorful.png */; };
@@ -59,7 +60,6 @@
 		05C4FF5C18ADC631004E1A90 /* PNLineChartDataItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 05C4FF5118ADC631004E1A90 /* PNLineChartDataItem.m */; };
 		05C4FF5D18ADC631004E1A90 /* UICountingLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 05C4FF5418ADC631004E1A90 /* UICountingLabel.m */; };
 		05C4FF6118ADE20F004E1A90 /* EpmMailAttachmentViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 05C4FF6018ADE20F004E1A90 /* EpmMailAttachmentViewCell.m */; };
-		05D2C00E1881305900DBBF8C /* EpmLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 05D2C00D1881305900DBBF8C /* EpmLoginViewController.m */; };
 		05D2C042188138BE00DBBF8C /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 05D2C030188138BE00DBBF8C /* AFHTTPRequestOperation.m */; };
 		05D2C043188138BE00DBBF8C /* AFHTTPRequestOperationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 05D2C032188138BE00DBBF8C /* AFHTTPRequestOperationManager.m */; };
 		05D2C044188138BE00DBBF8C /* AFHTTPSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 05D2C034188138BE00DBBF8C /* AFHTTPSessionManager.m */; };
@@ -871,6 +871,7 @@
 				05A2061018B5CCCA0052B569 /* EpmGraphicUtility.m in Sources */,
 				058CE82618EC3C62000FA4E8 /* XYPieChart.m in Sources */,
 				05F768CC18B4A70C00055138 /* AttachedPhoto.m in Sources */,
+				02B6FAE91C44DBDE001F04C5 /* EpmLoginViewController.m in Sources */,
 				05C4FF6118ADE20F004E1A90 /* EpmMailAttachmentViewCell.m in Sources */,
 				05EA4DDD187FB00C00C53FEE /* EpmSecondViewController.m in Sources */,
 				056C3CD918ACAC5200820524 /* EpmSendMailController.m in Sources */,
@@ -894,7 +895,6 @@
 				0564116418D840A400ECF680 /* EpmSettingViewController.m in Sources */,
 				058CE82C18ECC7FB000FA4E8 /* EpmSingleTextTableViewCell.m in Sources */,
 				058CE82218EC35FF000FA4E8 /* EpmGroupViewController.m in Sources */,
-				05D2C00E1881305900DBBF8C /* EpmLoginViewController.m in Sources */,
 				05C4FF5518ADC631004E1A90 /* PNBarb.ml in Sources */,
 				0589E8D018AB161F000173CC /* EpmscanController.m in Sources */,
 				058CE83818ED0C2A000FA4E8 /* PNBarChart.m in Sources */,
