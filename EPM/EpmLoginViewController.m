@@ -44,8 +44,8 @@
     
     
     
-    self.email.text=@"admin@leoni.com";
-    self.psw.text=@"123456@*";
+    //self.email.text=@"admin@leoni.com";
+    //self.psw.text=@"123456@*";
 }
 - (void)didReceiveMemoryWarning
 {

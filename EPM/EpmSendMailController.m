@@ -232,7 +232,15 @@
 }
 
 -(NSDictionary *)composeMailBody{
-    return @{@"receivers":[[self getContacts] componentsJoinedByString:@";"],@"title":self.tfTitle.text,@"content":self.mailBody.text};
+    if([self.completeData objectForKey:@"orgCondition"]){
+        
+        return @{@"receivers":[[self getContacts] componentsJoinedByString:@";"],@"title":self.tfTitle.text,@"content":self.mailBody.text,
+                 @"entity_group_id":[[self.completeData objectForKey:@"orgCondition"] objectForKey:@"entity_group_id"]};
+        
+    }else{
+        return @{@"receivers":[[self getContacts] componentsJoinedByString:@";"],@"title":self.tfTitle.text,@"content":self.mailBody.text};
+    
+    }
 }
 
 -(NSMutableArray *)uploadedAttachmentPath{
@@ -471,6 +479,18 @@
         
         if([self.completeData objectForKey:@"orgCondition"]){
             [params setObject:[self.completeData objectForKey:@"orgCondition"] forKey:@"analysis"];
+//            [params[@"email"] setObjzect:[[self.completeData objectForKey:@"orgCondition"] objectForKey:@"entity_group_id"]forKey:@"entity_group_id"];
+//            NSMutableDictionary *eg=[[NSMutableDictionary alloc]init];
+//            [eg setObject:[[self.completeData objectForKey:@"orgCondition"] objectForKey:@"entity_group_id"] forKey:@"entity_group_id"];
+//            
+//            NSMutableDictionary *email=[params objectForKey:@"email"];
+//            
+//            NSLog(email);
+//            
+//            [email setObject:[[self.completeData objectForKey:@"orgCondition"] objectForKey:@"entity_group_id"] forKey:@"entity_group_id"];
+//            
+//            [params setObject:email forKey:@"email"];
+            
         }
         NSLog([EpmSettings getEpmUrlSettingsWithKey:@"sendMail"]);
         NSLog([NSString stringWithFormat:@"%@%@",[EpmSettings getEpmUrlSettingsWithKey:@"baseUrl"],[EpmSettings getEpmUrlSettingsWithKey:@"sendMail"]]);

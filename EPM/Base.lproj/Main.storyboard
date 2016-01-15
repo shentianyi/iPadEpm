@@ -1888,6 +1888,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <modalFormSheetSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <connections>
                         <outlet property="attachCollection" destination="dUW-Jo-ub0" id="ypc-mU-mtG"/>
                         <outlet property="chartView" destination="uIU-rk-Yif" id="6VF-SA-UGU"/>
@@ -2010,7 +2011,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Fjc-Da-78U" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="U5W-7q-83m" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="8694" y="1238"/>
+            <point key="canvasLocation" x="8778" y="1394"/>
         </scene>
         <!--Scan-->
         <scene sceneID="XYm-LJ-BWe">
@@ -2051,11 +2052,6 @@
                                         <items>
                                             <barButtonItem style="plain" systemItem="fixedSpace" id="oe6-Zh-3oU"/>
                                             <barButtonItem width="255" style="plain" systemItem="fixedSpace" id="xt6-68-PjQ"/>
-                                            <barButtonItem systemItem="compose" id="Snq-db-r9N">
-                                                <connections>
-                                                    <action selector="compose:" destination="dfm-Bd-rtq" id="Z6r-7M-bKt"/>
-                                                </connections>
-                                            </barButtonItem>
                                         </items>
                                     </toolbar>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="85" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="7st-9u-NeO">
@@ -2162,14 +2158,16 @@
                         <outlet property="content" destination="nVf-cS-0Dg" id="BDx-mt-Eec"/>
                         <outlet property="leftView" destination="SnS-1u-Wkf" id="JtF-U0-Hkp"/>
                         <outlet property="listTableView" destination="7st-9u-NeO" id="qGU-l2-iLE"/>
+                        <outlet property="navigateItem" destination="xt6-68-PjQ" id="Zfp-Hq-jDE"/>
                         <outlet property="receiver" destination="FD5-u3-OwR" id="LOE-cf-kBU"/>
                         <outlet property="rightView" destination="4Gh-QS-d6t" id="cJ7-pw-rgm"/>
                         <outlet property="scrollView" destination="bEO-mf-fTI" id="3Es-Rv-puJ"/>
+                        <segue destination="I2t-tQ-jx4" kind="modal" identifier="composeMail" modalPresentationStyle="formSheet" modalTransitionStyle="flipHorizontal" id="AcD-ww-Qez"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Uey-AV-0jw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4972" y="3003"/>
+            <point key="canvasLocation" x="7828" y="2275"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="LXW-Vy-432">
@@ -2213,7 +2211,7 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="Hwz-lh-C6L"/>
-        <segue reference="CaG-b0-54F"/>
+        <segue reference="qpP-Zg-zwT"/>
+        <segue reference="vYJ-gm-ecy"/>
     </inferredMetricsTieBreakers>
 </document>

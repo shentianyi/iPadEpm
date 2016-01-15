@@ -37,6 +37,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
     self.leftView.layer.borderWidth = 1.0f;
     
     UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
@@ -226,9 +227,21 @@
             [self.scrollView addSubview:imageView];
              [imageView setFrame:CGRectMake(lastPosition.x, lastPosition.y, self.scrollView.bounds.size.width-55, self.scrollView.bounds.size.width-55)];
            lastPosition.y = lastPosition.y + imageView.bounds.size.height +margin;
-                        [imageView setImageWithURL:[NSURL URLWithString:[image objectForKey:@"path"]] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType) {
-               
-           }];
+            
+            NSLog([image objectForKey:@"path"]);
+            NSString *urlString=[NSString stringWithFormat:@"%@%@%@", [EpmSettings getEpmUrlSettingsWithKey:@"baseUrl"], [EpmSettings getEpmUrlSettingsWithKey:@"attach" ],[image objectForKey:@"path"]];
+            NSLog(urlString);
+            
+            NSURL *url =[NSURL URLWithString: urlString];
+            UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL:url]];
+            imageView.image=image;
+            
+//                        [imageView setImageWithURL:url completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType) {
+//                            
+//                            NSLog(error);
+//                            
+//               
+//           }];
         }
    }
     

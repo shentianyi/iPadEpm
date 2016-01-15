@@ -14,6 +14,8 @@
 @property (weak, nonatomic) IBOutlet UITextField *bigTitle;
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *openSendMailBtn;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *navigateItem;
 @property (weak, nonatomic) IBOutlet UIImageView *mailToIcon;
 @property (weak, nonatomic) IBOutlet UITextView *receiver;
 @property (weak, nonatomic) IBOutlet UIView *leftView;
