@@ -26,7 +26,6 @@
 
 
 - (void)viewDidLoad
-
 {
     [super viewDidLoad];
      self.webView.delegate = self;
@@ -41,10 +40,10 @@
 
 -(void)BeginLoadWeb
 {
-    
+//        NSString *urlTxt =[NSString stringWithFormat:@"%@%@/%@",[EpmSettings getEpmUrlSettingsWithKey:@"baseUrl"],[EpmSettings getEpmUrlSettingsWithKey:@"app_center"],@"#current_status"];
  
-    NSString *urlTxt =[NSString stringWithFormat:@"%@%@/%@",[EpmSettings getEpmUrlSettingsWithKey:@"baseUrl"],[EpmSettings getEpmUrlSettingsWithKey:@"dbFullsize"],self.dashboardId];
-
+    NSString *urlTxt =[NSString stringWithFormat:@"%@%@",[EpmSettings getEpmUrlSettingsWithKey:@"baseUrl"],[EpmSettings getEpmUrlSettingsWithKey:@"dash"]];
+ 
     urlTxt = [EpmHttpUtil escapeUrl:urlTxt];
       NSURL* url = [[ NSURL alloc ] initWithString :urlTxt];
     NSMutableURLRequest *request = [EpmHttpUtil initWithCookiesWithUrl:url];

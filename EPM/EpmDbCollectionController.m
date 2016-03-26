@@ -39,7 +39,10 @@
 
 -(void)loadData{
     
-    NSDictionary *mainDash=@{@"id:":@"1",@"name":@"TV DashBoard"};
+//    NSDictionary *mainDash=@{@"id:":@"1",@"name":@"Current Status",@"id:":@"8",@"name":@"WorkingTime Detail"};
+    
+     NSDictionary *mainDash=@{@"id:":@"1",@"name":@"View Dashboard"};
+    
     NSMutableArray *ds=[[NSMutableArray alloc] init];
     [ds addObject:mainDash];
     self.dashboards=ds;
@@ -115,12 +118,16 @@
 
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
-    if([segue.identifier isEqualToString:@"viewDashboardDetail"])
-    {
-        EpmDbDetailViewController *detailViewController = segue.destinationViewController;
-        detailViewController.dashboardId = (NSString *)[sender objectForKey:@"id"];
- 
-    }
+//    if([segue.identifier isEqualToString:@"viewDashboardDetail"])
+//    {
+//        EpmDbDetailViewController *detailViewController = segue.destinationViewController;
+//        
+//        NSLog(@".......@%",[sender objectForKey:@"id"]);
+//        
+//        detailViewController.dashboardId = (NSString *)[sender objectForKey:@"id"];
+//        NSLog( detailViewController.dashboardId);
+// 
+//    }
     
 }
 

@@ -32,8 +32,10 @@
 	<string>/dashboards/fullsize</string>
 	<key>login</key>
 	<string>/api/user_sessions</string>
+	<key>dash</key>
+	<string>/dashboards?full_size=1</string>
 	<key>baseUrl</key>
-	<string>https://www.cz-tek.com:8000</string>
+	<string>http://10.86.0.82</string>
 	<key>attach</key>
 	<string>/files/attach?f=</string>
 	<key>dashboards</key>
