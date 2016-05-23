@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="M3C-3t-DnL">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="M3C-3t-DnL">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <scenes>
         <!--Epmscan Controller-->
@@ -23,7 +23,7 @@
                             <view opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Dm5-KE-tV3">
                                 <rect key="frame" x="0.0" y="715" width="768" height="300"/>
                                 <subviews>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="etR-py-NF9">
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="name" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="etR-py-NF9">
                                         <rect key="frame" x="49" y="28" width="635" height="65"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-UltraLight" family="Helvetica Neue" pointSize="52"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -122,17 +122,18 @@
                         <outlet property="previewView" destination="kaZ-rz-kQO" id="cMI-gU-DdQ"/>
                         <segue destination="I2t-tQ-jx4" kind="modal" identifier="scanSendMail" modalPresentationStyle="formSheet" id="vYJ-gm-ecy"/>
                         <segue destination="sbO-nY-uq9" kind="push" identifier="scan" id="qpP-Zg-zwT"/>
+                        <segue destination="4p4-5D-bD4" kind="push" identifier="kpiDetail" id="LVu-Gx-eHf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lAW-dG-nge" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4953" y="-1231"/>
         </scene>
-        <!--Dashboard-->
+        <!--AppCenter-->
         <scene sceneID="D4R-3u-wBg">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="1bJ-ix-k2p" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Dashboard" image="tabBarIcon-dashboard" id="acW-dT-cKf">
+                    <tabBarItem key="tabBarItem" title="AppCenter" image="tabBarIcon-dashboard" id="acW-dT-cKf">
                         <inset key="imageInsets" minX="5" minY="0.0" maxX="0.0" maxY="0.0"/>
                         <offsetWrapper key="titlePositionAdjustment" horizontal="3" vertical="0.0"/>
                     </tabBarItem>
@@ -290,8 +291,8 @@
                                     <segmentedControl opaque="NO" alpha="0.59999999999999964" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="2Dz-xl-8n8">
                                         <rect key="frame" x="221" y="496" width="90" height="29"/>
                                         <segments>
-                                            <segment title="平均"/>
-                                            <segment title="合计"/>
+                                            <segment title="Avg"/>
+                                            <segment title="Sum"/>
                                         </segments>
                                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <connections>
@@ -467,7 +468,7 @@
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nPH-BE-EEk">
                                                 <rect key="frame" x="163" y="279" width="403" height="52"/>
-                                                <state key="normal" title="查看详细组成" backgroundImage="goForDetail">
+                                                <state key="normal" title="Show Details" backgroundImage="goForDetail">
                                                     <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="0.75" colorSpace="calibratedRGB"/>
                                                 </state>
                                                 <connections>
@@ -514,7 +515,7 @@
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FP9-s1-UqV">
                                         <rect key="frame" x="20" y="496" width="176" height="29"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                        <state key="normal" title="加入对比 +" backgroundImage="goForDetail">
+                                        <state key="normal" title="+ Comparison" backgroundImage="goForDetail">
                                             <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="0.70000000000000007" colorSpace="calibratedRGB"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
@@ -527,7 +528,7 @@
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ytF-3y-te3">
                                         <rect key="frame" x="20" y="533" width="176" height="30"/>
-                                        <state key="normal" title="清除对比 -" backgroundImage="goForDetail">
+                                        <state key="normal" title="Remove Compare -" backgroundImage="goForDetail">
                                             <color key="titleColor" red="0.78961447010869568" green="0.0" blue="0.0" alpha="0.70000000000000007" colorSpace="calibratedRGB"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
@@ -977,7 +978,7 @@
                                     <constraint firstAttribute="height" constant="43" id="qWW-bm-iNB"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                <state key="normal" title="聚合分析">
+                                <state key="normal" title="Aggregation">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -1251,7 +1252,7 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="30" minimumInteritemSpacing="30" id="PQS-x0-e6O">
-                            <size key="itemSize" width="175" height="242"/>
+                            <size key="itemSize" width="288" height="242"/>
                             <size key="headerReferenceSize" width="50" height="99"/>
                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
                             <inset key="sectionInset" minX="50" minY="50" maxX="100" maxY="50"/>
@@ -1262,20 +1263,21 @@
                         </imageView>
                         <cells>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" tag="2000" contentMode="center" reuseIdentifier="itemCell" id="B5Y-a3-hrc" customClass="EpmDbCellView">
-                                <rect key="frame" x="50" y="213" width="175" height="242"/>
+                                <rect key="frame" x="50" y="213" width="288" height="242"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="175" height="242"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="288" height="242"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" numberOfLines="6" baselineAdjustment="alignBaselines" minimumFontSize="12" preferredMaxLayoutWidth="135" translatesAutoresizingMaskIntoConstraints="NO" id="xwf-Sm-gz8">
-                                            <rect key="frame" x="20" y="11" width="135" height="104"/>
-                                            <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="20"/>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="8" baselineAdjustment="alignBaselines" minimumFontSize="12" preferredMaxLayoutWidth="135" translatesAutoresizingMaskIntoConstraints="NO" id="xwf-Sm-gz8">
+                                            <rect key="frame" x="20" y="11" width="249" height="95"/>
+                                            <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="23"/>
                                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
+                                            <size key="shadowOffset" width="0.0" height="0.0"/>
                                         </label>
-                                        <imageView userInteractionEnabled="NO" alpha="0.24999999999999967" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bsn-Uu-kx3">
-                                            <rect key="frame" x="-12" y="-11" width="198" height="264"/>
+                                        <imageView userInteractionEnabled="NO" alpha="0.55000000000000004" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="current-status" translatesAutoresizingMaskIntoConstraints="NO" id="bsn-Uu-kx3">
+                                            <rect key="frame" x="60" y="90" width="169" height="118"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </imageView>
                                     </subviews>
@@ -1285,6 +1287,7 @@
                                 <color key="tintColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <rect key="contentStretch" x="1" y="0.0" width="1" height="1"/>
                                 <connections>
+                                    <outlet property="image" destination="bsn-Uu-kx3" id="Aii-28-T9O"/>
                                     <outlet property="title" destination="xwf-Sm-gz8" id="QgO-d1-bDQ"/>
                                 </connections>
                             </collectionViewCell>
@@ -1293,7 +1296,7 @@
                             <rect key="frame" x="0.0" y="64" width="768" height="99"/>
                             <autoresizingMask key="autoresizingMask"/>
                             <subviews>
-                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="My Dashboards" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5dl-ST-6AT">
+                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="My App Center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5dl-ST-6AT">
                                     <rect key="frame" x="20" y="25" width="303" height="49"/>
                                     <fontDescription key="fontDescription" name="HelveticaNeue-UltraLight" family="Helvetica Neue" pointSize="35"/>
                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1308,12 +1311,13 @@
                     </collectionView>
                     <navigationItem key="navigationItem" id="3o1-vj-ef8"/>
                     <connections>
+                        <outlet property="appCV" destination="wRO-a2-GUb" id="kj5-Ge-Gpg"/>
                         <segue destination="4p4-5D-bD4" kind="push" identifier="viewDashboardDetail" id="VpV-9H-8RB"/>
                     </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Qn1-Zp-bor" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5052" y="131"/>
+            <point key="canvasLocation" x="5220" y="123"/>
         </scene>
         <!--Epm Db Detail View Controller-->
         <scene sceneID="KPp-8T-WPJ">
@@ -1324,24 +1328,33 @@
                         <viewControllerLayoutGuide type="bottom" id="3GM-KM-rDB"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="pIW-wl-TE7">
-                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <webView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vVY-4Z-lmo">
-                                <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vVY-4Z-lmo">
+                                <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
                                     <outlet property="delegate" destination="4p4-5D-bD4" id="rFu-jt-Vzt"/>
                                 </connections>
                             </webView>
-                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="HzM-Xe-eGY">
-                                <rect key="frame" x="366" y="493" width="37" height="37"/>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="HzM-Xe-eGY">
+                                <rect key="frame" x="494" y="342" width="37" height="37"/>
                                 <color key="color" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="vVY-4Z-lmo" firstAttribute="top" secondItem="pIW-wl-TE7" secondAttribute="top" id="2Y3-Dt-TEh"/>
+                            <constraint firstItem="vVY-4Z-lmo" firstAttribute="centerX" secondItem="HzM-Xe-eGY" secondAttribute="centerX" id="XVb-3I-fBB"/>
+                            <constraint firstAttribute="bottom" secondItem="vVY-4Z-lmo" secondAttribute="bottom" id="bHX-aA-Fh6"/>
+                            <constraint firstItem="vVY-4Z-lmo" firstAttribute="centerY" secondItem="HzM-Xe-eGY" secondAttribute="centerY" id="fiD-xV-iZZ"/>
+                            <constraint firstItem="vVY-4Z-lmo" firstAttribute="leading" secondItem="pIW-wl-TE7" secondAttribute="leading" id="h9G-9J-iCc"/>
+                            <constraint firstAttribute="trailing" secondItem="vVY-4Z-lmo" secondAttribute="trailing" id="kRT-1V-dMu"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="G1o-Pn-HdU"/>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     <connections>
                         <outlet property="indicator" destination="HzM-Xe-eGY" id="uUw-OL-tLR"/>
                         <outlet property="webView" destination="vVY-4Z-lmo" id="IQI-TL-Me5"/>
@@ -1349,7 +1362,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OJH-Nr-Zy7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6442" y="150"/>
+            <point key="canvasLocation" x="6770" y="194"/>
         </scene>
         <!--Epm Login View Controller-->
         <scene sceneID="uir-LG-fok">
@@ -2186,11 +2199,57 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KdA-xa-bFN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
         </scene>
+        <!--EpmKPI Detail View Controller-->
+        <scene sceneID="5pk-PV-wju">
+            <objects>
+                <viewController id="YXy-m1-2d6" customClass="EpmKPIDetailViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="pAJ-Yu-Ha7"/>
+                        <viewControllerLayoutGuide type="bottom" id="bdi-dW-0aB"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="0PH-vo-gYx">
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tJl-Ia-uY2">
+                                <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <connections>
+                                    <outlet property="delegate" destination="YXy-m1-2d6" id="RYQ-TT-xCx"/>
+                                </connections>
+                            </webView>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="GjR-W7-q6k">
+                                <rect key="frame" x="494" y="342" width="37" height="37"/>
+                                <color key="color" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            </activityIndicatorView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="tJl-Ia-uY2" firstAttribute="centerX" secondItem="GjR-W7-q6k" secondAttribute="centerX" id="7i7-7I-IWr"/>
+                            <constraint firstAttribute="bottom" secondItem="tJl-Ia-uY2" secondAttribute="bottom" id="CIc-KM-Hth"/>
+                            <constraint firstAttribute="trailing" secondItem="tJl-Ia-uY2" secondAttribute="trailing" id="Dgn-Fi-Sly"/>
+                            <constraint firstItem="tJl-Ia-uY2" firstAttribute="leading" secondItem="0PH-vo-gYx" secondAttribute="leading" id="ScO-9m-wnu"/>
+                            <constraint firstItem="tJl-Ia-uY2" firstAttribute="top" secondItem="0PH-vo-gYx" secondAttribute="top" id="Vei-rF-OWX"/>
+                            <constraint firstItem="tJl-Ia-uY2" firstAttribute="centerY" secondItem="GjR-W7-q6k" secondAttribute="centerY" id="ppg-pS-6ss"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="HcO-HX-Cpc"/>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                    <connections>
+                        <outlet property="indicator" destination="GjR-W7-q6k" id="5A6-w4-Va5"/>
+                        <outlet property="webView" destination="tJl-Ia-uY2" id="P2c-hV-hZS"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="u2v-29-HJk" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="6322" y="-1342"/>
+        </scene>
     </scenes>
     <resources>
         <image name="Login" width="1536" height="2048"/>
         <image name="Photo.png" width="118" height="92"/>
         <image name="chart.png" width="111" height="111"/>
+        <image name="current-status" width="67" height="66"/>
         <image name="draft" width="1536" height="2048"/>
         <image name="goForDetail" width="235" height="33"/>
         <image name="kpiCategory-default.png" width="50" height="50"/>
@@ -2211,7 +2270,8 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="Hwz-lh-C6L"/>
+        <segue reference="VpV-9H-8RB"/>
         <segue reference="vYJ-gm-ecy"/>
+        <segue reference="qpP-Zg-zwT"/>
     </inferredMetricsTieBreakers>
 </document>

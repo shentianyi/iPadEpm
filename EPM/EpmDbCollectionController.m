@@ -12,8 +12,11 @@
 #import "EpmDbHeader.h"
 #import "AFNetworking.h"
 
-@interface EpmDbCollectionController ()
+@interface EpmDbCollectionController ()<UITableViewDataSource,UITableViewDelegate>
 -(void)loadData;
+@property(nonatomic,strong) NSMutableArray *apps;
+@property (strong, nonatomic) IBOutlet UICollectionView *appCV;
+
 @end
 
 @implementation EpmDbCollectionController
@@ -32,6 +35,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.appCV.delegate=self;
+    self.appCV.dataSource=self;
+    
     [self loadData];
     
 }
@@ -39,14 +45,22 @@
 
 -(void)loadData{
     
-//    NSDictionary *mainDash=@{@"id:":@"1",@"name":@"Current Status",@"id:":@"8",@"name":@"WorkingTime Detail"};
+    NSDictionary *currentStatus=@{@"id":@"1",@"name":@"Current Status",@"image":@"current-status"};
+    NSDictionary *cycleTimeDetail=@{@"id":@"8",@"name":@"CycleTime Detail",@"image":@"cycle-time"};
+    NSDictionary *movingTimeDetail=@{@"id":@"102",@"name":@"MovingTime Detail",@"image":@"moving-time"};
+    NSDictionary *cycleAndMovingDetail=@{@"id":@"104",@"name":@"Cycle&Moving Detail",@"image":@"moving-cycle-time"};
+
     
-     NSDictionary *mainDash=@{@"id:":@"1",@"name":@"View Dashboard"};
+    // NSDictionary *mainDash=@{@"id:":@"1",@"name":@"View Dashboard"};
     
-    NSMutableArray *ds=[[NSMutableArray alloc] init];
-    [ds addObject:mainDash];
-    self.dashboards=ds;
-    [self.collectionView reloadData];
+    self.apps=[[NSMutableArray alloc] init];
+    [self.apps addObject:currentStatus];
+    [self.apps addObject:cycleTimeDetail];
+    [self.apps addObject:movingTimeDetail];
+    [self.apps addObject:cycleAndMovingDetail];
+    
+  
+    [self.appCV reloadData];
     
 //
 //    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
@@ -82,15 +96,18 @@
 
 - (NSInteger)collectionView:(UICollectionView *)view numberOfItemsInSection:(NSInteger)section;
 {
-    return self.dashboards.count;
+    return self.apps.count;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)cv cellForItemAtIndexPath:(NSIndexPath *)indexPath;
 {
      EpmDbCellView *cell = [cv dequeueReusableCellWithReuseIdentifier:@"itemCell" forIndexPath:indexPath];
 
-    NSLog(@"%@",[[self.dashboards  objectAtIndex:indexPath.row] objectForKey:@"name"]);
-    cell.title.text = [[self.dashboards  objectAtIndex:indexPath.row] objectForKey:@"name"];
+    NSLog(@"%@",[[self.apps  objectAtIndex:indexPath.row] objectForKey:@"name"]);
+    cell.title.text = [[self.apps  objectAtIndex:indexPath.row] objectForKey:@"name"];
+    
+    cell.image.image=[UIImage imageNamed:[[self.apps  objectAtIndex:indexPath.row] objectForKey:@"image"]];
+    
     return cell;
 }
 
@@ -112,22 +129,22 @@
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    [self performSegueWithIdentifier:@"viewDashboardDetail" sender:[self.dashboards objectAtIndex:indexPath.row]];
+    [self performSegueWithIdentifier:@"viewDashboardDetail" sender:[self.apps objectAtIndex:indexPath.row]];
 
 }
 
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
-//    if([segue.identifier isEqualToString:@"viewDashboardDetail"])
-//    {
-//        EpmDbDetailViewController *detailViewController = segue.destinationViewController;
-//        
-//        NSLog(@".......@%",[sender objectForKey:@"id"]);
-//        
-//        detailViewController.dashboardId = (NSString *)[sender objectForKey:@"id"];
-//        NSLog( detailViewController.dashboardId);
-// 
-//    }
+    if([segue.identifier isEqualToString:@"viewDashboardDetail"])
+    {
+        EpmDbDetailViewController *detailViewController = segue.destinationViewController;
+        
+        NSLog(@".......@%",[sender objectForKey:@"id"]);
+        
+        detailViewController.dashboardId =  [sender objectForKey:@"id"];
+        NSLog( detailViewController.dashboardId);
+ 
+    }
     
 }
 

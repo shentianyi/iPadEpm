@@ -9,8 +9,16 @@
 #import "EpmAppDelegate.h"
 //#import "MobClick.h"
 #import "AFNetworking.h"
+@interface EpmAppDelegate()
+
+
+@end
 
 @implementation EpmAppDelegate
+
+
+//static EpmAppDelegate *_appDelegate;
+
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
@@ -123,5 +131,27 @@
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
+
+
+//+(EpmAppDelegate*)appDelegate{
+//    return _appDelegate;
+//}
+
+//-(void)updateCanLanscape{
+//    self.cusCanLanscape=true;
+//}
+
+//- (NSUInteger)application:(UIApplication *)application supportedInterfaceOrientationsForWindow:(UIWindow *)window {
+////    if ([self.OriFlag isEqualToString:@"1"]) {
+////        return UIInterfaceOrientationMaskAll;
+////        NSLog(@"屏幕支持旋转");
+////    }
+////    
+//    if(cusCanLanscape){
+//        return UIInterfaceOrientationMaskLandscapeRight;
+//    }else{
+//    return  UIInterfaceOrientationMaskPortrait;
+//    }
+//}
 
 @end

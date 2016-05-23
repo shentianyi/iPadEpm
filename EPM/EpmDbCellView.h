@@ -10,5 +10,6 @@
 
 @interface EpmDbCellView : UICollectionViewCell
 @property (weak, nonatomic) IBOutlet UILabel *title;
+@property (weak, nonatomic) IBOutlet UIImageView *image;
 
 @end

@@ -12,6 +12,8 @@
 #import "EpmContactCell.h"
 #import "EpmOrgViewController.h"
 #import "EpmSendMailController.h"
+#import "EpmKPIDetailViewController.h"
+#import "EpmDbDetailViewController.h"
 #import "SDWebImage/UIImageView+WebCache.h"
 @import AVFoundation;
 
@@ -19,6 +21,7 @@
 @property (strong, nonatomic) NSString * foundBarcodes;
 @property(strong,nonatomic) NSMutableArray *contacts;
 @property(strong,nonatomic) NSDictionary *entityGroup;
+@property(strong,nonatomic)NSString *entityGroupId;
 @end
 
 @implementation EpmscanController
@@ -234,15 +237,15 @@ didOutputMetadataObjects:(NSArray *)metadataObjects
     [manager GET:[NSString stringWithFormat:@"%@%@",[EpmSettings getEpmUrlSettingsWithKey: @"baseUrl"],toReplace] parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSDictionary *result = (NSDictionary *)responseObject;
         self.entityGroup = [result objectForKey:@"entityGroup"];
-        
+        self.entityGroupId=[[result objectForKey:@"entityGroup"] objectForKey:@"id"];
         NSMutableDictionary *temp =[NSMutableDictionary dictionaryWithDictionary:self.entityGroup];
         [temp setObject:[result objectForKey:@"contact"] forKey:@"contacts"];
         self.entityGroup = temp;
         
         self.name.text = [[result objectForKey:@"entityGroup"] objectForKey:@"name"];
         
-        self.desc.text =[[result objectForKey:@"entityGroup"] objectForKey:@"description"];
-        
+        //self.desc.text =[[result objectForKey:@"entityGroup"] objectForKey:@"description"];
+        self.desc.text =[[result objectForKey:@"entityGroup"] objectForKey:@"code"];
         
         if([result objectForKey:@"contact"]){
             self.contacts = [NSMutableArray arrayWithArray:[result objectForKey:@"contact"]];
@@ -273,7 +276,7 @@ didOutputMetadataObjects:(NSArray *)metadataObjects
 
 
 - (IBAction)details:(UIButton *)sender {
-    [self performSegueWithIdentifier:@"scan" sender:self.entityGroup];
+    [self performSegueWithIdentifier:@"kpiDetail" sender:@{@"entityGroup":self.entityGroup,@"id":self.entityGroupId}];
 
 }
 
@@ -329,6 +332,17 @@ didOutputMetadataObjects:(NSArray *)metadataObjects
         
         EpmSendMailController *detailViewController = segue.destinationViewController;
         detailViewController.completeData  = @{@"contacts":(NSArray*)sender};
+    }
+    
+    if([segue.identifier isEqualToString:@"kpiDetail"]){
+        EpmDbDetailViewController *kpiDetail=segue.destinationViewController;
+        
+        NSDictionary *entityGroup= [sender objectForKey:@"entityGroup"];
+        
+        NSString *entityGroupId= [sender objectForKey:@"id"];
+      
+        
+        kpiDetail.entityGroupId=entityGroupId;
     }
 }
 

@@ -18,4 +18,9 @@ typedef enum {
 
 @property (strong, nonatomic) UIWindow *window;
 
+//
+//@property (nonatomic)Boolean *cusCanLanscape;
+//+(EpmAppDelegate*)appDelegate;
+//-(void)updateCanLanscape;
+
 @end

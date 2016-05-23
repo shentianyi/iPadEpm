@@ -9,7 +9,7 @@
 #import "EpmDbCellView.h"
 
 @implementation EpmDbCellView
-@synthesize title=_title;
+
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
@@ -27,5 +27,11 @@
     // Drawing code
 }
 */
+
+
+//- (void)layoutSubviews {
+//    [super layoutSubviews];
+//    self.image.frame = CGRectMake(0,0,32,32);
+//}
 
 @end

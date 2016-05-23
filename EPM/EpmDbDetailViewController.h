@@ -10,6 +10,8 @@
 
 @interface EpmDbDetailViewController : UIViewController
 @property(strong,nonatomic) NSString *dashboardId;
+@property(strong,nonatomic)NSString *entityGroupId;
+
 @property (weak, nonatomic) IBOutlet UIWebView *webView;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *indicator;
 

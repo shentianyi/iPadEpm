@@ -23,6 +23,7 @@
 		02B6FB181C44F363001F04C5 /* UIImageView+HighlightedWebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 02B6FB061C44F363001F04C5 /* UIImageView+HighlightedWebCache.m */; };
 		02B6FB191C44F363001F04C5 /* UIImageView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 02B6FB081C44F363001F04C5 /* UIImageView+WebCache.m */; };
 		02B6FB1A1C44F363001F04C5 /* UIView+WebCacheOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 02B6FB0A1C44F363001F04C5 /* UIView+WebCacheOperation.m */; };
+		02CEA0A31CF2B5680007CDA7 /* EpmKPIDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 02CEA0A21CF2B5680007CDA7 /* EpmKPIDetailViewController.m */; };
 		0502A96A18BC747C00906C45 /* chart-clorful.png in Resources */ = {isa = PBXBuildFile; fileRef = 0502A96518BC747C00906C45 /* chart-clorful.png */; };
 		0502A96B18BC747C00906C45 /* Photo-gray.png in Resources */ = {isa = PBXBuildFile; fileRef = 0502A96618BC747C00906C45 /* Photo-gray.png */; };
 		0502A96C18BC747C00906C45 /* Photo-colorful.png in Resources */ = {isa = PBXBuildFile; fileRef = 0502A96718BC747C00906C45 /* Photo-colorful.png */; };
@@ -216,6 +217,8 @@
 		02B6FB081C44F363001F04C5 /* UIImageView+WebCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+WebCache.m"; sourceTree = "<group>"; };
 		02B6FB091C44F363001F04C5 /* UIView+WebCacheOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+WebCacheOperation.h"; sourceTree = "<group>"; };
 		02B6FB0A1C44F363001F04C5 /* UIView+WebCacheOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+WebCacheOperation.m"; sourceTree = "<group>"; };
+		02CEA0A11CF2B5680007CDA7 /* EpmKPIDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EpmKPIDetailViewController.h; sourceTree = "<group>"; };
+		02CEA0A21CF2B5680007CDA7 /* EpmKPIDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EpmKPIDetailViewController.m; sourceTree = "<group>"; };
 		0502A96518BC747C00906C45 /* chart-clorful.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chart-clorful.png"; sourceTree = "<group>"; };
 		0502A96618BC747C00906C45 /* Photo-gray.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Photo-gray.png"; sourceTree = "<group>"; };
 		0502A96718BC747C00906C45 /* Photo-colorful.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Photo-colorful.png"; sourceTree = "<group>"; };
@@ -700,6 +703,8 @@
 				0519BA8118BC48240029447E /* EpmMailListController.m */,
 				0564116218D840A400ECF680 /* EpmSettingViewController.h */,
 				0564116318D840A400ECF680 /* EpmSettingViewController.m */,
+				02CEA0A11CF2B5680007CDA7 /* EpmKPIDetailViewController.h */,
+				02CEA0A21CF2B5680007CDA7 /* EpmKPIDetailViewController.m */,
 			);
 			path = EPM;
 			sourceTree = "<group>";
@@ -1159,6 +1164,7 @@
 				0566994C18B6E5AA0024AD32 /* EpmConstants.m in Sources */,
 				05EA4DFD187FB06F00C53FEE /* EpmDbCollectionController.m in Sources */,
 				05D2C0A2188482D200DBBF8C /* EpmTableCell.m in Sources */,
+				02CEA0A31CF2B5680007CDA7 /* EpmKPIDetailViewController.m in Sources */,
 				05D2C0801884191500DBBF8C /* LineLayout.m in Sources */,
 				B08089D619169CD40008D909 /* PNChartLabel.m in Sources */,
 				0589E8DB18AB4121000173CC /* EpmContactCell.m in Sources */,
@@ -1346,9 +1352,10 @@
 					/Users/tianyi/Downloads/Analytics_iOS_SDK_2.2.1.OpenUDID/UMAnalytics_Sdk_2.2.1.OpenUDID,
 				);
 				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_BUNDLE_IDENTIFIER = ClearInsight.ClearInsight;
 				PRODUCT_NAME = ClearInsight;
 				PROVISIONING_PROFILE = "";
-				TARGETED_DEVICE_FAMILY = 2;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -1373,9 +1380,10 @@
 					/Users/tianyi/Downloads/Analytics_iOS_SDK_2.2.1.OpenUDID/UMAnalytics_Sdk_2.2.1.OpenUDID,
 				);
 				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_BUNDLE_IDENTIFIER = ClearInsight.ClearInsight;
 				PRODUCT_NAME = ClearInsight;
 				PROVISIONING_PROFILE = "";
-				TARGETED_DEVICE_FAMILY = 2;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
