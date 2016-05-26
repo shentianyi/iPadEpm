@@ -35,7 +35,7 @@
 	<key>dash</key>
 	<string>/dashboards?full_size=1</string>
 	<key>baseUrl</key>
-	<string>http://192.168.1.79:3000</string>
+	<string>http://10.86.0.82</string>
 	<key>attach</key>
 	<string>/files/attach?f=</string>
 	<key>dashboards</key>

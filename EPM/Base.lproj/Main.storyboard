@@ -107,6 +107,12 @@
                                             <outlet property="delegate" destination="mN6-sR-CcS" id="SfP-Oe-kKv"/>
                                         </connections>
                                     </collectionView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="code" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EpS-BA-rvV">
+                                        <rect key="frame" x="387" y="61" width="187" height="32"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="21"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" white="0.93794102822580661" alpha="0.70000000000000007" colorSpace="calibratedWhite"/>
                             </view>
@@ -1317,7 +1323,7 @@
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Qn1-Zp-bor" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5220" y="123"/>
+            <point key="canvasLocation" x="4632" y="75"/>
         </scene>
         <!--Epm Db Detail View Controller-->
         <scene sceneID="KPp-8T-WPJ">

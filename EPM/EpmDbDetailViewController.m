@@ -26,19 +26,27 @@
 }
 
 -(void)viewWillAppear:(BOOL)animated{
+    
+    self.tabBarController.tabBar.hidden=YES;
+    
     [super viewWillAppear:NO];
     [UIView setAnimationsEnabled:NO];
     
     NSNumber *value = [NSNumber numberWithInt:UIInterfaceOrientationLandscapeRight];
     [[UIDevice currentDevice] setValue:value forKey:@"orientation"];
     
+   
+
   //  [[UIApplication sharedApplication] setStatusBarHidden:YES];
-    self.tabBarController.tabBar.hidden=YES;
+    
 }
 
 -(void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:NO];
     [UIView setAnimationsEnabled:YES];
+    
+    self.webView.scalesPageToFit=NO;
+    self.webView.multipleTouchEnabled = NO;
 }
 
 -(void)viewWillDisappear:(BOOL)animated{

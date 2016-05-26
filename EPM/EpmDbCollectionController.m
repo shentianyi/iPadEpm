@@ -47,8 +47,8 @@
     
     NSDictionary *currentStatus=@{@"id":@"1",@"name":@"Current Status",@"image":@"current-status"};
     NSDictionary *cycleTimeDetail=@{@"id":@"8",@"name":@"CycleTime Detail",@"image":@"cycle-time"};
-    NSDictionary *movingTimeDetail=@{@"id":@"102",@"name":@"MovingTime Detail",@"image":@"moving-time"};
-    NSDictionary *cycleAndMovingDetail=@{@"id":@"104",@"name":@"Cycle&Moving Detail",@"image":@"moving-cycle-time"};
+    NSDictionary *movingTimeDetail=@{@"id":@"102",@"name":@"WaitingTime Detail",@"image":@"moving-time"};
+    NSDictionary *cycleAndMovingDetail=@{@"id":@"104",@"name":@"Waiting&Cycle Detail",@"image":@"moving-cycle-time"};
 
     
     // NSDictionary *mainDash=@{@"id:":@"1",@"name":@"View Dashboard"};
