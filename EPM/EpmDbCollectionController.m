@@ -12,7 +12,7 @@
 #import "EpmDbHeader.h"
 #import "AFNetworking.h"
 
-@interface EpmDbCollectionController ()<UITableViewDataSource,UITableViewDelegate>
+@interface EpmDbCollectionController ()<UITableViewDelegate>
 -(void)loadData;
 @property(nonatomic,strong) NSMutableArray *apps;
 @property (strong, nonatomic) IBOutlet UICollectionView *appCV;

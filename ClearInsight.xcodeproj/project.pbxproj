@@ -141,12 +141,22 @@
 		05F6CE5718C098290040614F /* EPMlogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 05F6CE5518C098290040614F /* EPMlogo.png */; };
 		05F768CC18B4A70C00055138 /* AttachedPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = 05F768CB18B4A70C00055138 /* AttachedPhoto.m */; };
 		B005C80F18FF909000B8ED4B /* JBBarChartFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = B005C80E18FF909000B8ED4B /* JBBarChartFooterView.m */; };
+		B033C51E1DB08C57001AC953 /* TOWebViewControllerLocalizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B033C5031DB08C57001AC953 /* TOWebViewControllerLocalizable.strings */; };
+		B033C51F1DB08C57001AC953 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B033C5081DB08C57001AC953 /* Info.plist */; };
+		B033C5201DB08C57001AC953 /* NJKWebViewProgress.m in Sources */ = {isa = PBXBuildFile; fileRef = B033C50E1DB08C57001AC953 /* NJKWebViewProgress.m */; };
+		B033C5211DB08C57001AC953 /* NJKWebViewProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = B033C5101DB08C57001AC953 /* NJKWebViewProgressView.m */; };
+		B033C5221DB08C57001AC953 /* TOActivityChrome.m in Sources */ = {isa = PBXBuildFile; fileRef = B033C5141DB08C57001AC953 /* TOActivityChrome.m */; };
+		B033C5231DB08C57001AC953 /* TOActivitySafari.m in Sources */ = {isa = PBXBuildFile; fileRef = B033C5161DB08C57001AC953 /* TOActivitySafari.m */; };
+		B033C5241DB08C57001AC953 /* TOWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B033C5181DB08C57001AC953 /* TOWebViewController.m */; };
+		B033C5251DB08C57001AC953 /* UIImage+TOWebViewControllerIcons.m in Sources */ = {isa = PBXBuildFile; fileRef = B033C51A1DB08C57001AC953 /* UIImage+TOWebViewControllerIcons.m */; };
 		B03822781900BFAC0067DE2D /* OrgChartModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B03822771900BFAC0067DE2D /* OrgChartModel.m */; };
 		B038227B1900DBBF0067DE2D /* entityTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B038227A1900DBBF0067DE2D /* entityTableViewController.m */; };
 		B03B51BA1915D3C8003A33D2 /* ChooseProperty.m in Sources */ = {isa = PBXBuildFile; fileRef = B03B51B91915D3C8003A33D2 /* ChooseProperty.m */; };
 		B043D2AD18FE18B400407A64 /* JBLineChartFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = B043D2AB18FE18B400407A64 /* JBLineChartFooterView.m */; };
 		B043D2D118FE58CF00407A64 /* JBChartTooltipTipView.m in Sources */ = {isa = PBXBuildFile; fileRef = B043D2CE18FE58CF00407A64 /* JBChartTooltipTipView.m */; };
 		B043D2D218FE58CF00407A64 /* JBChartTooltipView.m in Sources */ = {isa = PBXBuildFile; fileRef = B043D2D018FE58CF00407A64 /* JBChartTooltipView.m */; };
+		B0528AC71DB06F9D00D26426 /* DashboardCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B0528AC61DB06F9D00D26426 /* DashboardCollectionViewController.m */; };
+		B0528ACA1DB082D600D26426 /* DashCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B0528AC91DB082D600D26426 /* DashCollectionViewCell.m */; };
 		B0561977190FA03B003CEADC /* propertyFake.plist in Resources */ = {isa = PBXBuildFile; fileRef = B0561976190FA03B003CEADC /* propertyFake.plist */; };
 		B05AF68C1918861500B8F928 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B05AF68A191884FD00B8F928 /* Security.framework */; };
 		B05AF68F191886B600B8F928 /* KeychainItemWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = B05AF68E191886B600B8F928 /* KeychainItemWrapper.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -391,6 +401,31 @@
 		05F768CB18B4A70C00055138 /* AttachedPhoto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AttachedPhoto.m; sourceTree = "<group>"; };
 		B005C80D18FF909000B8ED4B /* JBBarChartFooterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBBarChartFooterView.h; sourceTree = "<group>"; };
 		B005C80E18FF909000B8ED4B /* JBBarChartFooterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBBarChartFooterView.m; sourceTree = "<group>"; };
+		B033C5041DB08C57001AC953 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/TOWebViewControllerLocalizable.strings; sourceTree = "<group>"; };
+		B033C5051DB08C57001AC953 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/TOWebViewControllerLocalizable.strings; sourceTree = "<group>"; };
+		B033C5061DB08C57001AC953 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/TOWebViewControllerLocalizable.strings; sourceTree = "<group>"; };
+		B033C5071DB08C57001AC953 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/TOWebViewControllerLocalizable.strings; sourceTree = "<group>"; };
+		B033C5081DB08C57001AC953 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B033C5091DB08C57001AC953 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/TOWebViewControllerLocalizable.strings; sourceTree = "<group>"; };
+		B033C50A1DB08C57001AC953 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/TOWebViewControllerLocalizable.strings; sourceTree = "<group>"; };
+		B033C50B1DB08C57001AC953 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/TOWebViewControllerLocalizable.strings; sourceTree = "<group>"; };
+		B033C50D1DB08C57001AC953 /* NJKWebViewProgress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NJKWebViewProgress.h; sourceTree = "<group>"; };
+		B033C50E1DB08C57001AC953 /* NJKWebViewProgress.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NJKWebViewProgress.m; sourceTree = "<group>"; };
+		B033C50F1DB08C57001AC953 /* NJKWebViewProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NJKWebViewProgressView.h; sourceTree = "<group>"; };
+		B033C5101DB08C57001AC953 /* NJKWebViewProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NJKWebViewProgressView.m; sourceTree = "<group>"; };
+		B033C5111DB08C57001AC953 /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/TOWebViewControllerLocalizable.strings; sourceTree = "<group>"; };
+		B033C5121DB08C57001AC953 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/TOWebViewControllerLocalizable.strings; sourceTree = "<group>"; };
+		B033C5131DB08C57001AC953 /* TOActivityChrome.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TOActivityChrome.h; sourceTree = "<group>"; };
+		B033C5141DB08C57001AC953 /* TOActivityChrome.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TOActivityChrome.m; sourceTree = "<group>"; };
+		B033C5151DB08C57001AC953 /* TOActivitySafari.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TOActivitySafari.h; sourceTree = "<group>"; };
+		B033C5161DB08C57001AC953 /* TOActivitySafari.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TOActivitySafari.m; sourceTree = "<group>"; };
+		B033C5171DB08C57001AC953 /* TOWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TOWebViewController.h; sourceTree = "<group>"; };
+		B033C5181DB08C57001AC953 /* TOWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TOWebViewController.m; sourceTree = "<group>"; };
+		B033C5191DB08C57001AC953 /* UIImage+TOWebViewControllerIcons.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+TOWebViewControllerIcons.h"; sourceTree = "<group>"; };
+		B033C51A1DB08C57001AC953 /* UIImage+TOWebViewControllerIcons.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+TOWebViewControllerIcons.m"; sourceTree = "<group>"; };
+		B033C51B1DB08C57001AC953 /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = uk.lproj/TOWebViewControllerLocalizable.strings; sourceTree = "<group>"; };
+		B033C51C1DB08C57001AC953 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/TOWebViewControllerLocalizable.strings"; sourceTree = "<group>"; };
+		B033C51D1DB08C57001AC953 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/TOWebViewControllerLocalizable.strings"; sourceTree = "<group>"; };
 		B03822761900BFAC0067DE2D /* OrgChartModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrgChartModel.h; sourceTree = "<group>"; };
 		B03822771900BFAC0067DE2D /* OrgChartModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrgChartModel.m; sourceTree = "<group>"; };
 		B03822791900DBBE0067DE2D /* entityTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = entityTableViewController.h; sourceTree = "<group>"; };
@@ -403,6 +438,10 @@
 		B043D2CE18FE58CF00407A64 /* JBChartTooltipTipView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBChartTooltipTipView.m; sourceTree = "<group>"; };
 		B043D2CF18FE58CF00407A64 /* JBChartTooltipView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBChartTooltipView.h; sourceTree = "<group>"; };
 		B043D2D018FE58CF00407A64 /* JBChartTooltipView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBChartTooltipView.m; sourceTree = "<group>"; };
+		B0528AC51DB06F9D00D26426 /* DashboardCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DashboardCollectionViewController.h; sourceTree = "<group>"; };
+		B0528AC61DB06F9D00D26426 /* DashboardCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DashboardCollectionViewController.m; sourceTree = "<group>"; };
+		B0528AC81DB082D600D26426 /* DashCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DashCollectionViewCell.h; sourceTree = "<group>"; };
+		B0528AC91DB082D600D26426 /* DashCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DashCollectionViewCell.m; sourceTree = "<group>"; };
 		B0561976190FA03B003CEADC /* propertyFake.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = propertyFake.plist; sourceTree = "<group>"; };
 		B05AF68A191884FD00B8F928 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		B05AF68D191886B600B8F928 /* KeychainItemWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeychainItemWrapper.h; sourceTree = "<group>"; };
@@ -650,6 +689,7 @@
 		05EA4DC9187FB00C00C53FEE /* EPM */ = {
 			isa = PBXGroup;
 			children = (
+				B033C5021DB08C57001AC953 /* TOWebViewController */,
 				B043D2A618FE189D00407A64 /* View */,
 				058CE82718EC3EDC000FA4E8 /* tmp */,
 				B0045F4118DFDCA8006B1BC6 /* Controller */,
@@ -705,6 +745,10 @@
 				0564116318D840A400ECF680 /* EpmSettingViewController.m */,
 				02CEA0A11CF2B5680007CDA7 /* EpmKPIDetailViewController.h */,
 				02CEA0A21CF2B5680007CDA7 /* EpmKPIDetailViewController.m */,
+				B0528AC51DB06F9D00D26426 /* DashboardCollectionViewController.h */,
+				B0528AC61DB06F9D00D26426 /* DashboardCollectionViewController.m */,
+				B0528AC81DB082D600D26426 /* DashCollectionViewCell.h */,
+				B0528AC91DB082D600D26426 /* DashCollectionViewCell.m */,
 			);
 			path = EPM;
 			sourceTree = "<group>";
@@ -825,6 +869,35 @@
 				05D2C00C1881305900DBBF8C /* EpmLoginViewController.h */,
 			);
 			name = login;
+			sourceTree = "<group>";
+		};
+		B033C5021DB08C57001AC953 /* TOWebViewController */ = {
+			isa = PBXGroup;
+			children = (
+				B033C5031DB08C57001AC953 /* TOWebViewControllerLocalizable.strings */,
+				B033C5081DB08C57001AC953 /* Info.plist */,
+				B033C50C1DB08C57001AC953 /* NJKWebViewProgress */,
+				B033C5131DB08C57001AC953 /* TOActivityChrome.h */,
+				B033C5141DB08C57001AC953 /* TOActivityChrome.m */,
+				B033C5151DB08C57001AC953 /* TOActivitySafari.h */,
+				B033C5161DB08C57001AC953 /* TOActivitySafari.m */,
+				B033C5171DB08C57001AC953 /* TOWebViewController.h */,
+				B033C5181DB08C57001AC953 /* TOWebViewController.m */,
+				B033C5191DB08C57001AC953 /* UIImage+TOWebViewControllerIcons.h */,
+				B033C51A1DB08C57001AC953 /* UIImage+TOWebViewControllerIcons.m */,
+			);
+			path = TOWebViewController;
+			sourceTree = "<group>";
+		};
+		B033C50C1DB08C57001AC953 /* NJKWebViewProgress */ = {
+			isa = PBXGroup;
+			children = (
+				B033C50D1DB08C57001AC953 /* NJKWebViewProgress.h */,
+				B033C50E1DB08C57001AC953 /* NJKWebViewProgress.m */,
+				B033C50F1DB08C57001AC953 /* NJKWebViewProgressView.h */,
+				B033C5101DB08C57001AC953 /* NJKWebViewProgressView.m */,
+			);
+			path = NJKWebViewProgress;
 			sourceTree = "<group>";
 		};
 		B043D2A618FE189D00407A64 /* View */ = {
@@ -1013,6 +1086,16 @@
 				en,
 				Base,
 				"zh-Hans",
+				de,
+				es,
+				fr,
+				it,
+				ja,
+				ko,
+				pl,
+				ru,
+				uk,
+				"zh-Hant",
 			);
 			mainGroup = 05EA4DB7187FB00C00C53FEE;
 			productRefGroup = 05EA4DC1187FB00C00C53FEE /* Products */;
@@ -1042,6 +1125,7 @@
 				05D2C06F1882746A00DBBF8C /* disconnect.png in Resources */,
 				B08089D219169CD40008D909 /* PNBarb.ml in Resources */,
 				05EA4DDF187FB00C00C53FEE /* Images.xcassets in Resources */,
+				B033C51E1DB08C57001AC953 /* TOWebViewControllerLocalizable.strings in Resources */,
 				0502A96A18BC747C00906C45 /* chart-clorful.png in Resources */,
 				05D2C09B1884670100DBBF8C /* LOGIN.png in Resources */,
 				05D2C0AC1884B6C600DBBF8C /* ipad-icon-152.png in Resources */,
@@ -1051,6 +1135,7 @@
 				05984FA018CF03AA0072B204 /* trend-down.png in Resources */,
 				05D2C0AA1884B6C600DBBF8C /* ipad-icon-76.png in Resources */,
 				05F6CE4C18C03E990040614F /* Photo.png in Resources */,
+				B033C51F1DB08C57001AC953 /* Info.plist in Resources */,
 				058CE82918EC3EF3000FA4E8 /* tmpGroupDetails.plist in Resources */,
 				05D2C079188274C700DBBF8C /* SHANGHAI.png in Resources */,
 				B08089D419169CD40008D909 /* PNBarChartb.hl in Resources */,
@@ -1123,6 +1208,7 @@
 				02B6FB161C44F363001F04C5 /* UIImage+MultiFormat.m in Sources */,
 				05EA4E03187FDC8800C53FEE /* EpmDbDetailViewController.m in Sources */,
 				B03822781900BFAC0067DE2D /* OrgChartModel.m in Sources */,
+				B0528ACA1DB082D600D26426 /* DashCollectionViewCell.m in Sources */,
 				B0895C2718FD2FF30013A048 /* JBLineChartView.m in Sources */,
 				058CE82F18ECC8CB000FA4E8 /* EpmGroupConditionViewController.m in Sources */,
 				05D2C043188138BE00DBBF8C /* AFHTTPRequestOperationManager.m in Sources */,
@@ -1137,6 +1223,7 @@
 				05EA4E00187FB09F00C53FEE /* EpmDbCellView.m in Sources */,
 				05EA4DD0187FB00C00C53FEE /* main.m in Sources */,
 				B043D2D218FE58CF00407A64 /* JBChartTooltipView.m in Sources */,
+				B033C5201DB08C57001AC953 /* NJKWebViewProgress.m in Sources */,
 				05F6CE4618C02B590040614F /* EpmOrgOverviewController.m in Sources */,
 				B03B51BA1915D3C8003A33D2 /* ChooseProperty.m in Sources */,
 				02B6FB111C44F363001F04C5 /* SDWebImageDownloaderOperation.m in Sources */,
@@ -1148,6 +1235,7 @@
 				05A2061018B5CCCA0052B569 /* EpmGraphicUtility.m in Sources */,
 				058CE82618EC3C62000FA4E8 /* XYPieChart.m in Sources */,
 				02B6FB171C44F363001F04C5 /* UIImage+WebP.m in Sources */,
+				B033C5251DB08C57001AC953 /* UIImage+TOWebViewControllerIcons.m in Sources */,
 				05F768CC18B4A70C00055138 /* AttachedPhoto.m in Sources */,
 				05C4FF6118ADE20F004E1A90 /* EpmMailAttachmentViewCell.m in Sources */,
 				B043D2AD18FE18B400407A64 /* JBLineChartFooterView.m in Sources */,
@@ -1172,6 +1260,7 @@
 				05D2C08C1884324B00DBBF8C /* EpmOrgKpiCellView.m in Sources */,
 				055F84631889153D00D88BC4 /* EpmHttpUtil.m in Sources */,
 				05EA4DD4187FB00C00C53FEE /* EpmAppDelegate.m in Sources */,
+				B033C5211DB08C57001AC953 /* NJKWebViewProgressView.m in Sources */,
 				02B6FB141C44F363001F04C5 /* UIButton+WebCache.m in Sources */,
 				B08089D719169CD40008D909 /* PNCircleChart.m in Sources */,
 				056C959C18B477EF008A2198 /* EpmPhotoEditViewController.m in Sources */,
@@ -1188,11 +1277,15 @@
 				B08089B51916825C0008D909 /* DetailCompareChart.m in Sources */,
 				058CE82218EC35FF000FA4E8 /* EpmGroupViewController.m in Sources */,
 				02B6FB101C44F363001F04C5 /* SDWebImageDownloader.m in Sources */,
+				B033C5241DB08C57001AC953 /* TOWebViewController.m in Sources */,
+				B0528AC71DB06F9D00D26426 /* DashboardCollectionViewController.m in Sources */,
 				05D2C00E1881305900DBBF8C /* EpmLoginViewController.m in Sources */,
 				02B6FB191C44F363001F04C5 /* UIImageView+WebCache.m in Sources */,
 				B005C80F18FF909000B8ED4B /* JBBarChartFooterView.m in Sources */,
 				0589E8D018AB161F000173CC /* EpmscanController.m in Sources */,
+				B033C5231DB08C57001AC953 /* TOActivitySafari.m in Sources */,
 				B05AF68F191886B600B8F928 /* KeychainItemWrapper.m in Sources */,
+				B033C5221DB08C57001AC953 /* TOActivityChrome.m in Sources */,
 				0566995518B7245D0024AD32 /* EpmColorPickViewController.m in Sources */,
 				05D2C042188138BE00DBBF8C /* AFHTTPRequestOperation.m in Sources */,
 				0589E8D518AB1A87000173CC /* Barcode.m in Sources */,
@@ -1254,6 +1347,25 @@
 				0564116B18D9175700ECF680 /* zh-Hans */,
 			);
 			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		B033C5031DB08C57001AC953 /* TOWebViewControllerLocalizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B033C5041DB08C57001AC953 /* de */,
+				B033C5051DB08C57001AC953 /* en */,
+				B033C5061DB08C57001AC953 /* es */,
+				B033C5071DB08C57001AC953 /* fr */,
+				B033C5091DB08C57001AC953 /* it */,
+				B033C50A1DB08C57001AC953 /* ja */,
+				B033C50B1DB08C57001AC953 /* ko */,
+				B033C5111DB08C57001AC953 /* pl */,
+				B033C5121DB08C57001AC953 /* ru */,
+				B033C51B1DB08C57001AC953 /* uk */,
+				B033C51C1DB08C57001AC953 /* zh-Hans */,
+				B033C51D1DB08C57001AC953 /* zh-Hant */,
+			);
+			name = TOWebViewControllerLocalizable.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

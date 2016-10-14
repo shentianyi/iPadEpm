@@ -245,7 +245,7 @@
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iVn-q6-Haq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5002" y="1463"/>
+            <point key="canvasLocation" x="5001" y="1463"/>
         </scene>
         <!--Epm Org View Controller-->
         <scene sceneID="tYy-TL-pFC">
@@ -1323,7 +1323,7 @@
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Qn1-Zp-bor" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4632" y="75"/>
+            <point key="canvasLocation" x="5126" y="176"/>
         </scene>
         <!--Epm Db Detail View Controller-->
         <scene sceneID="KPp-8T-WPJ">
@@ -1465,6 +1465,7 @@
                     </tabBar>
                     <connections>
                         <segue destination="cq0-ZO-IGf" kind="relationship" relationship="viewControllers" id="asX-mq-UFc"/>
+                        <segue destination="Euw-ah-rJf" kind="relationship" relationship="viewControllers" id="bjD-bR-3yx"/>
                         <segue destination="1bJ-ix-k2p" kind="relationship" relationship="viewControllers" id="zGg-KW-azu"/>
                         <segue destination="Wd3-D4-Kgd" kind="relationship" relationship="viewControllers" id="poC-yy-SfG"/>
                         <segue destination="BtQ-pt-HbI" kind="relationship" relationship="viewControllers" id="ONF-6i-Yme"/>
@@ -1584,6 +1585,98 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="M5I-Lt-Ow2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4028" y="1463"/>
+        </scene>
+        <!--myitem-->
+        <scene sceneID="5uM-uG-7nj">
+            <objects>
+                <navigationController navigationBarHidden="YES" id="Euw-ah-rJf" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="myitem" image="dashboard_24" id="evz-ax-TDK"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="k5j-QU-kdw">
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="ANs-Mo-h0P" kind="relationship" relationship="rootViewController" id="zBF-VK-pzL"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="eNB-Km-TBm" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4015" y="3862"/>
+        </scene>
+        <!--Dashboard Collection View Controller-->
+        <scene sceneID="fpT-tF-gnx">
+            <objects>
+                <collectionViewController id="ANs-Mo-h0P" customClass="DashboardCollectionViewController" sceneMemberID="viewController">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="JVE-XQ-vbp">
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="FvH-q1-dLo">
+                            <size key="itemSize" width="369" height="239"/>
+                            <size key="headerReferenceSize" width="50" height="89"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        </collectionViewFlowLayout>
+                        <imageView key="backgroundView" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="draft" id="UVK-bh-FUq">
+                            <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        </imageView>
+                        <cells>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="cellid" id="PdU-kh-LNG" customClass="DashCollectionViewCell">
+                                <rect key="frame" x="0.0" y="89" width="369" height="239"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="369" height="239"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <view alpha="0.20000000000000001" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="S6N-vV-tt8">
+                                            <rect key="frame" x="30" y="21" width="310" height="198"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tO8-13-EU0">
+                                                    <rect key="frame" x="0.0" y="0.0" width="302" height="198"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kG0-3j-vKe">
+                                                            <rect key="frame" x="73" y="42" width="161" height="71"/>
+                                                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                    <color key="backgroundColor" cocoaTouchSystemColor="lightTextColor"/>
+                                                </view>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                                <connections>
+                                    <outlet property="dashTitle" destination="kG0-3j-vKe" id="CXK-p3-Jib"/>
+                                </connections>
+                            </collectionViewCell>
+                        </cells>
+                        <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="dashHead" id="5aC-H9-Jfl" customClass="EpmDbHeader">
+                            <rect key="frame" x="0.0" y="0.0" width="768" height="89"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="DashBoard" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GSO-MT-McG">
+                                    <rect key="frame" x="8" y="11" width="205" height="67"/>
+                                    <fontDescription key="fontDescription" name="HelveticaNeue-UltraLight" family="Helvetica Neue" pointSize="41"/>
+                                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        </collectionReusableView>
+                        <connections>
+                            <outlet property="dataSource" destination="ANs-Mo-h0P" id="Myz-pZ-AZp"/>
+                            <outlet property="delegate" destination="ANs-Mo-h0P" id="Q1z-Q1-NKr"/>
+                        </connections>
+                    </collectionView>
+                    <navigationItem key="navigationItem" id="7w6-OK-c64"/>
+                </collectionViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8yC-7x-lIq" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5272" y="3791"/>
         </scene>
         <!--Improvement-->
         <scene sceneID="7Mx-tF-EgI">
@@ -2256,6 +2349,7 @@
         <image name="Photo.png" width="118" height="92"/>
         <image name="chart.png" width="111" height="111"/>
         <image name="current-status" width="67" height="66"/>
+        <image name="dashboard_24" width="24" height="24"/>
         <image name="draft" width="1536" height="2048"/>
         <image name="goForDetail" width="235" height="33"/>
         <image name="kpiCategory-default.png" width="50" height="50"/>
@@ -2276,8 +2370,8 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="VpV-9H-8RB"/>
+        <segue reference="Hwz-lh-C6L"/>
         <segue reference="vYJ-gm-ecy"/>
-        <segue reference="qpP-Zg-zwT"/>
+        <segue reference="VpV-9H-8RB"/>
     </inferredMetricsTieBreakers>
 </document>
