@@ -29,9 +29,9 @@
     
     
     NSDictionary *params = nil;
+    NSLog(@"%@",[NSString stringWithFormat:@"%@%@", [EpmSettings getEpmUrlSettingsWithKey:@"dashboardbaseUrl"], [EpmSettings getEpmUrlSettingsWithKey:@"dashboards" ]]);
     
-    
-    [manager GET:[NSString stringWithFormat:@"%@%@", [EpmSettings getEpmUrlSettingsWithKey:@"baseUrl"], [EpmSettings getEpmUrlSettingsWithKey:@"dashboards" ]] parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [manager GET:[NSString stringWithFormat:@"%@%@", [EpmSettings getEpmUrlSettingsWithKey:@"dashboardbaseUrl"], [EpmSettings getEpmUrlSettingsWithKey:@"dashboards" ]] parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSArray *result = (NSArray *)responseObject;
         
         if(result){
@@ -99,6 +99,8 @@
 {
     DashCollectionViewCell *cell = [cv dequeueReusableCellWithReuseIdentifier:@"cellid" forIndexPath:indexPath];
     cell.dashTitle.text =[[self.Organizations objectAtIndex:indexPath.row] objectForKey:@"name"];
+    NSLog([[self.Organizations objectAtIndex:indexPath.row] objectForKey:@"name"]);
+    NSLog(@"%@",cell.dashTitle.text);
     return cell;
 }
 
@@ -120,7 +122,7 @@
 {
     [collectionView deselectItemAtIndexPath:indexPath animated:YES];
     NSString *ip = [EpmSettings getEpmUrlSettingsWithKey:@"dashboardbaseUrl"];
-    NSString *stringForURL = [ip stringByAppendingString:[NSString stringWithFormat:@"%@",[[self.Organizations objectAtIndex:indexPath.row] objectForKey:@"id"]]];
+    NSString *stringForURL = [ip stringByAppendingString:[NSString stringWithFormat:@"%@%@",[EpmSettings getEpmUrlSettingsWithKey:@"dashboardApi"],[[self.Organizations objectAtIndex:indexPath.row] objectForKey:@"id"]]];
     NSURL *url = nil;
 #ifdef TO_ONEPASSWORD_EXAMPLE
     url = [NSURL URLWithString:@"https://accounts.google.com/login"];

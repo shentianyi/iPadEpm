@@ -46,7 +46,9 @@
 	<string>/api/kpi_entries/compare</string>
 	<key>detailAroundCompare</key>
 	<string>/api/kpi_entries/compares</string>
+	<key>dashboardApi</key>
+	<string>/dashboards/fullsize/</string>
 	<key>dashboardbaseUrl</key>
-	<string>http://192.168.1.11:3000/dashboards/fullsize/</string>
+	<string>http://192.168.1.11:3000</string>
 </dict>
 </plist>
