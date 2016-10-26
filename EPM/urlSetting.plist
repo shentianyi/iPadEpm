@@ -49,6 +49,6 @@
 	<key>dashboardApi</key>
 	<string>/dashboards/fullsize/</string>
 	<key>dashboardbaseUrl</key>
-	<string>http://192.168.1.11:3000</string>
+	<string>http://112.124.28.10:8002</string>
 </dict>
 </plist>

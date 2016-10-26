@@ -1586,11 +1586,11 @@
             </objects>
             <point key="canvasLocation" x="4028" y="1463"/>
         </scene>
-        <!--myitem-->
+        <!--Dash-->
         <scene sceneID="5uM-uG-7nj">
             <objects>
                 <navigationController navigationBarHidden="YES" id="Euw-ah-rJf" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="myitem" image="dashboard_24" id="evz-ax-TDK"/>
+                    <tabBarItem key="tabBarItem" title="Dash" image="dashboard_24" id="evz-ax-TDK"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="k5j-QU-kdw">
                         <rect key="frame" x="0.0" y="0.0" width="768" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -2341,7 +2341,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="u2v-29-HJk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6322" y="-1342"/>
+            <point key="canvasLocation" x="6325" y="-918"/>
         </scene>
     </scenes>
     <resources>
@@ -2370,8 +2370,8 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
+        <segue reference="w85-eX-V5B"/>
+        <segue reference="LVu-Gx-eHf"/>
         <segue reference="Hwz-lh-C6L"/>
-        <segue reference="vYJ-gm-ecy"/>
-        <segue reference="VpV-9H-8RB"/>
     </inferredMetricsTieBreakers>
 </document>

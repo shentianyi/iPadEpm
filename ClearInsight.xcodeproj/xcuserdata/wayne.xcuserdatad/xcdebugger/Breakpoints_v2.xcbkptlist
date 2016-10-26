@@ -38,7 +38,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "EPM/DashboardCollectionViewController.m"
@@ -154,7 +154,7 @@
                   moduleName = "ClearInsight"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/wayne/HHcode/ipadEPM/iPadEpm/EPM/DashboardCollectionViewController.m"
-                  timestampString = "498129545.740725"
+                  timestampString = "499059438.671903"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "34"
@@ -169,7 +169,7 @@
                   moduleName = "ClearInsight"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/wayne/HHcode/ipadEPM/iPadEpm/EPM/DashboardCollectionViewController.m"
-                  timestampString = "498129545.741081"
+                  timestampString = "499059438.67208"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "35"
@@ -182,7 +182,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "EPM/DashboardCollectionViewController.m"
@@ -192,6 +192,22 @@
             startingLineNumber = "52"
             endingLineNumber = "52"
             landmarkName = "-getData"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "EPM/EpmOrgViewController.m"
+            timestampString = "499058525.075477"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "376"
+            endingLineNumber = "376"
+            landmarkName = "-loadBarChart"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
