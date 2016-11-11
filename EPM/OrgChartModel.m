@@ -36,18 +36,18 @@
 //    NSLog(@"orgChartModel receive %@",responds);
     self.date=[[responds objectForKey:@"date"] mutableCopy];
     self.dateStandard=[[responds objectForKey:@"date"] mutableCopy];
-   NSLog(@"----%@",self.date);
+//   NSLog(@"----%@",self.date);
     for(int i=0;i<[self.date count];i++){
 //        NSLog(@"%@",[self.date objectAtIndex:i]);
-//        [self.date replaceObjectAtIndex:i withObject:[EpmUtility convertDatetimeWithString:[[self.date objectAtIndex:i] substringToIndex:19] OfPattern:@"yyyy-MM-dd'T'HH:mm:ss" WithFormat:[EpmUtility timeStringOfFrequency:[[responds objectForKey:@"frequency"] intValue]]]];
+        //[self.date replaceObjectAtIndex:i withObject:[EpmUtility convertDatetimeWithString:[[self.date objectAtIndex:i] substringToIndex:19] OfPattern:@"yyyy-MM-dd'T'HH:mm:ss" WithFormat:[EpmUtility timeStringOfFrequency:[[responds objectForKey:@"frequency"] intValue]]]];
         
-       // NSLog(@"frequency: ----%@",[EpmUtility timeStringOfFrequency:[[responds objectForKey:@"frequency"] intValue]]);
-      //
-       // NSLog(@"date:-----%@",[[self.date objectAtIndex:i] substringToIndex:19]);
-//        
-//        NSLog(@"parsed date: %@",[EpmUtility convertDatetimeWithString:[[self.date objectAtIndex:i] substringToIndex:19] OfPattern:@"yyyy-MM-dd HH:mm:ss" WithFormat:[EpmUtility timeStringOfFrequency:[[responds objectForKey:@"frequency"] intValue]]]);
+//         NSLog(@"frequency: ----%@",[EpmUtility timeStringOfFrequency:[[responds objectForKey:@"frequency"] intValue]]);
+//      
+//        NSLog(@"date:-----%@",[[self.date objectAtIndex:i] substringToIndex:19]);
+////        
+//        NSLog(@"parsed date: %@",[EpmUtility convertDatetimeWithString:[[self.date objectAtIndex:i] substringToIndex:19] OfPattern:@"yyyy-MM-dd'T'HH:mm:ss" WithFormat:[EpmUtility timeStringOfFrequency:[[responds objectForKey:@"frequency"] intValue]]]);
        
-         [self.date replaceObjectAtIndex:i withObject:[EpmUtility convertDatetimeWithString:[[self.date objectAtIndex:i] substringToIndex:19] OfPattern:@"yyyy-MM-dd HH:mm:ss" WithFormat:[EpmUtility timeStringOfFrequency:[[responds objectForKey:@"frequency"] intValue]]]];
+         [self.date replaceObjectAtIndex:i withObject:[EpmUtility convertDatetimeWithString:[[self.date objectAtIndex:i] substringToIndex:19] OfPattern:@"yyyy-MM-dd'T'HH:mm:ss" WithFormat:[EpmUtility timeStringOfFrequency:[[responds objectForKey:@"frequency"] intValue]]]];
         
     }
     if(!self.current){

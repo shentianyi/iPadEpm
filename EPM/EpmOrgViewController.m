@@ -235,7 +235,7 @@ CGFloat const kJBBarChartViewControllerChartPadding = 10.0f;
     if(self.chartModel.current.count==1 || !self.chartModel.current)
     {
         [manager GET:[NSString stringWithFormat:@"%@%@",[EpmSettings getEpmUrlSettingsWithKey:@"baseUrl"],[EpmSettings getEpmUrlSettingsWithKey: @"data"]] parameters:self.currentConditions success:^(AFHTTPRequestOperation *operation, id responseObject) {
-//            NSLog(@"address: %@",[NSString stringWithFormat:@"%@%@",[EpmSettings getEpmUrlSettingsWithKey:@"baseUrl"],[EpmSettings getEpmUrlSettingsWithKey: @"data"]] );
+            NSLog(@"address: %@",[NSString stringWithFormat:@"%@%@",[EpmSettings getEpmUrlSettingsWithKey:@"baseUrl"],[EpmSettings getEpmUrlSettingsWithKey: @"data"]] );
             NSLog(@"parameters: %@",self.currentConditions);
             [self.activeView removeFromSuperview];
 //            NSLog(@"result : %@",responseObject);

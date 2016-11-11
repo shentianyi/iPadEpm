@@ -65,7 +65,8 @@
     NSDictionary *params = @{@"user_session[email]": self.email.text,
                              @"user_session[password]": self.psw .text};
     
-   
+    NSLog(@"%@",[urlSetting objectForKey:@"baseUrl"]);
+    
     [manager POST:[NSString stringWithFormat:@"%@%@",[urlSetting objectForKey:@"baseUrl"],[urlSetting objectForKey:@"login"] ] parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSLog(@"JSON: %@", responseObject);
         NSDictionary *result = (NSDictionary *)responseObject;
