@@ -2370,8 +2370,8 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="w85-eX-V5B"/>
         <segue reference="LVu-Gx-eHf"/>
         <segue reference="Hwz-lh-C6L"/>
+        <segue reference="CaG-b0-54F"/>
     </inferredMetricsTieBreakers>
 </document>

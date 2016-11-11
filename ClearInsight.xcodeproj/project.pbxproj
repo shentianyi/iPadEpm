@@ -1466,7 +1466,7 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = ClearInsight.ClearInsight;
 				PRODUCT_NAME = ClearInsight;
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "ede42342-7c6f-4e09-88b4-dd36e2fda14f";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
@@ -1494,7 +1494,7 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = ClearInsight.ClearInsight;
 				PRODUCT_NAME = ClearInsight;
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "ede42342-7c6f-4e09-88b4-dd36e2fda14f";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
