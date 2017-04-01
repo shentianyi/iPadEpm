@@ -1333,6 +1333,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = 58FSFGRL4P;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					/Users/tianyi/github/iPadEpm,
@@ -1346,6 +1347,7 @@
 					/Users/tianyi/Downloads/Analytics_iOS_SDK_2.2.1.OpenUDID/UMAnalytics_Sdk_2.2.1.OpenUDID,
 				);
 				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_BUNDLE_IDENTIFIER = ClearInsight.ClearInsight;
 				PRODUCT_NAME = ClearInsight;
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 2;
@@ -1360,6 +1362,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = 58FSFGRL4P;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					/Users/tianyi/github/iPadEpm,
@@ -1373,6 +1376,7 @@
 					/Users/tianyi/Downloads/Analytics_iOS_SDK_2.2.1.OpenUDID/UMAnalytics_Sdk_2.2.1.OpenUDID,
 				);
 				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_BUNDLE_IDENTIFIER = ClearInsight.ClearInsight;
 				PRODUCT_NAME = ClearInsight;
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 2;
