@@ -29,14 +29,13 @@
     
     NSDictionary *params = nil;
     
-   
+    
     [manager GET:[NSString stringWithFormat:@"%@%@", [EpmSettings getEpmUrlSettingsWithKey:@"baseUrl"], [EpmSettings getEpmUrlSettingsWithKey:@"org" ]] parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
           NSArray *result = (NSArray *)responseObject;
        
          if(result){
          self.Organizations = result;
-             
-                  [self.collectionView reloadData];
+        [self.collectionView reloadData];
             
        }
         else {
@@ -49,8 +48,8 @@
     }
      
        failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-            NSLog(@"%@", [operation response]);
-             
+//            NSLog(@"%@", [operation response]);
+           
           UIAlertView *av = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"SERVICE_DOWN_NETWORK", nil)
                                                           message:@""
                                                          delegate:nil

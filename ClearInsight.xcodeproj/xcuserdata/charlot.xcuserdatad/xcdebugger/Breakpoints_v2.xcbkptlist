@@ -2048,7 +2048,7 @@
             startingLineNumber = "64"
             endingLineNumber = "64"
             landmarkName = "-viewDidLoad"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -2256,7 +2256,7 @@
             startingLineNumber = "48"
             endingLineNumber = "48"
             landmarkName = "-application:didFinishLaunchingWithOptions:"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -2272,7 +2272,7 @@
             startingLineNumber = "47"
             endingLineNumber = "47"
             landmarkName = "-application:didFinishLaunchingWithOptions:"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -2288,7 +2288,7 @@
             startingLineNumber = "234"
             endingLineNumber = "234"
             landmarkName = "-validBarcodeFound:"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -2304,7 +2304,7 @@
             startingLineNumber = "245"
             endingLineNumber = "245"
             landmarkName = "-validBarcodeFound:"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -2320,7 +2320,7 @@
             startingLineNumber = "250"
             endingLineNumber = "250"
             landmarkName = "-validBarcodeFound:"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -2336,7 +2336,7 @@
             startingLineNumber = "253"
             endingLineNumber = "253"
             landmarkName = "-validBarcodeFound:"
-            landmarkType = "5">
+            landmarkType = "7">
             <Locations>
                <Location
                   shouldBeEnabled = "No"
@@ -2384,7 +2384,7 @@
             startingLineNumber = "252"
             endingLineNumber = "252"
             landmarkName = "-validBarcodeFound:"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -2400,7 +2400,7 @@
             startingLineNumber = "263"
             endingLineNumber = "263"
             landmarkName = "-validBarcodeFound:"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -2991,8 +2991,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "135"
             endingLineNumber = "135"
-            landmarkName = "+appDelegate"
-            landmarkType = "5">
+            landmarkName = "@implementation EpmAppDelegate"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -3040,7 +3040,7 @@
             startingLineNumber = "344"
             endingLineNumber = "344"
             landmarkName = "-prepareForSegue:sender:"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -3056,7 +3056,7 @@
             startingLineNumber = "240"
             endingLineNumber = "240"
             landmarkName = "-validBarcodeFound:"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -3072,7 +3072,7 @@
             startingLineNumber = "343"
             endingLineNumber = "343"
             landmarkName = "-prepareForSegue:sender:"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
